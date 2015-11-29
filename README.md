@@ -15,12 +15,13 @@ contains the source files of the HDR defense.
 
 The PDF version of the manuscript and defense slides can de downloaded [here](http://liris.cnrs.fr/david.coeurjolly/phd.html).
 
-## Citing
+## Bibtex entry
 
     @phdthesis{dcoeurjo_HDR,
     	month = {dec},
     	school = {Universit{\'{e}} Claude Bernard Lyon 1},
     	author = {Coeurjolly, D.},
+        type = {Habilitation à diriger des Recherches},
     	title = {Algorithmique pour l{'}analyse et la mod{\'{e}}lisation en g{\'{e}}om{\'{e}}trie discr{\`{e}}te},
 	    year = {2007},
     }
