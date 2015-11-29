@@ -10,7 +10,11 @@ des Recherches* (in French):
      Recherches, Université Claude Bernard Lyon 1, Décembre 2007.
 
 
-The PDF version of the document can de downloaded [here](http://liris.cnrs.fr/david.coeurjolly/phd.html).
+The
+[/Soutenance](https://github.com/dcoeurjo/HDR/tree/master/Soutenance)
+contains the source files of the HDR defense.
+
+The PDF version of the manuscript and defense slides can de downloaded [here](http://liris.cnrs.fr/david.coeurjolly/phd.html).
 
 ## 
 
