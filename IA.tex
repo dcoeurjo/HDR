@@ -349,10 +349,10 @@ Si nous considérons   un nombre réel   $x$, si  $x$ est  représentable
 (\emph{i.e.} $x\in\mathbb{F}$), le double   associé est  {\tt  x}$=x$.
 Sinon, $x$  est entre  deux  nombres représentables  successifs  notés
 $\overline{\tt   x}$ et $\underline{\tt  x}$.     Par la suite,  nous
-noterons   $\sI{x}=  \fup{x}$  et  $\iI{x}=\fdown{x}$  les  opérateurs
+noterons   $\sI{x}=  \ffup{x}$  et  $\iI{x}=\fdown{x}$  les  opérateurs
 permettant d'atteindre les   plus proches flottants  représentables  de
 $x$.  Pour terminer   avec la norme \textsc{IEEE  754},  l'utilisateur
-choisit un  \emph{mode  d'arrondi} selon l'opérateur $\fup{\cdot}$  ou
+choisit un  \emph{mode  d'arrondi} selon l'opérateur $\ffup{\cdot}$  ou
 $\fdown{\cdot}$ privilégié   dans  la   redéfinition   des  opérateurs
 arithmétiques  classiques.  Ainsi, le résultat    d'un calcul sur  les
 nombres représentables est un nombre représentable.
@@ -387,13 +387,13 @@ d'inclusion d'un opérateur sur les intervalles~:
 
 Ainsi, nous pouvons définir~:
 \begin{align*}
-  X\oplus Y &= [\fdown{\iI{x}+\iI{y}}, \fup{\sI{x}+\sI{y}}]\\
-  X \ominus Y &= [\fdown{\iI{x}-\sI{y}}, \fup{\sI{x}-\iI{y}}]\\
+  X\oplus Y &= [\fdown{\iI{x}+\iI{y}}, \ffup{\sI{x}+\sI{y}}]\\
+  X \ominus Y &= [\fdown{\iI{x}-\sI{y}}, \ffup{\sI{x}-\iI{y}}]\\
   X\odot Y &=  [\min{(\fdown{\iI{x}\cdot\iI{y}},\fdown{\iI{x}\cdot\sI{y}},
-    \fdown{\sI{x}\cdot\iI{y}},\fdown{\sI{x}\cdot\sI{y}})},\\&\max{(\fup{\iI{x}\cdot\iI{y}},\fup{\iI{x}\cdot\sI{y}},\fup{\sI{x}\cdot\iI{y}}, \fup{\sI{x}\cdot\sI{y}})}]
+    \fdown{\sI{x}\cdot\iI{y}},\fdown{\sI{x}\cdot\sI{y}})},\\&\max{(\ffup{\iI{x}\cdot\iI{y}},\ffup{\iI{x}\cdot\sI{y}},\ffup{\sI{x}\cdot\iI{y}}, \ffup{\sI{x}\cdot\sI{y}})}]
 \end{align*}
 
-Remarquons  l'usage des opérateurs  $\fup{\cdot}$  et  $\fdown{\cdot}$
+Remarquons  l'usage des opérateurs  $\ffup{\cdot}$  et  $\fdown{\cdot}$
 permettant de construire  $\mathbb{I}$ sur $\mathbb{F}$, et  qu'ainsi,
 les  opérations $\min$ et  $\max$ se font  de manière exacte sur $\F$.
 Notons aussi que, dans  le cas de la  multiplication, l'implémentation
@@ -584,7 +584,7 @@ de la manière suivante~:
 Lorsqu'un nombre est donné sur les réels ou lors de la définition d'un
 opérateur arithmétique, nous définissons les opérateurs~:
 \begin{align*}
-  \fup{x} &= \left \lceil x+\frac{1}{2} \right \rceil -\frac{1}{2}\,, \\
+  \ffup{x} &= \left \lceil x+\frac{1}{2} \right \rceil -\frac{1}{2}\,, \\
   \fdown{x}&=\left \lfloor x+\frac{1}{2} \right \rfloor -\frac{1}{2}\,. \\
 \end{align*}
 
@@ -682,9 +682,9 @@ $$ \S(f) =  \bigcup_{k\in\Z} [K\times \Box f(K)]\,.$$
   intersectant  l'objet continu, il existe $x\in  K$ tel que $f(x)\cap
   C\neq\emptyset$.    Par     ailleurs et     par   définition      de
   $\I_{\Z+\frac{1}{2}}$,      $f(x)      \in    Y$     mais      aussi
-  $[\fdown{f(x)},\fup{f(x)}] \subseteq Y$.   Par définition du modèle en
+  $[\fdown{f(x)},\ffup{f(x)}] \subseteq Y$.   Par définition du modèle en
   supercouverture,         $C$ étant             défini            par
-  $[k-\frac{1}{2},k+\frac{1}{2}]\times[\fdown{f(x)},\fup{f(x)}]$, nous
+  $[k-\frac{1}{2},k+\frac{1}{2}]\times[\fdown{f(x)},\ffup{f(x)}]$, nous
   concluons que $C\subseteq Y$ et donc $\S(f)\subseteq \Box f$.\\
 
 
