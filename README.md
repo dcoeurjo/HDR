@@ -16,10 +16,15 @@ contains the source files of the HDR defense.
 
 The PDF version of the manuscript and defense slides can de downloaded [here](http://liris.cnrs.fr/david.coeurjolly/phd.html).
 
-## 
+## Misc
+
+Running ```pdflatex hdr``` and ```pdflatex soutenance``` (with bibtex)
+should build the PDF documents.
 
 
 ## License All this work is under
 [Creative Commons CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 license, see
 [LICENSE.md](https://github.com/jlevallois/PhD-Thesis/blob/master/LICENSE.md)
+
+For specific figures, please refer to the manuscript for image credits. 
