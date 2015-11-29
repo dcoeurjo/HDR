@@ -1,4 +1,4 @@
-# HDR (Habilitation à Diriger des Recherches)
+# David Coeurjolly HDR (Habilitation à Diriger des Recherches)
 
 
 This repository contains sources files of my *Habilitation à Diriger
