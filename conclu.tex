@@ -1,0 +1,212 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter*{Introduction\\\rule{\textwidth}{0.1cm}}
+\chapter*{Conclusion générale et perspectives\vspace{1mm}\hrule}
+
+\addcontentsline{toc}{starchapter}{Conclusions et perspectives}
+%\thispagestyle{plain}
+\markboth{Conclusions et perspectives}{Conclusions et perspectives}
+%\pagenumbering{arabic}
+%\setcounter{page}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{Synthèse des travaux réalisés}
+
+
+Commençons par reprendre les différents chapitres afin d'isoler un peu
+plus précisément nos différentes contributions.
+
+\begin{itemize}
+\vspace{0.5cm}
+
+\item \aut{Chapitre \ref{chap:IA}} : nous avons  présenté les
+  différents modèles de  discrétisation les plus utilisés.  Nous avons
+  ensuite proposé  une approche basée sur l'arithmétique d'intervalles
+  pour caractériser la supercouverture d'un objet euclidien.
+\vspace{0.5cm}
+
+
+\item \aut{  Chapitre  \ref{chap:ILP}} :  nous nous  sommes intéressés
+    aux objets fondamentaux  de la  géométrie discrète que sont
+  les droites, les plans et les cercles discrets.  Après avoir fait le
+  lien avec des résultats de géométrie algorithmique, de programmation
+  linéaire ou d'arithmétique,  nous  avons analysé la complexité   des
+  algorithmes de reconnaissance.  Plus précisément, nous avons insisté
+  sur la   caractérisation de la préimage  des  plans  discrets et sur
+  l'algorithmique associée à la reconnaissance de cercles discrets.
+
+
+\vspace{0.5cm}
+\item \aut{Chapitre \ref{chap:reconstruction}} : nous avons 
+  mis en \oe uvre les algorithmes de  reconnaissance dans le cadre de la
+  reconstruction réversible d'objets  euclidiens.  Dans un contexte de
+  tracé par   un solveur  d'arithmétique  d'intervalles de   fonctions
+  complexes, nous avons  présenté un  mécanisme de reconstruction  sur
+  des  grilles isothétiques irrégulières   en  dimension 2 à la   fois
+  efficace en nombres  de segments mais aussi correct  topologiquement
+  et  géométriquement. Nous   avons  ensuite exploité  et  optimisé la
+  préimage des  plans   discrets   pour  obtenir  une   reconstruction
+  réversible d'un polyèdre à partir d'un objet discret 3D. 
+
+\vspace{0.5cm}
+
+\item  \aut{Chapitre  \ref{chap:AM}} :  nous nous sommes
+  intéressés à l'analyse volumique de formes discrètes par le biais de
+  la  transformation en distance  et de  l'extraction de l'axe médian.
+  Nous avons présenté des  algorithmes séparables, optimaux  en temps,
+  pour tous  ces  problèmes. Par  la suite  et en   exploitant le côté
+  séparable des outils, nous  avons généralisé ces transformations aux
+  espaces  toriques,  modélisation très  utilisée dans  de  nombreuses
+  applications.
+
+\vspace{0.5cm}
+
+\item   \aut{Chapitre  \ref{chap:minim-et-simpl}}  :  nous nous sommes
+  intéressé à  l'exploitation et à l'optimisation de la représentation
+  des  objets discrets sous  forme d'union de  boules discrètes (l'axe
+  médian).  Cette représentation étant  parfois redondante, nous avons
+  tout d'abord montré que la  notion d'axe médian minimum entrait dans
+  une  classe  de problèmes algorithmiques difficiles (NP-difficiles).
+  Par la suite, plusieurs heuristiques  ont été proposées pour réduire
+  cet ensemble  sans  perte  d'information.  Enfin, nous  nous  sommes
+  intéressés à  la   notion de filtrage (donc    avec perte)  de l'axe
+  médian.    Ces   différents  outils    ont été utilisés   dans   une
+  problématique de transmission progressive d'objets discrets.
+\end{itemize}
+
+
+D'un   point  de  vue       contractuel, les  développements    liés à
+l'arithmétique d'intervalles  et aux  grilles isothétiques irrégulières
+se sont  déroulés dans le cadre  de l'ACI  Jeunes Chercheurs GeomDiGIT
+(voir section   \ref{sec:activ-contr}).  Concernant l'analyse d'objets
+fondamentaux, nous  rejoignons  ici le  projet  ANR  Blanc  GeoDib sur
+lequel nous reviendrons dans les perspectives.
+
+En termes  de  collaborations, ces éléments  ont été très  souvent  le
+fruit de     collaborations    ou  de discussions       (voir sections
+\ref{sec:coll-intern}   et \ref{sec:coll-nati-exter})   et ont  donné
+lieu,   en  plus  de   publications, à  des développements  logiciels
+diffusés (voir annexe \ref{chap:real-logic-et}).
+
+
+
+\section{Perspectives et projets}
+
+Si  des perspectives ont  déjà été   données dans les conclusions  des
+différents chapitres, nous revenons plus précisément sur quatre d'entre
+elles mettant  en  \oe  uvre plus  précisément  des  collaborations et
+projets.
+
+
+
+\vspace{0.5cm}
+
+\noindent\aut{Définition       et  algorithmique  associées  aux  objets
+  fondamentaux pour l'intégration d'incertitude ou de bruit}
+
+Une des forces de la géométrie discrète, c'est le fait que l'on puisse
+faire  des  calculs  exacts  et  que  l'arithmétique sous-jacente nous
+permet de proposer  des algorithmes très  efficaces. Une des critiques
+parfois formulée porte   sur le fait  qu'elle  relègue  la gestion  de
+l'incertitude ou du bruit soit en pré,  soit en post-traitement.  L'un
+des objectifs du projet ANR Blanc  Geodib est de repousser ces limites
+de la géométrie discrète pour formaliser, arithmétiser et proposer des
+algorithmes pour intégrer ces incertitudes.  Pour cela, il faut revoir
+les définitions mêmes des objets fondamentaux.   Dans ce contexte, nous
+nous   intéresserons     plus    particulièrement à   des  définitions
+arithmétiques  intégrant   des  notions   d'\emph{anti-aliasing}    ou
+permettant d'être moins sensibles aux \emph{outliers} (points discrets
+non représentatifs d'une  droite, ces points sont catastrophiques dans
+la reconnaissance classique).
+
+
+
+
+Ce projet,   démarré    en  septembre 2006,   prendra    fin  en 2010.
+\vspace{0.5cm}
+
+
+
+\noindent\aut{Reconstruction parallèle de contours discrets à base de
+  cartes combinatoires}
+
+Ce projet correspond à  une récente  collaboration avec \aut{Guillaume
+  Damiand}    (SIC, Poitiers)   dont   les  activités   principalessur
+l'utilisation des cartes    combinatoires pour la  modélisation  et la
+définition   d'algorithmes   de   traitement et   d'analyse  d'images.
+L'objectif de ce  projet est de guider  une simplification de la carte
+combinatoire  associée à une    image  en  intégrant   des  opérateurs
+géométriques fondés  sur les droites  et plans discrets.  La structure
+de la carte  offre  de plus  l'avantage de  permettre  des traitements
+parallèles ou hiérarchiques.
+
+Notre participation à ce projet  porte sur la définition  d'opérateurs
+rapides d'union de segments  de  droites discrètes.  L'application  de
+tels opérateurs en parallèle  permet d'espérer une reconstruction plus
+globale et moins sujette à un choix de parcours ou un séquencement des
+opérations.
+
+En dimension  3, les  problèmes  théoriques sont importants  mais  les
+résultats espérés en sont d'autant plus intéressants.
+
+\vspace{0.5cm}
+
+
+\noindent{\bf \aut{Couverture   par arcs   de  cercle   pour la   définition
+  d'estimateurs géométriques convergents}}
+
+Cette perspective  rejoint les premiers  développements que nous avons
+fait  au cours  de la thèse  portant  sur  la définition d'estimateurs
+géométriques  (longueur,  tangente, courbure,\ldots)  sur des  données
+discrètes.  Nos   contributions,    basées  sur  une   approche
+géométrique, voire analytique,  ont très vite  montré leur  limite car
+certains   comportements échappaient à  notre formalisation.   Par  la
+suite, il s'est avéré qu'une approche arithmétique était beaucoup plus
+pertinente \cite{deVieilleville_these}.  
+
+Géométriquement, ces  approches  utilisent la  couverture tangentielle
+d'une courbe discrète  (couverture engendrée pas les  segment discrets
+maximaux calculés en tous points) et  des propriétés de longueur ou de
+distribution  des   segments  maximaux   permettent  de   prouver   la
+convergence de certains  estimateurs.   Une couverture intéressante, à
+la fois  d'un point de  vue théorique et d'un  point de  vue pratique,
+serait celle engendrée  par des arcs de  cercles maximaux. Beaucoup de
+questions portent  sur  la distribution   des  longueurs des arcs  par
+exemple. Pour avoir  des premiers résultats expérimentaux, des efforts
+restent à      faire   concernant   l'algorithmique   associée à    la
+reconnaissance de cercles discrets.
+
+
+\vspace{0.5cm}
+
+\noindent\aut{Axe médian hiérarchique : The Digital Sphere Tree}
+
+
+En modélisation  ou  synthèse  d'images, la  structure  par   arbre de
+sphères   connaît  un certaine   popularité  dans   la  communauté  de
+modélisation pour son  usage dans de  nombreux domaines~: détection de
+collisions, rendu avec des techniques \emph{point based rendering}, \ldots
+
+En géométrie discrète, quelques travaux ont été menés pour représenter
+des  objets avec une  structure      multirésolution (basée sur     un
+amincissement  homotopique contraint)  \cite{lucas}.   Cette structure
+hiérarchique ne remet pas en cause l'axe médian construit (et donc les
+rayons des  boules) sur le niveau initial,  elle ne fait  juste que le
+simplifier.
+
+Ce que nous souhaitons  analyser, c'est une structure  hiérarchique en
+intégrant,   comme dans le  cas   continu, une flexibilité quant à  la
+réversibilité de la construction.  L'objectif est dans mettre en place
+des processus de fusion de  boules par  exemple. Pour arriver à  cela,
+nous devrons  sûrement  exploiter  le diagramme de   puissance discret
+permettant de mieux interpréter les interactions entre boules.
+ 
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex 
+%%% TeX-master: "these" 
+%%% End:

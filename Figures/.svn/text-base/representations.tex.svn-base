@@ -1,0 +1,27 @@
+%%%%
+\documentclass[10pt]{report}
+\usepackage{graphicx,color,epsfig,psfig,subfigure}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{bm}
+\pagestyle{empty}
+\begin{document}
+\begin{picture}(0,0)%
+\includegraphics{representations.pstex}%
+\end{picture}%
+\setlength{\unitlength}{3947sp}%
+%
+\begingroup\makeatletter\ifx\SetFigFontNFSS\undefined%
+\gdef\SetFigFontNFSS#1#2#3#4#5{%
+  \reset@font\fontsize{#1}{#2pt}%
+  \fontfamily{#3}\fontseries{#4}\fontshape{#5}%
+  \selectfont}%
+\fi\endgroup%
+\begin{picture}(21099,12399)(-1061,-11548)
+\put(10501,-5311){\makebox(0,0)[lb]{\smash{{\SetFigFontNFSS{34}{40.8}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(b)}%
+}}}}
+\put(6451,-5011){\makebox(0,0)[lb]{\smash{{\SetFigFontNFSS{34}{40.8}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(a)}%
+}}}}
+\put(15376,-5086){\makebox(0,0)[lb]{\smash{{\SetFigFontNFSS{34}{40.8}{\familydefault}{\mddefault}{\updefault}{\color[rgb]{0,0,0}(c)}%
+}}}}
+\end{picture}%
+\end{document}

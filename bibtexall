@@ -1,0 +1,22 @@
+#!/usr/bin/zsh
+
+foreach i ( *.aux )
+bibtex $i
+end
+
+
+
+
+###Pour rapportactiviet
+
+sed "s/thebibliography/thebibliography2/g" journaux.bbl >! hop.bbl
+mv hop.bbl journaux.bbl
+
+sed "s/thebibliography/thebibliography2/g" conf.bbl >! hop.bbl
+mv hop.bbl conf.bbl
+
+sed "s/thebibliography/thebibliography2/g" nat.bbl >! hop.bbl
+mv hop.bbl nat.bbl
+
+sed "s/thebibliography/thebibliography2/g" ouv.bbl >! hop.bbl
+mv hop.bbl ouv.bbl

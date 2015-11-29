@@ -1,0 +1,1656 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ./Figures/trace_iia_exp.fig
+%%Creator: fig2dev Version 3.2 Patchlevel 5-alpha7
+%%CreationDate: Tue Aug 21 14:13:08 2007
+%%For: dcoeurjo@liristvj (David Coeurjolly,,,,)
+%%BoundingBox: 0 0 480 684
+%Magnification: 1.0000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+
+end
+save
+newpath 0 684 moveto 0 0 lineto 480 0 lineto 480 684 lineto closepath clip newpath
+-66.1 717.4 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+/reencdict 12 dict def /ReEncode { reencdict begin
+/newcodesandnames exch def /newfontname exch def /basefontname exch def
+/basefontdict basefontname findfont def /newfont basefontdict maxlength dict def
+basefontdict { exch dup /FID ne { dup /Encoding eq
+{ exch dup length array copy newfont 3 1 roll put }
+{ exch newfont 3 1 roll put } ifelse } { pop pop } ifelse } forall
+newfont /FontName newfontname put newcodesandnames aload pop
+128 1 255 { newfont /Encoding get exch /.notdef put } for
+newcodesandnames length 2 idiv { newfont /Encoding get 3 1 roll put } repeat
+newfontname newfont definefont pop end } def
+/isovec [
+8#055 /minus 8#200 /grave 8#201 /acute 8#202 /circumflex 8#203 /tilde
+8#204 /macron 8#205 /breve 8#206 /dotaccent 8#207 /dieresis
+8#210 /ring 8#211 /cedilla 8#212 /hungarumlaut 8#213 /ogonek 8#214 /caron
+8#220 /dotlessi 8#230 /oe 8#231 /OE
+8#240 /space 8#241 /exclamdown 8#242 /cent 8#243 /sterling
+8#244 /currency 8#245 /yen 8#246 /brokenbar 8#247 /section 8#250 /dieresis
+8#251 /copyright 8#252 /ordfeminine 8#253 /guillemotleft 8#254 /logicalnot
+8#255 /hyphen 8#256 /registered 8#257 /macron 8#260 /degree 8#261 /plusminus
+8#262 /twosuperior 8#263 /threesuperior 8#264 /acute 8#265 /mu 8#266 /paragraph
+8#267 /periodcentered 8#270 /cedilla 8#271 /onesuperior 8#272 /ordmasculine
+8#273 /guillemotright 8#274 /onequarter 8#275 /onehalf
+8#276 /threequarters 8#277 /questiondown 8#300 /Agrave 8#301 /Aacute
+8#302 /Acircumflex 8#303 /Atilde 8#304 /Adieresis 8#305 /Aring
+8#306 /AE 8#307 /Ccedilla 8#310 /Egrave 8#311 /Eacute
+8#312 /Ecircumflex 8#313 /Edieresis 8#314 /Igrave 8#315 /Iacute
+8#316 /Icircumflex 8#317 /Idieresis 8#320 /Eth 8#321 /Ntilde 8#322 /Ograve
+8#323 /Oacute 8#324 /Ocircumflex 8#325 /Otilde 8#326 /Odieresis 8#327 /multiply
+8#330 /Oslash 8#331 /Ugrave 8#332 /Uacute 8#333 /Ucircumflex
+8#334 /Udieresis 8#335 /Yacute 8#336 /Thorn 8#337 /germandbls 8#340 /agrave
+8#341 /aacute 8#342 /acircumflex 8#343 /atilde 8#344 /adieresis 8#345 /aring
+8#346 /ae 8#347 /ccedilla 8#350 /egrave 8#351 /eacute
+8#352 /ecircumflex 8#353 /edieresis 8#354 /igrave 8#355 /iacute
+8#356 /icircumflex 8#357 /idieresis 8#360 /eth 8#361 /ntilde 8#362 /ograve
+8#363 /oacute 8#364 /ocircumflex 8#365 /otilde 8#366 /odieresis 8#367 /divide
+8#370 /oslash 8#371 /ugrave 8#372 /uacute 8#373 /ucircumflex
+8#374 /udieresis 8#375 /yacute 8#376 /thorn 8#377 /ydieresis] def
+/Helvetica /Helvetica-iso isovec ReEncode
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+
+$F2psBegin
+10 setmiterlimit
+0 slj 0 slc
+ 0.06000 0.06000 sc
+%
+% Fig objects follow
+%
+% 
+% here starts figure with depth 999
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 11270 m
+ 8766 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 11270 m
+ 8766 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 8766 763 m
+ 8766 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 995
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+8844 11941 m
+gs 1 -1 sc  90.0 rot (-10.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8410 11270 m
+ 8410 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8410 11270 m
+ 8410 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 8410 763 m
+ 8410 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 990
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+8487 11811 m
+gs 1 -1 sc  90.0 rot (-9.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8055 11270 m
+ 8055 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8055 11270 m
+ 8055 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 8055 763 m
+ 8055 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 985
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+8132 11811 m
+gs 1 -1 sc  90.0 rot (-8.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 7698 11270 m
+ 7698 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 7698 11270 m
+ 7698 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 7698 763 m
+ 7698 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 980
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+7776 11811 m
+gs 1 -1 sc  90.0 rot (-7.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 7343 11270 m
+ 7343 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 7343 11270 m
+ 7343 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 7343 763 m
+ 7343 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 975
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+7421 11811 m
+gs 1 -1 sc  90.0 rot (-6.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 6986 11270 m
+ 6986 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 6986 11270 m
+ 6986 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 6986 763 m
+ 6986 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 970
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+7064 11811 m
+gs 1 -1 sc  90.0 rot (-5.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 6631 11270 m
+ 6631 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 6631 11270 m
+ 6631 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 6631 763 m
+ 6631 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 965
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+6709 11811 m
+gs 1 -1 sc  90.0 rot (-4.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 6274 11270 m
+ 6274 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 6274 11270 m
+ 6274 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 6274 763 m
+ 6274 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 960
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+6352 11811 m
+gs 1 -1 sc  90.0 rot (-3.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 5918 11270 m
+ 5918 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 5918 11270 m
+ 5918 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 5918 763 m
+ 5918 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 955
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+5996 11811 m
+gs 1 -1 sc  90.0 rot (-2.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 5563 11270 m
+ 5563 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 5563 11270 m
+ 5563 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 5563 763 m
+ 5563 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 950
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+5641 11811 m
+gs 1 -1 sc  90.0 rot (-1.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 5206 11270 m
+ 5206 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 5206 11270 m
+ 5206 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 5206 763 m
+ 5206 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 945
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+5284 11811 m
+gs 1 -1 sc  90.0 rot (-0.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 4851 11270 m
+ 4851 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 4851 11270 m
+ 4851 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 4851 763 m
+ 4851 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 940
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+4929 11799 m
+gs 1 -1 sc  90.0 rot ( 0.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 4495 11270 m
+ 4495 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 4495 11270 m
+ 4495 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 4495 763 m
+ 4495 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 935
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+4572 11799 m
+gs 1 -1 sc  90.0 rot ( 1.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 4138 11270 m
+ 4138 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 4138 11270 m
+ 4138 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 4138 763 m
+ 4138 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 930
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+4216 11799 m
+gs 1 -1 sc  90.0 rot ( 2.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 3783 11270 m
+ 3783 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 3783 11270 m
+ 3783 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 3783 763 m
+ 3783 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 925
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+3861 11799 m
+gs 1 -1 sc  90.0 rot ( 3.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 3426 11270 m
+ 3426 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 3426 11270 m
+ 3426 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 3426 763 m
+ 3426 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 920
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+3504 11799 m
+gs 1 -1 sc  90.0 rot ( 4.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 3071 11270 m
+ 3071 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 3071 11270 m
+ 3071 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 3071 763 m
+ 3071 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 915
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+3149 11799 m
+gs 1 -1 sc  90.0 rot ( 5.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 2715 11270 m
+ 2715 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 2715 11270 m
+ 2715 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 2715 763 m
+ 2715 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 910
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+2792 11799 m
+gs 1 -1 sc  90.0 rot ( 6.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 2360 11270 m
+ 2360 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 2360 11270 m
+ 2360 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 2360 763 m
+ 2360 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 905
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+2437 11799 m
+gs 1 -1 sc  90.0 rot ( 7.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 2003 11270 m
+ 2003 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 2003 11270 m
+ 2003 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 2003 763 m
+ 2003 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 900
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+2081 11799 m
+gs 1 -1 sc  90.0 rot ( 8.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 1646 11270 m
+ 1646 5488 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1646 903 m
+ 1646 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 1646 11270 m
+ 1646 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1646 763 m
+ 1646 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 894
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+1724 11799 m
+gs 1 -1 sc  90.0 rot ( 9.5) col0 sh gr
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 1291 11270 m
+ 1291 5488 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1291 903 m
+ 1291 763 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 1291 11270 m
+ 1291 11165 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1291 763 m
+ 1291 868 l gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 888
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+1369 11928 m
+gs 1 -1 sc  90.0 rot ( 10.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 886
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 11270 m
+ 1113 11270 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 11270 m
+ 8661 11270 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 11270 m
+ 1218 11270 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 11535 m
+gs 1 -1 sc  90.0 rot (-15.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 881
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 10925 m
+ 1113 10925 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 10925 m
+ 8661 10925 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 10925 m
+ 1218 10925 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 11190 m
+gs 1 -1 sc  90.0 rot (-14.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 876
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 10581 m
+ 1113 10581 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 10581 m
+ 8661 10581 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 10581 m
+ 1218 10581 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 10847 m
+gs 1 -1 sc  90.0 rot (-13.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 871
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 10236 m
+ 1113 10236 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 10236 m
+ 8661 10236 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 10236 m
+ 1218 10236 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 10502 m
+gs 1 -1 sc  90.0 rot (-12.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 866
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 9891 m
+ 1113 9891 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 9891 m
+ 8661 9891 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 9891 m
+ 1218 9891 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 10157 m
+gs 1 -1 sc  90.0 rot (-11.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 861
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 9548 m
+ 1113 9548 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 9548 m
+ 8661 9548 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 9548 m
+ 1218 9548 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 9814 m
+gs 1 -1 sc  90.0 rot (-10.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 856
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 9203 m
+ 1113 9203 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 9203 m
+ 8661 9203 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 9203 m
+ 1218 9203 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 9404 m
+gs 1 -1 sc  90.0 rot (-9.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 851
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 8858 m
+ 1113 8858 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 8858 m
+ 8661 8858 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 8858 m
+ 1218 8858 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 9059 m
+gs 1 -1 sc  90.0 rot (-8.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 846
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 8513 m
+ 1113 8513 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 8513 m
+ 8661 8513 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 8513 m
+ 1218 8513 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 8714 m
+gs 1 -1 sc  90.0 rot (-7.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 841
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 8170 m
+ 1113 8170 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 8170 m
+ 8661 8170 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 8170 m
+ 1218 8170 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 8370 m
+gs 1 -1 sc  90.0 rot (-6.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 836
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 7825 m
+ 1113 7825 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 7825 m
+ 8661 7825 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 7825 m
+ 1218 7825 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 8025 m
+gs 1 -1 sc  90.0 rot (-5.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 831
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 7480 m
+ 1113 7480 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 7480 m
+ 8661 7480 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 7480 m
+ 1218 7480 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 7680 m
+gs 1 -1 sc  90.0 rot (-4.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 826
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 7136 m
+ 1113 7136 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 7136 m
+ 8661 7136 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 7136 m
+ 1218 7136 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 7337 m
+gs 1 -1 sc  90.0 rot (-3.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 821
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 6791 m
+ 1113 6791 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 6791 m
+ 8661 6791 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 6791 m
+ 1218 6791 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 6992 m
+gs 1 -1 sc  90.0 rot (-2.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 816
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 6446 m
+ 1113 6446 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 6446 m
+ 8661 6446 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 6446 m
+ 1218 6446 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 6647 m
+gs 1 -1 sc  90.0 rot (-1.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 811
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 6103 m
+ 1113 6103 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 6103 m
+ 8661 6103 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 6103 m
+ 1218 6103 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 6304 m
+gs 1 -1 sc  90.0 rot (-0.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 806
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 5758 m
+ 1113 5758 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 5758 m
+ 8661 5758 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 5758 m
+ 1218 5758 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 5952 m
+gs 1 -1 sc  90.0 rot ( 0.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 801
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 5413 m
+ 1685 5413 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 5413 m
+ 1113 5413 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 5413 m
+ 8661 5413 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 5413 m
+ 1218 5413 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 5607 m
+gs 1 -1 sc  90.0 rot ( 1.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 795
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 5070 m
+ 1685 5070 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 5070 m
+ 1113 5070 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 5070 m
+ 8661 5070 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 5070 m
+ 1218 5070 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 5264 m
+gs 1 -1 sc  90.0 rot ( 2.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 789
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 4725 m
+ 1685 4725 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 4725 m
+ 1113 4725 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 4725 m
+ 8661 4725 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 4725 m
+ 1218 4725 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 4919 m
+gs 1 -1 sc  90.0 rot ( 3.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 783
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 4380 m
+ 1685 4380 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 4380 m
+ 1113 4380 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 4380 m
+ 8661 4380 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 4380 m
+ 1218 4380 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 4574 m
+gs 1 -1 sc  90.0 rot ( 4.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 777
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 4036 m
+ 1685 4036 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 4036 m
+ 1113 4036 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 4036 m
+ 8661 4036 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 4036 m
+ 1218 4036 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 4231 m
+gs 1 -1 sc  90.0 rot ( 5.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 771
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 3691 m
+ 1685 3691 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 3691 m
+ 1113 3691 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 3691 m
+ 8661 3691 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 3691 m
+ 1218 3691 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 3886 m
+gs 1 -1 sc  90.0 rot ( 6.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 765
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 3346 m
+ 1685 3346 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 3346 m
+ 1113 3346 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 3346 m
+ 8661 3346 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 3346 m
+ 1218 3346 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 3541 m
+gs 1 -1 sc  90.0 rot ( 7.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 759
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 3001 m
+ 1685 3001 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 3001 m
+ 1113 3001 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 3001 m
+ 8661 3001 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 3001 m
+ 1218 3001 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 3196 m
+gs 1 -1 sc  90.0 rot ( 8.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 753
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 2658 m
+ 1685 2658 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 2658 m
+ 1113 2658 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 2658 m
+ 8661 2658 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 2658 m
+ 1218 2658 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 2852 m
+gs 1 -1 sc  90.0 rot ( 9.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 747
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 2313 m
+ 1685 2313 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 2313 m
+ 1113 2313 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 2313 m
+ 8661 2313 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 2313 m
+ 1218 2313 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 2572 m
+gs 1 -1 sc  90.0 rot ( 10.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 741
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 1968 m
+ 1685 1968 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 1968 m
+ 1113 1968 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 1968 m
+ 8661 1968 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 1968 m
+ 1218 1968 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 2227 m
+gs 1 -1 sc  90.0 rot ( 11.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 735
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 1625 m
+ 1685 1625 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 1625 m
+ 1113 1625 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 1625 m
+ 8661 1625 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 1625 m
+ 1218 1625 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 1884 m
+gs 1 -1 sc  90.0 rot ( 12.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 729
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 1280 m
+ 1685 1280 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 1280 m
+ 1113 1280 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 1280 m
+ 8661 1280 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 1280 m
+ 1218 1280 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 1539 m
+gs 1 -1 sc  90.0 rot ( 13.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 723
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60 27 15 20 15 27] 0 sd
+n 8766 935 m
+ 1685 935 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+ [60 27 15 20 15 27] 0 sd
+n 1218 935 m
+ 1113 935 l gs col0 s gr  [] 0 sd
+%  polyline 
+% Polyline
+n 8766 935 m
+ 8661 935 l gs col0 s gr 
+%  polyline 
+% Polyline
+n 1113 935 m
+ 1218 935 l gs col0 s gr 
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+9077 1194 m
+gs 1 -1 sc  90.0 rot ( 14.5) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 717
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+n 8766 11270 m 8766 763 l 1113 763 l 1113 11270 l
+ 8766 11270 l  cp gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 715
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+1412 2911 m
+gs 1 -1 sc  90.0 rot (Intervalles) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 713
+%  polyline 
+% Polyline
+0 slj
+0 slc
+0.000 slw
+n 1393 1708 m 1393 1043 l 1276 1043 l 1276 1708 l
+ 1393 1708 l  cp gs col7 1.00 shd ef gr 
+% here ends figure;
+% 
+% here starts figure with depth 711
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+n 1393 1708 m 1393 1043 l 1276 1043 l 1276 1708 l
+ 1393 1708 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+30.000 slw
+n 5206 11270 m 4851 11270 l 4851 10925 l 5206 10925 l
+ 5206 11270 l  cp gs col4 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 708
+%  polyline 
+% Polyline
+0 slj
+0 slc
+30.000 slw
+n 5206 10925 m 4851 10925 l 4851 10581 l 5206 10581 l
+ 5206 10925 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5206 10581 m 4851 10581 l 4851 10236 l 5206 10236 l
+ 5206 10581 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5206 10236 m 4495 10236 l 4495 9891 l 5206 9891 l
+ 5206 10236 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 4851 9891 m 4495 9891 l 4495 9548 l 4851 9548 l
+ 4851 9891 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5206 9548 m 4495 9548 l 4495 9203 l 5206 9203 l
+ 5206 9548 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5918 9203 m 4851 9203 l 4851 8858 l 5918 8858 l
+ 5918 9203 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+7.500 slw
+n 6274 8858 m 5563 8858 l 5563 8513 l 6274 8513 l
+ 6274 8858 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+30.000 slw
+n 6631 8513 m 5206 8513 l 5206 8170 l 6631 8170 l
+ 6631 8513 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5563 8170 m 3426 8170 l 3426 7825 l 5563 7825 l
+ 5563 8170 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 3783 7825 m 2360 7825 l 2360 7480 l 3783 7480 l
+ 3783 7825 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 4495 7480 m 2003 7480 l 2003 7136 l 4495 7136 l
+ 4495 7480 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 6986 7136 m 3783 7136 l 3783 6791 l 6986 6791 l
+ 6986 7136 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 8766 6791 m 6631 6791 l 6631 6446 l 8766 6446 l
+ 8766 6791 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 8766 6446 m 6631 6446 l 6631 6103 l 8766 6103 l
+ 8766 6446 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 6986 6103 m 3071 6103 l 3071 5758 l 6986 5758 l
+ 6986 6103 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 3426 5758 m 1291 5758 l 1291 5413 l 3426 5413 l
+ 3426 5758 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 3426 5413 m 1291 5413 l 1291 5070 l 3426 5070 l
+ 3426 5413 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 6274 5070 m 3071 5070 l 3071 4725 l 6274 4725 l
+ 6274 5070 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 8055 4725 m 5563 4725 l 5563 4380 l 8055 4380 l
+ 8055 4725 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 7698 4380 m 6275 4380 l 6275 4036 l 7698 4036 l
+ 7698 4380 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 6631 4036 m 4495 4036 l 4495 3691 l 6631 3691 l
+ 6631 4036 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 4851 3691 m 3426 3691 l 3426 3346 l 4851 3346 l
+ 4851 3691 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 4495 3346 m 3783 3346 l 3783 3001 l 4495 3001 l
+ 4495 3346 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5206 3001 m 4138 3001 l 4138 2658 l 5206 2658 l
+ 5206 3001 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5563 2658 m 4851 2658 l 4851 2313 l 5563 2313 l
+ 5563 2658 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5563 2313 m 5206 2313 l 5206 1968 l 5563 1968 l
+ 5563 2313 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5563 1968 m 4851 1968 l 4851 1625 l 5563 1625 l
+ 5563 1968 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5206 1625 m 4851 1625 l 4851 1280 l 5206 1280 l
+ 5206 1625 l  cp gs col4 s gr 
+%  polyline 
+% Polyline
+n 5206 1280 m 4851 1280 l 4851 935 l 5206 935 l
+ 5206 1280 l  cp gs col4 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 678
+%  text 
+/Helvetica-iso ff 240.00 scf sf
+1644 4505 m
+gs 1 -1 sc  90.0 rot (10.0*sin\(x\)*exp\(-x*x/50.0\)) col0 sh gr
+% here ends figure;
+% 
+% here starts figure with depth 676
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+ [60] 0 sd
+n 1568 1708 m
+ 1568 1043 l gs col2 s gr  [] 0 sd
+%  polyline 
+% Polyline
+30.000 slw
+ [60] 0 sd
+n 5035 11270 m 5046 11165 l 5059 11061 l 5074 10956 l 5088 10851 l 5099 10748 l
+ 5104 10643 l 5101 10540 l 5084 10435 l 5056 10330 l 5013 10227 l
+ 4956 10122 l 4891 10017 l 4821 9913 l 4756 9808 l 4706 9705 l
+ 4681 9600 l 4694 9495 l 4753 9392 l 4861 9287 l 5019 9182 l
+ 5219 9079 l 5444 8974 l 5676 8869 l 5884 8765 l 6039 8661 l
+ 6113 8557 l 6078 8452 l 5918 8347 l 5629 8244 l 5224 8139 l
+ 4731 8034 l 4190 7931 l 3658 7826 l 3193 7721 l 2860 7618 l
+ 2711 7513 l 2783 7409 l 3093 7304 l 3633 7199 l 4363 7096 l
+ 5223 6991 l 6129 6886 l 6989 6783 l 7711 6678 l 8208 6575 l
+ 8419 6470 l 8309 6365 l 7881 6261 l 7169 6156 l 6241 6051 l
+ 5189 5948 l 4123 5843 l 3148 5738 l 2363 5635 l 1843 5530 l
+ 1636 5427 l 1753 5322 l 2169 5217 l 2833 5113 l 3661 5008 l
+ 4563 4904 l 5446 4800 l 6223 4695 l 6824 4590 l 7206 4487 l
+ 7349 4382 l 7263 4279 l 6979 4174 l 6549 4069 l 6031 3966 l
+ 5486 3861 l 4973 3756 l 4538 3652 l 4213 3547 l 4014 3444 l
+ 3943 3339 l 3986 3234 l 4119 3131 l 4314 3026 l 4541 2921 l
+ 4771 2818 l 4981 2713 l 5153 2608 l 5276 2504 l 5349 2399 l
+ 5376 2296 l 5361 2191 l 5318 2086 l 5256 1983 l 5188 1878 l
+ 5119 1773 l 5059 1670 l 5013 1565 l 4979 1461 l 4959 1356 l
+ 4953 1252 l 4956 1148 l 4966 1043 l
+ 4979 938 l gs col2 s gr  [] 0 sd
+% here ends figure;
+% 
+% here starts figure with depth 673
+%  polyline 
+% Polyline
+0 slj
+0 slc
+7.500 slw
+n 8766 11270 m 8766 763 l 1113 763 l 1113 11270 l
+ 8766 11270 l  cp gs col0 s gr 
+% here ends figure;
+$F2psEnd
+rs
+showpage
+%%Trailer
+%EOF

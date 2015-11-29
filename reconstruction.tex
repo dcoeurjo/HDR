@@ -1,0 +1,866 @@
+\mychaptoc{Reconstruction réversible d'objets discrets par des parties
+linéaires}
+\label{chap:reconstruction}
+
+\section{Introduction}
+
+Le chapitre   précédent  s''intéressait au problème   du passage d'une
+description en extension vers   une description en  compréhension  des
+objets élémentaires. Dans ce chapitre, nous passons à l'étape suivante
+qui  consiste à  la modélisation  ou reconstruction   réversible d'une
+forme euclidienne  dans  le sens  où la discrétisation  nous
+donne exactement l'ensemble  initial.  Comme nous l'avons précisé dans
+le chapitre  \ref{chap:notions}, les  objets fondamentaux  du chapitre
+précédent seront grandement réutilisés.
+
+Nous  présentons tout d'abord  un  schéma générique de  reconstruction
+réversible   en dimension 2.  Ce   schéma est générique puisqu'il  est
+défini sur les grilles isothétiques irrégulières, pouvant s'instancier
+en de nombreuses grilles (grilles classiques, de subdivision, \ldots).
+Le contexte applicatif de cette approche est la reconstruction sur des
+structures     discrètes  issues    d'un     solveur en   arithmétique
+d'intervalles.
+
+Ensuite, nous abordons la reconstruction réversible  en dimension 3 en
+présentant une  technique \emph{bottom-up} basée sur la simplification
+d'une triangulation issue  des \emph{Marching-Cubes}  en intégrant des
+informations  géométriques    données par la   segmentation   en plans
+discrets de la surface.
+
+
+\section{Reconstruction 2D  sur grille isothétique irrégulière}
+
+\subsection{Contexte et éléments préliminaires} 
+
+Dans ce  paragraphe, nous allons revenir  sur  le solveur d'intervalles
+présenté  dans l'algorithme  \ref{solverIA} sur l'arithmétique $\I_\F$
+en dimension 2 (voir  chapitre \ref{chap:IA}).  Le problème consiste à
+trouver  un    encadrement  des solutions    d'une fonction  implicite
+$f(x,y)=0$.  La  figure ~\ref{fig:snyder1} illustre  la  décomposition
+récursive d'un domaine initial, les  cellules grises correspondant aux
+intervalles  de dimension 2 de  la forme $X\times   Y$ tels que $0 \in
+\Box f(X,Y)$ selon plusieurs  valeurs du paramètre $\epsilon$ pour  le
+critère d'arrêt (voir  section \ref{sec:solv-en-arithm}).  On se  rend
+compte tout d'abord de la  subdivision hiérarchique du domaine, proche
+d'une analyse en \emph{quadtree} \cite{samet90}.
+
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[]{\includegraphics[width=6cm]{cubic_courbe}}\hspace{2cm}
+  \subfigure[]{\includegraphics[width=3cm]{cubic_ia_1}}\hspace{1cm}
+  \subfigure[]{\includegraphics[width=2.5cm]{cubic_ia_2}}\hspace{4cm}
+  \subfigure[]{\includegraphics[width=2.5cm]{cubic_ia_3}}
+  \caption{Évaluation de la fonction $f(x,y)=y^2-x^3+x-\frac{1}{2}$ sur
+    l'intervalle $[-4,4]\times[-4,4]$ avec comme critère d'arrêt, une
+    borne sur la largeur des intervalles fixée à~:$(b)$ 1.0, $(c)$ 0.5
+  et $(d)$ 0.1.}
+  \label{fig:snyder1}
+\end{figure}
+
+
+Le   problème que  nous    cherchons à  résoudre  est d'obtenir    une
+représentation  polygonale valide au   sens  de l'arithmétique   d'une
+fonction pour laquelle  nous   faisons  l'hypothèse que    la solution est   de
+dimension 1.  La   validité par  rapport à l'arithmétique   consiste à
+trouver  une  représentation   contenue dans l'ensemble   des cellules
+solutions. Dans  \cite{snyder-92}, une première solution  est proposée
+mais  est peu satisfaisante   par      rapport à la taille  de      la
+reconstruction polygonale  créée (une arête créée par cellule solution)
+et par   rapport aux hypothèses sur  la  topologie de  l'objet continu
+sous-jacent  restreignant  ainsi  les cas   où l'algorithme  peut être
+utilisé.
+
+Ce que  nous observons dans la  figure \ref{fig:snyder1}, c'est que la
+topologie de  l'ensemble des cellules  peut être complexe  et varie en
+fonction  de la résolution choisie.    D'une manière générale et  sans
+plus d'hypothèses, nous ne pouvons pas lier  la topologie discrète des
+cellules avec  la   topologie de  l'objet continu  sous-jacent.   Pour
+établir  un  tel    lien  en  posant des  hypothèses     sur  la forme
+sous-jacente, nous pouvons exploiter les propriétés de convergence des
+solveurs \cite{snyder-92}, ou   encore des outils  plus proches  de la
+géométrie discrète  comme la  $par(r)-$régularité \cite{bb20013} ou le
+$r-$homéomorphisme \cite{kothe_IVC}.
+
+De manière pragmatique,  il nous faut un  outil de polygonalisation de
+courbes discrètes irrégulières (voir section \ref{sec:definitions-irr})
+sur des objets complexes.  Dans  un premier temps, nous avons présenté
+dans \cite{dcoeurjo_computergraphics} un algorithme de  reconstruction
+d'arc  polygonal contenu   dans  une $(1)-$courbe    irrégulière.  Cet
+algorithme incrémental linéaire ($O(1)$ par incrément)  se base sur un
+calcul très simple   de visibilité interne à la  $(1)-$courbe  (figure
+\ref{fig:reco_irr}). Notons que des  algorithmes moins restrictifs sur
+la classe  des \emph{droites discrètes} considérées peuvent aussi être
+utilisés,    mais     la    complexité    ne  serait   plus   linéaire
+\cite{dcoeurjo_supercover_dgci,dexet_these}.
+
+\subsection{Reconstruction  géométrique et topologique couplée}
+
+
+Notre approche  se   base  sur  une   généralisation   du  modèle   de
+supercouverture au   grilles    discrètes irrégulières  vérifiant  les
+propriétés (\ref{eq:union}),  (\ref{eq:composition}), (\ref{eq:inter})
+et (\ref{eq:inclusion}) des  modèles analytiques, mais perdant dans sa
+définition   l'approche par morphologie mathématique  qui  ici  n'a pas de
+sens \cite{dcoeurjo_computergraphics}.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=10cm]{reco_arc_irr}
+  \caption{Illustration de la reconstruction par une courbe polygonale
+    d'une $(1)-$courbe par la propagation d'un cône de visibilité.}
+  \label{fig:reco_irr}
+\end{figure}
+Pour traiter  les  objets topologiquement  complexes et  <<~épais~>>, il
+nous faut   un  processus pour extraire des    portions de courbes sur
+lesquelles nous  utiliserons l'algorithme   précédent.  Pour cela,  nous
+allons procéder comme suit~:
+\begin{enumerate}
+\item on  choisit une   direction $h$  (fonction de  hauteur   dans la
+  théorie de \aut{Reeb}, voir figure \ref{fig:reeb}-a), par exemple, parallèle à un axe~;
+\item on construit un graphe de \aut{Reeb} en caractérisant les points
+  critiques suivants, lors du parcours selon la direction entre les
+  instants $t$ et $t+1$~:
+  \begin{itemize}
+  \item \emph{begin (b)}: début d'une composante connexe en $t+1$~;
+  \item \emph{end (e)} : fin d'une composante connexe en $t+1$~;
+  \item \emph{merge  (m)} :  fusion à $t+1$  de deux  composantes  (ou
+    plus) de $t$~;
+  \item \emph{split (s)}: décomposition d'une composante à $t$ en
+    plusieurs composantes à $t+1$~;
+  \end{itemize}
+  \item on utilise les arêtes du graphe précédent pour définir les
+    différentes $(1)-$courbes.
+\end{enumerate}
+
+Supposons l'ensemble   de  cellules connexes   donné  dans  la  figure
+\ref{fig:reeb}-(b). Pour transformer cet  objet en $(1)-$courbe,  nous
+utilisons un recodage des cellules guidé par  la direction $h$ choisie
+(figure  \ref{fig:reeb}-b).  Le  recodage  change la configuration des
+cellules (en fonction de $h$) mais ne change pas le domaine total de l'objet.
+
+\begin{figure}[h]
+  \centering
+\subfigure[]{\includegraphics[width=4.5cm]{reeb}}
+\subfigure[]{\includegraphics[width=8cm]{recodage}}
+\caption{Représentation classique du graphe de \aut{Reeb} en géométrie
+  différentielle basée sur les points critiques de \aut{Morse}
+  $(a)$. Illustration du recodage d'un $(1)-$objet en $(1)-$courbe en
+  fonction d'une fonction de hauteur $h$.}
+  \label{fig:reeb}
+\end{figure}
+
+En pratique, la construction du graphe de \aut{Reeb} et le recodage de
+ses arêtes se font   dans le même temps~:  si  $h$ correspond aux  $x$
+croissants, les cellules  sont triées selon leur  bord gauche et  sont
+considérées une par  une dans cet  ordre. A  chaque étape, le graphe
+est   mis à  jour et   le  recodage se   fait à  la  volée.  La figure
+\ref{fig:recodage_reeb} illustre cela sur un  petit exemple, pour plus
+de    détails,    l'algorithme     complet   est     détaillé     dans
+\cite{dcoeurjo_avacavan_DGCI}.
+
+\begin{figure}[h]
+  \centering
+\subfigure[]{\includegraphics[width=6.5cm]{recodage_reeb1}}
+\subfigure[]{\includegraphics[origin=lt,width=6.5cm]{recodage_reebfin}}
+\caption{$(a)$   Exemple   de construction  parallèle  du    graphe de
+  \aut{Reeb} et du recodage des cellules pour former des $(1)$-courbes
+  pour  les arcs   du   graphe.  $(b)$  Illustration  complète    avec
+  reconstruction polygonale.}
+  \label{fig:recodage_reeb}
+\end{figure}
+
+Le graphe, mis à part  les  invariants topologiques que nous   pouvons
+obtenir,  nous permet donc  de faire une segmentation en $(1)-$courbes
+de notre objet (rappelons   qu'il  est supposé représenter  un   objet
+continu de  dimension 1).   Pour obtenir  une reconstruction
+centrée  et réversible, nous  faisons le  choix de  fixer un point  de
+départ au centre   de toutes les  cellules   de type $(s)$  et  $(m)$.
+Ensuite, les reconstructions sont lancées  en parallèle sur les  arcs
+adjacents à ces cellules, vers les  extrémités ou d'autres n\oe uds $(s)$
+et $(m)$. Enfin, lorsque deux reconstructions se \emph{rejoignent} (cas
+par exemple où  les extrémités d'une $(1)-$courbe  ont pour types $(s)$
+et $(m)$),  nous ajoutons arbitrairement  un petit segment pour relier
+les  deux  courbes  polygonales  en   cours  de  calcul (voir   figure
+\ref{fig:reco_step}). Remarquons qu'avec ce schéma, si l'objet discret
+possède des symétries,    la   reconstruction sera  bien   centrée  et
+symétrique.
+
+% \begin{figure}[ht]
+%   \centering
+%   \subfigure[]{\includegraphics[width=4.5cm]{snyder_function}}~~~~~~~
+%   \subfigure[]{\includegraphics[width=4.5cm]{res_pol_3_step1}}~~~~~~~
+%   \subfigure[]{\includegraphics[width=4.5cm]{res_pol_3}}
+%   \caption{Tracés de  la  fonction $x^2+y^2+\cos(2\pi x)+\sin(2\pi y)+
+%     \sin(2\pi   x^2)\cos(2\pi  y^2)  =1$ sur    $[-1,1]^2$ (exemple de
+%     \cite{snyder-92})~: $(a)$ approximation du tracé, $(b)$ et $(c)$
+%     illustrent la phase de reconstruction partant des n\oe uds $(b)$ et
+%     nécessitant des segments de jonctions $(c)$.}
+%   \label{fig:reco_step}
+% \end{figure}
+
+\begin{figure}[!h]
+  \centering
+  \subfigure[]{\includegraphics[width=3cm]{snyder_function}}
+  \subfigure[]{\includegraphics[origin=lc,angle=180,width=3cm]{reconstruction_snyder_0}}
+  \subfigure[]{\includegraphics[width=3cm]{res_graph_snyder}}
+  \subfigure[]{\includegraphics[origin=lc,angle=180,width=3cm]{reconstruction_snyder_1}}
+  \subfigure[]{\includegraphics[origin=lc,angle=180,width=3cm]{reconstruction_snyder_2}}
+  \subfigure[]{\includegraphics[origin=lc,angle=180,width=3cm]{reconstruction_snyder_3}}
+ % \subfigure[]{\includegraphics[width=3cm]{reconstruction_snyder_4}}
+  \subfigure[]{\includegraphics[origin=lc,angle=180,width=3cm]{reconstruction_snyder_5}}
+  \caption{Tracés  de la fonction  $x^2+y^2+\cos(2\pi x)+\sin(2\pi y)+
+    \sin(2\pi x^2)\cos(2\pi  y^2)   =1$ sur  $[-1,1]^2$  (exemple   de
+    \cite{snyder-92})~: $(a)$ approximation  du tracé,  $(b)$ cellules
+    résultantes de l'approximation en intervalles et du recodage, $(c)$
+    le  graphe   de  \aut{Reeb}  associé.   Les figures $(d)$ à $(g)$
+    illustrent les étapes de la reconstruction polygonale partant des
+    n\oe uds du graphe de \aut{Reeb}.}
+  \label{fig:reco_step}
+\end{figure}
+
+
+Au final, nous avons une reconstruction~:
+\begin{itemize}
+\item  {\bf  valide par  rapport à  l'arithmétique d'intervalles}~: le
+  modèle   de supercouverture,  intrinsèque à  la  reconstruction  des
+  $(1)-$courbes,  contraint   la  reconstruction à être  intérieure au
+  domaine solution du solveur~;
+\item {\bf  valide par  rapport à  la topologie de l'objet  discret}~:
+  l'utilisation  du graphe  de  \aut{Reeb} permet   une reconstruction
+  homéomorphe à l'objet discret irrégulier.
+\end{itemize}
+
+Les      figures  \ref{fig:reco_sigma_complet} et  \ref{fig:reco_raff}
+présentent   quelques résultats  de   reconstruction approximant   des
+courbes implicites par l'usage de l'arithmétique d'intervalles.
+
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{res_IIA_sigma}
+  \caption{Illustration    complète         pour        la    fonction
+    $f(x,y)=y^2-x^3+x-\frac{1}{2}$           sur          l'intervalle
+    $[-4,4]\times[-4,4]$      ($\mathcal{C}$, voir    figure      \ref{fig:snyder1}).
+    $\mathcal{L}$  correspond  aux  reconstructions polygonales    et
+    $\mathcal{G}$, au graphe de \aut{Reeb} associé.}
+  \label{fig:reco_sigma_complet}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{snyder_res_raff}
+
+\vspace{0.5cm}
+
+  \includegraphics[width=12cm]{snyder_res_fusion}
+  \caption{Tracés   de   la  fonction     présente  dans    la  figure
+    \ref{fig:reco_step}   avec  raffinements  successifs  guidés   par
+    l'arithmétique (deux  premières lignes) et fusions successives par
+    interactions  (deux    lignes  suivantes).   Les    zones  en bleu
+    correspondent aux zones associées aux modifications.}
+  \label{fig:reco_raff}
+\end{figure}
+
+
+\subsection{Raffinement et mise à jour locaux}
+
+
+Par la  suite, \cite{dcoeurjo_avacavan_ISCV}  présente une extension à
+ce travail permettant  des modifications  locales sur la structure  de
+\aut{Reeb} et la reconstruction. Plus précisément, nous considérons
+deux opérateurs sur les cellules~:
+\begin{itemize}
+\item {\bf raffinement local d'un ensemble de cellules} : par exemple,
+  ce processus peut être guidé  par une itération  supplémentaire dans
+  la résolution récursive de l'algorithme \ref{solverIA}.  L'hypothèse
+  que nous formulons sur ce processus  est une propriété d'inclusion~:
+  le résultat  du   raffinement doit être inclus  dans  l'ensemble  de
+  cellules raffiné~;
+\item {\bf fusion}~: regroupement dans une  même cellule d'un ensemble
+  de cellules.   Là  encore,  nous utilisons   des  hypothèses liées à
+  l'arithmétique   d'intervalles~:  le  résultat   du     regroupement
+  consistera en  une cellule correspondant à  la  boîte  englobante  de
+  l'ensemble de cellules initial.
+\end{itemize}
+
+En résultat de \cite{dcoeurjo_avacavan_ISCV}, chacun de ces opérateurs
+modifiera tout d'abord localement  le  graphe de \aut{Reeb} (uniquement  au
+niveau des   arcs impliqués dans la  modification),   puis un phase de
+reconstruction   locale   aux   $(1)-$courbes   impliquées  dans   les
+modifications (voir figure \ref{fig:reco_raff}).
+
+En pratique, la  nature des applications  de ces opérateurs est  très
+générique~: dans un contexte  de modélisation, une  sélection assistée
+par ordinateur   interactive  peut être envisagée.   Dans un   système
+automatique,   nous   pouvons  appliquer   ces   opérateurs   pour une
+rétroaction sur  le calcul   en  cours~: on  utiliserait  l'algorithme
+\ref{solverIA}        et       la      reconstruction       polygonale
+\cite{dcoeurjo_avacavan_DGCI} pour   obtenir une  première   solution.
+Ensuite, nous pouvons analyser la géométrie  (ou même la topologie) de
+la  reconstruction pour décider, s'il y  a lieu, de raffiner certaines
+zones du calcul  ou    simplifier certaines parties.   L'intérêt    de
+reboucler  sur le processus de  reconstruction précédent  est que nous
+maintenons    ainsi  les    propriétés   d'exactitude   par  rapport à
+l'arithmétique, en   incluant un contrôle   topologique fin.   Pour
+illustrer cela, nous faisons  dans \cite{antoine_RR} une évaluation de
+la courbure sur la courbe polygonale pour décider d'un raffinement ou
+non.
+
+
+En dehors du contexte de l'arithmétique d'intervalles, tous ces outils
+peuvent être  utilisés dans le cas   de  la reconstruction  réversible
+d'objets discrets  définis    sur   la grille  régulière.     La  figure
+\ref{fig:cas4connexe}  présente   par exemple      une  reconstruction
+réversible  classique  dans  une courbe  $(1)$-connexe.   Dans  ce cas
+régulier, comme  dans     le cas   isothétique  irrégulier,   d'autres
+algorithmes de  reconnaissance   et  de   reconstruction  peuvent être
+envisagés.  C'est le  cas  par exemple des  algorithmes  basés sur  la
+notion  de  préimage  généralisée  (voir  chapitre   \ref{chap:ILP} et
+\cite{dexet_these}). Cependant, la gestion des intersections complexes
+via la structuration  en   graphe de  \aut{Reeb}  offre une   solution
+originale à ce problème.
+
+Pour  illustrer cela, ainsi  que la fiabilité  du  processus lors d'un
+passage à l'échelle, la  figure \ref{fig:document} présente un exemple
+de reconstruction complexe.
+
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[]{\includegraphics[width=4.5cm]{courbe4}}
+  \subfigure[]{\includegraphics[width=3cm]{courbe_4con_poly}}
+  \subfigure[]{\includegraphics[width=4cm]{courbe_4con_graph}}
+  \caption{Reconstruction sur un objet $(1)$-connexe classique qui
+    n'est pas une simple $(1)-$courbe.}
+  \label{fig:cas4connexe}
+\end{figure}
+
+
+
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[]{\includegraphics[width=4.5cm]{bolt}}
+  \subfigure[]{\includegraphics[width=4.5cm]{big_graph}}
+  \subfigure[]{\includegraphics[origin=lt,angle=270,width=6.5cm]{bolt_res}}
+  \caption{Exemple de reconstruction d'un objet issu d'un document
+    numérisé~: $(a)$ image initiale, $(b)$ graphe de \aut{Reeb}
+    représentant la forme et $(c)$ la reconstruction.}
+  \label{fig:document}
+\end{figure}
+
+
+\FloatBarrier
+\section{Reconstruction réversible en dimension 3}
+\label{sec:reconstr-revers-en}
+
+
+Dans  cette section,  nous  revenons   sur  le cas discret    régulier
+classique pour présenter  une méthode de polyédrisation  réversible en
+dimension      3.       Comme   présenté        dans  la       section
+\ref{sec:reconstr-et-poly},     nous       détaillons    une  approche
+\emph{Bottom-Up}  basée  sur une   triangulation initiale   donnée par
+l'algorithme des \emph{Marching-Cubes}.
+
+\subsection{Éléments préliminaires}
+
+\subsubsection{Algorithme des  \emph{Marching-Cubes}}
+
+Supposons une image volumique $V(x,y,z)$ à valeurs dans $\R$ pour tout
+point $(x,y,z)\in\Z^3$.  L'algorithme des \emph{Marching-Cubes}  (noté
+MC) a été proposé   initialement  par \aut{Lorensen}  et   \aut{Cline}
+\cite{marching} et   consiste   en la   construction d'une  isosurface
+triangulée.     Initialement,  l'objectif  de   ces  travaux était  la
+visualisation rapide de  surfaces en imagerie  médicale.  Pour définir
+la  surface, nous  allons nous  intéresser aux  cellules de la grille.
+Une telle cellule de position $(x,y,z)$ est définie comme les 8 points
+discrets  $(x+i,y+j,z+k)$  avec $i,~j,~k\in\{0,1\}$. L'isosurface  est
+construite localement sur   une   cellule et propagée   aux   cellules
+voisines en se basant sur  des configurations élémentaires.  Selon les
+rotations   et  symétries   possibles  des  cellules,  \cite{marching}
+définissent   ainsi  14 configurations   (voir   figure \ref{fig:MC}).
+Notons cependant que ce jeu de  configurations implique des ambiguïtés
+dans  la  reconstruction  et donc potentiellement    des trous sur  la
+surface obtenue.  Dans  ce qui suit, nous  utilisons  les résultats de
+\aut{Lachaud} et \aut{Montanvert} permettant de faire le lien entre la
+topologie de l'isosurface et  celle de  la  surface discrète  que l'on
+considère \cite{lachaud_MC,Lachaud00a}.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=11cm]{MC}
+  \caption{Les  $14$   configurations  de  l'algorithme  initial   des
+    \emph{Marching-Cubes}.}
+  \label{fig:MC}
+\end{figure}
+
+Supposons  maintenant  l'objet  discret $V: \Z^3\rightarrow  \{0,1\}$.
+Nous supposons l'objet $(2)-$connexe   et nous définissons  sa surface
+comme étant    issue   des    adjacences   de  \aut{Jordan}   $(18,6)$
+\cite[chap.3]{dcoeurjo_hermes}.   Dans ce  qui suit,  nous considérons
+l'algorithme des MC adapté à cette surface et donc sans ambiguïté \cite{lachaud_MC,Lachaud00a}. Dans
+ce cas, nous avons le résultat suivant~:
+
+\begin{lemme}[\cite{dcoeurjo_spie_mc}]
+\label{sec:algor-des-emphm}
+  La surface  $S$ issue de l'algorithme  des MC d'un objet discret $V$
+  pour un seuil dans $]0,1[$ a les propriétés suivantes~:
+  \begin{itemize}
+  \item $S$ est une 2-variété combinatoire sans bord~;
+  \item la discrétisation de \aut{Gauss}  de $S$ est exactement $V$.
+  \end{itemize}
+\end{lemme}
+
+En d'autres termes, $S$ est une polyédrisation  réversible de $V$.  Un
+inconvénient  important est le  nombre de facettes  issues des MC (voir
+figure \ref{fig:mc_disc}).  Dans la section  \ref{sec:simpl-et-optim},
+nous allons   simplifier cette surface   en  intégrant une information
+issue des plans discrets reconnus à la surface de $V$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=5cm]{pyra_disc.eps}
+  \includegraphics[width=5cm]{pyra_mc.eps}
+  \caption{Objet discret 3D et une surface MC associée.}
+  \label{fig:mc_disc}
+\end{figure}
+
+Pour terminer sur  les liens entre la  surface MC  et l'objet discret,
+nous pouvons   remarquer que chaque sommet de   $S$ est  placé  sur un
+segment       $[p,p\pm\vec{d}]$         pour       $p\in\Z^3$     avec
+$\vec{d}\in\{(0,0,1),(0,1,0),(1,0,0)\}$. Si  le seuil $s$ est  tel que
+$0<s<1$, le  segment précédent est  ouvert.  Ainsi,  chaque sommet est
+associé à    un   surfel  de   la     surface  discrète  (voir  figure
+\ref{fig:cellules}). Nous avons donc le corollaire suivant~:
+
+
+\begin{coro}
+\label{coro:deplacement}
+  Un déplacement   d'un sommet   $s$  de $S$   sur  le  segment ouvert
+  $[p,p\pm\vec{d}]$  associé  ne change  pas   les propriétés du lemme
+  \ref{sec:algor-des-emphm}.
+\end{coro}
+
+
+
+\subsubsection{Segmentation d'une surface discrète en plans discrets
+  maximaux}
+
+
+Pour pouvoir  inclure une information  liée à la segmentation  en plans
+discrets de la   surface discrète dans  la  triangulation des  MC, nous
+utilisons   un   algorithme   d'étiquetage   des   surfels  dérivé  de
+\cite{sivignon_these}.  Nous ne détaillerons  pas cette  approche mais
+notons qu'à chaque morceau de plans discrets obtenu (ensemble de surfels
+connexes  homéomorphe à  un  disque), nous   avons  la \emph{préimage}
+complète associée (voir chapitre \ref{chap:ILP}).
+
+De manière intuitive, la  préimage (polyèdre convexe dans l'espace des
+paramètres associé aux  plans) définit l'ensemble des plans euclidiens
+dont  la discrétisation (au sens de \aut{Gauss})  contient l'ensemble des surfels
+associé. Ainsi, nous avons~:
+\begin{lemme}[\cite{dcoeurjo_spie_mc}]
+\label{lem:intersect}
+Considérons un    ensemble  $\mathcal{E}$ de    surfels reconnu  comme
+appartenant  au plan  discret $P$,  alors tout  plan euclidien dans la
+préimage  de  $P$ intersecte  les  segments   ouverts  $[p,p+\vec{d}]$
+associés aux surfels de $\mathcal{E}$.
+\end{lemme}
+
+De manière  intuitive, la  propriété  d'intersecter tous  les segments
+ouverts $[p,p+\vec{d}]$ est à mettre en relation  avec le processus de
+discrétisation  (ici, de \Name{Gauss})  choisi  pour la définition des
+plans discrets considérés.  Rappelons qu'à ce niveau, l'étiquetage des
+surfels de la surface d'un objet en un  nombre minimal de morceaux de plan
+discret est un  problème NP-complet \cite{dcoeurjo_NPhard} dans le cas
+général.
+
+
+Par  l'association entre un  sommet du MC et  un  surfel discret, nous
+fusionnons les informations en affectant l'étiquette d'un surfel à son
+sommet du MC  associé. Nous définissons ainsi  trois types de triangles
+des MC (voir figure \ref{fig:merge})~:
+\begin{itemize}
+\item \textbf{Homogène}~: les  trois sommets du  triangle appartiennent
+  au même plan discret (\emph{i.e.} ils ont la même étiquette)~;
+\item \textbf{Non-homogène (2-NH ou 3-NH)}~:    cas    contraire  avec   une     sous
+  classification 2-NH ou 3-NH si le nombre d'étiquettes distinctes est
+  de 2 ou 3.
+\end{itemize}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=4cm]{mc_fig1}
+  \includegraphics[width=4cm]{mc_fig2}
+  \includegraphics[width=4cm]{mc_fig3}
+  \caption{Illustration du transfert des étiquettes des sommets vers
+    les faces. Les triangles avec des croix sont 2-NH ou 3-NH.}
+  \label{fig:merge}
+\end{figure}
+
+
+Généralement, les processus  de  segmentation de surface discrète  en
+morceaux  de plans maximaux  incluent des contraintes topologiques sur
+les morceaux en question de telle manière que l'ensemble des triangles
+homogènes de même label soit homéomorphe à un disque.
+
+
+\subsection{Simplification et Optimisation}
+\label{sec:simpl-et-optim}
+
+\subsubsection{Triangles homogènes}
+
+Dans notre processus de  simplification, la  nature des triangles  est
+primordiale.  Dans le  cas des triangles  homogènes, d'après  le lemme
+\ref{lem:intersect}  et le  corollaire   \ref{coro:deplacement},  nous
+pouvons déplacer tous les  sommets d'un ensemble connexe de  triangles
+homogène sur un même plan euclidien extrait de manière arbitraire dans
+la préimage    associée, et   ce   sans  changer   les propriétés   de
+réversibilité et de correction topologique. Le traitement  des
+triangles homogènes est donc très simple. 
+
+Dans   ce contexte, nous  pouvons  ensuite remplacer tous les morceaux
+connexes   de  triangles  homogènes   par  des  polygones,
+\emph{cousus}  entre eux par des triangles  2-NH  et 3-NH (voir figure
+\ref{fig:res1}).   A  ce  niveau  de  l'analyse  nous  avons  déjà  un
+processus  de polyédrisation réversible  topologiquement correcte plus
+efficace   que  le  MC    en     termes   de  nombre   de     facettes
+\cite{dcoeurjo_spie_mc}.
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=3cm]{pyra}
+  \includegraphics[width=3cm]{pyra_MC}
+  \includegraphics[width=3cm]{pyra_move}
+  \includegraphics[width=3cm]{pyra_res}
+  \caption{Illustration  du  processus de simplification des triangles
+    homogènes~: \emph{(de gauche à    droite)} un objet   discret, une
+    surface des MC, segmentation  de la  surface  en morceaux  de plans
+    (étiquettes   ramenées    aux  triangles)   et  simplification des
+    ensembles connexes de triangles homogènes.}
+  \label{fig:res1}
+\end{figure}
+
+Nous insistons sur le  fait suivant~: la réversibilité topologiquement
+correcte est donnée quel que  soit le choix du représentant  euclidien
+extrait des préimages des plans discrets.
+
+\subsubsection{Triangles non-homogènes}
+
+
+Le traitement  des triangles non-homogènes  va cette fois exploiter de
+manière  fine les préimages   associées.      Si nous ajoutons     des
+contraintes    linéaires dans l'espace   des  paramètres  réduisant la
+préimage, les points du polyèdre  convexe résultant permettront toujours
+de  simplifier les triangles   homogènes comme énoncé dans la  section
+précédente. L'idée est donc  de trouver des contraintes linéaires pour
+supprimer des triangles NH, en plus des triangles homogènes.
+
+Pour  simplifier le problème  et  limiter le coût algorithmique,  nous
+considérons deux restrictions au problème~:
+\begin{itemize}
+\item  \textbf{Analyse locale  }~:  comme  illustré  dans la   figure
+  \ref{fig:probleme_obq},  la distance (au  sens  de  \aut{Hausdorff})
+  entre deux reconstructions    valides  pour  la   discrétisation   de
+  \aut{Gauss} peut être très  grande (et même  arbitrairement grande).
+  Dans ce    qui suit, nous limiterons    la reconstruction à une zone
+  définie comme l'union des cellules du MC.
+\item  \textbf{Programmation  linéaire en dimension   3}~: comme nous
+  l'avons vu dans le   chapitre \ref{chap:ILP}, le  calcul des  préimages
+  utilise des outils de programmation linéaire en dimension 3. Dans ce
+  qui  suit, nous  ne  voulons  pas  augmenter la  dimensionnalité  du
+  problème et donc des outils.
+\end{itemize}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{probleme_obq}
+  \caption{\emph{(gauche) :} Deux reconstructions possibles validant la
+    propriété de réversibilité. \emph{(droite) :} nous restreignons la
+    reconstruction à être contenue dans la zone grise.}    
+ \label{fig:probleme_obq}
+\end{figure}
+
+
+En  considérant ces heuristiques,  la simplification  d'un triangle NH
+noté    $T$, tout  en   maintenant     la  topologie  (voir     figure
+\ref{fig:simpli}), peut se faire de deux manières~:
+\begin{itemize}
+\item suppression  d'une arête de $T$~:  dans ce  cas nous allons nous
+  restreindre  aux arêtes contenues dans une  face de la cellule de MC
+  contenant $T$.  Dans  ce cas,  l'arête  est remplacée  par un sommet
+  contenu dans  la face de la cellule  et nous nous ramenons donc à un
+  processus bidimensionnel (voir figure \ref{fig:nh_triangle})~;
+\item suppression  directe  du  triangle~:  $T$ sera remplacé   par un
+  sommet et  nous contraignons ce dernier à  rester dans la cellule du
+  MC associée à $T$. Ce schéma de simplification sera utilisé
+  uniquement pour les 3-NH.
+\end{itemize}
+
+\begin{figure}[ht]
+  \centering
+\subfigure[]{  \includegraphics[width=2.5cm]{simpli2}
+  \includegraphics[width=2.5cm]{simpli3}}~~~~~~~~
+\subfigure[]{  \includegraphics[width=2.2cm]{simplit2}
+  \includegraphics[width=2.2cm]{simplit3}}
+\caption{Illustration de la suppression d'une arête et de la
+  suppression d'un triangle.}
+  \label{fig:simpli}
+\end{figure}
+
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=10cm]{nh_triangle}
+  \caption{Décomposition bidimensionnelle d'une cellule de MC et faces
+    associées à un triangle.}
+ \label{fig:nh_triangle}
+\end{figure}
+
+Supposons maintenant un triangle $T$ 2-NH  associé aux plans discrets
+$P_1$ et $P_2$. Nous cherchons à contraindre les préimages de $P_1$ et
+$P_2$ tel que  le déplacement des sommets  de  $T$ sur n'importe  quel
+plan  euclidien extrait des préimages  fusionnera une arête de $T$ (et
+donc supprimera $T$).  Pour cela, nous prenons  l'exemple de la figure
+\ref{3cases}~:    la  figure   $(a)$   correspond   aux configurations
+observables sur les faces d'une  cellule du MC engendrant une seule
+composante connexe de triangles (cas  1, 2, 5, 8,  9, 11). Pour ne pas
+complexifier      le processus,     nous    nous  restreignons à   ces
+configurations. Sur ce schéma, nous cherchons à contraindre la famille
+des plans ``bleus'' et la famille des plans ``verts'' de telle manière
+que  l'intersection d'un représentant   bleu et d'un représentant vert
+reste    dans la face     $ABCD$ (figure \ref{3cases}-$(b)$).  Si nous
+exprimions ces  contraintes de  manière directe, nous  aboutirions à un
+problème    linéaire en dimension   supérieure à   3 (3 paramètres  par
+préimage).
+
+Encore une  fois nous allons simplifier  le problème et construire des
+schémas nécessaires mais  non suffisants~: pour  le  cas de la  figure
+\ref{3cases}-$(b)$,  si   nous   contraignons    la    famille $P_1$ à
+intersecter le segment $DC$  et que nous  contraignons (indépendamment
+cette fois) la famille $P_2$ à  intersecter $CB$, alors nécessairement
+l'intersection $p_1\cap p_2 \in ABCD$, quels que soient $p_1\in P_1$ et
+$p_2\in P_2$.  Les contraintes sur  les préimages $P_1$ et $P_2$  sont
+donc de  dimension  3  et  s'expriment   directement en fonction   des
+coordonnées du point $A$.  Si maintenant les contraintes linéaires que
+nous ajoutons (en nombre constant par triangle) aux préimages $P_1$ et
+$P_2$ font qu'une  des deux devient nulle,  nous en concluons que  le
+triangle  $T$  ne peut pas être supprimé. Comme   le schéma est nécessaire
+mais non  suffisant, il serait faux de  conclure qu'il n'existe pas de
+couple   $(p_1,p_2)$ permettant   de supprimer  $T$  après projection.
+Cependant, le calcul  d'un tel  couple  ne pourrait  se faire avec  un
+système linéaire de  dimension 3. Notons que la  suppression de $T$ ne
+changera  ni  la réversibilité totale  de la surface, ni  sa topologie
+(figure \ref{fig:simpli}).
+
+
+
+
+Nous ne détaillerons pas plus en avant ces contraintes mais nous
+pouvons construire des schémas équivalents pour les autres cas de la
+figure \ref{3cases}-$(a)$ \cite{dcoeurjo_MCsimplDGCI06}.
+
+\begin{figure}
+\centering
+\subfigure[]{\includegraphics[width=12cm]{casall1}}
+\subfigure[]{\includegraphics[width=8cm]{casall2}}
+%\includegraphics[width=3.2cm]{cas2.eps}
+%\includegraphics[width=3cm]{cas3.eps}
+\caption{Illustration du traitement en dimension 2 de la suppression
+  d'un triangle $T$ sur les faces de la cellule du MC associée.}
+\label{3cases}
+\end{figure}
+
+\subsection{Algorithme global de simplification}
+
+Maintenant que nous savons contraindre les préimages pour supprimer un
+triangle   2-NH,   il nous  faut   appliquer    ce  processus  sur  la
+triangulation  du MC.  Là   encore, il  nous  faut faire  un  choix de
+parcours (et donc de propagation des contraintes). Pour
+maximiser le taux de triangles $NH$ supprimé, nous avons opté pour un
+processus en deux étapes~:
+\begin{itemize}
+\item   {\bf Étape 1 : optimisation globale}   : nous choisissons    un   triangle 2-NH, nous
+  contraignons ses préimages  et  ensuite  nous continuons, tant   que
+  possible (\emph{i.e.} tant  que les  deux préimages sont  non-vides)
+  sur les triangles 2-NH voisins associés aux mêmes plans. Ce processus
+  est itéré pour tous les triangles 2-NH de la surface. A la fin de ce
+  processus,  nous   avons,      en contraignant    les     préimages,
+  potentiellement supprimé un certain nombre de triangles 2-NH. 
+\item  {\bf Étape  2  :  optimisation gloutonne} :  nous  prenons  une
+  préimage et   nous choisissons   arbitrairement un  plan  euclidien.
+  Ensuite, nous propageons ce choix à  tous les triangles 2-NH et 3-NH
+  adjacents à  ce   plan  qui  n'ont  pas   encore été   marqués comme
+  simplifiables. Durant cette propagation, nous allons pouvoir générer
+  à nouveau des contraintes linéaires  similaires au traitement du cas
+  \ref{3cases}-$(b)$ mais pouvant traiter aussi les triangles 3-NH car
+  un       des trois      plans      est    maintenant  fixe     (voir
+  \cite{dcoeurjo_MCsimplDGCI06}  pour  plus de détails).  Nous itérons
+  sur  cette  sélection et cette  propagation   du plan euclidien pour
+  chaque préimage.
+\end{itemize}
+
+Une fois tous  les plans euclidiens  sélectionnés,  nous effectuons la
+simplification finale  de la surface en projetant  les sommets sur les
+plans euclidiens considérés et en simplifiant les triangles exactement
+coplanaires   (cas des triangles   homogènes) .  Comme à chaque étape,
+nous avons contraint notre géométrie à rester dans les cellules du MC,
+et comme nous pouvons aisément modifier localement  la géométrie et la
+topologie de la surface, nous pouvons conclure~:
+
+\begin{lemme}[\cite{dcoeurjo_MCsimplDGCI06}]
+  L'algorithme précédent construit un  polyèdre réversible qui est une
+  2-variété combinatoire sans bord.
+\end{lemme}
+
+A ce niveau,  les facettes ne sont pas  triangulées et donc des étapes
+de    post-traitement   peuvent être   envisagées   en  fonction    de
+l'application.
+
+\subsection{Résultats et discussion}
+
+Nous  présentons ici quelques résultats  en  utilisant l'algorithme de
+\aut{Sivignon}               pour           la            segmentation
+\cite{journals/algorithmica/SivignonDC03}                           et
+\aut{Cassowary}\footnote{\url{http://www.cs.washington.edu/research/constraints/cassowary/}},
+une bibliothèque de programmation linéaire  pour l'ajout de contraintes
+sur les préimages.    D'un point de vue  algorithmique,  une  fois les
+préimages calculées, le  processus    ajoute un nombre  constant    de
+contraintes  par triangle NH et  parcourt un nombre constant de fois
+la triangulation. Le point coûteux est donc le calcul des préimages et
+la  mise à jour de    ces  dernières.  Le chapitre   \ref{chap:ILP}  a
+présenté plus en détail la   complexité de la préimage associée à   un
+plan discret  en terme de nombre de  facettes.
+
+La    figure   \ref{fig-result}   et    le  tableau~\ref{table-result}
+synthétisent quelques résultats sur des objets  simples. Ce qu'il faut
+cependant noter est que les choix heuristiques et les conditions non
+suffisantes dans certains  processus permettent quand  même d'avoir un
+taux de suppression des triangles NH très élevé.
+
+La contre-partie  de ces choix heuristiques,  surtout dans le mode  de
+parcours pour la  segmentation en plans  discrets ainsi que les modes de
+propagation   locale  des contraintes  lors  de  la simplification des
+triangles, fait que la reconstruction de la sphère n'est pas isotrope.
+Ce     phénomène      a     déjà été       largement           observé
+\cite{sivignon_these,dexet_these} et  semble inhérent à ces schémas de
+segmentation locale de la surface.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=2.5cm,angle=90]{pyra4.ps}
+\includegraphics[width=2.5cm,angle=90]{pyra4mc.ps}
+\includegraphics[width=3cm]{pyra0.ps}
+\includegraphics[width=3cm]{pyra1.ps}
+\includegraphics[width=2.8cm,angle=90]{rnd7.ps}
+\includegraphics[width=2.8cm,angle=90]{rnd7mc.ps}
+\includegraphics[width=3cm,angle=90]{rdcb7_1.ps}
+\includegraphics[width=3cm,angle=90]{rdcb7_2.ps}
+\includegraphics[width=2.5cm,angle=90]{sphere.ps}~~~~
+\includegraphics[width=2.5cm,angle=90]{spheremc.ps}~~~~
+\includegraphics[width=2.5cm,angle=90]{sphere10-1.eps}~~~~~~
+\includegraphics[width=2.5cm,angle=90]{sphere10-2.eps}
+\caption{Quelques résultats de la simplification~:\emph{(de gauche à
+    droite)} les objets discrets, la surface MC, première
+  simplification des triangles homogènes uniquement et enfin,
+  simplification finale H+NH.}
+\label{fig-result}
+\end{figure}
+ 
+
+\begin{table}[!h]
+\begin{tabular}{l|c|c|c|c|c}
+~&\multicolumn{3}{|c|}{MC} & \multicolumn{2}{|c}{Taux de suppression}\\
+\cline{2-6}
+Objets & \# triangles MC  & \# triangles H  & \#  triangles NH &
+triangles NH & total\\
+\hline
+{\tt pyramid\_4} & 512 & 342 & 170 & 62\% & 87\%\\
+{\tt rd\_cube\_7} & 2024 & 1720 & 304 & 89\% & 98\%\\
+{\tt sphere\_10} & 3656 & 2200 & 1456 & 37\% & 75\%\\
+\end{tabular}
+\caption{Quelques résultats quantitatifs sur les exemples de la figure
+\ref{fig-result}.}
+\label{table-result}
+\end{table}
+
+
+\section{Conclusion}
+ 
+
+Dans    ce chapitre, nous  nous  sommes   intéressés à des notions  de
+modélisation d'objets euclidiens dans  le modèle discret, ainsi qu'au
+processus  inverse  qui consiste à    obtenir  une  représentation  en
+compréhension d'un objet décrit en extension.
+
+Nous avons présenté des outils de reconstruction réversible de courbes
+et de surfaces  polygonales en dimension 2 et  3. La solution proposée
+en dimension  2 est toutefois  plus  générale car elle  est utilisable
+pour toutes les  grilles isothétiques irrégulières présentées dans  le
+chapitre \ref{chap:notions}.
+
+Pour la dimension  3, nous sommes allés au  maximum d'un  point de vue
+théorique sur  la      construction d'un  polyèdre   réversible    par
+optimisation d'une surface initale (MC)  en intégrant des informations
+géométriques propres à la géométrie discrète.  Si nous voulons limiter
+la dimensionnalité du problème et des algorithmes, nous avons vu qu'il
+fallait s'orienter vers des processus heuristiques et des critères non
+nécessaires   et     suffisants.   Bien évidemment,  il  pourrait être
+intéressant de tenir compte des configurations  du MC que nous n'avons
+pas  encore  traitées.  Cela  permettrait sûrement  d'enlever   encore
+certains  triangles mais il nous semble  cependant plus prometteur  de
+revoir  le    processus  de  segmentation en  plans    discrets et  de
+propagation pour rendre la reconstruction plus \emph{globale}.
+
+Pour cela,    une  généralisation en dimension    3  de la  couverture
+tangentielle  qui possède  de nombreuses utilisations   en dimension 2
+\cite{laurefab,deVieilleville_these}  nous semble   intéressante~:
+pour chaque surfel de  la surface discrète,  nous construisons le plan
+discret maximal avec   recouvrement.  Ainsi, pour  chaque surfel, nous
+avons  une liste de plans discrets  le contenant. Si pour l'instant la
+combinatoire  de  cet objet rend   le coût algorithmique important, il
+contient  une information globale sur  laquelle  on pourrait envisager
+une   segmentation en plans,  cette  fois  sans  recouvrement, avec de
+meilleures propriétés géométriques.
+
+
+Enfin,   nous  pourrions  nous     attacher à la    généralisation  la
+reconstruction  3D  aux  objets  isothétiques irréguliers.   Dans   un
+premier  temps, nous pouvons considérer  des  surfaces simples et  des
+grilles issues  de subdivisions  régulières comme l'\emph{octree} pour
+lequel      des   algorithmes  d'extraction   d'isosurfaces   existent
+\cite{citeulike_910101}.
+
+
+Quelle que soit  la dimension, 2 ou 3,  du problème, la reconstruction
+réversible est souvent mise  en parallèle d'approches venant, soit  de
+la   vectorisation  de    documents  dans  le  cas   2D,   soit  de la
+simplification de  maillages  triangulés pour les  surfaces.  Pour ces
+deux domaines  de   l'analyse  d'images  ou de   la  modélisation,  de
+nombreuses techniques existent.   S'il serait pertinent de vouloir  se
+comparer à ces techniques en   terme de qualité de  la représentation,
+rappelons que notre contrainte  initiale de  réversibilité et donc  du
+contrôle strict de l'erreur  dans  une certaine mesure, n'apparaît  que
+rarement dans ces autres approches.
+
+De  ce  constat, les   challenges à    venir pour ces  processus    de
+reconstruction sont   sur  ce terrain  là~: poursuivre   l'analyse des
+algorithmes de reconstruction  exacte en cherchant à les optimiser  en
+terme  d'arithmétique et  d'algorithmique  pour  offrir  des solutions
+alternatives à des problématiques nécessitant ou non un contrôle exact
+de l'erreur.
+
+%\bibliographystyle{alpha}
+%\bibliography{mybiblio,biblio,biblio_chapitre,biblio_chapitre2}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 

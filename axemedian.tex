@@ -1,0 +1,1256 @@
+%; whizzy-master hdr.tex
+\mychaptoc{Algorithmes séparables pour l'analyse volumique de formes}
+\label{chap:AM}
+
+
+
+
+\section{Introduction}
+
+Dans  ce  chapitre, nous  nous   intéressons à l'analyse volumique des
+objets discrets.  Dans  ce contexte la problématique de transformation
+en distance   et de calcul    d'axe médian sont des  thématiques  très
+importantes  en    géométrie  discrète et elles  bénéficient   d'une longue
+histoire.
+
+L'axe médian a trouvé de  nombreuses applications en analyse  d'images
+pour   la   reconnaissance       et  la   description     de    formes
+\cite{shb-ipamv-99},   ou   en  robotique  pour   la  planification de
+trajectoires \cite{l-rmp-91}.   La distance à  la frontière, mémorisée
+en chaque  point de l'axe  médian, fournit une information d'épaisseur
+qui peut être utilisée pour  segmenter  les  objets, les séparant   en
+larges régions connectées par  des parties relativement  plus étroites
+\cite{cpw-stmm-93,flux,o-mvdss-94,decomp3Dstina}.   La transformée  en
+distance  et l'axe médian   peuvent aussi  servir pour construire  une
+représention  implicite du contour   discret  et ainsi permettre   des
+rendus     par   lancer     de    rayon    intéressants     \cite[chap.
+18]{dcoeurjo_hermes}.
+
+Dans ce  chapitre, nous    insistons tout  d'abord sur  le   caractère
+historique  de ce domaine en  dressant un état de l'art. Ensuite, nous
+présentons les différents algorithmes séparables  pour le calcul de la
+transformation   en   distance,   pour le    calcul   du diagramme  de
+\aut{Voronoï} discret, pour  la transformation en distance  inverse et
+enfin pour l'extraction de l'axe médian discret.
+
+Par  la suite, nous  exploitons le caractère séparable des algorithmes
+pour présenter une  généralisation  de    ces derniers  aux    espaces
+toriques.
+
+La formulation    de  certains  points,   notamment  dans   la section
+\ref{sec:extraction-de-laxe},  est    issue   de   discussions    avec
+\aut{Dominique Attali} et \aut{Eric Remy} à l'occasion de la rédaction
+du chapitre \cite[chap. 9]{dcoeurjo_hermes}.
+
+\section{État de l'art}
+
+Dès les  premières heures de  la géométrie discrète, la transformation
+en distance et l'extraction d'axe médian  de formes sont apparues comme
+des problèmatiques    fondamentales   avec de nombreuses   applications
+\cite{ROSEN_66,ROSEN_68}.  Comme introduite dans la section
+\ref{sec:dist-discr-transf}, la transformation en distance consiste à
+étiqueter les points de l'objet discret par la distance minimale aux
+points du complémentaire.
+
+
+
+Dans   ce processus, nous   avons un  choix  sur  la distance discrète
+considérée. Ainsi, nous   pouvons utiliser des distances approchées  de
+chanfrein   \cite{ROSEN_68,borgefors,Thiel_IWCIA7,fouard:ivc:2005}  ou
+des        séquences      de       distances         de      chanfrein
+\cite{ROSEN_66,mukherjee,Nagy05}, la distance euclidienne exacte basée
+sur           un          vecteur             de           déplacement
+\cite{danielson,ragnemalm,MULL_92,Cuisenaire1999_268},    la  distance
+euclidienne donnée par  un  diagramme de \aut{Voronoï} des  points  du
+complémentaire  \cite{BreuEtAl95,GotLin95,Guan,maurer_pami}, ou encore
+en   manipulant    le    carré    de    la    distance     euclidienne
+\cite{SaitTori:94,Hirata,roerdnik}.
+
+
+Historiquement,  le choix     de la  distance  sous-jacente était   un
+compromis entre   qualité    de la  représentation   (par    rapport à
+l'anisotropie  notamment)   et  efficacité   algorithmique.    Dans ce
+contexte, les approches basées  sur les masques de chanfrein offraient
+un avantage  algorithmique certain.  Les premières solutions efficaces
+en   distance   euclidienne    souffraient  cependant d'erreurs   dans
+l'étiquetage   en   distance     rendant  les     calculs     inexacts
+\cite{danielson,ragnemalm,MULL_92}.    A présent,   des      solutions
+algorithmiques optimales  en  temps (linéaire   au nombre  de   points
+discrets)  existent  pour un étiquetage en    distance sans erreur  en
+dimension                                                   arbitraire
+\cite{BreuEtAl95,Guan,Hirata,roerdnik,maurer_pami}.  La généralisation
+aux dimensions  supérieures de ces approches  est triviale car elle se
+basent   sur un processus   séparable  opéré dimension par  dimension.
+C'est sur ce type de technique que nous portons notre analyse.
+
+Le  squelette  et l'axe   médian sont  des représentations  de  formes
+importantes très utilisés dans un objectif de reconnaissance de formes
+\cite{Blum:1964,montanari}.    Plusieurs  approches    existent   pour
+caractériser ce  squelette ou  cet axe médian.    Par exemple, on peut
+considérer le  modèle de <<~feu de  prairie~>> avec un front de propagation
+partant des contours.   Les points  d'auto-intersection définissent le
+squelette  et la classification de  ces  derniers peut être obtenue en
+s'intéressant aux   intersections  et transitions durant  ce  processus
+\cite{journals/ijcv/GiblinK03,citeulike:677854}.  Une  autre  approche
+consiste à  s'intéresser aux pics   et   crêtes de la   transformée en
+distance  vue comme une surface.   Enfin une  dernière approche définit
+l'axe  médian comme les centres  des boules maximales  contenues dans la
+forme.  Nous reviendrons plus en détail sur  cette définition dans la
+section \ref{sec:extraction-de-laxe}.
+
+De  ces  définitions souvent équivalentes   dans l'espace  continu ont
+découlé   plusieurs objets  différents  dans   l'espace   discret.  La
+détection des pics et crêtes  a introduit les approches variationelles
+\cite{LeymarieL92,kimmel,ICCV2-99*828,bb18000}; du modèle de <<~feu de
+prairie~>> ont découlé les  approches par amincissement  progressif et
+d'où  la notion  de  squelette topologique  discret (voir  \cite[chap.
+8]{dcoeurjo_hermes}  pour   une   bibliographie complète).   Enfin les
+approches par boules  maximales  ont donné  naissance à  la notion d'axe
+médian discret  que nous utiliserons par la  suite,  basée  sur une
+distance  de  chanfrein  \cite{ROSEN_66,borgefors,sann94,Thiel_CMA} ou
+sur       une                 distance                     euclidienne
+\cite{rang_thesis,Fitzpatrick,satio_redt,Thiel_EMA,dcoeurjo_pami_RDMA}.
+
+
+Nous allons  commencer dans la section suivante par présenter les
+différents algorithmes séparables pour les problèmes de transformation
+en distance, de  l'extraction d'un diagramme de \aut{Voronoï} discret,
+de  transformation inverse  et d'extraction   d'axe médian.  Dans   la
+section    \ref{sec:generalisations},   nous exploiterons le caractère
+séparable  des  algorithmes pour  présenter quelques généralisations.
+
+
+
+
+\section{Transformation en distance, reconstruction et axe médian discret}
+\label{sec:algor-separ}
+\subsection{Transformation en distance}
+\label{sec:transf-en-dist}
+
+Pour définir  des algorithmes corrects, il  a fallu  revoir le processus
+avec des techniques utilisant des algorithmes séparables, c'est-à-dire
+des processus qui effectuent des calculs  sur les lignes, puis sur les
+colonnes (puis sur  les rangées  en dimension 3,   etc) de l'image  de
+manière indépendante \cite{SaitTori:94}.  Pour représenter la distance
+de manière exacte, nous utilisons le carré de cette dernière.
+
+La généralisation de ce qui  suit est triviale en dimension supérieure
+mais pour plus de simplicité dans la rédaction, nous considérons le cas
+de la dimension 2.  Supposons une forme  discrète $X$ contenue dans une
+image   de  taille $m\times m$.      Nous cherchons à calculer l'image
+$H=\{h(i,j)\}$  contenant le carré de la  transformée  en distance. De
+manière très simple, nous avons~:
+\begin{align*}
+ h(i,j) = \min \left\{\, (i-x)^2 + (j-y)^2 \,:\, 0\leq x,y< m\text{ et
+}(x,y)\in\overline{X}\,\right\}.
+\end{align*}
+Cette écriture peut se décomposer dimension par dimension (voir figure
+\ref{fig:edt_simp})~:
+\begin{enumerate}
+\item construction de l'image $G=\{g(i,j)\}$ par un traitement
+ indépendant des lignes, où pour une colonne $j$ nous avons:
+\begin{displaymath}
+\label{eq:8}
+ g(i,j)=\min_{x} \left\{\,|i-x| \,:\, 0\leq x < m\text{ et }
+(x,j)\in\overline{X}\,\right\} \;;
+\end{displaymath}
+\item enfin, $H$ s'obtient par le processus suivant sur les
+ colonnes~:
+\begin{displaymath}
+\label{eq:7}
+ h(i,j)=\min_y \left\{\,{g(i,y)^2}+(j-y)^2 \,:\, 0\leq y < m\,\right\}\,.
+\end{displaymath}
+\end{enumerate}
+
+L'algorithme issu  de  cette  décomposition engendre   une  complexité
+linéaire au nombre  de points de  l'image.  En effet, l'étape 1  (voir
+algorithme  \ref{algo1_EDT})   s'exécute en  2   parcours de   l'image
+contenant  $X$,  donc  en $O(m^2)$,  et   $O(m^n)$  en dimension  $n$.
+Concernant la phase 2 (voir algorithme \ref{algo2_EDT}), la complexité
+est la même, mais l'algorithme  requiert  une analyse plus précise.  A
+partir   du calcul  de   l'enveloppe   inférieure  d'une famille    de
+paraboles~: considérons la colonne  $\{g(i,y)\}$  ($0\leq y < m$)   de
+l'image $G$  de  la  phase 1.    Si  nous considérons  l'ensemble  des
+paraboles   ${\mathcal{F}}^i_y(j)={g(i,y)^2}+(j-y)^2$,    la   colonne
+$\{h(i,y)\}$ après l'étape 2 est exactement  la hauteur de l'enveloppe
+inférieure  des paraboles $\{{\mathcal  F}_y^{i}\}$ pour $0\leq y < m$
+(voir figure \ref{fig:hirata}).
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[draft=false,width=10cm]{Fig1_EDT}
+\caption{\label{fig:edt_simp} Illustration   du calcul de  la transformée  en   distance de manière
+ séparable (dimension par dimension).  }
+\end{figure}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[draft=false,width=10cm]{Fig2_para}
+\caption{
+ \label{fig:hirata}
+ Illustration du calcul de l'enveloppe inférieure de
+ paraboles~: si $[16,1,4,1]$ est une colonne de $G$ après l'étape 1
+ ($5^{\text{ième}}$ colonne dans la figure \ref{fig:edt_simp}, valeurs élevées
+  au carré), on obtient
+ (à gauche) l'ensemble des paraboles $g(i,y)^2+(j-y)^2$ et
+ (à droite) la courbe épaisse correspondant à l'enveloppe
+ inférieure ; le résultat est $[2,1,2,1]$.
+}
+\end{figure}
+
+
+Pour calculer l'enveloppe  inférieure d'une  famille  de paraboles,  un
+algorithme existe  pour rendre l'étape  2 linéaire au nombre de points
+discrets \cite{Hirata}.   L'idée  de  cet  algorithme  (détaillé  dans
+l'algorithme    \ref{algo2_EDT},  inspiré de  \cite{roerdnik})  est de
+manipuler une   pile  pour  mémoriser les  paraboles   présentes  dans
+l'enveloppe inférieure en cours  d'extraction.  Ensuite, à chaque fois
+qu'une  parabole   est  analysée, nous   pouvons  avoir à  dépiler des
+paraboles de la pile.  La complexité linéaire est  obtenue par le fait
+que  les   paraboles ne  sont considérées  qu'une    seule fois et que
+lorsqu'une parabole est dépilée, elle est  supprimée du problème (elle
+ne fera  pas partie  de  l'enveloppe).  Deux fonctions  sont utilisées
+dans  cet algorithme~: ${\mathcal{F}}^i_y(j)={g(i,y)^2}+(j-y)^2$   (ou
+plus simplement ${\mathcal{F}}_y(j)$  lorsque  $i$  est donné par   le
+contexte) représentant l'ordonnée   d'une  parabole,  et la   fonction
+${\mathcal    S}ep^i(u,v)$ (ou    simplement ${\mathcal    S}ep(u,v)$)
+représentant l'abscisse    de    l'intersection   de  deux     paraboles
+consécutives~:
+\begin{displaymath}
+{\mathcal S}ep(u,v) = (v^2- u^2 + g(i,v)^2 - g(i,u)^2)  \text{~div~} (2(v-u))
+\label{eq:sep}
+\end{displaymath}
+
+\begin{figure}
+  {\centering
+   \begin{tabular}{p{6cm}p{6.5cm}}
+      \begin{algorithm}[H]
+        \label{algo1_EDT}
+        \Donnees{$X$ forme binaire dans une image $m\times m$}
+        \Res{L'image $g$ contenant l'EDT selon l'axe des $x$}
+        \Pour{$j\in[0..m-1]$}{ \eSi{$(0,j)\in \overline{X}$}{
+            $g(0,j):=0$\; }{ $g(0,j):=\infty$\; } \Pour{$i:=1$ {\bf à}
+            $m-1$ } { \eSi{$(i,j)\in \overline{X}$}{ $g(i,j):=0$\; }{
+              $g(i,j):=1+g(i-1,j)$\; } } \Pour{$i:=m-2$ {\bf à} 0}{
+            \Si{$g(i+1,j) < g(i,j)$}{ $g(i,j):=1+g(i+1,j)$\; } } }
+        \caption{Phase 1 de SEDT.}
+      \end{algorithm}
+      & 
+
+      \begin{algorithm}[H]
+        \label{algo2_EDT}
+        \Donnees{L'image de distance $g$ donnée à la phase 1 de
+          l'algorithme} \Res{L'image $h$ des valeurs de la SEDT}
+        \Pour{$i\in[0..m-1]$}{ $q:=0$; $s[0]:=0$; $t[0]:=0$\;
+ 
+          \Pour{$j:=1$ {\bf à} $m-1$}{ \Tq{ ($q\geq0$) {\bf et }
+              (${\mathcal F}_{s[q]}(t[q])>{\mathcal F}_j(t[q])$)}{
+              $q:=q-1$\; }
+  
+            \eSi{$q<0$}{ $q:=0$; $s[0]:=j$\; }{ $w:=1+{\mathcal
+                S}ep(s[q],j)$\;
+ 
+              \Si{$w<m$}{ $q:=q+1$; $s[q]:=j$; $t[q]:=w$\; } } }
+          \Pour{$j:=m-1$ {\bf à} $0$}{ $h(i,j):={\mathcal
+              F}_{s[q]}(j)$\; \Si{$j=t[q]$}{ $q:=q-1$\;} }
+ 
+        }
+        \caption{Phase 2 de SEDT.}
+      \end{algorithm}
+    \end{tabular}
+  }
+\caption{Algorithmes pour  le calcul     de la  transformée   en
+    distance euclidienne d'un objet discret en dimension 2.}
+\end{figure}
+
+
+
+\begin{figure}
+  \begin{center}
+    \subfigure[]{\includegraphics[width=3cm]{2spheres}}
+    \subfigure[]{\includegraphics[width=3cm]{2spheres_edt}}
+    \subfigure[]{\includegraphics[width=3cm]{2spheres_circ}}
+    \subfigure[]{\includegraphics[origin=lt,angle=270,width=3.5cm]{2spheres_edt_surf}}
+    \subfigure[]{\includegraphics[width=3cm]{carre}}
+    \subfigure[]{\includegraphics[width=3cm]{carre_edt}}
+    \subfigure[]{\includegraphics[width=3cm]{carre_circ}}
+    \subfigure[]{\includegraphics[origin=lt,angle=270,width=3.5cm]{carre_edt_surf}}   
+  \end{center}
+\caption{Exemples de transformées en distance en dimension 2 avec
+     différentes représentations~: objets binaires, valeur de la
+     transformée en distance, représentation des valeurs sur une plage
+     réduite de niveaux de gris et représentation surfacique (la
+     hauteur correspond à la valeur de la
+     transformée).\label{fig:sphere}}
+\end{figure}
+
+La figure \ref{fig:sphere} présente deux représentations classiques de
+la transformée en distance~: sous forme de fonction de hauteur ou avec
+une dynamique de niveaux de gris  cyclique réduite pour mieux observer
+les   fronts  de   propagation.     En    dimension 3  (voir    figure
+\ref{fig:rep_DT_3D}), la visualisation peut se faire par coupe dans le
+volume.
+
+
+
+% \begin{figure}[htbp]{ 
+% \label{ill:dist:DT:5-7-11etdE2}
+% DT pour $\Chanf{5,7,11}$ (à gauche) et $d_e^2$ (à droite).
+% }
+% \centering
+% \input{Chapitre_5/Figures/DT-5711-dE2.pstex_t}
+% \end{figure}
+
+
+
+% \begin{figure}[htbp]{\label{fig:rep_DT_2D}Différentes  représentations
+%     d'une  transformée   en distance  2D:  objet  binaire,  surface de
+%     hauteur ou sur une palette circulaire de niveaux de gris réduite.}
+% \includegraphics[draft=false,width=3.5cm]{2spheres}
+% \includegraphics[origin=c,angle=270,draft=false,width=3.5cm]{2spheres_edt_surf}
+% \includegraphics[draft=false,width=3.5cm]{2spheres_circ}
+% \end{figure}
+
+
+
+\begin{figure}[htbp]
+  \includegraphics[draft=false,width=5.5cm]{synth}
+\includegraphics[draft=false,width=5.5cm]{res_synth}
+\caption{\label{fig:rep_DT_3D}Représentation d'une
+    transformée en distance euclidienne 3D par coupe dans le volume (ici avec une
+    palette circulaire de niveaux de gris).}
+\end{figure}
+
+
+\subsection{Diagramme de \aut{Voronoï} discret}
+\label{sec:diagr-de-voronoi}
+
+
+Pour certaines applications,  il est parfois nécessaire de mémoriser en
+chaque point de $X$, non seulement sa distance au complémentaire, mais
+aussi le ou les points  discrets du  complémentaire les plus  proches.
+Une  telle décomposition   est    appelée   \emph{feature  transform},
+tessellation de \OldName{Dirichlet}  \cite{borgefors}    ou
+encore fonction   bissectrice \cite{dcoeurjo_IVC_couprie}.  Remarquons
+que cette transformation  correspond exactement à l'intersection entre
+l'espace discret $\Z^2$ et  le diagramme de \OldName{Voronoï}  continu
+\cite{P16,deberg} des points du complémentaire.
+
+Étant donné $S =  \{s_i\}$ un ensemble de  points  ou {\em sites\/} de $\R^2$, le
+diagramme de \aut{Voronoï} de $S$ est la partition du plan en cellules
+$C = \{c_i\}$ (une cellule par site $s_i$) telle  que pour tout point
+$p$ dans  la cellule  ouverte  $c_i$, nous avons $d(p,s_i)<  d(p,s_j)$
+pour tout $j\neq  i$.  Nous définissons aussi $c_i^-  =  \{p \in \R^2;
+d(p,s_i)  \leq d(p,s_j)\}$, la fermeture des  cellules,  le bord d'une
+cellule correspondant au lieu  des points équidistants d'au moins deux
+sites.
+
+Dans le plan discret, plusieurs  algorithmes existent pour extraire un
+diagramme de \aut{Voronoï} discret dans lequel on étiquette les points
+discrets par  le label $i$ si ceux-ci  sont  dans la cellule (ouverte)
+$c_i$  \cite{dcoeurjo_these,maurer_pami,hesselink_ISMM}.    Pour   ces
+techniques, si un point discret est exactement sur une frontière entre
+deux cellules, un  choix arbitraire est fait concernant  l'étiquetage.
+Notons que  si    le diagramme   est  utilisé   dans un objectif    de
+transformation en distance \cite{dcoeurjo_these,maurer_pami}, ce choix
+n'a pas de conséquence.
+
+
+Dans \cite{dcoeurjo_IVC_couprie}, nous  avons  présenté un  algorithme
+complet    dans     lequel pour    chaque   point    nous construisons
+\emph{l'ensemble  de projection de $x$  sur $S$}~: $\Pi_S(x)=\{y\in S,
+\forall  z\in S,~d(y,x)\leq d(z,x)\}$.    Ainsi, $|\Pi_S(x)|=1$ si $x$
+est dans une cellule ouverte du diagramme euclidien, et $|\Pi_S(x)|>1$
+si  $x$  est  exactement sur  un  bord  d'une  cellule.  En  géométrie
+algorithmique    classique, nous    avons   souvent  une  hypothèse de
+\emph{position   générale}  pour    les  algorithmes  spécifiant qu'il
+n'existe pas plus de trois points cocycliques.  La conséquence est que
+les n\oe uds du  diagramme  résultant sont de   degré trois et donc  la
+triangulation de \aut{Delaunay} peut être donnée sans ambiguïté.
+
+En géométrie discrète, si nous construisons $\Pi_{\overline{X}}(p)$ pour
+tout $p\in\Z^2$, le nombre de  points cocycliques pourra  généralement
+être très élevé.  Dans   \cite{dcoeurjo_IVC_couprie} l'intérêt de   
+construire cette  projection complète  est   que nous avons  ainsi  en
+chaque point une information globale non seulement  sur la distance au
+bord, mais  aussi sur le  caractère ``minimal local'' de cette mesure.
+Cela   rejoint la  notion  de  flux   contruit  sur  le  diagramme  de
+\aut{Voronoï} classique \cite{flux}. 
+
+Grâce  au caractère séparable des    algorithmes de transformation  en
+distance,  nous  pouvons construire très  simplement cette projection.
+Tout d'abord, nous appelons \emph{point  multiple} tout point  discret
+$p$ tel que $|\Pi_{\overline{X}}(p)|>1$.  Concernant la première étape
+donnée    dans   l'algorithme~\ref{algo1_EDT}, l'étiquetage consiste à
+mémoriser les  coordonnées  (ici  l'abscisse)  du ou  des points  pour
+lesquels   la     distance   est  minimale.     Dans   ce    processus
+monodimensionnel, la détection des  points  multiples est triviale  et
+$|\Pi_{\overline{X}}(p)|\in\{1,2\}$             (voir           figure
+\ref{fig:mapping}-$(a)$).     D'un  point   de  vue  structurel,  nous
+manipulons, pour chaque point $p$  de l'objet, une liste contenant des
+pointeurs vers les coordonnées des points de $\Pi_{\overline{X}}(p)$.
+
+Pour l'étape 2 (algorithme  \ref{algo2_EDT}), nous allons  utiliser un
+processus équivalent aux  techniques   de  construction du  diagramme  de
+\aut{Voronoï} euclidien par balayage \cite{P16,deberg}. Étant   donnée
+une  colonne   et en  utilisant la   vision ``famille   de paraboles''
+associée,  certains événements   peuvent être  caractérisés   lors  de
+l'analyse du point $p$ sur cette colonne. L'idée  est la suivante~:
+\begin{itemize}
+\item $p$ est à l'intersection de deux paraboles. Dans  ce cas, si $p$
+  n'était pas point multiple à la dimension précédente, il le
+  devient (cas $j=4$ dans la figure \ref{fig:mapping})~:
+\item si $p$ était point multiple à  la dimension précédente et que la
+  parabole associée n'est  plus dans l'enveloppe inférieure, $p$ n'est
+  plus point multiple  (il n'est  plus  sur un  bord du  diagramme  de
+  \aut{Voronoï} (cas $j=7$).
+\end{itemize}
+Dans  les autres cas, sont  ajoutés aux  pointeurs associés à $p$, les
+pointeurs associés au centre de  la parabole de l'enveloppe inférieure
+``couvrant'' $p$. Au  cours de cette opération de \emph{concaténation}
+des listes de pointeurs, nous ne propageons bien sûr  que les sites de
+distance  minimale.   Par exemple,  pour le   cas  $j=4$, nous avons à
+fusionner les listes $\{K,L\}$   et $\{C,D\}$.  Or, comme  la parabole
+issue de la première liste n'est pas dans l'enveloppe inférieure, nous
+ne gardons  que la seconde liste. Si  maintenant  la parabole issue de
+$\{K,L\}$ était    préservée à  un   autre  endroit  dans  l'enveloppe
+inférieure, nous aurions  de toute façon conservé l'ensemble $\{C,D\}$
+car il minimise la distance à l'enveloppe en $j=4$. Si
+la hauteur de la parabole $\{K,L\}$ avait été maintenant exactement la
+même   que celle de  $\{C,D\}$,  nous   aurions cette fois  l'ensemble
+$\{C,D,K,L\}$ associé à $p$.
+
+Dans l'implémentation actuelle, l'étape 1 se calcule en temps linéaire
+comme  pour la   transformée  en distance.   Pour   l'étape 2, si  les
+événements se   détectent  facilement sur   l'enveloppe inférieure des
+paraboles,  nous  avons   quelques opérations  de   concaténation avec
+suppression de doublons. Pour cela, nous avons opté pour une structure
+de donnée des listes non optimale mais plus simple à manipuler. Le
+coût de cet algorithme est en $O(m'+k)$ où $m'$ est le nombre de points
+discrets de $\overline{X}$ et  $k=\sum_{p\in X}|\Pi_{\overline{X}}(p)|$. 
+
+Informellement,  l'algorithme est  donc  linéaire en fonction du nombre de  points
+discrets ainsi qu'à la cardinalité des points multiples. Notons que le
+coût en mémoire est en $O(k)$.
+
+
+\begin{figure}[h]
+  \centering
+ \subfigure[]{\includegraphics[width=4cm]{mapping_0}}~~~~~~~~~~~~~
+ \subfigure[]{\includegraphics[width=0.7cm]{mapping_1}}\\
+ \subfigure[]{\includegraphics[width=6.5cm]{mapping_2}}
+ \subfigure[]{\includegraphics[width=6.5cm]{mapping_3}}
+ \caption{Représentation  de   la décomposition en   dimension pour le
+   calcul du diagramme de \aut{Voronoï}  discret.  (a):~Image en entrée (les
+   pixels de $\overline{X}$ sont en gris), et résultat de l'étiquetage
+   selon l'axe des $x$. Les  collisions sont indiquées par des doubles
+   lettres.   (b):~la valeur de  transformée en distance de la colonne
+   $i=4$.  (c):~L'ensemble des paraboles pour  la colonne $i=4$.   Les
+   points indiquent les collisions ($\#\Pi_{S}{p}{}>1$) détectées dans
+   la dimension précédente.  (d):~l'enveloppe inférieure des paraboles
+   et  détection des nouveaux  points  tels que $\#\Pi_{S}{p}{}>1$: le
+   point  $j=7$ n'est plus sur une arête du  diagramme, le point $j=1$
+   est préservé et un nouveau point équidistant+  de plusieurs sites a
+   été détecté $j=4$.}
+  \label{fig:mapping}
+\end{figure}
+
+
+
+Les     figures \ref{fig:resvoro}  et \ref{fig:resvorobis}  présentent
+quelques résultats  de l'algorithme en  dimension  2.  Étant donné  un
+objet discret, celui-ci retourne la  transformée en distance ainsi que
+la structure   complète  $\Pi_{\overline{X}}$.   Dans cette   figure, nous
+utilisons   une représentation  sous  forme de   graphe orienté de  la
+fonction  $\Pi_{\overline{X}}$~: uniquement les   sommets de la  forme
+sont représentés  par  des cercles  et une arête  orientée d'un sommet
+$p\in X$  vers  un   sommet $q\in  \overline{X}$   indique   que $q\in
+\Pi_{\overline{X}}(p)$.  Un sommet de   l'objet avec plus  d'une arête
+incidente correspond à   un  point   multiple dans  le   diagramme  de
+\aut{Voronoï}.
+
+
+Bien évidemment, le processus de propagation des points multiples peut
+se généraliser en  dimension supérieure.  Néanmoins, la cardinalité de
+$\Pi_{\overline{X}}$ augmente et est à   mettre en relation  avec  des
+problèmes   fondamentaux  de    l'arithmétique  comme le    nombre  de
+représentations d'un  nombre par une somme  de carrés \cite{hardy}. Si
+le graphe $\Pi_{\overline{X}}$  ou l'étiquetage  ne se représente  pas
+très    bien en dimension    3,  nous   avons cependant évalué   dans
+\cite{dcoeurjo_IVC_couprie}  la distribution des  points multiples sur
+certaines formes.
+
+
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=3.5cm]{mapping_2D}}
+  \subfigure[]{\includegraphics[width=4.5cm]{mapping_diagram}}
+  \subfigure[]{\includegraphics[width=4.5cm]{mapping_coll}}
+  \subfigure[]{\includegraphics[width=11cm]{recti-10-graphe}}
+  \subfigure[]{\includegraphics[angle=90,width=6cm]{recti-10-diagram}}
+  \subfigure[]{\includegraphics[angle=90,width=6cm]{recti-10-coll}}
+  \caption{Résultats obtenus par  l'algorithme de  calcul du diagramme
+    de   \aut{Voronoï}    discret    sur    l'objet   de   la   figure
+    \ref{fig:mapping} $(a-c)$ et sur un rectangle désaxé $(d-f)$. Nous
+    traçons,  l'étiquetage    sous  forme    de   graphe orienté    de
+    $\Pi_{\overline{X}}$ $(a)$ et $(e)$, d'étiquetage de \aut{Voronoï}
+    (affectation  arbitraire sur les  bords, $(b)$ et $(e)$) et points
+    discrets pour lesquels $\Pi_{\overline{X}}(p)>1$ $(c)$ et $(f)$.}
+  \label{fig:resvoro}
+\end{figure}
+
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=5cm]{sphere10_graphe}}
+  \subfigure[]{\includegraphics[width=4cm]{sphere10_diagram}}
+  \subfigure[]{\includegraphics[width=4.5cm]{sphere10_coll}}
+  \caption{Résultats sur un disque discret.} 
+  \label{fig:resvorobis}
+\end{figure}
+
+
+Tout d'abord, dans la figure \ref{fig:stats}, nous évaluons $k$ (somme
+des $\Pi_{\overline{X}}$)  par rapport à $m=|X|$.  Ainsi, nous pouvons
+observer que le coût uniforme de l'algorithme est quasi linéaire, avec
+un sur-coût notable en dimension 3.
+
+\begin{figure}[h]
+\begin{center}
+ \subfigure[]{\includegraphics[width=6cm]{stats1}}
+ \subfigure[]{\includegraphics[width=6cm]{stats2}}
+ \subfigure[]{\includegraphics[width=6cm]{stats3}}
+ \caption{\label{fig:stats}Tracés de $k$   en  fonction  de  $m$  (axe
+   horizontal)~: $(a-b)$ formes 2D  (rectangles ``r'', ellipses ``e'',
+   images  quelconques  ``m''), et $(c)$  formes  3D (parallélépipèdes
+   rectangles   ``b'',  tores  ``t''    et images  de   vertèbres  3D ''v'')
+   \cite{dcoeurjo_IVC_couprie}.}
+\end{center}                                   
+\end{figure}
+
+Si     maintenant  nous  nous     intéressons à  la  distribution  des
+$|\Pi_{\overline{X}}|$,   la    figure  \ref{fig:stat3D}  présente ces
+résultats pour des formes 2D et 3D.
+
+\begin{figure}[h]
+\begin{center}
+\subfigure[]{\includegraphics[width=6.5cm]{engr_hv}}
+\subfigure[]{\includegraphics[width=6.5cm]{vert_hv}}
+ \caption{\label{fig:stat3D}Distribution de $|\Pi_{\overline{X}}(p)|$
+   sur une forme 2D $(a)$ et sur une vertèbre 3D $(b)$ \cite{dcoeurjo_IVC_couprie}.}
+\end{center}                                   
+\end{figure}
+
+
+En  conclusion,  nous obtenons  par  ces  techniques le  diagramme  de
+\aut{Voronoï}  discret  en  extension,  c'est-à-dire  nous   avons  le
+résultat de l'intersection entre le diagramme de \aut{Voronoï} continu
+des points de $\overline{X}$, et la grille $\Z^n$.  Si nous voulons le
+graphe de  \aut{Voronoï}  associé  (c'est-à-dire   une représentation
+cellulaire faces/arêtes/sommets), il nous faut un processus supplémentaire.
+
+
+\FloatBarrier
+\subsection{Transformation en distance inverse}
+\label{sec:REDT}
+
+
+Avant de nous intéresser plus en  avant à la  notion d'axe médian, nous
+présentons un algorithme séparable     et optimal en temps  pour    le
+problème  de la transformation en   distance inverse.  Le problème  en
+dimension $n$  est le suivant~: étant donné un  ensemble de $l$ points
+$P_k$  de $\Z^n$ associés à  des rayons $r_k$, comment reconstruire
+efficacement l'objet  $X =  \bigcup_{k} \B_d(P_k,r_k)$ où $\B_d(P,r)$
+est l'ensemble $\{Q\in\Z^n, d(P,Q)<r\}$.
+
+Si nous reformulons~:
+
+\begin{equation}
+  X = \{ Q \in \Z^n \mid 
+\max_{1 \leq k \leq l} \left\{ r_k^2 - \|Q-P_k\|^2\right\}
+> 0 \}.\label{eq:redtinit}
+\end{equation}
+
+Pour obtenir un algorithme efficace, considérons l'image $f : \Z^n
+\to \Z$ obtenue en formant $f(P_k) = r_k^2$ et $f(Q) = 0$ pour $Q
+\not \in \{P_1,\ldots, P_l\}$ ainsi que l'image $h : \Z^n \to \Z$
+telle que~:
+\begin{displaymath}
+  h(Q)= \max_{P \in \Z^n} \left\{ f(P) - \|Q-P\|^2 \right\}.
+\end{displaymath}
+
+La forme $X$ peut être retrouvée en conservant les valeurs strictement
+positives de $h$, $X  = \{ P  \in \Z^n \mid  h(P) > 0 \}$. Ainsi, pour
+reconstruire $X$,  il suffit de calculer  $h$. Comme dans le cas d'une
+construction de   la   transformation en distance    avec une distance
+euclidienne, nous  décomposons ce  processus de maximisation dimension
+par dimension (voir figure \ref{fig:redt}).  Pour plus de clarté, nous
+considérons  la  reconstruction en dimension   2, la généralisation en
+dimension $n$  se faisant aisément.  En dimension  2, avec la notation
+$P=(x,y)$  des  points  discrets  et  en   supposant que $X  \subseteq
+[1,m]^2$, nous cherchons à calculer~:
+%Plus   précisément,  nous
+%construisons  une séquence d'images  $h_0,  h_1, \ldots, h_n$, une par
+%dimension de l'espace, telle que $h_0 = f$ et $h_n =  h$.  Notons $P =
+%(x_1,\ldots,x_n)$ et   $\tilde{h}_{i-1}(P,t)  = h_{i-1}(x_1,   \ldots,
+%x_{i-1}, t, x_{i+1}, \ldots, x_n)$,  la valeur de l'image $h_{i-1}$ au
+%point $P$ dans lequel la $i$ème coordonnée a été remplacée par $t$. A
+%l'étape $i$, nous construisons l'image $h_{i} : M \to \Z$ à partir de
+%l'image $h_{i-1}$ de la façon suivante~:
+\begin{equation}
+  h(x,y) = \max_{1 \leq i,j \leq m} \left\{ f(i,j) -
+  (x - i)^2 - (y-j)^2 \right\}\,.\label{eq:redt}
+\end{equation}
+
+Pour cela, nous procédons en deux étapes. Nous construisons tout
+d'abord l'image $g : [1,m]^2 \to \Z$ telle que~:
+\begin{displaymath}
+\label{eq:3}
+  g(x,y)=\max_{1\leq i\leq m}\{f(i,y)-(x-i)^2\}\,.
+\end{displaymath}
+
+L'image $h$ est ensuite donnée à partir de $g$ par~:
+\begin{displaymath}
+\label{eq:4}
+  h(x,y) =  \max_{1\leq j\leq m}\{g(x,j)-(y-j)^2\}\,.
+\end{displaymath}
+
+
+
+%{\bf La fin de la section est à reprendre. Que pensez-vous de changer
+%  $n$ la taille du domaine pour $m$ car $n$ est déjà utillisé pour la
+%  dimension de l'espace.}
+
+Pour chacune   de ces étapes,   nous   avons à  calculer   l'enveloppe
+supérieure d'une famille de paraboles,  définies comme les graphes des
+fonctions  $\{\mathcal{F}_i^y(x)= f(i,y)-(x-i)^2\}_{1\leq i\leq m}$ et
+$\{\mathcal{G}_j^x(y)= g(x,j)-(j-y)^2\}_{1\leq j\leq m}$.  Or, dans la
+section \ref{sec:transf-en-dist}, nous   avons présenté un  algorithme
+très similaire pour calculer une enveloppe de paraboles en $O(m)$.  La
+seule  différence est que  les paraboles sont  cette fois inversées et
+que  la  fonction de séparation  est  donnée par ${\mathcal S}ep(u,v)=
+(u^2-v^2    - f(u,y)+f(v,y)) \text{     div }  (2(u-v))$ (voir  figure
+\ref{fig:parab}).
+
+
+\begin{figure}[h]
+  \centering\includegraphics[width=\textwidth]{redt}
+  \caption{\label{fig:redt}Illustration du processus dimension par dimension pour la
+    reconstruction en distance euclidienne.}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{p{6.9cm}p{5.9cm}}
+      \begin{algorithm}[H]
+        \Donnees{la carte de distance $f$ }
+        \Res{l'image $h_0$ des valeurs de la REDT}
+        \Pour{$j\in[1..m]$}{
+          $q:=0$; $s[0]:=0$; $t[0]:=0$\;
+          
+          \Pour{$i:=2$ {\bf à} $m$}{
+            \Tq{ ($q\geq0$) {\bf et } (${\mathcal F}_{s[q]}(t[q])<{\mathcal
+                F}_j(t[q])$)}{
+              $q:=q-1$\;
+            }
+            
+            \eSi{$q<0$}{
+              $q:=0$; $s[0]:=i$\;
+            }{
+              $w:=1+{\mathcal S}ep(s[q],j)$\;
+              
+              \Si{$w<n$}{
+                $q:=q+1$; $s[q]:=i$; $t[q]:=w$\;
+              }
+            }
+          }
+          \Pour{$i:=m$ {\bf à} $1$}{
+            $h_0(i,j):={\mathcal F}_{s[q]}(i)$\;
+            \Si{$i=t[q]$}{
+              $q:=q-1$\;}
+    }
+    
+  }
+  \caption{\label{algoREDT}Phase 1 de l'algorithme de REDT.}
+\end{algorithm}
+&\vspace{3cm}\includegraphics[origin=lt,width=5.9cm]{Fig4}
+\end{tabular}
+\end{center}
+\caption{\label{fig:parab}Illustration du processus dimension par dimension pour la
+  reconstruction en distance euclidienne.}
+\end{figure}
+
+Finalement, en appliquant l'algorithme  \ref{algoREDT} pour toutes les
+dimensions, nous  obtenons un  algorithme   de reconstruction dont  la
+complexité est  linéaire aux nombres de points  discrets de  la grille
+\cite{dcoeurjo_pami_RDMA}. Pour une reconstruction avec une distance
+de chanfrein, voir \cite[chap. 9]{dcoeurjo_hermes}.
+
+\subsection{Extraction de l'axe médian}
+\label{sec:extraction-de-laxe}
+
+
+Revenons sur   les définitions initales  de l'axe   médian dans le cas
+continu~:
+\begin{definition}[Boule maximale]
+  Une boule ouverte $\ball \subseteq X$ est {\em maximale} dans $X$ si
+  pour toute boule ouverte $\ball'$,
+$$
+\ball  \subseteq  \ball'  \subseteq X \quad    \implies \quad \ball  =
+\ball'.
+$$\index{boule maximale}
+\end{definition}
+
+\begin{definition}[Axe médian]
+  L'{\em axe médian}, $\MAset(X)$, est l'ensemble des centres des
+  boules maximales de $X$.
+\end{definition}
+
+En géométrie algorithmique, le  {\em squelette} est une notion voisine
+qui  formalise    l'image du   feu  de  prairie   de \cite{Blum:1964}.
+Formellement, le {\em squelette} de $X$  est l'ensemble des points qui
+ont au  moins deux points les plus  proches dans  le complémentaire de
+$X$.  Les  notions de squelette et  d'axe médian sont proches mais non
+équivalentes (voir figure \ref{fig:maskel}).   En effet, le  squelette
+est contenu  dans  l'axe  médian   qui est  lui-même contenu  dans  la
+fermeture du squelette \cite[chapitre 11]{m-etps-88}.  Cependant, pour
+les unions finies de boules ouvertes, les deux notions coïncident.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=6cm]{ellipse_MA_Skel}
+  \caption{Illustration de la différence entre axe médian et squelette
+    dans le cas   continu~: l'arête fermée  appartient à l'axe  médian
+    mais non au squelette qui ne contient que l'arête ouverte.}
+  \label{fig:maskel}
+\end{figure}
+
+En géométrie  discrète, les notions  de squelette  et d'axe médian  ne
+peuvent être  mises en  relation~:  si  le  squelette  et l'axe  médian
+continu  sont homotopes à la  forme originale \cite{lieutier_MA}, seul
+le squelette discret s'attachera à cet  objectif \cite[chap. 8]{dcoeurjo_hermes}. L'axe médian discret
+est quant à lui purement géométrique.
+
+
+Nous   commençons par donner une   caractérisation des points de l'axe
+médian  continu  s'appuyant  sur un   relèvement  des boules et  des
+formes dans $\R^3$. Par la  suite, nous identifions les points $(x,y)$
+de  $\R^2$  aux  points $(x,y,0)$ de   $\R^3$.  Considérons  une boule
+ouverte  $B\subseteq  \R^2$  de centre $(i,j)$   et  de  rayon $r$  et
+notons~:
+$$
+h_B(x,y) = r^2 - (x-i)^2 - (y-j)^2.
+$$
+
+La boule  $B$ est l'ensemble  des points $(x,y)$  tels que $h_B(x,y) >
+0$. Nous associons à $B$  le  paraboloïde elliptique $\mathcal{P}$  de
+$\R^3$  défini comme   l'ensemble  des   points   $(x,y,z)\in  \R^3$
+d'équation $z = h_B(x,y)$.  La relation géométrique entre la boule $B$
+et   le   paraboloïde $\mathcal{P}$   est   la  suivante~: les  points
+en-dessous du paraboloïde $\mathcal{P}$ intersectent  le plan $z=0$ en
+la boule $B$.   Nous appelons {\em dôme}  associé à $B$ l'ensemble des
+points $(x,y,z)\in \R^3$  en-dessous du paraboloïde  $\mathcal{P}$ et
+au-dessus du plan $z=0$~:
+$$
+\hat{B} = \{ (x,y,z) \in \R^3 \mid 0 \leq z < h_B(x,y) \}.
+$$
+
+La restriction du dôme au plan $z=0$ redonne la boule $B$.  Cet
+objet a été proposé pour la première fois dans \cite{satio_redt} pour
+caractériser les points de l'axe médian. Considérons  une
+forme continue $Y \subseteq \R^2$. Si l'on substitue à l'ensemble des
+boules $B$ incluses dans $Y$ le dôme $\hat{B}$, on obtient la forme de
+$\R^3$~:
+$$
+\hat{Y} = \bigcup_{B \subseteq Y} \hat{B}.
+$$
+
+Nous dirons qu'un dôme est {\em maximal} dans $\hat{Y}$ s'il n'est
+inclus dans aucun autre dôme contenu dans $\hat{Y}$. Puisque
+l'inclusion entre boules est équivalente à une inclusion entre dômes,
+nous obtenons la propriété suivante illustrée sur la figure
+\ref{fig:mapara} \cite{dcoeurjo_pami_RDMA}~:
+\begin{lemme}
+ \label{lem-para-boule-max}
+ Une boule $B$ est maximale dans $Y$ si et seulement si son dôme
+ $\hat{B}$ est maximal dans $\hat{Y}$.
+\end{lemme}
+
+\begin{figure}[h]  \centering
+  {\includegraphics[width=8cm]{Fig5}}
+  %\subfigure[]{\includegraphics[width=5.5cm]{Fig7}}
+  \caption{\label{fig:mapara}
+    Boules incluses dans une
+    forme et dômes associés. 
+%$(b)$ La boule $B$ n'est pas maximale,
+%    car son dôme associé ne touche pas l'enveloppe supérieure des
+%    paraboloïdes associés aux boules $A$ et $C$.
+}
+\end{figure}
+
+
+
+Dans le cas particulier où $Y$ est une union finie de boules ouvertes,
+nous réexprimons la condition de maximalité d'un dôme en termes de
+contact de ce dernier avec la frontière de $\hat{Y}$. Pour cela,
+remarquons que, au-dessus du plan $z=0$, la frontière de $\hat{Y}$
+coïncide avec l'enveloppe supérieure des paraboloïdes associés aux
+boules $B$ contenues dans $Y$. Cette enveloppe a pour équation $z =
+h(x,y)$ avec~:
+$$
+h(x,y) = \max_{B \subseteq Y} h_B(x,y).
+$$
+
+Une  boule est    maximale  si et   seulement  si  son   dôme touche
+l'enveloppe supérieure des paraboloïdes, formellement~:
+
+\begin{lemme}[Caractérisation par paraboloïdes \cite{dcoeurjo_hermes}]
+  Soit $Y \subseteq  \R^2$ une union finie  de boules ouvertes.  Soit
+  $B$, une boule ouverte de $\R^2$. Alors~:
+$$
+\text{$B$ maximale dans $Y$} \quad \Longleftrightarrow \quad \exists (x,y) \in B, \, h_B(x,y) = h(x,y).
+$$
+\end{lemme}
+
+Maintenant, nous allons nous intéresser à une forme discrète $X \subseteq \Z^2$ et notons
+$Y \subseteq \R^2$ la forme continue obtenue en remplaçant les boules
+strictes euclidiennes contenues dans $X$ par des boules ouvertes de
+même centre et de même rayon (voir figure \ref{fig:skelREDT}).  Notons
+$B(P)$ la plus grande boule ouverte centrée en $P$ et contenue dans
+$Y$. D'après le lemme précédent, l'ensemble suivant~:
+$$
+\MAset_0(Y) = \{ P \in \Z^2 \mid \exists (x,y) \in X,
+h_{B(P)}(x,y) = h(x,y)\},
+$$
+forme un sous-ensemble de l'axe médian de $Y$. Notons cependant que ce
+sous-ensemble n'est pas forcément inclus  dans l'axe médian discret de
+$X$. En effet, une boule ouverte peut être maximale dans $Y$ sans pour
+autant que la  boule  stricte euclidienne de même  centre  et de  même
+rayon le soit dans $X$ (voir figure \ref{fig:skelREDT} à gauche). Ceci
+nous conduit à introduire  l'{\em axe médian  discret} de $X$ comme la
+restriction de l'ensemble précédent aux points de l'axe médian discret
+de   $X$,  $\AMDR(X)  =  \MAset_0(Y)   \cap  \MAset_{d_e}(X)$.    Dans
+\cite{dcoeurjo_pami_RDMA}, nous avons montré  que $\AMDR(X)$ permet de
+reconstruire la forme sans perte.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=6cm]{Fig10}
+    \includegraphics[origin=lt,width=5cm]{Fig11}
+  \end{center}
+  \caption{ \label{fig:skelREDT}   De  gauche à  droite,   une   forme
+    discrète $X$ et  sa transformée  en distance  euclidienne ; les  5
+    centres des boules dont  le dôme touche l'enveloppe supérieure des
+    paraboloïdes, dessinée à droite ;  l'axe médian discret  est formé
+    du  seul point central encerclé  ; forme continue $Y$ et enveloppe
+    supérieure des paraboloïdes bordant la forme $\hat{Y}$.}
+\end{figure}
+
+
+Encore une  fois, nous     allons  pouvoir définir  des    algorithmes
+séparables pour extraire cet axe médian. L'algorithme procède en trois
+étapes.  Tout   d'abord,  nous calculons  la  transformée  en distance
+euclidienne.   Après cette étape, nous  disposons   d'une image $f   :
+[1,m]^2 \to \Z$ mémorisant, en chaque point discret $(x,y)$, le carré
+de  sa distance   euclidienne au  complémentaire de  $X$.   Puis, nous
+calculons l'image $h : [1,m]^2 \to \Z$ définie par~:
+\begin{equation}
+\label{eq:sk_continu}
+h(x,y) = \max_{1 \leq i,j \leq m} \{ f(i,j) - (x-i)^2 - (y-j)^2 \}.
+\end{equation}
+
+Avec  les notations du paragraphe  précédent, ceci revient à calculer,
+en chaque point discret $(x,y)$,  l'altitude de l'enveloppe supérieure
+des paraboloïdes associés aux boules $B$  contenues dans la forme $Y$.
+Nous observons  une grande similarité entre l'équation (\ref{eq:redt})
+utilisée pour la  reconstruction  et l'équation (\ref{eq:sk_continu}).
+Dans  les  deux cas,    l'image $h$   peut se calculer    en utilisant
+l'algorithme     séparable   en      $O(m^2)$    de    la      section
+\ref{sec:transf-en-dist}.   Néanmoins,  nous marquons à présent,  pour
+chaque point $(x,y)$,  les centres $P$  des boules $B(P)$ dont le dôme
+passe par  le point  $(x,y,h(x,y))$.  A  l'issue  de  cette étape, les
+points   marqués forment l'ensemble  $AM_0(Y)$  défini dans la section
+précédente.  Une dernière étape est encore nécessaire pour éliminer de
+l'ensemble précédent les points ne faisant pas  partie de l'axe médian
+discret, comme illustré figure \ref{fig:skelREDT}.
+
+\begin{figure}[h]
+\centering  \includegraphics[width=12cm]{fig8et9}
+\caption{\label{fig:algofiltr}Une   illustration   de      la
+    différence entre l'ensemble $AM_0(Y)$ et l'axe médian discret.
+    A gauche~:   les segments en    pointillé  représentent les  boules
+    euclidiennes  1D  associées à    $AM_0(Y)=\{\hat{D},\hat{E}\}$
+    alors  que les segments en traits  pleins  représentent les boules
+    discrètes 1D. A droite~:   illustration  du processus de   filtrage
+    permettant de ne conserver que les boules discrètes 1D maximales.}
+\end{figure}
+
+Pour passer de l'ensemble $\MAset_0(Y)$ à l'axe médian discret 
+$\AMDR(X)$, un processus mono-dimensionnel, dimension par dimension,
+peut-être donné.  A l'issue du calcul de $\MAset_0(Y)$, nous avons un
+ensemble de disques 1D, c'est-à-dire un ensemble de segments à
+coordonnées non entières.  Sur la figure, si $\{\hat{D},\hat{E}\}$
+forme l'ensemble des dômes contribuant à l'enveloppe supérieure des
+paraboles, seul le centre de $D$ appartient à l'axe médian discret de
+la forme 1D.  Un processus très simple peut être ajouté à l'algorithme
+\ref{fig:parab} pour effectuer le filtrage des segments.  La preuve de
+l'exactitude de l'algorithme précédent est donnée dans
+\cite{dcoeurjo_pami_RDMA}.
+
+A l'issue  de ce processus, nous  obtenons donc l'ensemble de centres de
+boules maximales définissant l'axe  médian discret, tout en maintenant
+la reconstruction de la forme.
+
+
+
+Les figures \ref{fig:res2D} et \ref{fig:res3DDT} présentent quelques
+résultats en dimensions 2 et 3.
+
+
+ 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[angle=0,width=8cm]{Fig12}
+\caption{Extraction  de l'AMD  en   dimension 2~: la  première  ligne
+   présente les objets  discrets, la seconde présente les centres
+    de boules du AMD (pixels en noir).\label{fig:res2D}}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[draft=false,width=10cm]{Fig13}
+\caption{AMD en dimension  3~: la première ligne présente
+    les objets discrets, la seconde  ligne présente les centres des
+    boules de l'AMD.\label{fig:res3DDT}}
+\end{figure}
+
+\subsection{Liens avec la géométrie algorithmique}
+\label{sec:liens-geoalgo}
+
+Dans \cite{dcoeurjo_pami_RDMA},  nous    avons proposé une   technique
+locale de filtrage  facilement généralisable  en dimension supérieure.
+Cette technique est  en fait présentée pour  illustrer les liens entre
+ces   outils  de  géométrie discrète,   et  des  objets classiques  en
+géométrie  algorithmique.  En  effet  si  nous  faisons   le bilan des
+sections précédentes~:
+
+{\bf
+  \begin{itemize}
+  \item transformée  en distance de $X$ $\Leftrightarrow$ construction
+    d'un diagramme de \aut{Voronoï} de $\overline{X}$~;
+  \item  transformée en   distance inverse d'un  ensemble  $(P_k,r_k)$
+    $\Leftrightarrow$ lieu de valeurs  négatives dans le  diagramme de
+    puissance (ou de \aut{Laguerre}) de cet ensemble~;
+  \item  extraction de   l'axe  médian  $\approx$  sites des  cellules
+    non-vides du diagramme de puissance précédent.
+  \end{itemize}
+}
+
+Le     premier   point     ayant été    discuté    dans   la   section
+\ref{sec:diagr-de-voronoi},  revenons  sur  les deux derniers.
+Considérons  une liste de  sites $\{(s_i,r_i)\}\subset\R^n\times\R$ et
+$p$ un point  de l'espace.  La \emph{puissance  de $s_i$ sur $p$}  est
+donnée par~\cite{Aurenhammer:1987:PDP}:
+\begin{equation}
+  \label{eq:6}
+   \sigma_i(p)= d(p,s_i) - r_i^2\,.
+\end{equation}
+Si $\sigma_i(p)<0$, alors $p$  appartient à la boule ouverte de centre
+$s_i$ et de rayon $r_i$. De la même  façon que pour la construction du
+diagramme de \aut{Voronoï}, le  \emph{diagramme de puissance}  est une
+partition de l'espace en cellules $c_i$ telles que
+\begin{equation}
+  \label{eq:powercell}
+  c_i = \{ p \in {\mathbb R}^n: \sigma_i(p) < \sigma_j(p), i\neq j\}\,.
+\end{equation}
+
+Point important, si une boule $A$ est contenue dans  une boule $B$, la
+cellule dans le diagramme de puissance  associée à $A$ sera vide. Dans
+le      cas général,  les    cellules    sont  convexes (voir   figure
+\ref{fig:test}).   Cet objet  géométrique  est  un outil très  utilisé
+quand   il s'agit de      considérer  des interactions    entre boules
+\cite{Aurenhammer:1987:PDP,BoissonnatEtAl96,attali_incluExclu} ou dans
+des cas de reconstruction de surfaces \cite{AmeChoKol01}.
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[draft=false,width=5cm]{power2cercles}}
+  \subfigure[]{\includegraphics[draft=false,width=8cm]{test}}
+  \caption{$(a)$  Diagramme de   puissance associé à  deux  boules  de
+    rayons différents.  $(b)$ Représentation surfacique du diagramme
+    avec des  paraboloïdes elliptiques.}
+  \label{fig:test}
+\end{figure}
+
+
+L'équation (\ref{eq:6})  est à  mettre  en relation   avec  l'équation
+(\ref{eq:redtinit}).   Ainsi,   le   calcul de   puissance  correspond
+exactement à l'opposé de   la reconstruction en  distance.  Le  schéma
+\ref{fig:test}-$(b)$   illustre   aussi  le   parallélisme  entre   la
+représentation  du diagramme    de  puissance  comme l'intersection   de
+paraboloïdes  elliptiques opposés à  ceux  présentés  dans  la section
+\ref{sec:extraction-de-laxe}.
+
+Dans l'énoncé initial, le signe $\approx$  indique que s'il existe des
+liens très forts  dans le cas continu entre  les sites  n'ayant pas de
+cellules dans le diagramme de puissance et les boules de l'axe médian.
+Le processus   de filtrage discret  défini  dans la section précédente
+rend cependant l'équivalence moins directe dans le cas discret.
+
+
+
+
+
+\section{Généralisation aux espaces toriques}
+\label{sec:generalisations}
+
+
+Étant   donnée   la     séparabilité  des    algorithmes,    certaines
+généralisations sont triviales.    C'est le cas  par exemple  pour  le
+traitement des grilles avec élongations. Il suffit pour cela d'insérer
+les  coefficients  d'élongation   dans   les  calculs  dimension   par
+dimension. 
+
+Dans ce  qui suit, nous présentons une   généralisation qui tire aussi
+profit des aspects  séparables~: généralisation aux espaces toriques à
+$n$  dimensions.  Informellement, le principe  est de considérer d'une
+autre manière les bords des volumes discrets. En effet, dans certaines
+applications comme  la  modélisation de matériaux  ou  de  synthèse de
+textures, on peut s'intéresser à  un échantillon particulier qui  sera
+répété   par translation régulière    sur tout  l'espace (voir  figure
+\ref{fig:torique}). L'objectif ici est de  faire une analyse volumique
+(transformée  en  distance, reconstruction,  extraction  d'axe médian,
+\ldots)  sur   cet échantillon  qui   sera   ensuite  cohérente    par
+translation.
+
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=4.5cm]{pattern}}
+  \subfigure[]{\includegraphics[width=4.5cm]{pattern_dupl}}
+  \subfigure[]{\includegraphics[width=4.5cm]{torique}}
+  \subfigure[]{\includegraphics[width=4.5cm]{disque_tore}}
+  \caption{$(a)$ et $(b)$ construction  d'un pavage de l'espace par la
+    répétition régulière d'un  motif  $(a)$,  $(c)$  représentation de
+    l'espace torique et $(d)$ exemple de disque ``torique''.}
+  \label{fig:torique}
+\end{figure}
+
+D'un point de vue formel, il nous  faut considérer, pour l'échantillon,
+une grille torique représentée dans la figure \ref{fig:torique}-$(c)$.
+Ainsi, si nous calculons une  transformée en distance par exemple, les
+informations sur le bord gauche se  propageant sur le bord droit, nous
+aurons  un calcul exact  dans le  cas de  la  répétition régulière  du
+motif. Notons que ce principe est valable en dimension supérieure.
+
+
+Grâce à la séparabilité des algorithmes, nous pouvons généraliser tous
+les  processus  précédents  sur ces   grilles grâce à  deux  principes
+élémentaires illustrés dans le cas 2D~:
+\begin{itemize}
+\item   gestion  indépendante des  dimensions~:   nous pouvons traiter
+  indépendamment les lignes et les colonnes~;
+\item dans une même dimension, gestion  indépendante des lignes~: dans
+  une première phase  selon l'axe des $x$, la \emph{circularité} de
+  chaque ligne peut être traitée de manière indépendante.
+\end{itemize}
+
+
+Illustré  par la  figure \ref{fig:torique}-$(c)$,  lors  du calcul  de
+transformée en distance (ou  de reconstruction), il nous faut calculer
+une minimisation (ou  une   maximisation) cette  fois sur  un  tableau
+circulaire.  Pour illustrer  cela, la  figure  \ref{fig:torique}-$(d)$
+présente un unique disque discret sur un modèle torique.
+
+Nous  nous intéressons,   pour le  problème  considéré, à  des  points
+particuliers que nous appelons  des \emph{points de rupture}. Un point
+de   rupture est un  point  qui \emph{interdit}  la
+propagation d'un calcul entre les  pixels à sa gauche des pixels à  sa
+droite.
+
+Pour la première étape de la transformation en  distance, un point $p$
+du  complémentaire $\overline{X}$ est un point  de rupture.  En effet,
+$p$ peut influer sur sa partie droite et gauche  mais aucun pixel à sa
+gauche  n'a  d'influence  sur  les pixels à  sa   droite.  Ainsi, pour
+calculer  sur    cet   espace  torique  la   transformée   en distance
+monodimensionnelle, il suffit de trouver un point de rupture (point de
+$\overline{X}$).  Ensuite, nous pouvons  réécrire à partir de ce point
+la ligne  (torique) en un vecteur  classique auquel on ajoute un point
+supplémentaire         dans    $\overline{X}$    (voir     figure
+\ref{fig:rupture}). Enfin, nous pouvons  calculer la transformation en
+distance classique sur    ce vecteur.  Par  la nature    des points de
+rupture,   nous  n'avons pas de  propagation   d'information entre les
+extrémités. Finalement, nous   pouvons  réécrire les valeurs  dans  la
+ligne initiale (figure \ref{fig:rupture}). Le dernier point de rupture
+que nous ajoutons nous  permet de traiter la propagation d'information
+de ce point à sa gauche.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{rupture}
+  \caption{Illustration de la  première étape  pour la  transformée en
+    distance  torique~: sélection du  point  de  rupture, recodage  en
+    vecteur et réécriture du résultat.}
+  \label{fig:rupture}
+\end{figure}
+
+Pour  obtenir  globalement le  résultat   de  la première étape de  la
+transformée en  distance  (algorithme \ref{algo1_EDT}), nous  traitons
+les lignes séparément~: pour chaque ligne, nous  cherchons un point de
+rupture,  nous  recodons  le  vecteur,   nous appliquons  l'algorithme
+classique et nous réécrivons les résultats. S'il n'y a pas de point de
+rupture  (pas   de point  de   $\overline{X}$ dans  cette  ligne),  la
+transformée en  distance  n'a pas de   valeur sur cette  ligne et nous
+passons à la suivante.
+
+En ce qui concerne l'implémentation, il n'est pas nécessaire de passer
+par une étape  de recopie de ligne~: en  effet, il suffit de parcourir
+la  ligne pour trouver  le premier  point de rupture  et  ensuite nous
+faisons des parcours et des propagations avec des  modulos de la taille
+de la ligne sur les indices.
+
+
+Pour les étapes suivantes de  la transformation en distance ainsi  que
+pour les  algorithmes  de reconstruction  réversible  ou d'axe médian,
+nous devons pouvoir gérer de manière torique le calcul d'une enveloppe
+inférieure (resp. supérieure) de paraboles.  Dans le premier cas, nous
+définissons le  point de rupture comme étant le  centre de la parabole
+de hauteur minimale.   En effet, ce  point appartient nécessairement à
+l'enveloppe  inférieure.  Il partitionne ainsi  la liste circulaire en
+deux  parties.  Notons que n'importe quel  point dont nous sommes sûrs
+qu'il sera  dans l'enveloppe finale est un  point de rupture. Le point
+de   hauteur   minimale   nous  donne   cette     certitude.  Pour  la
+reconstruction en distance  ou l'extraction d'axe médian, la sélection
+des points de rupture est tout aussi triviale~: il faut  considérer
+le point qui maximise la hauteur.
+
+La figure \ref{fig:parabole_tore} illustre cette recherche de point de
+rupture et de recodage dans le cas  de l'extraction de l'axe médian ou
+de la transformation inverse.
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[angle=270,width=6.5cm]{paraboles_tore}}
+  \subfigure[]{\includegraphics[angle=270,width=6.5cm]{paraboles_tore2}}
+  \caption{Illustration  du    recodage   de  la    liste   circulaire
+    $[1,2,4,5,1,2]$ pour   le  calcul  de transformation   inverse  ou
+    l'extraction  de l'axe médian.  Le point  $i=3$  est utilisé comme
+    point de rupture.}
+  \label{fig:parabole_tore}
+\end{figure}
+
+Notons que   l'algorithme global reste   identique~: pour chaque ligne
+circulaire, on recherche un point  de rupture, on recode (implicitement
+ou explicitement)  un nouveau  vecteur de  taille  augmentée de  1, on
+applique     l'algorithme   initial   et  on     réécrit.    La figure
+\ref{fig:edttorique} présente  un résultat  de transformation en distance
+euclidienne et de l'extraction de l'axe médian  sur une grille torique
+2D.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=13cm]{edt_tore}
+  \caption{Étapes de  la  transformation  en distance sur   une grille
+    torique.}
+  \label{fig:edttorique}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=3cm]{disque_dt}}
+  \subfigure[]{\includegraphics[width=3cm]{disque_dt3}}
+  \subfigure[]{\includegraphics[width=3cm]{disque_dt_rdma}}
+  \subfigure[]{\includegraphics[width=3cm]{disque_rmda3}}
+  \caption{Résultat des algorithmes sur  le complémentaire du motif de
+    la  figure~\ref{fig:torique}-$(d)$.  $(a)$  Transformée torique du
+    motif et $(b)$ illustration  du pavage de l'espace par translation
+    régulière du résultat. $(c)$ Extraction de l'axe médian torique de
+    l'image $(a)$ et $(d)$ la répétition de l'axe médian.}
+  \label{fig:res_DT_tore}
+\end{figure}
+
+En dimension 3, les  structures sont plus difficiles à illustrer.  Sur
+la  figure \ref{fig:res_tore_3D}, nous  représentons la transformée en
+distance d'un motif élémentaire (complémentaire d'un cube de taille 10
+et  complémentaire de  l'objet  \texttt{Al}  de taille  $50^3$)  après
+répétition $3\times3\times 3$ du motif.
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=6cm]{cube10neg3_dt}}
+  \subfigure[]{\includegraphics[width=3.5cm]{cube10neg3_dt_coupe}}
+  \subfigure[]{\includegraphics[width=5cm]{al503}}
+  \subfigure[]{\includegraphics[width=5.5cm]{al50neg3_dt}}
+  \subfigure[]{\includegraphics[width=2.5cm]{al50neg3_dt_coupe}}
+  \caption{Représentation de transformées en distance toriques~: $(a)$
+    transformée sur une  répétition d'un  motif défini comme étant  le
+    complémentaire d'un cube,  $(b)$  coupe dans le volume  de l'image
+    $(a)$. $(c-d)$ Autre exemple à partir d'un motif défini par le
+    complémentaire de l'objet \texttt{Al}.}
+  \label{fig:res_tore_3D}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=4.5cm]{creat_motif_centre}}
+  \subfigure[]{\includegraphics[width=4.5cm]{creat_motif}}
+  \subfigure[]{\includegraphics[width=4.5cm]{creat_9_spheres}}
+  \caption{Reconstruction sur un  espace  torique 3D  pour  générer un
+    texture régulière  3D de  sphères~:$(a)$  motif avec  un placement
+    aléatoire  des centres    et    des valeurs des    rayons,   $(b)$
+    transformation inverse et $(c)$ texture obtenue par translation du
+    motif  (les sphères  discrètes  sont représentées  par des sphères
+    euclidiennes).}
+  \label{fig:res_spheres_3D}
+\end{figure}
+
+La     figure   \ref{fig:res_spheres_3D}  illustre     l'algorithme de
+transformation en distance inverse.    Pour tous ces  algorithmes,  si
+l'objet discret  initial ne ``touche'' pas  les bords du  volume, tous
+les    résultats  sont  bien évidemment équivalents  aux   algorithmes
+classiques. Remarquons  aussi  que  tout ceci est   généralisable  aux
+dimensions supérieures.
+
+
+
+\section{Conclusion}
+
+Dans ce chapitre, ,nous  avons présenté  une série d'algorithmes  pour
+l'analyse volumique d'objets discrets. Le caractère particulier de ces
+algorithmes  est qu'ils  sont séparables    dimension par
+dimension.  En utilisant cette  spécificité, nous avons pu obtenir des
+complexités   optimales  et   des   généralisations   aux   dimensions
+supérieures,  mais  aussi  sur  d'autres modèles  de  grille  comme les
+espaces toriques.
+
+Une perspective intéressante serait de construire de manière séparable
+un diagramme  qui associerait, à chaque point  discret, le  disque de
+plus  grand rayon  qui  le  contient.  Intuitivement,  cette structure
+pourrait  s'obtenir de  manière    simple à partir  du   diagramme  de
+puissance discret.  Elle  trouve de nombreuses applications en analyse
+de  texture  par granulométrie  en  utilisant  la notion  de  fonction
+d'ouverture \cite{soillebook}.
+
+
+
+
+%\bibliography{mybiblio,biblio,biblio_chapitre,biblio_chapitre2,edt,integer_programming}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 

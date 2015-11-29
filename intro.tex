@@ -1,0 +1,196 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\chapter*{Introduction\\\rule{\textwidth}{0.1cm}}
+
+\chapter{Introduction générale}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+Pour définir la géométrie discrète en une phrase, on pourrait sûrement
+dire que  cela consiste à résoudre des  problèmes géométriques sur des
+données définies sur des grilles régulières.  Si avec cette définition
+nous englobons  nos activités  sans peine,  il  nous faut   quand même
+préciser le contexte.
+
+
+Si nous reprenons un peu l'histoire et les grands  noms de ce domaine,
+nous pouvons  identifier  deux grandes  façons d'aborder  la géométrie
+discrète~:         l'approche <<~pragmatique~>>   et        l'approche
+<<~constructiviste~>>.  Si ce dernier  terme a une  signification très
+particulière en mathématique, nous l'interprétons  dans ce qui  suit
+que dans une version plus épistémologique.
+
+
+L'approche pragmatique peut être résumée par le  fait qu'il existe des
+données  structurées sur  grilles discrètes  et   qu'il faut  bien des
+outils  efficaces  pour traiter des   problèmes  de géométrie  sur ces
+données.  Dans ce cadre, nous retrouvons tous les développements ayant
+démarrés dans les années 70  avec l'essor des écrans matriciels et des
+premiers besoins  de  synthèse,  d'analyse et  de  traitement d'images
+numériques.
+
+
+Concernant  la partie   synthèse, il  a  fallu définir  des outils  de
+conversion d'un tracé vectoriel  (point, segment,\ldots) vers un tracé
+discret (ensemble de points d'une  grille que nous \emph{allumons}  ou
+non).  La problématique est donc de convertir des objets continus vers
+des  objets discrets, on  parle  alors de processus de discrétisation.
+Pour l'analyse d'image,  la structuration régulière, induite soit  par
+les  capteurs, soit   issue d'un processus   de ré-échantillonage, est
+intimement  liée aux  images   numériques.  La  définition  des outils
+permettant de  faire des mesures,  de traiter ou d'analyser des objets
+contenus  dans des  images, rentre  dans  le contexte de  la géométrie
+discrète.  Par  la  suite, les capteurs  tridimensionnels ou intégrant
+une  composante  temporelle sont apparus  et des   besoins d'outils de
+dimension supérieure se sont fait sentir.
+
+Il serait cependant faux  de croire que l'approche pragmatique n'est à
+mettre en relation qu'avec des problématiques d'imagerie moderne. Dans
+son \emph{Traité pour les astronomes}, les développements de \aut{Jean
+  Bernouilli}  \cite{bernoulli}   s'intègrent   parfaitement   dans ce
+contexte~: pour  résoudre   un   problème de calcul    d'interpolation
+linéaire  de positions  d'étoiles pour la  construction d'éphémérides,
+il s'est rendu compte qu'en considérant des approximations entières
+pour  les positions, l'interpolation mettait  en \oe uvre des structures
+périodiques et donc simplifiait grandement les calculs.  Beaucoup plus
+tard, ces observations  ont été prouvées \cite{christoffel} et on peut
+mettre en relation  ce fait avec les notions  de périodicité  dans les
+droites  discrètes.  Là aussi   on  peut qualifier cette  approche  de
+pragmatique~:  les nombres  entiers et l'arithmétique  se sont imposés
+d'eux-mêmes pour résoudre efficacement un problème donné.
+
+Plus proche de nous, cette technique d'arithmétisation des processus a
+été grandement utilisée  pour résoudre efficacement des problèmes dans
+de  nombreux  domaines comme  l'extraction  de coupes  dans des images
+volumiques  médicales  \cite[chap. 17]{dcoeurjo_hermes},  ou  encore pour coder
+efficacement  des  transformations  d'images \cite[chap.   7]{dcoeurjo_hermes}.
+Ces éléments sont des hauts faits d'arme de la géométrie discrète.
+
+Les objets et propriétés géométriques qui ont été définies au cours du
+temps  dans  ce   cadre   forment un paradigme  géométrique   complet.
+L'objectif est généralement de se rapprocher,  autant que possible, de
+la géométrie euclidienne classique.
+
+
+
+En parallèle de cette vision   de la géométrie discrète, nous  pouvons
+aussi considérer  une  approche constructiviste qui,  de  manière très
+schématique, consiste à  dire   que   le    discret  n'est   pas    un
+sous-échantillonage élégant du réel mais  que le réel est  construit à
+partir du discret.  Il est  cette  fois impossible de dresser  un réel
+historique de cette  approche démarrant  dans  la Grèce antique~: ce
+mode de  construction  du  réel par combinaisons   d'éléments discrets
+correspond à une thématique entière des mathématiques. Les liens entre
+cette    construction presque axiomatique    du  réel et la  géométrie
+discrète   ont été  présentés par   l'école  d'analyse non standard de
+Strasbourg  (\aut{Hartong, Reeb, Reveillès,\ldots}).  L'objectif est à
+l'origine d'offrir une modélisation  des nombres réels non  plus basée
+sur une représentation illimitée (ou comme  la limite d'une suite) mais
+sur des entiers (standard  et non-standard). Ensuite \aut{Hartong} par
+exemple  \cite{hartong},  montre   que des   analyses  infinitésimales
+peuvent être menées  en n'utilisant  que les propriétés  arithmétiques
+des entiers,  les  axiomes de \aut{Peano} et    le prédicat $St()$  de
+l'analyse non-standard.
+
+Ces premiers    liens  entre  géométrie discrète  et    cette approche
+constructiviste des   réels peuvent être   attribués à \aut{Reveillès}
+\cite{reveilles}.    Dans un    souci  d'implémentation  d'algorithmes
+géométriques sur des  ordinateurs, l'analyse non standard offre, à une
+échelle donnée,  une modélisation géométrique  exacte sur laquelle les
+erreurs sont contrôlables et qui reste valide aux échelles supérieures
+(notion de  Théorie    Idéale  Discrète  de   \aut{Reveillès}).   Pour
+illustrer  ce    propos, les  travaux   de  \aut{Reveillès}  portaient
+initialement sur  la résolution rapide d'équations  différentielles en
+exploitant à la fois les  outils théoriques de l'analyse non  standard
+mais  aussi   les  spécificités   algorithmiques  induites   par   les
+ordinateurs   (représentation  finie,\ldots).  Dans   ce  contexte, la
+droite discrète est apparue  intrinsèquement dans l'analyse  sans lien
+\emph{a   priori} avec le   continu (résolution  numérique de $y'=c$).
+Dans un second temps  bien sûr, des liens  ont été présentés entre cet
+objet donné par une  analyse  constructive et la discrétisation  d'une
+droite réelle classique.
+
+Une analyse épistémologique  plus approfondie serait très intéressante
+à  mener et permettrait sûrement de  mieux appréhender  la place de la
+géométrie discrète dans ou à côté de la géométrie classique.
+
+
+Que ce  soit par la  théorie constructiviste du  modèle discret ou par
+une  approche pragmatique,   la géométrie  discrète a  maintenant  une
+maturité qui fait d'elle un véritable espace de recherche théorique ou
+appliquée avec ses objets, ses théorèmes et ses spécificités.  Elle ne
+peut donc être  réduite    exclusivement ni à une   sous-classe  de la
+géométrie  euclidienne,  ni à  un  cas  particulier  de  la  géométrie
+algorithmique,  ou encore  une   série  d'outils bas-niveau   pour  le
+traitement et  l'analyse  d'images.  La géométrie   discrète offre des
+solutions à certains de  ces domaines, et c'est  là  une grande force,
+mais possède une existence propre.
+
+
+
+Quelle est maintenant la place de nos travaux et  de ce manuscrit dans
+ce contexte  ?  Dans  leur finalité, nos  développements trouvent écho
+dans  les  deux domaines~:  analyse   théorique  par exemple  d'objets
+fondamentaux (modèles de  grille, droites, plans cercles,\ldots), mais
+aussi outils  d'analyse  volumique pour  la  caractérisation de formes
+(transformation en distance, axe médian,  \ldots).  Le fil  conducteur
+est l'algorithmique~: que ce  soit sur des aspects théoriques internes
+à la géométrie discrète ou pour proposer des outils, l'objectif ultime
+est  l'algorithme.  Ces derniers  se doivent  d'être efficaces et sans
+erreur.
+
+Pour arriver à cet   objectif, nous exploitons de  nombreux  résultats
+d'autres domaines~: de  la  géométrie algorithmique car les  finalités
+sont  proches,  mais  aussi  de l'arithmétique ou  de  la  théorie des
+nombres pour tenir compte des spécificités discrètes des objets.
+
+
+
+\subsection*{Organisation du manuscrit}
+
+Dans  un   premier  temps,  nous   allons revenir  dans   le  chapitre
+\ref{chap:notions} sur quelques  définitions élémentaires  et sur tout
+un ensemble de problématiques liées à la géométrie discrète mais qui ne
+seront   pas forcément  reprises par  la   suite.   Dans le  chapitre
+\ref{chap:IA}, nous présentons  les différents modèles analytiques que
+l'on  peut définir  en   géométrie discrète  et  nous présentons   une
+approche basée sur l'arithmétique d'intervalles pour caractériser l'un
+d'entre eux.
+
+Le  chapitre   \ref{chap:ILP}   détaille   les  différentes  solutions
+algorithmiques  pour la reconnaissance  des objets élémentaires  de la
+géométrie discrète  que sont les droites, les  plans et hyperplans, et
+les cercles discrets.  Ce  chapitre  est  l'illustration  parfaite  de
+l'usage de    résultats   d'un grand nombre  de     domaines (géométrie
+algorithmique, programmation linéaire,    arithmétique,\ldots)    pour
+pouvoir proposer des solutions algorithmiques efficaces.
+
+Le  chapitre \ref{chap:reconstruction}  met   en \oe uvre des   objets
+fondamentaux dans  une  problématique de  reconstruction réversible de
+contours   en dimension 2 et  3.   Plus  précisément, nous cherchons à
+construire un représentant euclidien d'un  ensemble de points discrets
+(par  exemple une  courbe  polygonale pour   un ensemble de   pixels),
+réversible dans le  sens où   la discrétisation   de cet objet    sera
+exactement l'ensemble de points discrets.
+
+
+Dans  le chapitre  \ref{chap:AM}   nous  abordons d'autres   problèmes
+classiques de   la géométrie discrète  que sont  la  transformation en
+distance ou l'extraction d'axe médian. Là encore, nous verrons que les
+liens très  forts entre géométrie  discrète et géométrie algorithmique
+nous offre une nouvelle façon d'aborder les problèmes.
+
+Le   chapitre \ref{chap:minim-et-simpl} s'intéressera à l'optimisation
+et aux  applications  liées à la représentation d'objets  discrets par
+leur   axe médian. On s'intéressera    notamment à la  question de  la
+minimalité de l'axe médian.
+
+
+Enfin, nous présentons   une  conclusion générale  ainsi que  quelques
+perspectives en fin  de  manuscrit.  L'annexe \ref{chap:real-logic-et}
+liste les différentes réalisations logicielles  que j'ai pu développer
+au cours de mes analyses.
+
+

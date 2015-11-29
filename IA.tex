@@ -1,0 +1,755 @@
+%; whizzy-master hdr.tex
+\mychaptoc{Modèle analytique  discret, arithmétique d'intervalles  et supercouverture}
+\label{chap:IA}
+
+
+
+\section{Introduction}
+
+
+Dans la  section  \ref{sec:objets-discrets}, nous  avons  présenté les
+différentes approches pour  la définition  d'objets dans le  modèle
+discret. Dans   ce   chapitre,   nous    détaillons  quelques éléments
+concernant les processus de discrétisation.
+
+Si  ce chapitre  contient des notions   qui seront exploitées dans les
+chapitres suivants, nous présentons une vision alternative d'un de ces
+modèles,  le  modèle de  supercouverture,  en  nous intéressant à  une
+arithmétique  particulière fondée  sur  les   intervalles.  De  manière
+transversale, le problème est toujours le même~: nous nous intéressons
+à la représentation et à la manipulation d'une description discrète et
+partielle d'un objet euclidien.
+
+
+Le contexte est le suivant~: nous considérons un  objet continu $F$ ou
+uniquement son bord,  noté  $\partial F$.  Nous  souhaitons construire
+l'ensemble des points discrets qui sont les {\it discrétisés}, soit de
+$F$ (notez que $F$ contient aussi $\partial F$), soit exclusivement de
+$\partial   F$.  Une  analyse de   ces différents   modèles  ainsi que
+d'autres       solutions      peuvent       se       trouver      dans
+\cite{jonas97,bb33412,andres_hdr,klette_book}.
+
+\section{Modèles de discrétisation}
+
+
+Un processus  de     discrétisation se  doit  d'être invariant     par
+translation  entière, pour  garantir  un comportement identique de  la
+discrétisation à   tout  endroit de    l'espace  discret.    Une autre
+propriété   que  l'on  retrouve  dans tous   les  processus classiques
+concerne  la  stabilité~:  lorsque  l'on perturbe  localement  l'objet
+euclidien, sa discrétisation ne doit être modifiée que localement.
+
+D'autres propriétés sont discutées dans les paragraphes suivants, mais
+nous pouvons d'ores et déjà noter l'importance de  la résolution de la
+grille pour que le processus de discrétisation préserve des propriétés
+vérifiées    par     la    représentation   continue   (voir    figure
+\ref{fig:resolution}).  Par exemple, il  faudra choisir une résolution
+de  grille dépendante de la \emph{complexité}  de l'objet continu pour
+que   certaines   propriétés  topologiques  se   retrouvent   dans  le
+discrétisé.  Plus précisément, on pourra   lier la résolution,   d'une
+part à la courbure maximale du contour de l'objet euclidien et d'autre
+part à                      son épaisseur                       locale
+\cite{kothe_IVC,tajine_ronse_h,tajine_ronse}.
+
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=12cm]{resolution}
+\end{center}
+\caption{Rôle de  la résolution pour une  cohérence entre la topologie
+  de   l'objet  continu  par rapport à     l'objet discret,  avec  une
+  discrétisation   en       supercouverture       (voir     paragraphe
+  \ref{sec:discr-de-simpl}).\label{fig:resolution}}
+\end{figure}
+
+
+
+
+\subsection{Discrétisations basées sur le maillage}
+\label{sec:discr-class}
+
+Considérons dans  un premier temps un  objet continu $F$ dont  le bord
+possède  la  propriété   de \OldName{Jordan}   (c'est-à-dire  avec  un
+intérieur  et un extérieur).  Le   premier processus de discrétisation
+est dû à   \OldName{Gauss} pour  une    estimation d'aire de   l'objet
+euclidien.  Le principe est le  suivant~: la discrétisation de l'objet
+correspond à l'ensemble des  points  de coordonnées  entières contenus
+dans $F$.   Ce  processus   est aussi  appelé    \emph{Object Boundary
+  Quantization}      (OBQ).   
+
+
+Dans  le cas d'une  discrétisation de  courbe ne  disposant pas  de la
+notion  d'intérieur,   nous ne  pouvons évidemment pas  considérer  la
+discrétisation  de  \OldName{Gauss} ;   d'autres schémas existent pour
+cela.   Nous   citons  ici   la  discrétisation  \emph{Grid  Intersect
+  Quantization}   (GIQ) qui approxime  la  courbe  par l'ensemble  des
+pixels \emph{les plus  proches}  selon un certain  critère~: à  chaque
+fois que  la  courbe croise une  arête  du maillage, deux pixels  sont
+considérés  et le  plus proche   de l'intersection  selon la  distance
+euclidienne fait  partie  de la discrétisation de  la  courbe (voir la
+figure \ref{fig:disc_mail}).  Le cas  pathologique pour ce schéma  est
+le cas  où la courbe passe à égale distance  des deux pixels.  Il faut
+soit considérer  les deux points  (d'où  l'apparition de \emph{bulles}
+dans la   discrétisation, voir  section  \ref{sec:discr-pavage}), soit
+faire un choix systématique et arbitraire (par exemple \emph{ le pixel
+  d'abscisse ou d'ordonnée la   plus petite}).  Remarquons ici  que ce
+choix rend  le   processus  de  discrétisation non   invariant à   une
+permutation des axes de la grille.
+
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=7cm]{discretisations_maillage}
+\end{center}
+\caption{Processus  de  discrétisation   classiques  sur  le  maillage
+  (première   ligne) ou  sur  le pavage  (seconde  ligne) : à  gauche,
+  discrétisation de \aut{Gauss} d'un objet  et à droite, discrétisation GIQ d'une
+  courbe.\label{fig:disc_mail}}
+\end{figure}
+
+
+Nous  précisons  maintenant des  schémas   de discrétisation spécifiques  aux
+droites et plans discrets. Etant donnée une droite $D$ dans le premier
+octant (pente  positive inférieure à 1),  la discrétisation GIQ de $D$
+peut être vue comme un processus d'arrondi à  l'entier le plus proche.
+En   effet, pour  $D:$  $y=\alpha   x+\beta$ par exemple,  les  points
+de la discrétisation sont donnés par\footnote{$[x]$ désigne
+  l'arrondi  de $x$ à l'entier le  plus proche $x$.  De plus, $\lfloor
+  x\rfloor$ (respectivement   $\lceil x\rceil$) correspond à l'entier inférieur
+  (respectivement supérieur)  le  plus   proche  de   $x$.} :
+\begin{displaymath}
+\big   \{ (x_i,y_i)\;:\;  y_i=[\alpha x_i+\beta],\,x_i\in\Z \big \}\,,
+\end{displaymath}
+
+Par abus de langage, la discrétisation :
+
+\begin{displaymath}
+\big   \{ (x_i,y_i)\;:\;  y_i=\lfloor \alpha x_i+\beta \rfloor,\,x_i\in\Z\big  \}
+\end{displaymath}
+
+est appelée \emph{discrétisation OBQ de $D$}. De même, la
+discrétisation :
+\begin{displaymath}
+\big   \{ (x_i,y_i)\;:\;  y_i=\lceil \alpha x_i+\beta \rceil,\,x_i\in\Z\big  \}
+\end{displaymath}
+est  appelée\index{discrétisation!Back@\emph{Background   Boundary  Quantization}}
+\emph{discrétisation BBQ  (Background Boundary Quantization)  de $D$}.
+La figure \ref{fig:disc_droites} illustre ces différents schémas.
+
+\begin{figure}[ht]  
+  \centering
+  \includegraphics[width=12cm]{discretisations_droite}
+  \caption{Différents    schémas  de  discrétisation  spécifiques  aux
+    droites~: \emph{(de gauche à droite)} discrétisations $GIQ$, $OBQ$
+    et   $BBQ$.   Les    intervalles  représentent    les   opérations
+    d'arrondi.\label{fig:disc_droites}}
+\end{figure}
+\subsection{Discrétisations basées sur le pavage}
+\label{sec:discr-pavage}
+
+
+Nous  présentons  tout d'abord  un  schéma  de discrétisation,  appelé
+\emph{supercouverture}, utilisant  la  représentation par pavage \cite{bb33412,montanvert,andres_hdr}~:  la
+discrétisation d'un  objet   euclidien $F$  en supercouverture,  notée
+$\mathbb{S}(F)$ considère tous   les pixels (fermés) intersectés par  $F$ (voir
+figure  \ref{fig:disc_pav}).  Ce  schéma,   très  simple,  définit  un
+processus  de  discrétisation valide  quel  que soit le type d'élément
+(courbe,  objet, point,  etc.).   Il permet  de   plus de montrer  des
+propriétés  fondamentales  utiles  en  modélisation, par  exemple pour
+l'assemblage d'objets.  Voici  quelques-unes   des  propriétés de   la
+discrétisation en supercouverture ~:
+
+\begin{align*}
+  &\mathbb{S}(F\cup G)=  \mathbb{S}(F) \cup
+  \mathbb{S}(G)\,,\\
+  &\mathbb{S}(F)= \bigcup_{p\in F} \mathbb{S}(p)\,,\\
+  &\mathbb{S}(F\cap G)\subseteq  \mathbb{S}(F) \cap \mathbb{S}(G)\,,\\
+  &\text{si } F\subseteq G\text{ alors }  \mathbb{S}(F) \subseteq \mathbb{S}(G)\,.
+\end{align*}
+
+
+Ce  processus est généralisable en dimension  supérieure, il suffit de
+considérer   les    intersections de  la forme   avec   les  voxels ou les
+hypercubes.  Cependant, cette discrétisation produit
+des objets  parfois épais.  En effet,  si l'objet continu passe par un
+sommet   du pavage  (coordonnée   demi-entière),  toutes les  cellules
+adjacentes à     ce sommet font partie de la discrétisation ; on parle  alors de
+\emph{bulles}  (voir    figure \ref{fig:disc_pav}).     Ainsi,      la
+discrétisation d'une  droite ne sera pas  une $(1)-$courbe comme on aurait
+pu le souhaiter mais un $(1)-$objet.  Encore une fois, avec des conventions
+d'orientation   dans   le   cas  d'une discrétisation    de structures
+linéaires, nous  pouvons supprimer ces bulles.  Le  modèle issu de ces
+choix est  appelé \emph{modèle standard} \cite{Andres_standard}.  Dans
+ce  schéma,  la  discrétisation  d'une  droite  est  bien  une courbe
+$(1)-$connexe.  Comme dans  le cas du  choix fait  pour GIQ, l'orientation
+choisie dans ce modèle rend le processus non invariant aux symétries
+par     rapport       aux  axes   de      la     grille.
+\index{discrétisation!standard}
+
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=10cm]{bulle}
+%   \caption{Illustration d'une bulle en 2D et du modèle standard.}
+%   \label{fig:bulle}
+% \end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=12cm]{discretisations_pavage}
+\end{center}
+\caption{Processus de   discrétisation   classiques  sur  le  pavage
+    (première  ligne) ou  sur le  maillage (seconde ligne)  : ({\it de
+      gauche à    droite})   discrétisation en  supercouverture  d'une
+    courbe, discrétisation  en supercouverture d'un   objet, illustration
+    d'une bulle pour la discrétisation   d'un  segment de droite,   et
+    discrétisation en modèle standard.\label{fig:disc_pav}}
+\end{figure}
+
+\subsection{Modèles analytiques discrets}
+\label{sec:discr-de-simpl}
+ 
+
+Dans la présentation  précédente, nous pouvons généraliser les schémas
+de  discrétisation en supercouverture   et   standard   en   définissant  un \emph{modèle
+  analytique discret}.  Pour cela, nous  n'allons plus nous intéresser
+aux cellules du pavage qui sont  intersectées par l'objet continu mais
+à l'intersection entre l'objet et des régions convexes incluses dans
+les pixels (voir figure \ref{fig:modeles}).
+\index{discrétisation!modèle analytique}
+
+Si la région convexe est le pixel lui-même, nous retrouvons le modèle de
+supercouverture.   Si la région   est un losange  centré,  on parle de
+\emph{modèle  naïf fermé}.   Enfin  si la région  est un  disque, nous
+définissons le \emph{modèle pythagoricien} \cite{andres_hdr}.
+\index{discrétisation!naïf fermé}
+\index{discrétisation!pythagoricien}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{modele_analytique}
+\caption{Quelques exemples de modèles analytiques~: supercouverture,
+  naïf fermé, pythagoricien et engendré par un pentagone.\label{fig:modeles}}
+\end{figure}
+
+% L'intérêt de construire  un modèle générique est  que l'on va  pouvoir
+% prouver  des   propriétés géométriques  et topologiques (séparabilité,
+% distributivité  par rapport à l'union,  etc.)   pour tous les modèles
+% analytiques pour peu  que  la \emph{région de base}  vérifie certaines
+% hypothèses   (convexité,   connexité   sur  $\mathbb{Z}^2$,     etc.)
+% \cite{andres_hdr}.
+
+Formalisons ces  modèles~: nous considérons  une région de base $C$ et
+nous supposons  que cette région correspond à  une boule de rayon
+$\frac{1}{2}$ pour une certaine  distance $d$.  Par exemple, le  carré
+correspond à  la    boule  de rayon $\frac{1}{2}$   pour   la distance
+$d_\infty(A,B)=\max\{|x_A-x_B|,|y_A-y_B|\}$,   le losange correspond à
+la    boule    de   rayon    $\frac{1}{2}$     pour    la     distance
+$d_1(A,B)=|x_A-x_B|+|y_A-y_B|$.  Nous notons $M$ l'élément structurant
+engendré par la \emph{réflexion} de $C$ par rapport à son centre.  Ces
+notions d'élément structurant  et de réflexion viennent directement de
+la morphologie mathématique \cite{serra}.  Le modèle de discrétisation
+analytique $\mathbb{A}_C$ d'un objet euclidien $F$ est donné par trois
+définitions équivalentes~:
+\begin{align*}
+  \mathbb{A}_C(F)&=\{A\in\Z^d~|~ C(A)\cap F \neq \emptyset\}\\
+&=\{A\in\Z^d~|~ d(A,F)\leq \frac{1}{2}\}\\
+&=(F\oplus M)\cap\Z^d
+\end{align*}
+
+La première rejoint la définition que  nous avons donnée précédemment,
+la seconde considère les points discrets à une certaine distance de la
+forme  et  la dernière  nous      donne une écriture relevant de  la  morphologie
+mathématique où  $\oplus$  correspond à la  somme  de \OldName{Minkowski}
+\cite{serra,soillebook} de l'élément  structurant $M$  et  de la forme  $F$.
+Pour cette dernière  définition, nous considérons les poins discrets
+contenus  dans  la   forme   continue    $F\oplus M$    (voir   figure
+\ref{fig:anal_generique}).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{modele_analytique_generique}
+  \caption{Illustration  des définitions  d'un modèle analytique d'une
+    forme quelconque: définitions par intersection avec les régions et
+    par  morphologie  mathématique  ($C$  est  la  région  et $M$   sa
+    réflexion       par      rapport            au    centre        de
+    $C$).\label{fig:anal_generique}}
+\end{figure}
+
+Sur ce modèle générique, nous retrouvons les propriétés~: 
+\begin{align}
+  &\label{eq:union}\mathbb{A}_C(F\cup G)=  \mathbb{A}_C(F) \cup
+  \mathbb{A}_C(G)\,,\\
+  &\label{eq:composition}\mathbb{A}_C(F)= \bigcup_{P\in F} \mathbb{A}_C(P)\,,\\
+  &\label{eq:inter}\mathbb{A}_C(F\cap G)\subseteq  \mathbb{A}_C(F) \cap \mathbb{A}_C(G)\,,\\
+  &\label{eq:inclusion}\text{si } F\subseteq G\text{ alors }  \mathbb{A}_C(F) \subseteq \mathbb{A}_C(G)\,.
+\end{align}
+
+Enfin, étant donnée  la  topologie  de l'objet   $F$,  des résultats
+peuvent être  démontrés sur   la    topologie  de sa    discrétisation
+$\mathbb{A}_C(F)$  en considérant  des  propriétés  vérifiées par  la
+région $C$ \cite{andres_hdr,LinckeW03}.
+
+
+\section{Arithmétique d'intervalles et  supercouverture}
+
+Dès les  premiers      pas de  l'informatique théorique   (voire    des
+mathématiques   discrètes)   et  même    bien   avant la   réalisation
+\emph{physique} des ordinateurs,     s'est posé  le   problème de   la
+représentation et de la manipulation de quantités réelles. 
+
+Généralement, plusieurs sous-problèmes peuvent être énoncés~:
+\begin{itemize}
+\item Comment représenter toutes les quantités réelles ?
+\item Comment faire des calculs numériques sur ces représentations ?
+\item Quels contrôles peut-on mettre en place pour évaluer les
+  approximations, s'il y a lieu, de ces calculs 
+  approchés  par rapport aux résultats \emph{exacts} ?
+\item Comment  prendre une décision ou  tester la \emph{véracité} d'un
+  prédicat basé sur le résultat d'un calcul ?
+\end{itemize}
+
+Plus simplement, les deux premiers points reposent sur la constitution
+d'une   arithmétique.   Le troisième  point  fait   le lien entre  les
+résultats approchés par l'arithmétique choisie et les résultats donnés
+par un modèle de calcul exact.  Le dernier point est sans doute un cas
+particulier   du précédent~:  une prédicat   simple  est une  fonction
+prenant en  entrée des nombres de   notre arithmétique et  retournant un
+booléen.
+
+En géométrie algorithmique, la notion  de prédicat est très importante
+et  la robustesse   de   l'évaluation de  ces    derniers  permet  des
+implémentations  robustes d'algorithmes géométriques (la littérature est
+très dense sur  le sujet, voir  par exemple \cite{pion}).  Un prédicat
+très simple  et à  la base de beaucoup   d'algorithmes est le  prédicat
+d'orientation de trois points dans le plan.
+
+
+L'objet ici  n'est pas de présenter de  manière exhaustive  toutes les
+solutions à ce  problème de représentation.  Nous nous intéresserons à
+des calculs et  prédicats certifiés, dans le  sens  où nous gardons  et
+propageons les incertitudes tout  au long des  calculs par  l'usage de
+l'arithmétique d'intervalles  dont nous donnons  une interprétation en
+géométrie discrète.
+
+
+\subsection{Éléments de base}
+
+Supposons le  codage des  nombres  en double  précision défini dans la
+norme  \textsc{IEEE 754}, très utilisée  dans les calculs numériques~:
+sur 64 bits codant un \emph{double}, nous  avons 1 bit de signe ($s$),
+11 bits d'exposant  ($e$) et 52  bits de mantisse  ($m$).  Le nombre a
+pour valeur $s\cdot  m\cdot  2^e$.  Bien évidemment,  tous les   nombres
+réels ne  peuvent être  représentés, on   note  donc $\mathbb{F}$  les
+nombres représentables  (auxquels   nous pouvons   ajouter $\{+\infty,
+-\infty, NaN\}$).  Par conséquence  de  la construction  des  doubles,
+$\mathbb{F}$  n'est pas uniforme sur  $\mathbb{R}$ (les petits nombres
+sont plus finement représentés que les grands).
+
+Si nous considérons   un nombre réel   $x$, si  $x$ est  représentable
+(\emph{i.e.} $x\in\mathbb{F}$), le double   associé est  {\tt  x}$=x$.
+Sinon, $x$  est entre  deux  nombres représentables  successifs  notés
+$\overline{\tt   x}$ et $\underline{\tt  x}$.     Par la suite,  nous
+noterons   $\sI{x}=  \fup{x}$  et  $\iI{x}=\fdown{x}$  les  opérateurs
+permettant d'atteindre les   plus proches flottants  représentables  de
+$x$.  Pour terminer   avec la norme \textsc{IEEE  754},  l'utilisateur
+choisit un  \emph{mode  d'arrondi} selon l'opérateur $\fup{\cdot}$  ou
+$\fdown{\cdot}$ privilégié   dans  la   redéfinition   des  opérateurs
+arithmétiques  classiques.  Ainsi, le résultat    d'un calcul sur  les
+nombres représentables est un nombre représentable.
+
+En     arithmétique   d'intervalles,  l'objectif    est   de  propager
+l'incertitude que l'on a sur la représentation d'un  réel tout au long
+du calcul \cite{Moor66a,Moore79a}.  Tout  réel $x$ est représenté  par
+un intervalle $X$~:
+\begin{displaymath}
+  X= [\sI{x},\iI{x}]
+\end{displaymath}
+
+Nous  noterons   $\mathbb{I}_\mathbb{F}$ l'espace  engendré    par les
+intervalles  sur   les  nombres   représentables  $\mathbb{F}$.   Pour
+simplifier l'écriture,   nous  notons simplement $\mathbb{I}$  lorsque
+l'espace \emph{support} des  intervalles  est, soit implicite   par le
+contexte, soit que la validité de  l'énoncé ne dépend pas de celui-ci.
+En  dimension supérieure,   $\mathbb{I}^n$ est  le  produit  cartésien
+$\I\times\ldots\times\I$ de $n$ espaces.
+
+Nous pouvons  dériver des  opérateurs  tout  en assurant la  propriété
+d'inclusion d'un opérateur sur les intervalles~:
+
+\begin{propriete}[Inclusion]
+ Soit $f:\mathbb{R}\rightarrow\mathbb{R}$, notons $\Box f:
+ \mathbb{I}\rightarrow \mathbb{I}$ la fonction associée à $f$ pour
+ les intervalles. Pour tout $x\in X$, $\Box f$ vérifiera la propriété~:
+ \begin{displaymath}
+   f(x)=y\quad \Rightarrow \quad y \in \Box f(X)
+ \end{displaymath}
+\end{propriete}
+
+Ainsi, nous pouvons définir~:
+\begin{align*}
+  X\oplus Y &= [\fdown{\iI{x}+\iI{y}}, \fup{\sI{x}+\sI{y}}]\\
+  X \ominus Y &= [\fdown{\iI{x}-\sI{y}}, \fup{\sI{x}-\iI{y}}]\\
+  X\odot Y &=  [\min{(\fdown{\iI{x}\cdot\iI{y}},\fdown{\iI{x}\cdot\sI{y}},
+    \fdown{\sI{x}\cdot\iI{y}},\fdown{\sI{x}\cdot\sI{y}})},\\&\max{(\fup{\iI{x}\cdot\iI{y}},\fup{\iI{x}\cdot\sI{y}},\fup{\sI{x}\cdot\iI{y}}, \fup{\sI{x}\cdot\sI{y}})}]
+\end{align*}
+
+Remarquons  l'usage des opérateurs  $\fup{\cdot}$  et  $\fdown{\cdot}$
+permettant de construire  $\mathbb{I}$ sur $\mathbb{F}$, et  qu'ainsi,
+les  opérations $\min$ et  $\max$ se font  de manière exacte sur $\F$.
+Notons aussi que, dans  le cas de la  multiplication, l'implémentation
+directe  serait inefficace  (8   multiplications), en considérant  les
+signes   des bornes,  nous   pouvons obtenir   une implémentation plus
+efficace \cite{Moore79a}.  Selon  ces  définitions, l'addition  et  la
+multiplication sont associatives et commutatives mais nous n'avons pas
+la distributivité, en effet~:
+\begin{displaymath}
+  X\odot (Y \oplus Z) \subset  (X\odot Y)\oplus (X\odot Z)\,.
+\end{displaymath}
+
+A partir  de ces opérateurs  (que   nous pouvons compléter),  diverses
+\emph{extensions}   sont possibles  tout  en  maintenant  la propriété
+d'inclusion.  La plus simple  est l'extension naturelle~: si $f=g\circ
+h$ alors $\Box f = \Box g \circ \Box h$. Il est clair qu'il existe une
+infinité d'extensions possibles   de fonctions réelles.   Une  propriété
+essentielle, en plus de la  propriété d'inclusion, est la propriété de
+monotonicité pour l'inclusion  d'intervalles~: si $X\subset  Y$, alors
+nous devons avoir $\Box f(X) \subset \Box  f(Y)$.  De cette propriété,
+nous pouvons dériver une notion de convergence très utile lorsque nous
+construisons  un solveur en   arithmétique d'intervalles (voir section
+\ref{sec:solv-en-arithm}).
+
+Une autre propriété de l'extension souhaitable mais plutôt difficile à
+atteindre est l'optimalité (ou    minimalité). Si cette dernière   est
+valide,   alors, pour tout intervalle $X$, il n'existe pas
+d'intervalle $Y\subset \Box f(X)$ pour lequel la propriété d'inclusion
+reste valide ($\forall x\in X, f(x)\in Y$).
+
+
+
+Les  opérateurs  $\oplus$, $\ominus$ et    $\odot$ sont monotones  par
+inclusion et optimaux.  L'extension  naturelle est aussi monotone mais
+non  optimale \cite{Moor66a,Moore79a}.  En effet, soit $f(x,y)=x*y-x$,
+son extension naturelle est $\Box  f(X,Y)=X\odot Y \ominus X$, or pour
+$X=[-2,2]$ et    $Y=[-1,5]$, $F(X,Y)=[-12,12]$.   Cependant   $[-8,8]$
+vérifie quand même la propriété  d'inclusion.  $\Box f$ n'est donc pas
+optimale.  Cet exemple  nous permet aussi d'illustrer la problématique
+de réécriture syntaxique et  symbolique des expressions pour optimiser
+et contrôler  la propagation des  erreurs  dans les calculs~: si  nous
+notons    $f(x,y)=x*(y+1)$,     son    extension   naturelle     $\Box
+f(X,Y)=X\odot(Y\oplus  [1,1])$   est   elle  optimale.    Nous pouvons
+formaliser un   peu   plus ce fait  en   reformulant  le  théorème  de
+\aut{Moore} \cite{Moor66a} (sous l'hypothèse que les opérateurs de
+base soient optimaux)~:
+\begin{propriete}[\cite{Moor66a}]
+  Soit $f:\R^n\rightarrow  \R$  et $\Box  f: \I^n\rightarrow  \I$  son
+  extension naturelle. Si toutes les variables n'apparaissent qu'une
+  seule fois dans l'expression arithmétique de $f$, alors $\Box f$ est
+  optimale.
+\end{propriete}
+
+
+D'autres extensions existent, par exemple, si nous cherchons à
+calculer l'extension de $f$ sachant $g=\nabla f$, nous pouvons utiliser
+une version sur intervalle du théorème de la valeur moyenne~:
+\begin{displaymath}
+  \Box f(X) = f(Mid(X)) \oplus \Box g(X)\odot (X \ominus Mid(X))
+\end{displaymath}
+$Mid(X)$ étant la valeur  milieu de l'intervalle  $X$.  On parle alors
+\emph{d'extension centrée} \cite{Moor66a,mo:RatschekRokne:84}. Cette extension  correspond
+au développement de \aut{Taylor} d'ordre 1 et des généralisations aux
+ordres supérieurs sont possibles. L'intérêt de ces extensions est que
+même si l'optimalité ne peut être prouvée, les intervalles sont
+généralement plus précis qu'avec une extension naturelle.
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[angle=270,width=8cm]{IA_gnuplot}
+  \caption{Analyse par arithmétique d'intervalles $\I_\F$ de la fonction
+    $f(x)=(x+1)(x-1)$ sur $[-1,1]$ par des intervalles
+    $\{X_i\}_{i=1\ldots 20}$ de taille
+    1/10.}
+  \label{fig:IA}
+\end{figure}
+
+La figure \ref{fig:IA} présente une analyse d'intervalles d'une courbe
+simple.    Notons que si la  propriété  d'inclusion est toujours vraie
+tout au long du calcul et qu'elle permet donc de prendre des décisions
+ou de construire des prédicats exacts, la propagation des incertitudes
+(c'est-à-dire   la    \emph{largeur}    des  intervalles)    peut être
+problématique.  Pour   illustrer   cela, l'exemple classique   est  le
+suivant  (exemple       de       \aut{Rump})~:     cherchons à évaluer
+$f(x,y)=333.75y^6+x^2(11x^2y^2-y^6-121y^4-2)+5.5y^8+\frac{x}{2y}$,
+pour $x=77617$ et $y=33096$,  sachant que le résultat \emph{exact} est
+pour   les   premières décimales,   de   $-0.827396$.    Sur certaines
+arithmétiques   (ex.     OpenOffice Calc  ou   Excel),  nous  obtenons
+$5.64\cdot  10^{40}$.  Avec une  arithmétique  d'intervalles basée sur
+les     doubles\footnote{\url{http://www.losderover.be/old/Easyval/}},
+nous obtenons $[-5.90296\cdot  10^{21}, 4.72237\cdot 10^{21}]$.  donc,
+bien que l'incertitude  de l'intervalle soit  très grande, il n'en  est
+pas moins vrai que ce dernier contient le résultat exact.
+
+
+
+
+\subsection{Solveur en arithmétique d'intervalles}
+\label{sec:solv-en-arithm}
+
+Un solveur en   arithmétique   d'intervalles  consiste,  de    manière
+générale, à    résoudre     un     système    $f$    sur  les    réels
+$\mathbb{R}^n\rightarrow\mathbb{R}$ sous forme implicite, c'est-à-dire
+que nous cherchons  les  valeurs $\{(x_1,\ldots,x_n)\}$  pour lesquels
+$f(x_1,\ldots,x_n)=0$.  Pour cela,  l'idée  est d'utiliser l'extension
+$\Box  f$, et de  rechercher les lieux   de  l'espace, c'est-à-dire les
+hyper-intervalles   $\{X_i\}$ de dimension    $n$ tels que  $0\in \Box
+f(X_i)$.
+
+L'idée est de procéder par une recherche dichotomique (voir algorithme
+\ref{solverIA})~:     en  partant     d'un  hyper-intervalle   initial
+$X\in\mathbb{I}^n$, nous allons subdiviser récursivement ce domaine en
+rejetant tous les sous-domaines  ne contenant pas la solution. L'arrêt
+se fait par l'évaluation d'une fonction $\Box  A(X)$ qui, par exemple,
+retourne    un intervalle contenant 1  tant   que l'intervalle $X$ est
+d'épaisseur supérieure à  une  constante $\epsilon$  (l'épaisseur d'un
+hyper-intervalle étant la   plus grande  largeur  de ses   intervalles
+mono-dimensionnels).  Ce paramètre règle  la finesse  de l'encadrement
+des   solutions.  En contrepartie,  la récurrence est d'autant plus
+longue que l'épaisseur souhaitée est petite.
+
+Sur   ce schéma général,   de   nombreux choix ou  optimisations  sont
+possibles comme par exemple le choix entre une liste ou une file pour
+$L$ (exploration en profondeur ou en largeur  d'abord), le choix de la
+variable lors de la bissection,\ldots 
+
+\begin{algorithm}[H]
+  \Donnees{l'extension $\Box f$, un hyper-intervalle initial $X$ et
+    une fonction d'arrêt $\Box A$}
+  \Res{Une liste $S$ d'hyper-intervalles $\{X_i\}$ tels que $0\in \Box f(X_i)$}
+  Placer $X$ dans une liste $L$\;
+  \Tq{$L$ n'est pas vide}{
+    Extraire un hyper-intervalle $X'$ de $L$\;
+    Evaluation de $\Box f(X')$
+    
+    \Si{$0\in\Box f(X')$} {
+      \eSi{$1 \in \Box A(X)$}{
+        Bissection de l'hyper-intervalle $X$ selon une variable $x_k$
+        en deux sous-hyper-intervalles $X'$ et $X''$\;
+        Ajout de  $X'$ à $L$\;
+        Ajout de  $X''$ à $L$
+      }{Ajout de $X$ à $S$}
+    }
+  }
+  
+  \caption{\label{solverIA}Solveur naïf en arithmétique
+    d'intervalles  \cite{snyder-92}}
+\end{algorithm}
+
+En informatique graphique, ce  solveur peut-être utilisé pour le tracé
+de courbes et de  surfaces   implicites \cite{snyder-92}.  Néanmoins,  des
+solveurs   plus élaborés  sont étudiés   dans   la   communauté     de
+programmation par     contraintes dans le cas   de   la  résolution de
+contraintes  non-linéaires   sur  les  réels    (voir par    exemple
+\cite{bruynooghe1994cir,journals/rc/RueherS97}).
+
+Etant donné  que nous  pouvons  définir, pour  cette arithmétique, des
+opérateurs   ensemblistes   (intersection,  union,\ldots)   ou  encore
+booléens, l'extension $\Box  f$ peut être  complexe.  Par  exemple,
+nous  pouvons ainsi  modéliser   l'union ou  encore l'intersection  de
+formes implicites  et utiliser le  solveur précédent  pour avoir
+une approximation de la solution.
+
+\subsection{Lien avec un modèle analytique discret de supercouverture}
+
+D'un  point  de vue   conceptuel,  la  propriété d'inclusion  dans les
+modèles    analytiques  discrets  (équation \ref{eq:inclusion})  est à
+mettre  en relation   avec la   propriété  d'inclusion, fondement   de
+l'arithmétique d'intervalles~:  dans  les  deux   modèles, nous  avons
+toujours une  inclusion  de l'objet continu   sous-jacent.   Là où  le
+modèle analytique   discret propose une  construction  géométrique des
+objets    (intersection    avec   un élément  structurant,  distance à
+l'objet,\ldots), les intervalles  proposent  une analyse arithmétique,
+voire algébrique.
+
+Pour  avancer un  peu sur les  liens entre   ces modèles,  nous allons
+considérer      l'arithmétique  $\I_{\Z+\frac{1}{2}}$ définissant  les
+intervalles sur les   demi-entiers  (nombres $k  + \frac{1}{2}$,  pour
+$k\in\Z$). Ce décalage  de $\frac{1}{2}$  nous  permet de  centrer les
+intervalles sur les points discrets.  Les intervalles se construisent
+de la manière suivante~:
+
+\begin{align*}
+\text{si }  &k \in \Z \,,\quad K= \left[ k-\frac{1}{2},k+\frac{1}{2}\right]\,.
+\end{align*}
+
+Lorsqu'un nombre est donné sur les réels ou lors de la définition d'un
+opérateur arithmétique, nous définissons les opérateurs~:
+\begin{align*}
+  \fup{x} &= \left \lceil x+\frac{1}{2} \right \rceil -\frac{1}{2}\,, \\
+  \fdown{x}&=\left \lfloor x+\frac{1}{2} \right \rfloor -\frac{1}{2}\,. \\
+\end{align*}
+
+De manière simple, nous  pouvons dériver les opérateurs  arithmétiques
+sur cet espace $\I_{\Z+\frac{1}{2}}$.  Prenons  l'exemple tracé sur la
+figure~\ref{fig:iia}-(a)  de  la     fonction   $f(x)=\frac{1}{2}x+1$,
+l'analyse de $\Box f$ pour les intervalles de taille 1 centrés sur les
+points discrets  nous donne exactement le même  résultat que  le tracé
+$\S(f)$,  modulo  le fait que deux   pixels alignés verticalement dans
+$\S(f)$ nous donnent pour $\Box f$ un simple intervalle de hauteur 2.
+
+
+Avant   de formaliser  les  interactions entre   ces modèles,  il faut
+cependant   régler   le  problème  des   \emph{bulles} (voir   section
+\ref{sec:discr-pavage}).    En effet, dans   notre espace  support des
+bornes des  intervalles, $\Z+\frac{1}{2}$,  si  $x$ est  représentable
+(c'est-à-dire  sous  la forme $k+\frac{1}{2}$  pour  $k\in\Z$), il est
+d'usage  dans   les  bibliothèques  implémentant    les  arithmétiques
+d'intervalles  de considérer l'intervalle   de largeur  nulle  $[x,x]$
+(afin de supprimer une incertitude qui se propagerait inutilement dans
+les  calculs).  L'inconvénient dans  notre  mise en  relation avec  le
+modèle   supercouverture  est que    lors  du   tracé  sur  la  figure
+\ref{fig:iia}-(b)  avec la fonction, $f(x)=\frac{1}{3}x$ supprimera de
+manière intrinsèque toutes les bulles, en violation avec les principes
+de    construction,  notamment  morphologiques,   de   $\S(f)$.   Nous
+choisissons  donc   de contraindre notre  arithmétique  pour retourner
+l'intervalle $[x-1,x+1]$ si $x\in\{\Z+\frac{1}{2}\}$.
+
+\begin{figure}[ht]
+  \centering
+\subfigure[]{\includegraphics[angle=270,width=6.5cm]{trace_iia_classique}}
+\subfigure[]{\includegraphics[angle=270,width=6.5cm]{trace_iia_classique_sansbulle}}
+\caption{Tracé en arithmétique d'intervalles $\I_{\Z+\frac{1}{2}}$ des
+  fonctions $f(x)=\frac{1}{2}x+1$ $(a)$ et $f(x)=\frac{1}{3}x$ $(b)$.}
+  \label{fig:iia}
+\end{figure}
+
+Avec ce  choix spécifique, nous  obtenons des algorithmes de  tracé de
+fonctions très simples (voir figure \ref{fig:iia_autres}).  Remarquons
+sur  la figure  \ref{fig:iia_autres}-(a)  la présence  de bulles (même
+fonction   que  pour    la   figure   \ref{fig:iia}-(b)).   La  figure
+\ref{fig:iia_autres}-(b)  illustre l'utilisation  d'opérateurs    plus
+complexes.  La figure  \ref{fig:iia_nonopt} illustre différents tracés
+pour lesquels l'arithmétique d'intervalles n'est pas optimale.
+
+
+
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[]{\includegraphics[angle=270,width=6.5cm]{trace_iia_classique_avecbulle}}
+  \subfigure[]{\includegraphics[angle=270,width=6.5cm]{trace_iia_exp}}
+\caption{Tracé  en arithmétique d'intervalles $\I_{\Z+\frac{1}{2}}$
+  modifiée, des fonctions  $f(x)=\frac{1}{3}x$ et $f(x)=10\sin(x)\exp^{-x^2/50}$.}
+  \label{fig:iia_autres}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+\subfigure[]{\includegraphics[angle=270,width=6.5cm]{trace_iia_nonoptim}}
+\subfigure[]{\includegraphics[angle=270,width=6.5cm]{trace_iia_nonoptim2}}
+  \caption{Exemple de tracé avec des extensions non optimales~:$(a)$
+    $f(x)=\frac{x^2}{x}$ et $(b)$ $g(x)=h(h(x))$ avec $h(x)=\frac{\sqrt{x^2-x+1/2}}{\sqrt{x^2+1/2}}$.}
+  \label{fig:iia_nonopt}
+\end{figure}
+
+Nous pouvons maintenant formaliser plus précisément les liens entre la
+supercouverture et l'analyse par  intervalles.  Dans le lemme suivant,
+l'inclusion et    l'égalité  sont à  prendre  au   sens  géométrique~:
+inclusion ou égalité des régions   du plan engendrées par  l'union  de
+cellules fermées de la grille pour la supercouverture, et l'union des
+hyper-intervalles 2D pour l'arithmétique d'intervalles.
+
+
+\begin{lemme}
+\label{lem:IA}
+  Supposons  l'arithmétique   sur  $\I_{\Z+\frac{1}{2}}$  et   $f:  \R
+  \rightarrow \R$  une  application continue,  alors\footnote{$K$  est
+    l'intervalle   $\left[    k-\frac{1}{2},k+\frac{1}{2}\right]$ pour
+    $k\in\Z$.}~:
+$$\S(f) \subseteq \bigcup_{k\in\Z} [K\times \Box f(K)]\,. $$
+ 
+
+Si $\Box f$ est optimale sur $\I_{\Z+\frac{1}{2}}$, alors~:
+$$ \S(f) =  \bigcup_{k\in\Z} [K\times \Box f(K)]\,.$$
+\end{lemme}
+
+
+\begin{mapreuve}
+  Considérons    un    intervalle    centré    sur  l'abscisse    $k$:
+  $K=[k-\frac{1}{2},k+\frac{1}{2}]$.  Nous notons $Y=\Box f(K)$.  Soit
+  $C$ une cellule de  $\S(f)$ centrée sur l'abscisse $k$. Étant  donné
+  que  $\S(f)$  est   l'ensemble   des cellules  du   pavage  régulier
+  intersectant  l'objet continu, il existe $x\in  K$ tel que $f(x)\cap
+  C\neq\emptyset$.    Par     ailleurs et     par   définition      de
+  $\I_{\Z+\frac{1}{2}}$,      $f(x)      \in    Y$     mais      aussi
+  $[\fdown{f(x)},\fup{f(x)}] \subseteq Y$.   Par définition du modèle en
+  supercouverture,         $C$ étant             défini            par
+  $[k-\frac{1}{2},k+\frac{1}{2}]\times[\fdown{f(x)},\fup{f(x)}]$, nous
+  concluons que $C\subseteq Y$ et donc $\S(f)\subseteq \Box f$.\\
+
+
+  Pour montrer l'égalité  si  $\Box  f$  est optimale,  supposons  une
+  cellule                                                          $C:
+  [k-\frac{1}{2},k+\frac{1}{2}]\times[l-\frac{1}{2},l+\frac{1}{2}]$
+  telle que $C\subset Y$ et   telle que $l-\frac{1}{2}$ soit aussi  la
+  borne   inférieure de  $Y$.   Nous montrons   que si $C\not\subseteq
+  \S(f)$ alors $C\not\subseteq  \Box f(K)$.  Si $C\not\subseteq\S(f)$,
+  alors pour tout $x\in K$, $f(x)\cap C=\emptyset$.  Donc il existe un
+  intervalle $Y'=Y /C$ ($Y'$ est donc de la forme $[l+\frac{1}{2}, p]$
+  avec $p\in\Z+\frac{1}{2}$) tel que pour tout  $x\in K$, $f(x)\in Y$,
+  contredisant   le fait  que     $\Box f$   soit  optimale.    Ainsi,
+  $C\not\subseteq  \Box  f(K)$.   Un  raisonnement similaire peut être
+  donné dans le cas  où la  borne supérieure  de $C$ coïncide  avec la
+  borne  supérieure de $Y$.  Le dernier  cas à traiter est lorsque $C$
+  n'est pas  une extrémité de $Y$.  Dans  ce cas  et par continuité de
+  $f$, il   n'existe pas de cellules  $C'$  au-dessus de $C$  et $C''$
+  en-dessous   telles  que $C'$  et  $C''$   appartiennent tous deux à
+  $\S(f)$  et   non   $C$.   Ainsi,  si   $C\not\subseteq\S(f)$  alors
+  nécessairement, ou bien   toutes les cellules  en-dessous de  $C$ ne
+  sont  pas  dans $\S(f)$,  ou   alors c'est  le   cas pour  celles
+  au-dessus de $C$.  Nous pouvons donc nous  ramener dans le cas de la
+  preuve où  nous  restreignons $Y$ par  une  de ces  extrémités (voir
+  figure \ref{fig:preuve}).
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=8cm]{preuve_IA}
+    \caption{Illustration de la preuve du lemme \ref{lem:IA}~: les
+      différents cas de  position de $C$ dans $Y$.}
+    \label{fig:preuve}
+  \end{figure}
+
+\end{mapreuve}
+
+Ce  lemme très  simple      nous  permet  d'ajouter  au  modèle     de
+supercouverture, en    plus   des  caractérisations   géométriques,  de
+morphologie   mathématique   ou    de distance, une    caractérisation
+arithmétique par l'usage d'opérateurs sur  les intervalles. Notons que
+nous  pouvons  très  simplement   généraliser ce  lemme   en dimension
+supérieure.
+
+La  figure  \ref{fig:iia_nonopt}  illustre  le  cas de tracé  avec des
+extensions non-optimales.  Si l'inclusion $\S(f)\subseteq \Box  f$ est
+bien évidemment  vérifiée,  les propagations d'erreurs peuvent produire
+des encadrements très grands de la solution. 
+
+
+
+\section{Conclusion}
+
+Dans ce  chapitre   nous  avons présenté  les  différents  modèles  de
+discrétisation qui seront utilisés   dans les chapitres  suivants.  Si
+tous ces  modèles  sont classiques  en  géométrie discrète, nous avons
+cependant proposé une approche algébrique à l'un de ces modèles par le
+biais d'une arithmétique d'intervalles spécifique.
+
+Dans le chapitre  \ref{chap:reconstruction}, nous reviendrons sur  une
+utilisation plus   générale de   l'arithmétique d'intervalles  pour le
+tracé  et la reconstruction réversible de  fonctions complexes sur des
+grilles isothétiques irrégulière. 
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 
+
+

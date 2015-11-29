@@ -1,0 +1,36 @@
+% file oinst.ins 1998-01-19
+\def\batchfile{oinst.ins}
+\input docstrip
+\keepsilent
+
+\generateFile{cmbright.sty}{}{
+     \from{cmbright.dtx}{cm}}
+
+
+\Msg{Generating fd files with mixed-case names ...}
+
+\generateFile{OT1cmbr.fd}{}{\from{cmbr.fdd}{cm}}
+\generateFile{T1cmbr.fd}{}{\from{cmbr.fdd}{ec}}
+\generateFile{OMLcmbrm.fd}{}{\from{cmbr.fdd}{omlcmbrm}}
+\generateFile{OMScmbrs.fd}{}{\from{cmbr.fdd}{omscmbrs}}
+\generateFile{OMLcmbr.fd}{}{\from{cmbr.fdd}{omlcmbr}}
+\generateFile{OMScmbr.fd}{}{\from{cmbr.fdd}{omscmbr}}
+\generateFile{OT1cmtl.fd}{}{\from{cmbr.fdd}{ot1cmtl}}
+\generateFile{T1cmtl.fd}{}{\from{cmbr.fdd}{t1cmtl}}
+\generateFile{TS1cmtl.fd}{}{\from{cmbr.fdd}{ts1cmtl}}
+\generateFile{TS1cmbr.fd}{}{\from{cmbr.fdd}{ts1cmbr}}
+
+
+\ifToplevel{
+\Msg{*}
+\Msg{* To finish the installation you have to move all }
+\Msg{* `.fd' and `.sty' files that have been generated }
+\Msg{* into a directory searched by LaTeX.}
+\Msg{*}
+\Msg{* In a TDS file system this should be: }
+\Msg{* \space\space texmf/tex/latex/cmbright }
+\Msg{*}
+}
+
+\endinput
+

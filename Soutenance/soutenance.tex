@@ -1,0 +1,2327 @@
+\documentclass[8pt]{beamer}
+%epackage[french]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+
+\definecolor{mongris}{gray}{0.8}           % definition couleur grise
+\newcommand{\dd}{\footnotesize $\Diamond$}
+
+\newcommand{\HH}{ \vspace{0.5pt}\hrule}
+\newcommand{\round}[1]{\lceil #1 \rfloor}  % notation arrondi
+\def\eme{$^{\textrm{{\`e}me}}$}                  % i {\`e}me
+\def\num{n^{\circ}}                        % numero
+\def\Num{N^{\circ}}                        % Numero
+\def\sinc{\mathrm{sinc}}                   % sinus cardinal
+\def\ere{$^{\textrm{{\`e}re}}$}                % {\`e}re
+\def\er{$^{\textrm{{e}r}}$}                % {\`e}re
+\def\eg{\emph{e.g.} }                      % e.g.
+\def\ie{\emph{i.e.} }                      % i.e.
+\def\etc{\emph{etc}}                       % etc
+\def\cm{\,cm}                              % cm
+\def\met{\,m}                              % m
+\def\mm{\,mm}                              % mm
+\def\deg{$^\circ$}                         % degres
+\def\ud{\mathrm{d}}                        % pour dx dy ...
+
+
+
+\definecolor{mybluecolor}{RGB}{116,121,149}
+
+\newcommand{\darky}[1]{{\usebeamercolor[fg]{block title example} #1}}
+\newcommand{\myblue}[1]{{\color{mybluecolor}\aut{[#1]}}}
+
+\newcommand{\ball}  {\ensuremath{B}}
+\newcommand{\AMDR}{\operatorname{AMD}}
+\newcommand{\AMD}{\operatorname{AMD}}
+
+\newcommand{\MAset}{\ensuremath{\mathrm{A\!M}} }
+\newcommand{\MAsetg}{\ensuremath{\MAset^g } }
+
+\def \PS {{\aut{Planar-4-3-SAT}}}
+\def \R {{\Bbb R}}
+\def \I {{\Bbb I}}
+\def \F {{\Bbb F}}
+\def \S {{\Bbb S}}
+\def \Z {{\mathbb Z}}
+\def \L {{\mathcal{L}}}
+\def \C {{\mathcal C}}
+\def \P {{\mathcal P}}
+\def \Q {{\mathcal Q}} 
+\def \E{{\mathcal E}}
+\def \D{{\mathcal D}}
+\def \BD {{\bar{\mathcal{D}}}}
+\def \etal {{\it et al.~}}
+\def\arc{\mbox{arc}}
+\definecolor{mongris}{gray}{0.8}          
+\newcommand{\fup}[1]{\uparrow#1\uparrow}
+\newcommand{\fdown}[1]{\downarrow#1\downarrow}
+\newcommand{\sI}[1]{\overline{\tt #1}}
+\newcommand{\iI}[1]{\underline{\tt #1}}
+\newcommand{\e}[5]{#1 & #2 & #3 & #4 & #5 \\}
+\newcommand{\eh}[5]{\text{#1} & \text{#2} &  \text{#3} &  \text{#4} & \text{#5}\\} 
+
+\usepackage{beamerthemeliris}
+%\useoutertheme{smoothbars}
+\title[]{Algorithmique pour l'analyse et la modélisation en géométrie discrète}
+%\subtitle{}
+
+\author{David Coeurjolly}
+
+
+ \newcommand{\fod}[2]{\multicolumn{2}{p{3.5cm}}{\emph{#1}\dotfill} &
+      \multicolumn{2}{p{9cm}}{#2}\\}
+    \newcommand{\fodt}[4]{\emph{#1} & {\footnotesize \textsl{#2}} & #3 & \small #4\\}
+    % \newenvironment{ta}{\begin{tabular}{p{3.5cm}p{9cm}}}{\end{tabular}\\}
+    \newenvironment{ta}{\begin{tabular}{crll}}{\end{tabular}\\}
+    % \vfill
+
+
+\newcommand{\aut}[1]{{\sc #1}}             % auteur en small capsu
+
+\date{5 décembre 2007}
+\institute%[XXX]
+{
+
+  {\bf Laboratoire d'InfoRmatique en Image et Systèmes d'information} \\
+  { \scriptsize{
+  LIRIS UMR 5205 CNRS/INSA de Lyon/Université Claude Bernard Lyon 1/Université Lumière Lyon 2/Ecole Centrale de Lyon\\
+  INSA de Lyon, bâtiment J. Verne\\
+  20, Avenue Albert Einstein - 69622 Villeurbanne cedex\\
+  \url{http://liris.cnrs.fr}}
+  }
+}
+
+
+% \AtBeginSection[]
+% {
+%   \begin{frame}<beamer>
+%     \frametitle{Plan}
+%     \tableofcontents[currentsection]%,currentsubsection]
+%   \end{frame}
+% }
+
+\graphicspath{{./Figures/}}
+
+
+\begin{document}
+
+%%ARRRGGGGG 
+\def\inserttotalframenumber{48}
+
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\begin{frame}
+%  \frametitle{Table of Contents}
+%  \tableofcontents
+%\end{frame}
+
+
+\section{Preliminaries}
+
+\small
+
+%\subsection{Personal Background}
+
+\begin{frame}
+  \frametitle{Short Bio and Educational Activities}\small
+
+\vspace{-0.2cm}
+
+  \begin{block}{Education\HH}
+     \footnotesize\begin{description}
+    \item[\dd  ~~Since December 2003] \textsc{Chargé de Recherche CNRS},
+      Laboratoire LIRIS, UMR 5205.
+      
+      
+    \item[\dd~~Sept.  2003  -  Dec
+      .  2003] \textsc{Attaché  Temporaire
+        d'enseignement et   de  Recherche} à  l'Institut  National des
+      Sciences Appliquées  de Lyon (INSA), laboratoire de rattachement
+      LIRIS UMR 5205.
+      
+      
+      
+    \item[\dd~~March 2003 - June 2003] \textsc{Post Doctorat}, Laboratoire
+      LIS, Université Joseph Fourier, Grenoble
+%       \begin{ta}
+%         \fod{Sujet}{Problème du plus grand convexe inclus dans un polygone
+%           simple}
+%         \fod{Direction}{\aut{Jean-Marc Chassery}}
+%       \end{ta}
+      
+      
+    \item[\dd~~Sept. 2000 - Dec. 2002] \textsc{Doctorat d'université},
+      Spécialité Informatique, Université Lumière Lyon 2
+      
+ \item[\dd~~Sept. 1997 - Sept. 2000] \textsc{Magistère Informatique et Modélisation},
+   Ecole Normale Supérieure de Lyon, Université Claude Bernard Lyon
+   1
+
+ \item[\dd~~Sept. 1995 - Sept. 1997] \textsc{DEUG MIAS}, Université Claude Bernard Lyon
+   1
+    \end{description}
+  \end{block}
+
+
+\vspace{-0.2cm}
+
+  \begin{exampleblock}{Lectures\HH}
+    \footnotesize
+    \begin{center}
+      \begin{tabular}{|p{0.7cm}|p{3cm}|p{3cm}|p{0.5cm}|p{0.5cm}|}
+        \hline
+        \eh{~}{Filière}{Matière}{Type}{Vol.}
+        \hline\hline
+        \e{07--08}{Master 1ere année,
+          UCBL }{Responsable UE~``TER''}{-}{-}
+        \hline
+        \e{06--07}{Master 2ième année,
+          UCBL }{Cours de spécialité recherche}{TD}{$6$h}
+        \hline
+        \e{05--06}{Master 2ième année,
+          UCBL {}}{Cours de spécialité recherche}{CM}{$10$h}
+        \e{~}{3ième année école d'ingénieurs IEG, Grenoble}{Cours de
+          spécialité recherche}{CM}{$8$h}
+        \hline
+        \e{04--05}{Master 2ième année,
+          UCBL}{Cours de spécialité recherche}{CM}{$10$h}
+        \e{~}{3ième année école d'ingénieurs IEG, Grenoble}{Cours de
+      spécialité recherche}{CM}{$8$h}
+    \hline
+    \e{03--03}{ATER (demi-poste) département informatique, INSA, Lyon}{Programmation C++}{TP}{$80$h}
+    
+    \hline
+    \e{00--03}{Moniteur à l'Institut de la Communication,
+      Lyon2}{-}{TD}{$192$h}
+    
+    \hline
+  \end{tabular}
+  
+\end{center}
+\end{exampleblock}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Scientific Responsibilities}
+
+  \begin{block}{International\HH}
+    \begin{itemize}
+    \item Chair of the Technical Committee 18 ``Discrete
+      Geometry'', IAPR (06-08)
+    \item Co-General Chair of the 14th International  Conference on Discrete Geometry for Computer Imagery
+    \item Reviewer for several international journals and conferences
+    \end{itemize}
+  \end{block}
+ 
+  \begin{block}{National\HH}
+    \begin{itemize}
+    \item Organizer and co-organizer of several meetings (JIG 2006, Working Group
+      ``Géométrie Discrète'')
+    \item Chair of the ACI ``Jeunes Chercheurs'' GeoDiGit
+    \item Member  of the ANR  GeoDiB 
+    \end{itemize}
+  \end{block}
+
+  
+  \begin{block}{Local\HH}
+    \begin{itemize}
+    \item Member of the \emph{Conseil Scientifique}, Université Claude Bernard Lyon 1
+    \item Member of the \emph{CSES 26-27-61}, Université Lumière Lyon 2
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+%\subsection{Brief introduction to Discrete Geometry}
+
+\begin{frame}
+  \frametitle{Discrete Geometry in one slide}
+
+
+
+  \begin{columns}
+    \column{7cm}
+    \begin{block}{}\normalsize
+      Analysis of geometrical problems on objects
+      defined on regular grids
+    \end{block}
+
+\vspace{0.5cm}
+
+    \includegraphics[width=7cm]{pavage_maillage2}
+
+
+  
+
+    
+    \column{4.5cm}
+    
+    \begin{center}
+      \includegraphics[width=4.5cm]{discretnb}\\
+      
+      \tiny\alert{[Eric Andres 95]}
+     
+    \end{center}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Motivations}
+\small
+  \begin{columns}
+    \column{7cm}
+
+    \begin{exampleblock}{\emph{Pragmatic} approach \emph{\alert{(data driven)}}\HH}
+      \begin{itemize}
+      \item Data produced by acquisition devices which consider an
+      underlying grid (CDD, Scanner, Scanner+T, \ldots)
+      \item Modeling of numerical problems on grids/integer numbers
+      \item  \aut{[Bernouilli, Rosenfeld, \ldots]}
+      \end{itemize}      
+      \alert{$\Rightarrow$ \emph{Arithmetization}}
+    \end{exampleblock}
+    
+%\vspace{0.5cm}
+
+    \begin{exampleblock}{Constructive approach \emph{\alert{(model driven)}}\HH}
+     
+      \begin{itemize}
+      \item Construction from  scratch of a geometry based
+        on integer numbers
+      \item \emph{e.g.} Theory based on the Non-Standard Analysis 
+      \item \aut{[Hartong, Reeb, Reveilles, \ldots]}        
+      \end{itemize}
+    \alert{$\Rightarrow$ \emph{Modeling}}
+ \end{exampleblock}
+  
+  \column{4cm}
+\vspace{-0.5cm}
+  \begin{center}
+    \includegraphics[width=4.5cm]{lenna_complet}\\
+    \includegraphics[width=2cm]{neigecrcdp_red}\\
+    {\tiny [Météo-France/ESRF]}
+  \end{center}
+
+\vspace{-1cm}
+  \begin{center}
+    \includegraphics[width=2cm]{droite}\includegraphics[width=2cm]{vox30}
+  \end{center}
+
+
+
+\end{columns}
+
+\pause
+\begin{alertblock}{}
+  \alert{$\Rightarrow$ Complete Geometrical Paradigm (objects, axioms,
+    \aut{algorithms},\ldots) well-adapted to image analysis}
+\end{alertblock}
+
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Discrete Geometry Model}
+  \small
+
+  \vspace{-0.2cm}
+
+  \begin{center}
+    \alert{[Continuous world]}\\
+    \alert{$\downarrow$}
+  \end{center}
+
+  \vspace{-0.1cm}
+
+  \begin{exampleblock}{}
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Discrete Analytic Models\HH}
+        Grid definitions, digitization schemes, fundamental algebraic
+        and arithmetic facts, \ldots
+      \end{block}
+    \end{columns}
+    
+    \begin{columns}
+      \column{4cm}
+      
+      \begin{block}{Fundamental Objects and Properties\HH}
+        Points, straight lines, planes, simplexes, circles,
+        intersection, parallelism, \ldots
+      \end{block}
+      \column{0.2cm}
+      {\Huge\alert{$\circlearrowright$}}
+
+      \column{4cm}  
+      
+      \begin{block}{Objects Analysis/Modeling\HH}
+        Feature extraction, distance transformation, \ldots
+      \end{block}
+      
+    \end{columns}
+    
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Loss-less Model Conversion\HH}
+        Reversible  reconstruction  with  linear  structures,  volumic
+        encoding with unions of balls, \ldots
+      \end{block}
+    \end{columns}
+  \end{exampleblock}
+
+  \vspace{-0.2cm}
+
+  
+  \begin{center}
+    \alert{$\downarrow$}\\
+    \alert{[Polygons, Meshes, Poly-ball structures]}
+  \end{center}
+
+\pause
+\begin{alertblock}{}
+  \begin{center}
+   \alert{\aut{Algorithmic Point of View}}
+  \end{center}
+\end{alertblock}
+\end{frame}
+
+%\subsection{Research Activity Context}
+
+\begin{frame}
+  \frametitle{Contribution Overview}
+  \small
+  
+\vspace{0.5cm}
+
+  \begin{exampleblock}{}
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Discrete Analytic Models\HH}
+       \alert{Supercover \&   Interval Arithmetic, Irregular isothetic
+       grid formulation}
+      \end{block}
+    \end{columns}
+    
+    \begin{columns}
+      \column{4cm}
+      
+      \begin{block}{Fundamental Objects and Properties\HH}
+        \alert{Computational analysis of fundamental object
+          recognition algorithms}
+      \end{block}
+      \column{0.2cm}
+      {\Huge\alert{$\circlearrowright$}}
+
+      \column{4cm}  
+      
+      \begin{block}{Objects Analysis/Modeling\HH}
+\alert{Separable techniques for the EDT and REDT problems}
+      \end{block}
+      
+    \end{columns}
+    
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Loss-less Model Conversion\HH}
+        \alert{ MA extraction  algorithms
+          and NP-completeness of the Minimal MA, Reversible    reconstruction   on   irregular    grids,
+         Reversible surface reconstruction}
+      \end{block}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+
+
+
+
+\section[Discrete Models]{The Discrete Analytic Models and Interval Arithmetics}
+
+
+
+\begin{frame}
+  \frametitle{Contribution Overview}
+  \small
+  
+\vspace{0.5cm}
+
+  \begin{exampleblock}{}
+    \begin{columns}
+      \column{10.5cm}
+      \begin{alertblock}{Discrete Analytic Models\HH}
+       \alert{Supercover \&   Interval Arithmetic, Irregular isothetic
+       grid formulation}
+      \end{alertblock}
+    \end{columns}
+    
+    \begin{columns}
+      \column{4cm}
+      
+      \begin{block}{Fundamental Objects and Properties\HH}
+        \alert{Computational analysis of fundamental object
+          recognition algorithms}
+      \end{block}
+      \column{0.2cm}
+      {\Huge\alert{$\circlearrowright$}}
+
+      \column{4cm}  
+      
+      \begin{block}{Objects Analysis/Modeling\HH}
+\alert{Separable techniques for the EDT and REDT problems}
+      \end{block}
+      
+    \end{columns}
+    
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Loss-less Model Conversion\HH}
+        \alert{ MA
+          extraction algorithms and NP-completeness of the Minimal MA,
+          Reversible    reconstruction on   irregular  grids, Reversible surface reconstruction }
+      \end{block}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+
+
+
+%\subsection{Grids, Analytic Model and Supercover}
+
+\begin{frame}
+  \frametitle{Regular Grids and Basic Topological Principles }
+\small
+
+\begin{columns}[T]
+  \column{7cm}
+  \begin{center}
+    \includegraphics[width=7cm]{pavage_maillage2}
+    
+    \includegraphics[width=2.5cm]{topo}
+    \includegraphics[width=2.5cm]{topo2}
+  \end{center}
+  \column{4cm}
+  
+\vspace{0.7cm}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item Mapping on $\mathbb{Z}^2$
+    \item Easy access to neighbors
+    \end{itemize}
+  \end{block}
+
+\vspace{0.3cm}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item $(1)-$adjacency
+    \item $(0)-$adjacency
+    \end{itemize}
+  \end{block}
+
+\vspace{-0.2cm}
+
+  \begin{block}{}
+    \begin{itemize}
+    \item $(r)-$path
+    \item $(r)-$curve
+    \end{itemize}
+    $r\in\{0,1\}$
+  \end{block}
+
+\vspace{-0.2cm}
+ \begin{block}{}
+    \begin{itemize}
+    \item one $(0)-$object but two $(1)$-objects
+    \item $(1)$-curve but only a $(0)-$path
+    \end{itemize}
+  \end{block}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The Irregular Isothetic Model }
+  \small
+  
+  \begin{exampleblock}{Main idea\HH}
+    Relax the constraints  on the size and on the center position of
+    isothetic cells
+  \end{exampleblock}
+
+  \begin{columns}
+\column{8cm}    
+    \begin{center}
+      \includegraphics[width=8.5cm]{schemabis}
+    \end{center}
+  \column{4cm}
+  
+\begin{block}{}
+  \begin{itemize}
+  \item Subdivision grids
+  \item Adaptive grids
+  \item QuadTree decomposition based grids 
+  \item Elongated grids
+  \item \ldots
+  \end{itemize}
+\end{block}
+
+\begin{alertblock}{\aut{ACI GeoDigit}\HH}
+  \begin{columns}[T]
+\column{3cm}
+    \begin{itemize}
+    \item Objective: Design uniform definitions (\emph{e.g.}  Straight
+      lines) and algorithms
+    \item \aut{Antoine Vacavant}, PhD (defence: Dec. 2008)
+    \end{itemize}
+\column{1cm}
+
+\hspace{-0.6cm} \includegraphics[width=1cm]{avacavan}
+  \end{columns}
+\end{alertblock}
+\end{columns}
+\end{frame}
+
+%\subsection{Interval Arithmetic  \& Supercover Model}
+
+\begin{frame}
+  \frametitle{Classical Digitization Schemes and Analytic Models}
+\small
+
+  \begin{columns}[T]
+\column{4.5cm}
+    \begin{block}{Grid-point based approaches\HH}
+      \begin{center}
+        \includegraphics[width=3cm]{discretisations_maillage}
+
+      \end{center} 
+      \aut{Gauss} digitization, GIQ, BBQ,\ldots
+\end{block}
+\column{6.5cm}
+
+    \begin{block}{Cell based approaches\HH}
+      \begin{center}
+        \includegraphics[width=6cm]{discretisations_pavage}
+      
+      \end{center}
+
+~~
+
+    \only<2>{\alert{\{}} Supercover, Standard
+    model,\ldots\only<2>{\alert{\}$\subset$ Analytic Models}}
+
+
+ \end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Discrete Analytic Models: Supercover Model}\small
+
+\begin{columns}
+\column{7cm}
+  \begin{exampleblock}{}
+    \includegraphics[width=4cm]{modele_supercover}
+  \end{exampleblock}
+
+  \column{4cm}
+  
+  \begin{block}{Def.\HH}
+    \begin{align*}
+      \mathbb{S}(F)&=\{X\in\Z^d~|~ B(X)\cap F \neq \emptyset\}
+      \\&=\{X\in\Z^d~|~ d_\infty(X,F)\leq \frac{1}{2} \} \\&=(F\oplus M)\cap\Z^d
+    \end{align*}
+  \end{block}
+  
+
+\end{columns}
+
+
+\begin{alertblock}{Properties\HH}
+  \begin{align*}
+  &\mathbb{S}(F\cup G)=  \mathbb{S}(F) \cup
+  \mathbb{S}(G)\,,\\
+  &\mathbb{S}(F)= \bigcup_{p\in F} \mathbb{S}(p)\,,\\
+  &\mathbb{S}(F\cap G)\subseteq  \mathbb{S}(F) \cap \mathbb{S}(G)\,,\\
+  &\text{if } F\subseteq G\text{ ~~then~~ }  \mathbb{S}(F) \subseteq \mathbb{S}(G)\,.
+\end{align*}
+% \begin{align*}
+%    &\mathbb{A}_C(F\cup G)= \mathbb{A}_C(F) \cup
+%    \mathbb{A}_C(G)\,,\\
+%    &\mathbb{A}_C(F)= \bigcup_{P\in F} \mathbb{A}_C(P)\,,\\
+%    &\mathbb{A}_C(F\cap G)\subseteq  \mathbb{A}_C(F) \cap \mathbb{A}_C(G)\,,\\
+%    &\text{if } F\subseteq G\text{ then }     \mathbb{A}_C(F) \subseteq \mathbb{A}_C(G)\,.
+%  \end{align*}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Discrete Analytic Models - Examples}\small
+
+  \begin{exampleblock}{}
+    \begin{center}
+      \includegraphics[width=11cm]{modele_analytique}
+    \end{center}
+   ~~~~~~~ Supercover\hfill ~~~Closed Naive Model\hfill Pythagorician \hfill ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \end{exampleblock}
+
+  \begin{alertblock}{Supercover Generalization to $\I-$grids\HH}
+    \begin{center}
+      \includegraphics[width=7cm]{supercover_I}
+    \end{center}
+    \begin{flushright}
+      \scriptsize [DGCI 2005, Computer \& Graphics 2005]~~~~~~~~~~~~~~~~~~~~~~~~~
+    \end{flushright}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Interval Arithmetic}
+
+
+  \begin{block}{Elements = Intervals\HH}
+    $x \sim  X= [\sI{x},\iI{x}]$ such that  $\sI{x}=  \fup{x}$  and
+    $\iI{x}=\fdown{x}$  are \alert{representable numbers}, \emph{e.g.}
+    \alert{$\I_{\Z+\frac{1}{2}}$}
+  \end{block}
+
+
+
+  \begin{block}{Examples and arithmetic operations on \alert{$\I_{\Z+\frac{1}{2}}$}\HH}
+ \begin{align*}
+   &3.144546\rightarrow [2+\frac{1}{2},3+\frac{1}{2}]\\
+   &[2+\frac{1}{2},3+\frac{1}{2}] \alert{\oplus} [0+\frac{1}{2}, 4+\frac{1}{2}]
+   = [2+\frac{1}{2}, 8+\frac{1}{2}]\\
+&\ldots
+ \end{align*}
+  \end{block}
+
+  \begin{alertblock}{Fundamental principle = Inclusion\HH}
+    Let $f:\mathbb{R}\rightarrow\mathbb{R}$, and $\Box f:
+    \mathbb{I}\rightarrow \mathbb{I}$ the interval function
+    (\alert{extension}) associated to  $f$. For all $x\in X$, $\Box f$
+    should be such that ~:
+    \begin{displaymath}
+      f(x)=y\quad \Rightarrow \quad y \in \Box f(X)
+    \end{displaymath}
+  \end{alertblock}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Interval Arithmetic  and Supercover Model}\small
+
+
+  \begin{exampleblock}{Interval Arithmetic \& Supercover: same ideas\HH}
+    \begin{itemize}
+    \item Uncertainty on the underlying Euclidean object position
+    \item We propagate the uncertainty through the
+      construction/computation
+    \end{itemize}
+  \end{exampleblock}
+
+%  \begin{block}{\small  Arithmetic\HH}
+%    \footnotesize
+%    \begin{onlyenv}<1>
+%      \begin{align*}
+%        \text{if }  k \in \Z \,,\quad K &= \left[k-\frac{1}{2},k+\frac{1}{2}\right]\\
+%        \fup{x} &= \left \lceil x+\frac{1}{2} \right \rceil -\frac{1}{2} \\
+%        \fdown{x}&=\left \lfloor x+\frac{1}{2} \right \rfloor
+%        -\frac{1}{2}
+%      \end{align*}
+%%    \end{onlyenv}
+%\end{block}
+
+%\pause
+  \begin{alertblock}{\small Main result on  $\I_{\Z+\frac{1}{2}}$\HH}
+    $$\S(f) \subseteq \bigcup_{k\in\Z} [K\times \Box f(K)]
+    \quad\alert{\text{strict equality if }  \Box f \text{ is optimal}}$$
+% If  $\Box f$ is optimal on  $\I_{\Z+\frac{1}{2}}$, then:
+%$$ \S(f) =  \bigcup_{k\in\Z} [K\times \Box f(K)]\,.$$
+  \end{alertblock}
+\hfill $f(x)=\frac{1}{3}x$ \hfill $f(x)=10\sin(x)\exp^{-x^2/50}$ \hfill~~~~~
+  \begin{center}
+      {\includegraphics[angle=270,width=4cm]{trace_iia_classique_avecbulle}}
+      {\includegraphics[angle=270,width=4cm]{trace_iia_exp}}
+    \end{center}
+ 
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusion}
+\small
+
+
+  \begin{alertblock}{Contributions\HH}
+    \begin{itemize}
+    \item Supercover:
+      \begin{itemize}
+      \item Cell/curve intersection \hfill $B(X)\cap F \neq
+        \emptyset$\hfill ~~~~~~~~~~~~~~~~~~~~~~~~~
+      \item Metric definition~~~~~~~~~~~~ \hfill $d_\infty(X,F)\leq
+        \frac{1}{2}$\hfill ~~~~~~~~~~~~~~~~~~~~~~~~~
+      \item Morphological definition \hfill $(F\oplus M)\cap\Z^d$
+        \hfill ~~~~~~~~~~~~~~~~~~~~~~~~~
+      \item  \alert{Algebraic  definition}
+      \end{itemize}
+    \item Interval Arithmetic based interpretation of the Supercover Model (or conversely
+      ;))
+
+    \item Applications:
+      \begin{itemize}
+      \item  Certified  digitization of complex functions (\emph{e.g.}
+        implicit functions with  the  help of an  Interval  Arithmetic
+        Solver)
+      \item Novel approach to model image transformations
+        (\emph{certified} transformations) 
+      \end{itemize}
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+\section[Fundamental Objects]{Fundamental Object  Recognition and
+  Applications}
+
+
+
+\begin{frame}
+  \frametitle{Contribution Overview}
+  \small
+  
+\vspace{0.5cm}
+
+  \begin{exampleblock}{}
+    \begin{columns}
+      \column{10.5cm}
+        \begin{block}<0>{Discrete Analytic Models\HH}
+          \alert{Supercover \& Interval Arithmetic, Irregular
+            isothetic grid formulation}
+        \end{block}
+
+    \end{columns}
+    
+    \begin{columns}
+      \column{4cm}
+      
+      \begin{alertblock}{Fundamental Objects and Properties\HH}
+        \alert{Computational analysis of fundamental object
+          recognition algorithms}
+      \end{alertblock}
+      \column{0.2cm}
+      {\Huge\alert{$\circlearrowright$}}
+
+      \column{4cm}  
+      
+      \begin{block}{Objects Analysis/Modeling\HH}
+\alert{Separable techniques for the EDT and REDT problems}
+      \end{block}
+      
+    \end{columns}
+    
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Loss-less Model Conversion\HH}
+        \alert{           MA extraction  algorithms
+          and NP-completeness of the Minimal MA, Reversible
+          reconstruction   on   irregular    grids, Reversible surface reconstruction}
+      \end{block}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+
+
+
+
+%\subsection{Definitions}
+
+\begin{frame}
+  \frametitle{Definitions}
+
+  \begin{columns}
+    \column{5cm}
+    \begin{block}{Pragmatic approach\HH}
+      Digitization of the Euclidean object
+    \end{block}
+    \begin{exampleblock}{Example\HH}
+      DSS = the result of the \aut{Bresenham}'s drawing algorithm
+    \end{exampleblock}
+    
+    \column{5cm}
+    \begin{block}{Constructive approach\HH}
+      Model Driven definition
+    \end{block}
+    \begin{exampleblock}{Example\HH}
+      DSS = set of grid point solution a discrete resolution of $y'=a$
+    \end{exampleblock}
+\end{columns}
+
+\begin{alertblock}{}
+\centering\alert{Objects are usually identical}\\
+\centering\alert{but the representation choice matter when you derive properties}
+\end{alertblock}
+
+\begin{center}
+    \includegraphics[width=2cm]{droite}~~~~~\includegraphics[width=2cm]{vox30}~~~~~~~~\includegraphics[width=2cm]{reco_cercle_sup_pres}
+\end{center}
+
+\end{frame}
+\small
+
+\begin{frame}[t]
+  \frametitle{Recognition Problem}
+
+\vspace{-0.4cm}
+
+  \begin{block}{Statement\HH}
+    Given a set of grid-point $S$, is $S$ a piece of
+    \emph{$<$yourfavoriteobjecthere$>$} ?
+  \end{block}
+
+
+  \begin{exampleblock}{Answer Types\HH}
+    \begin{itemize}
+    \item Binary answer: Yes/No
+    \item A  valid parametrization of   \emph{$<$yourfavoriteobjecthere$>$}
+      (if applicable)
+    \item The set of parameters of all valid
+      \emph{$<$yourfavoriteobjecthere$>$} \alert{$\Rightarrow$ Preimage}
+    \end{itemize}
+  \end{exampleblock}
+  \begin{onlyenv}<1>
+    \emph{e.g.: DSS}
+
+    \begin{center}
+      \includegraphics[width=7.5cm]{dual_exemplebis}
+    \end{center}
+  \end{onlyenv}
+  
+  \begin{onlyenv}<2>
+    \begin{alertblock}{Goals\HH}
+      \centering\alert{Exploit discrete object properties to design fast recognition
+      algorithms}
+    \end{alertblock}
+  \end{onlyenv}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{What kind of Properties ?}
+
+  \begin{exampleblock}{Related to discrete mathematics\HH}
+      Arithmetic, Number Theory, Theory of words, Patterns, Lattice Polytopes    
+  \end{exampleblock}
+
+  \begin{block}{\emph{e.g.} DSS\HH}
+    Euclidean Straight line with rational slope ($r\in [0,1]$)
+    \begin{description}
+    \item[$\Rightarrow$] Finite possible intercepts with vertical lines
+    \item[$\Rightarrow$] The sequence of intercepts is periodic
+    \item[$\Rightarrow$] Periodic patterns in the DSS and arithmetical
+      properties of DSS parameters
+    \item[$\Rightarrow$] \alert{Efficient algorithms}
+    \end{description}
+  \end{block}
+
+  \begin{center}
+    \includegraphics[width=7cm]{bresenham}
+  \end{center}
+
+\end{frame}
+
+%\subsection{Toolbox: Computational     Geometry,   Linear Programming, \ldots}
+
+\begin{frame}
+  \frametitle{Toolbox: Computational     Geometry,   Linear Programming,
+  Arithmetic, \ldots }
+
+\begin{columns}[T]
+  \column{7cm}
+\begin{block}{Arithmetic\HH}
+  Euclid's division algorithm   \includegraphics[width=0.3cm]{face-smile}
+\end{block}
+
+
+\begin{block}{Computation Geometry\HH}
+  Convex hull and Integer Convex Hull
+\end{block}
+
+
+\begin{block}{Linear Programming and Integer LP\HH}
+  Solve a linear system:
+  
+  \begin{displaymath}
+    \left \lbrace
+      \begin{array}{c}
+        a_{11} x_1 + a_{12} x_2 +\ldots +a_{1n} x_n \leq b_1\\
+        a_{21} x_1 + a_{22} x_2 +\ldots +a_{2n} x_n \leq b_2\\
+        \ldots\\
+        a_{m1} x_1 + a_{m2} x_2 +\ldots +a_{mn} x_n \leq b_m
+      \end{array}
+    \right. \quad \Rightarrow \quad
+    \left.       \begin{array}{c}
+        \max cx\\
+        Ax\leq b\\
+        x\in\{\R^n,\Z^n\}
+      \end{array}\right.
+  \end{displaymath}
+\end{block}
+
+\column{3.5cm}
+
+\label{toolbox}
+
+\vspace{0.2cm}
+
+
+\begin{alertblock}{}
+  $O(\log{(min(|a|,|b|))})$
+\end{alertblock}
+
+\vspace{0.5cm}
+
+\begin{alertblock}{}
+ \hyperlink{cvxhull}{\beamergotobutton{}}
+\end{alertblock}
+
+\vspace{0.9cm}
+
+\begin{alertblock}{}
+  LP: $O(m)$ ($n$ fixed)\\
+  ILP: NP-hard
+\end{alertblock}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Focus: Integer Convex Hull / Lattice Polytopes}
+
+  \begin{block}{}
+    Consider an object included in a $N^d$ window or  with volume
+    $(Vol~P)$   ($P$ not empty))
+  \end{block}
+  \begin{columns}
+    \column{5cm}
+    \begin{alertblock}{in 2-D\HH}
+      \begin{displaymath}
+          f_1(N)= \frac{12}{(4\pi^2)^{1/3}}N^{2/3}+O(N^{1/3}log(N))
+      \end{displaymath}
+    \end{alertblock}
+
+    \column{5cm}
+    \begin{alertblock}{General Formula\HH}
+$f_k$ denotes the number of $k-$facets of $CH(P)$
+\begin{displaymath}
+        f_k\leq c_n (\text{Vol}~ P)^{\frac{n-1}{n+1}}\,
+      \end{displaymath}
+    \end{alertblock}
+  \end{columns}
+
+
+  \begin{center}
+    {\includegraphics[width=3cm]{acketa}}
+    {\includegraphics[width=3.5cm]{exempleILP}}
+    {\includegraphics[width=3.5cm]{exempleILPcvx}}
+  \end{center}
+  
+  \begin{flushright}
+\alert{Important trick to design tight computation costs~~~~~}
+
+[DAM 2005, IWCIA 2006] 
+  \end{flushright}
+\end{frame}
+
+
+  
+\begin{frame}
+  \frametitle{Example of the approach}
+  
+\vspace{-0.3cm}
+
+  \begin{columns}
+    \column{4cm}
+    \begin{block}{Problem\HH}
+      Digital Disk Recognition
+    \end{block}
+    
+    \column{7cm}
+    
+    \begin{exampleblock}{Solution in C\&G\HH}
+      Separability of two sets $S$ and $T$ by an circle
+      \alert{$\Rightarrow$ $O(|S|+|T|)$}
+    \end{exampleblock}
+  \end{columns}
+
+  \begin{block}{Brute-force approach\HH}
+    \begin{center}
+      \begin{columns}
+        \column{5cm}
+        \begin{center}
+          \includegraphics[width=2cm]{reco_cercle_sup_pres}
+        \end{center}
+        \column{5cm}
+        \alert{$\Rightarrow ~O(n^2)$}  \includegraphics[width=0.5cm]{face-sad}
+      \end{columns}
+    \end{center}
+  \end{block}
+
+  \begin{block}{Arithmetic approach\HH}
+    \begin{center}
+      \begin{columns}
+        \column{5cm}
+        \begin{center}
+          \includegraphics[width=5cm]{reco_cercle_sup_pres2}
+        \end{center}
+        \column{5cm}
+        Integer Convex Hull + \aut{Bezout's} points
+        \alert{$\Rightarrow ~O(n^{2/3}\log n)$}  \includegraphics[width=0.5cm]{face-smile}
+      \end{columns}
+    \end{center}
+    \vspace{-0.7cm}
+      \begin{flushright}
+      [DAM 2004,IWCIA 2001]~~~~~~~~~~
+    \end{flushright}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Digital Plane and Hyperplane Recognition}
+
+  \begin{block}{Main problem\HH}
+    \centering   Asymptotic computational analysis $\nLeftrightarrow$ Experimental Analysis
+
+  \end{block}
+
+  \begin{alertblock}{Contributions\HH}
+    Use lattice polytope properties  to obtain tight  asymptotic bounds
+    \begin{itemize}
+    \item Preimage based recognition algorithms
+    \item Convex hull width based recognition algorithms
+    \item \ldots
+    \end{itemize}
+  \end{alertblock}
+
+
+\end{frame}
+
+
+
+\section[EDT, REDT]{Volumic Analysis of Discrete Objects }
+
+
+\begin{frame}
+  \frametitle{Contribution Overview}
+  \small
+  
+\vspace{0.5cm}
+
+  \begin{exampleblock}{}
+    \begin{columns}
+      \column{10.5cm}
+        \begin{block}<0>{Discrete Analytic Models\HH}
+          \alert{Supercover \& Interval Arithmetic, Irregular
+            isothetic grid formulation}
+        \end{block}
+
+    \end{columns}
+    
+    \begin{columns}
+      \column{4cm}
+      
+      \begin{block}<0>{Fundamental Objects and Properties\HH}
+        \alert{Computational analysis of fundamental object
+          recognition algorithms}
+      \end{block}
+      \column{0.2cm}
+      {\Huge\alert{$\circlearrowright$}}
+
+      \column{4cm}  
+      
+      \begin{alertblock}{Objects Analysis/Modeling\HH}
+\alert{Separable techniques for the EDT and REDT problems}
+      \end{alertblock}
+      
+    \end{columns}
+    
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{Loss-less Model Conversion\HH}
+        \alert{
+           MA extraction  algorithms
+          and NP-completeness of the Minimal MA, Reversible
+          reconstruction   on   irregular    grids, Reversible surface reconstruction}
+      \end{block}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+%\subsection{Distance Transformation, Reverse DT}
+
+\begin{frame}
+  \frametitle{Problem Description}
+\small
+
+  \begin{exampleblock}{\small Objectives\HH}
+    \begin{onlyenv}<1>
+      \begin{itemize}
+      \item Extract metric information from discrete objects
+      \item Many applications:
+        \begin{itemize}
+        \item Shape description
+        \item Motion planning
+        \item Image synthesis
+        \item \ldots
+        \item \alert{First step of the Medial Axis Extraction}
+        \end{itemize}
+      \end{itemize}
+    \end{onlyenv}
+  \end{exampleblock}
+
+  \begin{block}{\small Distance\HH}
+    \begin{itemize}
+    \item Euclidean: vector displacement, square of the EDT
+      \alert{$\Rightarrow$ isotropic but complex algorithms}
+    \item Chamfer: mask based approximation of the Euclidean
+      metric \alert{$\Rightarrow$ fast algorithms but anisotropic}
+    \end{itemize}
+  \end{block}
+
+
+    \begin{alertblock}{Contribution\HH}
+      \centering \alert{Fast algorithms for the error-free Euclidean metric}
+    \end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Definitions}
+
+  \begin{block}{\small Distance Transformation Definition\HH}
+    \begin{center}
+      Label each object grid point with the distance to the closest
+      background point
+
+    \end{center}
+ \end{block}
+
+%  \begin{onlyenv}<1>  
+    \begin{center}
+      \includegraphics[width=2.5cm]{homme}
+      %\includegraphics[width=2.5cm]{homme_edt}
+      \includegraphics[width=2.5cm]{homme_edt_eq}
+      \includegraphics[width=2.5cm]{homme_circ}
+    \end{center}
+%  \end{onlyenv}
+
+%  \begin{onlyenv}<2-3>
+    \begin{block}{Reverse Distance Transformation Definition\HH}
+      \begin{center}
+        Given a set of discs, reconstruct the shape 
+      \end{center} 
+\end{block}
+
+%    \begin{onlyenv}<2>
+      \begin{center}
+        \includegraphics[width=7cm]{redt_simp_bis}
+      \end{center}
+%    \end{onlyenv}
+%  \end{onlyenv}
+
+%  \begin{onlyenv}<3>
+
+
+
+%  \end{onlyenv}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Uniform problem and Uniform Algorithmic Tool}
+  \small
+  
+  \begin{columns}
+    \column{4cm}
+    
+    \begin{exampleblock}{E$^2$DT\HH}
+      
+      \uncover<+->{ $$  s(q)= \min_{p\in \bar{X}} \{ d_{euc}^2(p,q)\}$$     }
+      \uncover<+->{
+        $${s(q)}{= \min_{p(x,y)\in \bar{X}} \{ (x-i)^2+(y-j)^2\}}$$}
+      \uncover<+->{
+        $$\alert<3->{g(i,j)=\min_{x} \{\,(i-x)^2\}}$$
+        $$\alert<3->{h(i,j)=\min_y \{\,{g(i,y)}+(j-y)^2\}}$$}      
+    \end{exampleblock}
+    
+    \column{7cm}
+    
+    \begin{exampleblock}{REDT\HH}
+      Disc MA: $\{(x_m,y_m,r_{(x_m,y_m)}\}$:
+      \uncover<+->{$$  X=\{(i,j)~|~\exists m,~ (i-x_m)^2+(j-y_m)^2< r_{x_my_m}\}$$
+   $$X=\{(i,j)~|~\max_{(x_m,y_m)\in MA}\{ r_{x_my_m}- (i-x_m)^2-
+        (j-y_m)^2\} >0 \}$$
+      $$ \alert<4->{g(i,j)=\max_{x}\{f(x,j)-(x-i)^2\}}$$
+            $$\alert<4->{h(i,j)=\max_y \{\,{g(i,y)}-(j-y)^2\}}$$}       
+      
+      \end{exampleblock}
+      
+    \end{columns}
+
+\visible<5->{
+  \begin{columns}
+    \column{6cm}
+    \begin{center}
+      \includegraphics[width=4.5cm]{edt_para}
+    \end{center}
+
+    \column{6cm}
+    \begin{center}
+      \includegraphics[width=4.55cm]{redt_para}
+    \end{center}
+  \end{columns}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Uniform problem and Uniform Algorithmic Tool (bis)}
+  \small
+  
+  \begin{alertblock}{To sum up:\HH}
+    \begin{itemize}
+    \item     Separable   1D   processes   (dimension    by dimension)\\
+      {~~~~~~~~~~~~~~~~~\alert{{$\Rightarrow$ Straightforward generalization to
+            higher dimensions}}}
+    \item On each 1D slice: Upper/Lower Envelope Computation\\
+      {~~~~~~~~~~~~~~~~~\alert{$\Rightarrow\, O(n)$ (stack based technique)}}
+    \end{itemize}
+    
+    {\alert{$\Rightarrow$ Optimal in time algorithms $O(n^d)$}}
+  \end{alertblock}
+  
+  \begin{flushright}
+    [DGCI 2002, IEEE PAMI 2007]~~~~~~~
+  \end{flushright}
+
+
+
+
+    \begin{center}
+       \includegraphics[width=7cm]{Fig1_EDT}
+    \end{center}
+
+    \begin{center}
+       \includegraphics[width=7cm]{redt}
+    \end{center}
+
+\end{frame}
+
+
+
+%\subsection{Theme Variation...}
+\small
+
+
+
+
+
+
+\begin{frame}
+  \frametitle{Variation on the Theme (1): The Discrete Voronoi Diagram}
+
+ \begin{alertblock}{Contribution\HH}
+    \begin{center}
+      \alert{Separable algorithm to compute the complete Discrete
+        Voronoi mapping $O(n\cdot c)$}
+    \end{center}
+  \end{alertblock}
+
+  \begin{block}{}
+    \begin{center}
+      {\includegraphics[width=2.5cm]{mapping2D_init}}
+      {\includegraphics[width=2.5cm]{mapping_diagram}}
+      {\includegraphics[width=2.1cm]{mapping_2D}}
+      {\includegraphics[width=2.5cm]{mapping_coll}}
+    \end{center}
+  \end{block}
+
+  \begin{block}{}
+    \begin{center}
+      {\includegraphics[angle=90,width=3cm]{recti-10-diagram}}
+      {\includegraphics[width=4cm]{recti-10-graphe}}
+      {\includegraphics[angle=90,width=3cm]{recti-10-coll}}
+    \end{center}
+  \end{block}
+
+  \begin{flushright}
+    [Image\& Vision Computing 2007]~~~~~~~
+  \end{flushright}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{Variation on the Theme (2): Toric Spaces}
+
+  \begin{block}{Toric domain\HH}
+    \begin{center}
+      {\includegraphics[width=3cm]{torique}}
+      {\includegraphics[width=3cm]{pattern}}
+      {\includegraphics[width=3cm]{pattern_dupl}}
+    \end{center}\end{block}
+
+  \begin{alertblock}{Contribution\HH}
+    Take benefits from the separability:
+    \begin{itemize}
+    \item Process each column/row independently
+    \item For each row, extract a  \alert{break point} $b$ and we use
+      $i+ b ~ modulo~ N$ indices
+    \end{itemize}
+    \begin{center}
+      \includegraphics[width=6cm]{rupture}
+    \end{center}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variation on the Theme (2): Toric Spaces}
+
+    \begin{onlyenv}<1>
+      \begin{block}{Overall process for the EDT\HH}
+  
+      \begin{center}
+        \includegraphics[width=8cm]{edt_tore}
+      \end{center}
+    \end{block}
+  \end{onlyenv}
+
+\pause
+\begin{onlyenv}<2->
+  
+  \begin{exampleblock}{2-D EDT example (+MA extraction)\HH}
+    \begin{center}
+      {\includegraphics[width=2cm]{disque_dt}}
+      {\includegraphics[width=2cm]{disque_dt3}}
+      {\includegraphics[width=2cm]{disque_dt_rdma}}
+      {\includegraphics[width=2cm]{disque_rmda3}}
+    \end{center}
+  \end{exampleblock}
+
+
+
+  \begin{exampleblock}{3-D REDT example\HH}
+    \begin{center}
+      {\includegraphics[width=3cm]{creat_motif_centre}}
+      {\includegraphics[width=3cm]{creat_motif}}
+      {\includegraphics[width=3cm]{creat_9_spheres}}
+    \end{center}
+  \end{exampleblock}
+\end{onlyenv}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusion}
+
+  \begin{alertblock}{}
+    Optimal separable techniques for the:
+    \begin{itemize}
+    \item Euclidean Distance Transformation
+    \item Reverse Euclidean Distance Transformation
+    \item Complete Discrete Voronoi Diagram mapping
+    \item (Coming next) Discrete Euclidean Medial Axis Extraction
+    \end{itemize}
+ on:
+    \begin{itemize}
+    \item $d-$dimensional Images
+    \item $d-$dimensional Toric Images
+    \end{itemize}
+  \end{alertblock}
+
+\end{frame}
+
+
+
+\section[Model Conversion]{Model Conversion: Medial Axis and  Reversible Reconstruction}
+
+
+\begin{frame}
+  \frametitle{Contribution Overview}
+  \small
+  
+\vspace{0.5cm}
+
+  \begin{exampleblock}{}
+    \begin{columns}
+      \column{10.5cm}
+        \begin{block}<0>{Discrete Analytic Models\HH}
+          \alert{Supercover \& Interval Arithmetic, Irregular
+            isothetic grid formulation}
+        \end{block}
+
+    \end{columns}
+    
+    \begin{columns}
+      \column{4cm}
+      
+      \begin{block}<0>{Fundamental Objects and Properties\HH}
+        \alert{Computational analysis of fundamental object
+          recognition algorithms}
+      \end{block}
+      \column{0.2cm}
+      {\Huge\alert{$\circlearrowright$}}
+
+      \column{4cm}  
+      
+      \begin{block}<0>{Objects Analysis/Modeling\HH}
+\alert{Separable techniques for the EDT and REDT problems}
+      \end{block}
+      
+    \end{columns}
+    
+    \begin{columns}
+      \column{10.5cm}
+      \begin{alertblock}{Loss-less Model Conversion\HH}
+        \alert{         MA extraction  algorithms
+          and NP-completeness of the Minimal MA, Reversible
+          reconstruction   on   irregular    grids,  Reversible surface reconstruction}
+      \end{alertblock}
+    \end{columns}
+  \end{exampleblock}
+\end{frame}
+
+
+%\subsection{Discrete Medial Axis Extraction}
+
+\begin{frame}
+  \frametitle{Medial Axis}
+
+  \begin{block}{Definition\HH}
+    \begin{itemize}
+    \item \alert{Maximal ball:}  an open ball  $\ball \subseteq X$ is {\em
+        maximal} in $X$ if for all included open balls $\ball'$:
+      $$
+      \ball \subseteq \ball' \subseteq X \quad \implies \quad \ball =
+      \ball'.
+      $$
+      
+    \item \alert{Medial Axis:} denoted $\MAset(X)$, set of maximal ball
+      centers in $X$
+      
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{}
+    \begin{center}
+      \includegraphics[width=5cm]{am-cercles}
+    \end{center}
+  \end{exampleblock}
+
+  \begin{alertblock}{Many applications\HH}
+    \begin{itemize}
+    \item Shape description/matching
+    \item Image synthesis
+    \item \ldots
+    \end{itemize}
+  \end{alertblock}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Discrete Medial Axis}
+\small
+
+  \begin{block}{Reformulation\HH}
+    Discrete domain, discrete metric and discrete balls
+  \end{block}
+
+  \begin{exampleblock}{Extracted from the E$^2$DT\HH}
+    E$^2$DT $\rightarrow$  disks included in the shape with maximal radii
+  \end{exampleblock}
+  
+  \begin{center}
+    \includegraphics[width=2cm]{exam_dt}~~~~
+    \includegraphics[width=2cm]{exam_dt2}~~~~
+    \includegraphics[width=2cm]{exam_dt3}~~~~
+  \end{center}
+  
+  
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Separability rocks...}
+  \begin{columns}
+    \column{5cm}
+    \begin{block}{1-D process\HH}
+      \begin{center}
+        \includegraphics[width=4cm]{Fig4}
+      \end{center}
+    \end{block}
+    \column{6cm}
+    \begin{alertblock}{Idea\HH}
+      \begin{itemize}
+      \item Start with all disks obtained during the EDT
+      \item Mark upper envelope parabola apex and propagate labeling
+        through dimensions 
+       \end{itemize}
+     
+
+    \end{alertblock}
+
+    \begin{alertblock}{\small Maximal     disks $\Leftrightarrow$ Upper envelope  of
+        elliptic paraboloids\HH}
+      \begin{center}
+        \includegraphics[width=5cm]{Fig5}
+      \end{center}
+      $h_B(x,y) = r^2 - (x-i)^2 - (y-j)^2$
+    \end{alertblock}
+
+%    \begin{exampleblock}{Detail\HH}
+%      Filtering process, MA $\sim$ RDMA
+%      \centering \includegraphics[width=6cm]{fig8et9}      
+%    \end{exampleblock}
+
+  \end{columns}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples...}
+
+
+  \begin{center}
+    \includegraphics[width=10cm]{Fig13-bitmap}
+  \end{center}
+  
+\end{frame}
+
+
+=\begin{frame}
+  \frametitle{DMA Minimality}
+
+  \begin{block}{Statement of the problem\HH}
+     \begin{center}
+
+       \includegraphics[width=2cm]{cube10}
+       \includegraphics[width=2cm]{cube10init}
+       \includegraphics[width=2cm]{cube10ingela}
+       \includegraphics[width=2cm]{cube10greedy} 
+
+  \end{center}
+  \alert{$\rightarrow$ subsets of the MA may describe the same object}
+  \end{block}
+
+  \begin{exampleblock}{Two problems\HH}
+    \begin{enumerate}
+    \item Find the Minimum Discrete Medial Axis (min. in number of
+      disks)
+    \item Find  a  subset of  the DMA with   less that $k$ balls  that
+      covers the entire object ($k-$\aut{Min})
+    \end{enumerate}
+  \end{exampleblock}
+\pause
+
+  \begin{alertblock}{Contribution\HH}
+    \alert{Problem 2 is NP-complete and thus Problem 1 is NP-hard}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{NP-completeness proof: \aut{Planar-4-3-SAT} reduction}
+\small
+
+  \begin{block}{Overview\HH}
+  $\phi=(x_1\vee \neg x_3\vee x_4)\wedge (\neg x_1\vee\neg x_2\vee
+     x_5)\wedge(x_1\vee x_3\vee \neg x_4)$
+     
+     \begin{center}
+       \includegraphics[width=10cm]{reduction_plongement}
+     \end{center}
+     \begin{center}
+       \begin{tabular}{lllll}
+         Instance of \aut{Planar-4-3-SAT} & $\Rightarrow$&      Discrete Orthogonal Embedding  & $\Rightarrow$&
+         Discrete Object $X$
+       \end{tabular}
+     \end{center}
+   \end{block}
+
+\begin{alertblock}{Key-points\HH}
+  \begin{itemize}
+  \item Polynomial reduction of ALL \aut{Planar-4-3-SAT} instances into a 
+    subset of $k-$\aut{Min} instances
+  \item An algorithm able to solve  $k-$\aut{Min} should also solve \aut{Planar-4-3-SAT}
+  \end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Conclusion}
+
+  \begin{alertblock}{Main result\HH}
+\alert{    The Minimum Discrete Medial Axis is NP-hard}
+  \end{alertblock}
+
+   \begin{exampleblock}{Future Works and Open Questions\HH}    
+     \begin{itemize}
+     \item Complete the proof for other metrics (Chamfer,\ldots)
+     \item Is the problem still NP-complete on hole-free discrete
+       objects ?
+     \end{itemize}
+   \end{exampleblock}
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{What's next?}
+
+    \begin{block}{Next Step:  Approximation heuristics with bounds (if possible)}
+    \end{block}
+      \begin{center}
+        \begin{tabular}{|c|c|c|c|}
+          \hline
+          Object& $\mathcal{F}=\AMD(X)$& $\hat{\mathcal{F}}$
+          \textsc{Borgefors et al.} & $\hat{\mathcal{F}}$
+          \alert{Greedy (with bound !)}\\
+          \hline
+          \includegraphics[width=1.5cm]{cube10} & \includegraphics[width=1.5cm]{cube10init} &
+          \includegraphics[width=1.5cm]{cube10ingela} &
+          \includegraphics[width=1.5cm]{cube10greedy} \\
+          & 104 & 56 (-46\%) [$<$0.01s]& 66 (-36\%) [$<$ 0.01s]\\
+          \hline
+          \includegraphics[width=1.5cm]{32dodgecomplet} & \includegraphics[width=1.5cm]{32dodge} &
+          \includegraphics[width=1.5cm]{32dodgeingela} &
+          \includegraphics[width=1.5cm]{32dodgegreedy} \\
+          & 1292 & 795 (-38\%) [0.1s] & 820 (-36\%) [0.19s]  \\
+          \hline
+          \includegraphics[width=1.2cm]{Al200B} & \includegraphics[width=1.2cm]{Al200B_RDMA} &
+          \includegraphics[width=1.4cm]{Alingela} & \includegraphics[width=1.4cm]{Algreedy} \\
+          &  17238 &   6177 (-64\%) [48.53s]&  6553 (-62\%) [57.79s] \\
+          \hline
+        \end{tabular}
+      \end{center}
+
+\end{frame}
+
+%\subsection{Reversible Reconstruction}
+
+
+\begin{frame}
+  \frametitle{Reversible Reconstruction with linear structures}
+
+
+\vspace{-0.2cm}
+
+  \begin{exampleblock}{Objective\HH}
+    Reconstruct     a \alert{reversible} polygonal (resp.  polyhedral)
+    object from a discrete object
+    \begin{itemize}
+    \item Intensive  use of digital straight lines and digital plane
+      recognition algorithms
+    \end{itemize}
+  \end{exampleblock}
+
+\vspace{-0.2cm}
+
+  \begin{columns}[T]
+\footnotesize
+    \column{5.5cm}
+    \begin{alertblock}{\small 2-D\HH}
+      \begin{itemize}
+      \item Topological and Geometrical  dynamic reconstruction in the
+        Irregular Isothetic Model
+        \item Application to Interval Arithmetic solver reconstruction
+      \end{itemize}
+    \end{alertblock}
+    \vspace{-0.3cm}
+
+    \begin{center}
+      \includegraphics[width=5cm]{res_IIA_sigma}
+    \end{center}
+    
+    
+    \column{5.5cm}
+    \begin{alertblock}{\small 3-D\HH}
+      \begin{itemize}
+      \item Topologically correct polyhedral reconstruction  based on
+        MC simplification
+      \end{itemize}
+    \end{alertblock}
+    \begin{center}
+      \includegraphics[width=2cm,angle=90]{sphere}
+      \includegraphics[width=2cm,angle=90]{spheremc}\\
+      \includegraphics[width=2cm,angle=90]{sphere10-2}
+    \end{center}
+    
+  \end{columns}
+  
+\end{frame}
+
+
+\section[Related Research Activities]{Related Research activities:
+  2D/3D Shape Recognition}
+
+
+\begin{frame}
+  \frametitle{2D/3D Shape Description}
+\small
+
+\begin{flushright}
+  \includegraphics[width=7cm]{logos_semantic}
+\end{flushright}
+
+\begin{exampleblock}{Context: \aut{Semantic-3D}\HH}
+  \begin{columns}
+\column{9cm}
+    \begin{itemize}
+    \item Objective: 3D-Objects indexing and retrieval from 2D and 3D
+      queries
+    \item \aut{Julien Ricard} (PhD), defence 12/2005. Advised in
+      coordination with \aut{Attila Baskurt} (Pr - LIRIS)
+    \end{itemize}
+\column{2cm}
+\includegraphics[width=1cm]{jricard}
+  \end{columns}
+\end{exampleblock}
+\begin{columns}
+  \column{8cm}
+  \begin{alertblock}{Main Contributions\HH}
+    \begin{itemize}
+    \item Generalization of the MPEG-7 Angular Radial Transform
+    \item Fourier based 2D/3D matching
+    \item Analytic computation of volumic integrals on a 3D mesh
+      (geometrical moments, Fourier Transform,\ldots)
+    \end{itemize}
+  \end{alertblock}
+  \column{3cm}
+  \includegraphics[width=3cm]{principe_tetraedre_gs}
+\end{columns}
+\begin{flushright}
+  [PRL-2005, ICPR, ICIP]
+\end{flushright}
+
+\end{frame}
+
+
+
+\section[Conclusion \& Future works]{Conclusion and Future Works}
+
+
+
+\begin{frame}
+  \frametitle{Conclusion}
+  
+  \begin{columns}
+    \column{8cm}
+    \begin{block}{Algorithmic solution to discrete shape analysis and
+        modeling\HH}
+  From many fields:
+  \begin{itemize}
+      \item Arithmetic / Number theory 
+      \item Computational Geometry
+      \item Complexity Analysis
+      \end{itemize}
+    \end{block}
+
+    \column{3.5cm}
+    
+    \begin{alertblock}{Topics\HH}
+      \begin{itemize}
+      \item Model Definitions
+      \item Fundamental Object Recognition
+      \item EDT, REDT, RDMA, \ldots
+      \item Reversible reconstruction        
+      \end{itemize}
+    \end{alertblock}
+  \end{columns}  
+
+
+
+  \begin{exampleblock}{Two-way Cooperation\HH}
+    \begin{itemize}
+    \item C\&G Algorithms to solve Discrete Geometry problems
+    \item Use  Discrete  Geometry specificities  to tune  classical C\&G
+      algorithms
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Collaborations}
+\footnotesize
+
+\alert{\aut{[External]}} \uncover<2->{\darky{\aut{[Internal]}}} \uncover<3->{\aut{[PhD
+  Students]}} \uncover<4->{\myblue{Master Students}}
+
+ \begin{exampleblock}{}
+    \begin{columns}
+       \column{10.5cm}
+       \begin{block}{\small Discrete Analytic Models\HH}
+\uncover<2->{\darky{ \aut{[L. Tougne]}}}  \uncover<3->{\aut{[A. Vacavant]}}  \uncover<4->{\myblue{L. Zerarga}}
+       \end{block}
+     \end{columns}
+
+    \vspace{-0.3cm}
+    
+     \begin{columns}
+       \column{4cm}
+      
+       \begin{block}{\small Fundamental Objects and Properties \HH}
+  \alert{        \aut{[R.~Klette]}   \aut{[V.~Brimkov]}    \aut{[J.-M.~Chassery]}
+         \aut{[F.~Feschet]}  \aut{[Y.~Gérard]}  \aut{[J.-P.~Reveillès]}}
+         \uncover<2->{\darky{ \aut{[L.~Tougne]}}  \darky{
+             \aut{[I.~Sivignon]}}} \uncover<3->{\aut{[A.~Vacavant]}}
+   
+    \end{block}
+       \column{0.2cm}
+      { \Huge \alert{$ \circlearrowright$}}
+
+       \column{4cm}  
+      
+       \begin{block}{\small Objects Analysis/Modeling \HH}
+  \alert{     \aut{[R.~Klette]}  \aut{[S.~ Svensson]}     \aut{[J.-B.~Brzoska]}
+       \aut{[M.~Couprie]} \aut{[E. Thiel]} \aut{[R.~Zrour]}}
+\uncover<2->{   \darky{\aut{[F.~Dupont]}}  \darky{\aut{[I.~Sivignon]}}
+      \darky{\aut{[L.~Tougne]}}  \darky{\aut{[S.~Miguet]}} }\uncover<3->{\aut{[J. Ricard]}  \aut{[A.~Vacavant]} } \uncover<4->{\myblue{C.~Chevarier}  \myblue{L.~Jospin}}
+
+  \end{block}
+      
+    \end{columns}
+    \vspace{-0.3cm}
+    \begin{columns}
+      \column{10.5cm}
+      \begin{block}{\small Loss-less Model Conversion\HH}
+\centering\alert{        \aut{[E.~Andres]} \aut{[J.-M.~Chassery]}
+  \aut{[J.~Hulin]} \aut{[A.~Montanvert]}}
+\uncover<2->{\darky{\aut{[F.~Dupont]} \aut{[I.~Sivignon]}} } \uncover<3->{\aut{[A.~Vacavant]}} \uncover<4->{\myblue{C.~Chevarier} \myblue{L.~Jospin}}
+       
+      \end{block}
+    \end{columns}
+ \end{exampleblock}
+ 
+ \begin{columns}[T]
+\footnotesize
+   \column{3cm}
+   \begin{alertblock}{\small RNRT \aut{Semantic-3D}\HH}
+     co-encadrement \aut{J. Ricard}
+   \end{alertblock}
+\column{3cm}
+   \begin{alertblock}{\small ACI GeoDiGit\HH}
+     2005 - 2007 (Responsable)
+   \end{alertblock}
+   \column{3cm}
+   \begin{alertblock}{\small ANR GeoDiB\HH}
+     \begin{itemize}
+     \item 2006-2010 (Membre)
+     \item \aut{Loria, LaBRI, LAIC, LIRIS}
+     \end{itemize}
+   \end{alertblock}
+   
+   
+ \end{columns}
+\end{frame}
+\small
+
+\begin{frame}
+  \frametitle{Future Works}
+    
+\footnotesize
+  \begin{exampleblock}{}
+    \begin{columns}
+       \column{10.5cm}
+       \begin{block}{Discrete Analytic Models\HH}
+         \begin{itemize}
+         \item \alert{Theoretical framework: Non-Standard Analysis,
+             Constructive maths, \ldots} 
+         \item \alert{Continue the interaction analysis between IA and
+           the discrete model} 
+         \end{itemize}
+         {\footnotesize\darky{[SIC-Poitiers, LMA-La Rochelle]}}
+       \end{block}
+     \end{columns}
+    
+     \begin{columns}
+       \column{4cm}
+  
+       \begin{block}{Fundamental Objects and Properties \HH}
+         \begin{itemize}
+         \item \alert{Uncertainty and noise integration in definitions
+             and algorithms}
+         %\item \alert{Tangential covering with pieces of digital circles}
+         \end{itemize}
+         {\footnotesize \darky{[ANR GeoDiB (2006-2010)]}}
+       \end{block}
+
+
+       \column{0.2cm}
+      { \Huge \alert{$ \circlearrowright$}}
+
+       \column{4cm}  
+      
+       \begin{block}{Objects Analysis/Modeling \HH}
+         \begin{itemize}
+         \item \alert{GPU based Discrete Object Volumic Analysis}
+           {\footnotesize\darky{[Internal]}}
+         \end{itemize}
+       \end{block}
+       
+     \end{columns}
+     
+     \begin{columns}
+       \column{10.5cm}
+      \begin{block}{Loss-less Model Conversion\HH}
+        \begin{itemize}
+        \item \alert{Parallel discrete contours reconstruction with
+          combinatorial maps} {\footnotesize\darky{\aut{[G. Damiand]}}}
+        \item \alert{\aut{The Digital Sphere Tree}}
+        \end{itemize}
+      \end{block}
+    \end{columns}
+  \end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{{\aut{The Digital Sphere Tree}}}
+
+\vspace{-0.2cm}
+
+  \begin{columns}
+    \column{6cm}
+    \begin{exampleblock}{Objectives: Hierarchical/Multiresolution
+        Discrete Medial Axis\HH}
+      \begin{itemize}
+      \item Multiresolution of the underlying grid
+      \item Multiresolution and hierarchical sphere structures
+        $\Rightarrow$ Sphere-Tree
+        \begin{itemize}
+        \item Trade-Off: Structure compactness \& approximation
+        \item Many developments and applications in geometric
+          processing
+        \end{itemize} \end{itemize}
+    \end{exampleblock}
+
+    \column{4cm}
+    \begin{center}
+      \includegraphics[width=5cm]{spheretree}
+
+
+      \aut{\footnotesize [G. Bradshaw and C. O'Sullivan]}
+    
+    \end{center}
+  \end{columns}
+
+
+  \begin{columns}
+\column{5cm}
+    \begin{block}{Intermediate Steps\HH}
+      \begin{itemize}
+      \item First sphere structure (\emph{flat} graph) could be
+        extracted from the Discrete Power Diagram
+      \item Better comprehension of interactions between Power diagram
+        and Discrete Medial Axis
+      \item \ldots
+      \end{itemize}
+    \end{block}
+\column{6cm} 
+    \begin{block}{\small $\leftrightsquigarrow$ Power (\aut{Laguerre})
+        diagram\HH}
+      \begin{center}
+        {\includegraphics[draft=false,width=1.5cm]{power2cercles}}
+        {\includegraphics[draft=false,width=3.5cm]{test}}
+      \end{center}\end{block}
+  \end{columns}
+  \begin{alertblock}{}
+\centering\alert{$\Rightarrow$ Interactions C\&G, Discrete Geometry}
+  \end{alertblock}
+
+\end{frame}
+
+
+\appendix
+\section{\appendixname}
+
+
+\begin{frame}
+  \frametitle{Convex hulls}
+  \label{cvxhull}
+ \centering
+  \begin{tabular}{|l|c|r|}
+    \hline
+    Objects & Computational cost & References\\
+\hline
+\hline
+    Points 2D & $O(m \log m)$ & \aut{Graham} \\
+    Points 2D & $O(m h)$ & \aut{Jarvis}\\
+    Points 2D & $O(m \log h)$ & \aut{Chan}\\
+    Points 3D & $O(m\log h)$ & \aut{Chan}\\
+    Points dD & $O(m\log m + m^{\lfloor n/2\rfloor})$ & \aut{Chazelle}
+\\
+    \hline
+    \hline
+    Chaîne simple 2D & $O(m)$ incrémental $O(1)$ & \aut{Melkman}\\
+    Chaîne simple 2D & $O(m)$ dynamique $O(1)$ &\aut{Buzer} \\
+    \hline
+    \hline
+    \alert{ Courbe discrète }&\alert{$O(m)$}  & \alert{\aut{Voss}}\\
+\alert{   Objet discret convexe $X$ }& \alert{$O(h\log{\delta(X)})$}& \alert{\aut{Har-Peled}}\\
+
+\hline
+  \end{tabular}
+
+
+
+\hyperlink{toolbox}{\beamerbutton{Back}}
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{IA Operators}
+  \begin{block}{Arithmetic operators\HH}
+    \begin{align*}
+      X\oplus Y &= [\fdown{\iI{x}+\iI{y}}, \fup{\sI{x}+\sI{y}}]\\
+      X \ominus Y &= [\fdown{\iI{x}-\sI{y}}, \fup{\sI{x}-\iI{y}}]\\
+      X\odot Y &=
+      [\min{(\fdown{\iI{x}\cdot\iI{y}},\fdown{\iI{x}\cdot\sI{y}},
+        \fdown{\sI{x}\cdot\iI{y}},\fdown{\sI{x}\cdot\sI{y}})},\\&\max{(\fup{\iI{x}\cdot\iI{y}},\fup{\iI{x}\cdot\sI{y}},\fup{\sI{x}\cdot\iI{y}}, \fup{\sI{x}\cdot\sI{y}})}]\\
+      \ldots&
+    \end{align*}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Interval Arithmetic Analysis Example}
+
+\small  
+  \begin{columns}
+    \column{7cm}
+      \begin{block}{Example on $\I_\F$\HH}
+        \includegraphics[angle=270,width=7cm]{IA_gnuplot}
+      \end{block}
+      \column{4.5cm}
+      \begin{block}{}
+        \begin{itemize}
+        \item $f(x)=(x+1)(x-1)$ on $[-1,1]$
+        \item $\Box f(X) = (X\oplus [1,1])\odot(X\ominus [1,1])$
+        \end{itemize}
+      \end{block}
+    \end{columns}
+
+    \begin{exampleblock}{Optimality of an extension $\Box f$\HH}
+$$\forall X\in\I, \nexists  Y\subset \Box f(X) \text{  such that } \forall x\in X, f(x)\in Y$$
+      
+    \end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Variation on the Theme (1): The Discrete Voronoi Diagram}
+\small
+
+\begin{columns}
+\column{7cm}
+\begin{block}{Voronoi Diagrams\HH}
+  Given a set of sites ${\mathcal S}=\{s_i\}$ in ${\mathbb R}^2$,
+  the Voronoi diagram is a decomposition of the plane into cells
+  ${\mathcal C}=\{c_i\}$ (one cell $c_i \subset {\mathbb{R}}^2$ per
+  site $s_i$) such that each point $p$ in the (open) cell $c_i$, we
+  have $d(p,s_i)< d(p,s_j)$ for $i\neq j$.
+\end{block}
+  \column{3cm}
+  \includegraphics[width=4cm]{voronoi_diagramme}
+\end{columns}
+
+  \begin{block}{DT and Voronoi Diagrams\HH}
+    \begin{itemize}
+    \item DT $\leftarrow$ Voronoi Diagram of background grid points
+    \item DT algorithms $\rightarrow$ Discrete Voronoi Diagram mapping
+      \begin{itemize}
+      \item Association of each grid point to its associated cell
+        $s_i$
+      \item Difficulties to handle equidistant background points (when
+        Voronoi diagram edges/vertices intersect $\Z^d$ points)
+      \end{itemize}
+    \end{itemize}
+  \end{block}
+
+ 
+ 
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Variation on the Theme (1): The Discrete Voronoi Diagram}
+
+  \begin{exampleblock}{Ideas\HH}
+    Propagate parabola  apex  indices and  detect when  two  parabolas
+    intersect at an integer coordinate position
+  \end{exampleblock}
+  \begin{center}
+    {\includegraphics[width=2.5cm]{mapping_0}}~~~~~~~~
+    {\includegraphics[width=0.4cm]{mapping_1}}
+  \end{center} 
+\begin{center}
+    {\includegraphics[width=4cm]{mapping_2}}
+    {\includegraphics[width=4cm]{mapping_3}}
+ \end{center}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Geometrical interpretation of a \aut{Planar-4-3-SAT}
+    instance}
+
+  \begin{columns}
+    \column{4cm}
+    \begin{block}{Variable\HH}
+      \begin{onlyenv}<1>
+        \begin{itemize}
+        \item Eight slots to encode the uses of the variable in a
+          \aut{Planar-4-3-SAT} formula
+        \item Two minimal decomposition with $d_E$ balls (72 balls)
+          \begin{itemize}
+          \item one protrudes out only at even slots
+            \alert{$\Rightarrow$ True}
+          \item one protrudes out only at odd slots
+            \alert{$\Rightarrow$ False}
+          \end{itemize}
+        \item\alert{Constant size}
+        \end{itemize}
+      \end{onlyenv}
+    \end{block}
+
+   
+    \begin{block}{Wires\HH}
+      \begin{onlyenv}<2>
+        \begin{itemize}
+        \item Transmission of the Truth assignment signals from
+          variables to clauses
+        \item Wires can be bent without changing the signal
+        \item Extremities of the wires are placed on a $6\times 6$ sub-grid
+          \item \alert{Size independent to the signal value}
+        \end{itemize}
+        
+      \end{onlyenv}
+    \end{block}
+
+
+    \begin{block}{Clauses\HH}
+      \begin{onlyenv}<3>
+        \begin{itemize}
+        \item Input: three wires
+        \item 10 balls required to cover the shape  if all signals are
+          \alert{False} and 9 otherwise
+        \item \alert{Constant size}
+        \end{itemize}
+      \end{onlyenv}
+    \end{block}
+
+
+    \column{7cm}
+
+    \begin{onlyenv}<1>
+      \begin{center}
+        \includegraphics[width=7cm]{gadget-variable-d_E-new2}
+      \end{center}
+    \end{onlyenv}
+
+    \begin{onlyenv}<2>
+      \begin{center}
+        \includegraphics[width=7cm]{gadget_lien_pres}
+      \end{center}
+    \end{onlyenv}
+
+    \begin{onlyenv}<3>
+      \begin{center}
+        \includegraphics[width=7cm]{gadget-clause-ou-d_8-eucl}
+      \end{center}
+    \end{onlyenv}
+
+    \begin{onlyenv}<4>
+      \begin{center}
+        \includegraphics[width=7cm]{reduction_plongement}
+      \end{center}
+    \end{onlyenv}
+
+
+  \end{columns}
+
+  \begin{onlyenv}<4>    
+    \begin{alertblock}{Putting all together\HH}
+     $\phi$ Planarity +   Discrete Orthogonal Embedding + sub-grid
+     alignments 
+
+     \begin{center}       
+  \alert{$\Rightarrow$ $(1)-$connected discrete object such that there
+       is no intersection between wires, variables and clauses\\
+       $\Rightarrow$ Object size polynomial in the $\phi$ size
+}
+     \end{center}
+    \end{alertblock}
+[Details skipped\ldots]
+    \begin{alertblock}{}
+      \centering\alert{The Minimum Medial Axis problem  is NP-complete}
+    \end{alertblock}
+  \end{onlyenv}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Committee}
+
+
+  \begin{itemize}
+  \item \aut{Gunilla Borgefors} (Rapporteur), Pr, CBA, Uppsala Universitet,
+    Suède
+  \item  \aut{Achille Braquelaire} (Rapporteur), Pr, LaBRI,
+    Université Bordeaux 1
+\item \aut{Henri Maitre} (Rapporteur), Pr,  LTCI,  ENST Paris
+\item  \aut{Annick Montanvert} (Examinateur), Pr, GIPSA-Lab, Université Pierre
+Mendès-France, Grenoble
+\item \aut{Olivier Devillers} (Examinateur), DR
+  INRIA, Sophia-Antipolis
+\item \aut{Bernard Péroche} (Examinateur), Pr, LIRIS, Université Lyon 1
+
+  \end{itemize}
+\end{frame}
+
+\end{document}
+
+
+

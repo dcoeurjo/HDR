@@ -1,0 +1,1440 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   sodipodi:docbase="/home/dcoeurjo/Conf/Book/Hermes_IC2/Livre/Chapitre_1/Figures"
+   sodipodi:docname="rotation_grille.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.12959603"
+     inkscape:cx="1072.8958"
+     inkscape:cy="-1663.1807"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1181"
+     inkscape:window-height="827"
+     inkscape:window-x="6"
+     inkscape:window-y="46" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1892"
+       style="fill:none;stroke:#000000;stroke-width:0.025in;stroke-opacity:1"
+       transform="translate(-2322.857,-1976.209)">
+<!-- Line: box -->      <rect
+         id="rect1894"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1896"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1898"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1900"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1902"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1904"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1906"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1908"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1910"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1912"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1914"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1916"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1918"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1920"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1922"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1924"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1926"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1928"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1930"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1932"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1934"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1936"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1938"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1940"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1942"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1944"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1946"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1948"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1950"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1952"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1954"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect1956"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1958"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1960"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1962"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1964"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1966"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1968"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1970"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1972"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect1974"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1976"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1978"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1980"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1982"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect1984"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1986"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect1988"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect1990"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1992"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1994"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1996"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect1998"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2000"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2002"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2004"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2006"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2008"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2010"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2012"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2014"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2016"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2018"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2020"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2022"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2024"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2026"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2028"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2030"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2032"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2034"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2036"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2038"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2040"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2042"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2044"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2046"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2048"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2050"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2052"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2054"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2056"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2058"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2060"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2062"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2064"
+         style="stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4800" />
+    </g>
+    <g
+       id="g2245"
+       style="fill:none;stroke:#737373;stroke-width:0.025in;stroke-opacity:1"
+       transform="matrix(0.938987,-0.343951,0.343951,0.938987,-3055.395,-735.7119)">
+<!-- Line: box -->      <rect
+         id="rect2247"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2249"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2251"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2253"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2255"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2257"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2259"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2261"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2263"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2265"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2267"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2269"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2271"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2273"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2275"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2277"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2279"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2281"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2283"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2285"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2287"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2289"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2291"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2293"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2295"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2297"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2299"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2301"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2303"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2305"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2307"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="1200" />
+<!-- Line: box -->      <rect
+         id="rect2309"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2311"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2313"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2315"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2317"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2319"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2321"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2323"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2325"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="3600" />
+<!-- Line: box -->      <rect
+         id="rect2327"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2329"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2331"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2333"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2335"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="2400" />
+<!-- Line: box -->      <rect
+         id="rect2337"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2339"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="1800" />
+<!-- Line: box -->      <rect
+         id="rect2341"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="3000" />
+<!-- Line: box -->      <rect
+         id="rect2343"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2345"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2347"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2349"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2351"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2353"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2355"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2357"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4200" />
+<!-- Line: box -->      <rect
+         id="rect2359"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2361"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2363"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2365"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2367"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2369"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2371"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2373"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2375"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2377"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2379"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2381"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2383"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2385"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2387"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="5400" />
+<!-- Line: box -->      <rect
+         id="rect2389"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2391"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2393"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2395"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2397"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2399"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2401"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2403"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4800"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2405"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3600"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2407"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="600"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2409"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2411"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="4200"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2413"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="2400"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2415"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="3000"
+         x="4800" />
+<!-- Line: box -->      <rect
+         id="rect2417"
+         style="stroke:#737373;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         rx="0"
+         height="600"
+         width="600"
+         y="1800"
+         x="4800" />
+    </g>
+  </g>
+</svg>

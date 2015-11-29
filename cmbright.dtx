@@ -1,0 +1,513 @@
+%\CheckSum{329}
+%
+% \iffalse
+%
+% File `cmbright.dtx'.
+% Copyright (c) 1994--2002 Walter Schmidt
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+%
+% This program consists of the files cmbright.dtx, cmbr.fdd and
+% cmbright.ins.
+%
+% \fi
+%
+% \iffalse
+%
+\NeedsTeXFormat{LaTeX2e}
+%<cm&!patch> [1995/06/01]
+%<*driver>
+\ProvidesFile{cmbright.drv}
+%</driver>
+%<+cm>\ProvidesPackage{cmbright}
+           [2002/05/25 v7.1 (WaS)]     
+%
+%<*driver> 
+\documentclass[11pt]{ltxdoc}
+\usepackage{mflogo,url}
+\CodelineNumbered
+\parindent1em
+\leftmargini=2em
+\leftmarginii=2em
+\leftmarginiii=2em
+\leftmarginiv=2em
+\leftmargin\leftmargini
+\labelwidth\leftmargin \advance\labelwidth by -\labelsep
+\begin{document}
+ \DocInput{cmbright.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \GetFileInfo{cmbright.drv}
+% \DeleteShortVerb{\|}
+% \MakeShortVerb{\+}
+% \newcommand{\oitem}[1]{\item[\texttt{#1}]}
+% 
+% \title{The Computer Modern Bright fonts \\
+% and \\
+% the \LaTeX{} package \textsf{cmbright}}
+% \author{Walter Schmidt\thanks{{\ttfamily was@VR-Web.de}}}
+% \date{(\fileversion{} -- \filedate)}
+% \maketitle
+% \tableofcontents
+%
+% \section{The CM Bright fonts}
+% `Computer Modern Bright' is a family of sans serif fonts,
+% based on Donald Knuth's CM fonts.
+% It includes OT1, T1 and TS1 encoded text fonts of various
+% shapes as well as all the fonts necessary for mathematical
+% typesetting, incl.\ the AMS symbols.
+%
+% CM Bright has been designed as a well legible standalone
+% font.  It is `lighter' and less obtrusive than CM Sans Serif, which, 
+% in contrast, is more appropriate for markup purposes within 
+% a CM Roman environment.
+%
+% Together with CM Bright there comes a family of typewriter
+% fonts, named `CM Typwewriter Light', which look better in
+% combination with CM Bright than the ordinary \texttt{cmtt} fonts would do.
+%
+% The CM Bright fonts in \MF{} format are distributed 
+% free from the CTAN archives, directory \texttt{fonts/cmbright}.
+%
+% The fonts are also available in Type1 format from
+% MicroPress~Inc, see
+% \path{<http://www.micropress-inc.com/fonts/brmath/brmain.htm>}.
+%
+% \section{The \LaTeX{} macro package \textsf{cmbright}}
+%
+% \subsection{Description}
+% The \LaTeX{} macro package \textsf{cmbright}
+% supports typesetting with the font family CM Bright.
+% Loading the package 
+% \begin{verse}
+% +\usepackage{cmbright}+
+% \end{verse}
+% effects the following:
+% \begin{itemize}
+% \item The default sans serif font family for typesetting text and math
+% is changed to \texttt{cmbr}, i.e.\ CM Bright.  
+% \item 
+% The sans serif font family is made the default one.
+% \item A new mathematical alphabet +\mathbold+ provides bold slanted
+% letters, inluding uppercase and lowercase Greek.
+% \item The packages \textsf{amsfonts} or \textsf{amssymb}, 
+% when loaded  additionally,
+% will use the `CM Bright' versions of the AMS symbol fonts.
+%
+% Notice that you may still have to specify the option +psamsfonts+
+% for these packages, so as to prevent them from using design sizes
+% of the CM Math Extension and Euler Fraktur fonts, which may be 
+% unavailable within your TeX system; this works flawlessly with
+% version 7.1 of the \textsf{cmbright} package now.
+% \item The default typewriter font family is changed to \texttt{cmtl},
+% i.e.\ CM Typewriter Light.
+% \item The line spacing (+\baselineskip+) for the font sizes 8--12\,pt
+% is increased to approx. $1.25 \times \mathrm{size}$.
+% \end{itemize}
+%
+% \subsection{Package options}
+% \begin{description}
+% \oitem{standard-baselineskips}
+% This option prevents the package from enlarging the default line spacing.
+% See the below section~\ref{sec:bugs}.
+% \oitem{slantedGreek}
+% When the macro package is loaded using this option,
+% uppercase Greek letters will, by default, be slanted.
+% Regardless of the option the new commands
+% +\upDelta+ and +\upOmega+ will \emph{always} provide an 
+% upright \( \Delta \) and \( \Omega \).
+% \end{description}
+%
+% \subsection{Font encoding}
+% The package does \emph{not} change the default output font
+% encoding from OT1.  It is, however, recommended to make use of
+% CM Bright through the extended T1 and TS1 encodings,
+% since doing so does not imply any drawback.
+%
+% \subsection{Scaling of the `large' math symbols}
+% In order to achieve proper scaling of the `large' math symbols,
+% you may load the packages \textsf{exscale},
+% \textsf{amsfonts} or \textsf{amssymb}
+% additionally; they work in conjunction with \textsf{cmbright}, 
+% too.
+%
+% \subsection{Known bugs and deficiencies}
+% \label{sec:bugs}
+% \begin{itemize}
+% \item
+% The automatic adaption of the line spacing was provided for the sake 
+% of convenience.  Meanwhile it turned out that it causes many obscure
+% problem, particularly in conjunction with other macro packages or
+% with `moving arguments'.  Furthermore, the need to enlarge the default
+% line spacing depends on the line width.
+% We recommend to disable the feature by loading the package with the 
+% option \textsf{standard-baselineskips}.
+% and take care of the appropriate line spacing by use of the 
+% +\linespread+ command, if necessary.
+% \item 
+% There is no `bold' +\mathversion+ to bolden complete formulae.
+% (See, however, the mathematical alphabet +\mathbold+.)
+% \item
+% The \textsf{textcomp} package, if required, must be input \emph{after}
+% \texttt{cmbright}, otherwise
+% the symbol \textregistered{} (+\textregistered+) is not taken from the 
+% text companion font.
+% The same problem might occur,
+% if (e.g.\ with future versions of \LaTeX) the TS1 encoding is included
+% in the  \LaTeX{} format. In both cases the symbol is typeset
+% in roman style, instead of sans serif.
+% \item
+% Within the mathematical mode the symbol \textit{\pounds} 
+% is treated as a text symbol, so its size and the surrounding space 
+% might be wrong under some circumstances.
+% \item 
+% The package \textsf{oldlfont} 
+% cannot be used in conjunction with \texttt{cmbright}. (There should be
+% no real need for doing so!)
+% \item
+% The package \textsf{newlfont}, if used in conjunction with the
+% CM Bright fonts, must be input before \texttt{cmbright}.
+% \end{itemize}
+%
+%
+% \begin{table}[hbt]
+% \caption{NFSS classification of the Computer Modern Bright fonts}
+% \label{tab:nfss}
+% \begin{center}
+% \begin{tabular}{|l|l|l|l|}
+% \hline
+% \textbf{encoding} & \textbf{family} & \textbf{series} & \textbf{shape(s)}\\
+% \hline\hline
+% \multicolumn{4}{|c|}{\textit{CM Bright}}\\ \hline
+% OT1, T1, TS1 & cmbr & m & n, sl \\ \hline
+% T1, TS1      & cmbr & sb & n, sl\\ \hline
+% OT1, T1, TS1 & cmbr & bx & n\\ \hline \hline
+% \multicolumn{4}{|c|}{\textit{CM Typewriter Light}}\\ \hline
+% OT1, T1, TS1 & cmtl & m & n, sl\\ \hline \hline
+% \multicolumn{4}{|c|}{\textit{CM Bright Math}}\\ \hline
+% OML & cmbrm & m, b & it \\ \hline
+% OMS & cmbrs & m & n  \\ \hline \hline
+% \multicolumn{4}{|c|}{\textit{CM Bright AMS A, B}}\\ \hline
+% U   & msa, msb & m  &n\\  \hline
+% \end{tabular}
+% \end{center}
+% \end{table}
+%
+% \section{NFSS classification of the fonts}
+% Table~\ref{tab:nfss} lists the font series and shapes available in
+% the CM Bright and CM Typewriter Light families.  Notice, that
+% \begin{itemize}
+% \item the bx series of the text fonts is supported at sizes 
+% of 9\,pt and above only;
+% \item the usual font substitutions are set up so as to map OML and OMS
+% encoded text fonts to the math fonts;
+% \item there is no special CM Bright font for the `extensible math symbols';  
+% OMX/cmex should be used instead;
+% \item 
+% the font definitions for the AMS fonts are part of the package \texttt{cmbright};
+% there are no separate\texttt{.fd} files.
+% \end{itemize}
+%
+% \StopEventually{}
+%
+% \section{The package code}
+%
+% \subsection{Text font families}
+% The sans serif font family is made the default one:
+%    \begin{macrocode} 
+%<*cm>
+\renewcommand{\familydefault}{\sfdefault}
+%    \end{macrocode}
+% CM Bright is to be used as the default sans serif font family:
+%    \begin{macrocode}
+\renewcommand{\sfdefault}{cmbr}
+%    \end{macrocode}
+%
+% CM Typewriter Light is to be used as the default typewriter font family,
+% because the +cmtt+ fonts look too dark in combination with CM Bright:
+%    \begin{macrocode}
+\renewcommand{\ttdefault}{cmtl}
+%    \end{macrocode}
+%
+% \subsection{Mathematical fonts}
+% Default definitions which remain unchanged are commented out:
+%    \begin{macrocode}
+\DeclareSymbolFont      {operators} {OT1}{cmbr}{m}{n}
+\DeclareSymbolFont        {letters} {OML}{cmbrm}{m}{it}
+\DeclareSymbolFont        {symbols} {OMS}{cmbrs}{m}{n}
+% \DeclareSymbolFont {largesymbols} {OMX}{cmex}{m}{n}
+%
+% \DeclareSymbolFontAlphabet    {\mathrm} {operators}
+% \DeclareSymbolFontAlphabet{\mathnormal} {letters}
+% \DeclareSymbolFontAlphabet   {\mathcal} {symbols}
+%
+\DeclareMathAlphabet{\mathit} {OT1}{cmbr}{m}{sl}
+\DeclareMathAlphabet{\mathbf} {OT1}{cmbr}{bx}{n}
+\DeclareMathAlphabet{\mathtt} {OT1}{cmtl}{m}{n}
+%    \end{macrocode}
+% Despite its name, +\mathrm+ is not a font with serifs,
+% but it is, what the user expects it to be:
+% the upright font used e.g.\ for operator names.
+%
+% We do not set up a bold +\mathversion+, but we make a bold
+% slanted mathematical alphabet available:
+%    \begin{macrocode}
+\DeclareMathAlphabet{\mathbold}{OML}{cmbrm}{b}{it}
+%    \end{macrocode}
+%
+% The command +\mathbold+ should act on lowercase greek letters, too:
+%    \begin{macrocode}
+\DeclareMathSymbol{\alpha}{\mathalpha}{letters}{11}
+\DeclareMathSymbol{\beta}{\mathalpha}{letters}{12}
+\DeclareMathSymbol{\gamma}{\mathalpha}{letters}{13}
+\DeclareMathSymbol{\delta}{\mathalpha}{letters}{14}
+\DeclareMathSymbol{\epsilon}{\mathalpha}{letters}{15}
+\DeclareMathSymbol{\zeta}{\mathalpha}{letters}{16}
+\DeclareMathSymbol{\Gamma}{\mathalpha}{letters}{0}
+\DeclareMathSymbol{\eta}{\mathalpha}{letters}{17}
+\DeclareMathSymbol{\theta}{\mathalpha}{letters}{18}
+\DeclareMathSymbol{\iota}{\mathalpha}{letters}{19}
+\DeclareMathSymbol{\kappa}{\mathalpha}{letters}{20}
+\DeclareMathSymbol{\lambda}{\mathalpha}{letters}{21}
+\DeclareMathSymbol{\mu}{\mathalpha}{letters}{22}
+\DeclareMathSymbol{\nu}{\mathalpha}{letters}{23}
+\DeclareMathSymbol{\xi}{\mathalpha}{letters}{24}
+\DeclareMathSymbol{\pi}{\mathalpha}{letters}{25}
+\DeclareMathSymbol{\rho}{\mathalpha}{letters}{26}
+\DeclareMathSymbol{\sigma}{\mathalpha}{letters}{27}
+\DeclareMathSymbol{\tau}{\mathalpha}{letters}{28}
+\DeclareMathSymbol{\upsilon}{\mathalpha}{letters}{29}
+\DeclareMathSymbol{\phi}{\mathalpha}{letters}{30}
+\DeclareMathSymbol{\chi}{\mathalpha}{letters}{31}
+\DeclareMathSymbol{\psi}{\mathalpha}{letters}{32}
+\DeclareMathSymbol{\omega}{\mathalpha}{letters}{33}
+\DeclareMathSymbol{\varepsilon}{\mathalpha}{letters}{34}
+\DeclareMathSymbol{\vartheta}{\mathalpha}{letters}{35}
+\DeclareMathSymbol{\varpi}{\mathalpha}{letters}{36}
+\DeclareMathSymbol{\varrho}{\mathalpha}{letters}{37}
+\DeclareMathSymbol{\varsigma}{\mathalpha}{letters}{38}
+\DeclareMathSymbol{\varphi}{\mathalpha}{letters}{39}
+%    \end{macrocode}
+% 
+% The \texttt{slantedGreek} option:
+%    \begin{macrocode}
+\DeclareOption{slantedGreek}{%
+  \DeclareMathSymbol{\Gamma}{\mathalpha}{letters}{0}
+  \DeclareMathSymbol{\Delta}{\mathalpha}{letters}{1}
+  \DeclareMathSymbol{\Theta}{\mathalpha}{letters}{2}
+  \DeclareMathSymbol{\Lambda}{\mathalpha}{letters}{3}
+  \DeclareMathSymbol{\Xi}{\mathalpha}{letters}{4}
+  \DeclareMathSymbol{\Pi}{\mathalpha}{letters}{5}
+  \DeclareMathSymbol{\Sigma}{\mathalpha}{letters}{6}
+  \DeclareMathSymbol{\Upsilon}{\mathalpha}{letters}{7}
+  \DeclareMathSymbol{\Phi}{\mathalpha}{letters}{8}
+  \DeclareMathSymbol{\Psi}{\mathalpha}{letters}{9}
+  \DeclareMathSymbol{\Omega}{\mathalpha}{letters}{10}
+}
+\let\upOmega\Omega
+\let\upDelta\Delta
+%    \end{macrocode}
+%
+% \subsection{Leading}
+% The +\baselineskip+ should be larger than with CM Roman. For text sizes,
+% i.e.\ 8--12\,pt, a value of $1.25 \times \mathrm{size}$ is recommended.
+% In order to overwrite the +\baselineskip+ defined in the commands
+% like +\normalsize+, +\small+, etc., we use a trick from Frank Jensen's
+% package \textsf{beton} (v1.3).
+% First we set up a table containing our +\baselineskip+ values:
+%    \begin{macrocode}
+\def\bright@baselineskip@table
+   {<\@viiipt>10<\@ixpt>11.25<\@xpt>12.5<\@xipt>13.7<\@xiipt>15}
+%    \end{macrocode}
+% All the standard \LaTeX\ size-changing commands (+\small+, +\large+,
+% etc.)\ are defined in terms of the +\@setfontsize+ macro.  This
+% macro is called with the following three arguments: +#1+~is the
+% size-changing command; +#2+~is the font size; +#3+~is the
+% +\baselineskip+ value.  We modify this macro to check
+% the above +\bright@baselineskip@table+ for an alternative +\baselineskip+
+% value:
+%    \begin{macrocode}
+\def\bright@setfontsize#1#2#3%
+   {\edef\@tempa{\def\noexpand\@tempb####1<#2}%
+    \@tempa>##2<##3\@nil{\def\bright@baselineskip@value{##2}}%
+    \edef\@tempa{\noexpand\@tempb\bright@baselineskip@table<#2}%
+    \@tempa><\@nil
+    \ifx\bright@baselineskip@value\@empty
+       \def\bright@baselineskip@value{#3}%
+    \fi
+    \old@setfontsize{#1}{#2}\bright@baselineskip@value}
+%    \end{macrocode}
+% Now we redefine +\@setfontsize+:
+%    \begin{macrocode}
+\let\old@setfontsize=\@setfontsize
+\let\@setfontsize=\bright@setfontsize
+%    \end{macrocode}
+% The +\baselineskip+ values specified in the above table should be
+% appropriate for most purposes, i.e., for one-column material in the
+% normal article/report/book formats.  However, it is sometimes
+% desirable to use a smaller value for +\baselineskip+, e.g.\ in two-column
+% material.  We therefore provide an option
+% to turn off the above automatic mechanism for +\baselineskip+ settings:
+%    \begin{macrocode}
+\DeclareOption{standard-baselineskips}{%
+ \let\@setfontsize=\old@setfontsize}
+%    \end{macrocode}
+% Note that the +\let+-assignment has to be executed after
+% +\old@setfontsize+ has been defined; this is ensured by
+% the fact that options are processed at the end of the package.
+%
+% \subsection{Old-style numerals}
+% Old-style numerals are to be taken from CM Bright, too:
+%    \begin{macrocode}
+\def\oldstylenums#1{%
+   \begingroup
+    \spaceskip\fontdimen\tw@\font
+    \usefont{OML}{cmbrm}{\f@series}{it}%
+    \mathgroup\symletters #1%
+   \endgroup
+}
+%    \end{macrocode}
+% In the future this may change; old-style numerals could be
+% taken from the text companion font, thus even providing `oldstyle
+% bold extended'~etc.
+%
+% \subsection{Missing symbols}
+% The OT1 encoded CM Bright fonts do not contain the symbol \pounds.
+% We must therefore redefine  the 
+% commands +\textsterling+ and +\mathsterling+.
+% They will now use the roman text font family:
+%    \begin{macrocode}
+\DeclareTextCommand{\textsterling}{OT1}{{%
+   \rmfamily
+   \ifdim \fontdimen\@ne\font >\z@
+      \itshape
+   \else
+      \fontshape{ui}\selectfont
+   \fi
+   \char`\$}}
+\def\mathsterling{\textsl{\textsterling}}
+%    \end{macrocode}
+% Since there is no `caps and small caps' font shape, the definition of
+% \textregistered\ must be changed:
+%    \begin{macrocode}
+\DeclareTextCommandDefault{\textregistered}{%
+   \textcircled{{\rmfamily\scshape r}}}
+%    \end{macrocode}
+%
+% \subsection{Defining the AMS symbol fonts}
+% In case the package \textsf{amsfonts} is loaded additionally,
+% the CM Bright versions of the AMS symbol fonts are to be used.  
+% The \textsf{amsfonts} package, when loaded with the \texttt[psamsfonts] option,
+% will issue its own font definition commands, so we have to defer ours
+% after loading of the packages, so as not to let them be overwritten.
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \DeclareFontFamily{U}{msa}{}
+  \DeclareFontShape{U}{msa}{m}{n}{%
+  <5><6><7><8>cmbras8%
+  <9>cmbras9%
+  <10><10.95><12><14.4><17.28><20.74><24.88>cmbras10%
+  }{}
+  \DeclareFontFamily{U}{msb}{}
+  \DeclareFontShape{U}{msb}{m}{n}{%
+  <5><6><7><8>cmbrbs8%
+  <9>cmbrbs9%
+  <10><10.95><12><14.4><17.28><20.74><24.88>cmbrbs10%
+  }{}
+}
+%    \end{macrocode}
+%
+
+% \subsection{Patches for obsolete \LaTeX{} releases}
+% With a \LaTeX{} release previous to 1995/06/01
+% some macros from the \LaTeX{} kernel and the standard classes
+% must be redefined, because they explicitely select a font with serifs:
+%    \begin{macrocode}
+%<*patch>
+\typeout{* This package `cmbright' contains patches}
+\typeout{* to be used with obsolete versions of LaTeX.}
+\typeout{* However, if your LaTeX is from 1995/06/01 or newer,}
+\typeout{* you MUST redo the installation of the package,}
+\typeout{* in order to generate it again, without the patches!}
+\def\@dottedtocline#1#2#3#4#5{\ifnum #1>\c@tocdepth \else
+  \vskip \z@ \@plus.2\p@
+  {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+    \parindent #2\relax\@afterindenttrue
+   \interlinepenalty\@M
+   \leavevmode
+   \@tempdima #3\relax
+   \advance\leftskip \@tempdima \hbox{}\hskip -\leftskip
+    {#4}\nobreak\leaders\hbox{$\m@th \mkern \@dotsep mu.\mkern \@dotsep
+       mu$}\hfill \nobreak
+           \hbox to\@pnumwidth{\hfil\reset@font #5}\par}\fi}
+\def\@eqnnum{{\reset@font(\theequation)}}
+\DeclareOption{leqno}{
+\renewcommand\@eqnnum{\hbox to .01\p@{}%
+                      \rlap{\reset@font%
+                        \hskip -\displaywidth(\theequation)}}}
+\def\ps@plain{\let\@mkboth\@gobbletwo
+     \let\@oddhead\@empty\def\@oddfoot{\reset@font\hfil\thepage
+     \hfil}\let\@evenhead\@empty\let\@evenfoot\@oddfoot}
+\pagestyle{plain}
+%</patch>
+%    \end{macrocode}
+%
+% \subsection{Processing the options}
+%    \begin{macrocode}
+\ProcessOptions\relax
+%    \end{macrocode}
+%
+% \subsection{Initialization}
+% We ensure that any package loaded after \texttt{cmbright}
+% will find the new value of +\baselineskip+
+% and the new +\normalfont+, which has a larger `em' than CM Roman.
+%    \begin{macrocode}
+\normalfont\normalsize
+%</cm>
+%    \end{macrocode}
+%
+% \section*{This file \ldots}
+% \ldots{} +cmbright.dtx+ contains the following 
+% DocStrip modules:
+% \begin{quote}
+% \begin{tabular}{ll}
+% module: & contents:\\[0.5ex]
+% +cm+ & package +cmbright+\\
+% +driver+ &  driver for documentaion \\
+% +patch+ & patches for \LaTeX{} release $<$ June 1995
+% \end{tabular}
+% \end{quote}
+% The module +patch+ should only be selected together with +cm+.
+% \vspace{1ex}
+% 
+% The next line of code prevents DocStrip from adding the
+% character table to all modules:
+%    \begin{macrocode}
+\endinput
+%    \end{macrocode}
+% \Finale
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+%%
+

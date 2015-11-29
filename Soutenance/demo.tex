@@ -1,0 +1,193 @@
+\documentclass{beamer}
+\usepackage[french]{babel}
+\usepackage{beamerthemeliris}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+\title[Guerre et Paix]
+{Guerre et Paix}
+%\subtitle{}
+
+\author
+[Leo N. Tolstoï - http://liris.cnrs.fr/leo.tolstoi]
+{Leo N. Tolstoï%\inst{1}}
+}
+
+\institute%[XXX]
+{
+  %\inst{1}%
+  {\bf Laboratoire d'InfoRmatique en Image et Systèmes d'information} \\
+  { \scriptsize{
+  LIRIS UMR 5205 CNRS/INSA de Lyon/Université Claude Bernard Lyon 1/Université Lumière Lyon 2/Ecole Centrale de Lyon\\
+  INSA de Lyon, bâtiment J. Verne\\
+  20, Avenue Albert Einstein - 69622 Villeurbanne cedex\\
+  \url{http://liris.cnrs.fr}}
+  }
+}
+
+\date%[KPT 2003]
+{30 Novembre 2006}
+%\subject{Informatik}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Plan}
+  \tableofcontents
+\end{frame}
+
+%***********************************************************************
+% SECTION
+\section{Introduction}
+%***********************************************************************
+
+% ----------------------------------------------------------------------
+\begin{frame}
+  	\frametitle{La litérature au LIRIS}
+  	
+  	\begin{itemize}
+  	 \item La littérature russe
+  	 	\begin{itemize}
+			\item Fedor Dostoïevski
+				\begin{itemize}
+				\item Crime et Châtiment
+				\item Le joueur
+				\item Les frères Karamazov
+				\end{itemize}
+			\item Leo N. Tolstoï
+				\begin{itemize}
+				\item Guerre et Paix
+				\item Anna Karénine
+				\end{itemize}
+		\end{itemize}
+	 \item La littérature Autrichienne
+  	 	\begin{itemize}
+			\item Elfriede Jelinek
+			\item Robert Musil
+				\begin{itemize}
+				\item L'homme sans qualités
+				\item Les Désarrois de l'élève Törless			
+				\end{itemize}
+		\end{itemize}
+  	\end{itemize}	
+\end{frame}
+
+%***********************************************************************
+% SECTION
+\section{La première section}
+%***********************************************************************
+
+% ----------------------------------------------------------------------
+\begin{frame}[label=structureetalert]
+  	\frametitle{Structure et Alert}
+  	
+  	\begin{enumerate}
+  	 \item The \structure{quick brown fox} jumps over the lazy dog.
+  	 \item All work and no play makes jack a \alert{dull boy}.
+  	 \item Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+  	\end{enumerate}
+  	
+\end{frame}
+
+% ----------------------------------------------------------------------
+\begin{frame}
+  	\frametitle{Structure et Alert}
+  	
+  	On peut aussi répéter des frames.
+  	
+\end{frame}
+
+
+% ----------------------------------------------------------------------
+\againframe{structureetalert}
+
+
+%***********************************************************************
+% SECTION
+\section{Une autre section}
+%***********************************************************************
+
+% ----------------------------------------------------------------------
+\begin{frame}
+  	\frametitle{Comment faire une animation}  	  	  	
+  	
+  	Ceci appariât tout de suite. 
+  	
+  	\pause
+  	Je crois que vous venez d'appuyer sur une touche.
+  	
+  	\pause
+  	Et encore.
+  	
+\end{frame}
+
+%***********************************************************************
+% SECTION
+\section{Resultats}
+%***********************************************************************
+
+% ----------------------------------------------------------------------
+\begin{frame}
+  	\frametitle{Comment faire un tableau}  	  	  	
+  	
+	\begin{center}
+  	\begin{tabular}{l||c|c|c}
+	Méthode &Classée 1&Classée 2&Classée 3\\
+	\hline
+	\hline
+	Méthode 1 & 18& 10& 36\\
+	Méthode 2 & 13& 39& 12\\
+	Méthode 3 & 33& 15& 16\\
+	\hline
+	Total & 64 & 64 & 64 \\
+	\end{tabular} 
+  	\end{center}
+	
+\end{frame}
+
+
+% ----------------------------------------------------------------------
+\begin{frame}
+  	\frametitle{Comment faire une description}  	  	  	
+	
+	\begin{description}
+	\item[$H_0$] La méthode 3 est aussi efficace que les deux autres
+	\item[$H_A$] La méthode 3 est soit plus efficace soit moins efficace qu'une ou les deux autres méthodes.
+	\end{description}
+		
+	$$ 
+		U \sim B(N,p) 
+		\quad \quad \quad \quad N=64, \quad p=\frac{1}{3}
+	$$
+ 
+	$$
+	P(U=33) \ = \ 
+	\left (
+	\begin{array}{c}
+	N \\
+	33 \\
+	\end{array}
+	\right )
+	\pi^{p}(1-\pi)^{N-3}
+	\ = \ 0.00111
+	$$
+	
+\end{frame}
+
+\end{document}
+
+

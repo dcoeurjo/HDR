@@ -1,0 +1,416 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Some Chapter styles for LaTeX2e with PSTricks
+%%
+%%  Author : Nguyen-Dai Quy <Quy@Linuxbe.org>
+%%  Version: v0.1
+%%  Date   : 2000/04/29
+%%
+%%  This package is based on 'fncychap.sty' and 'titlesec'
+%%  by using PSTricks package. I created this because both
+%%  two packages can not give me what is I look for :-)
+%%
+%%  Any sugguestion is welcome !
+%%
+%%  Enjoy !
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\FileDate{2000/04/29}
+\def\FileName{pstchap.sty}
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{pstchap}[2000/04/29 v0.1 Chapter styles with PSTricks]
+\RequirePackage{pst-fill,ifthen}
+
+\newgray{gray90}{0.9}
+\newlength{\mywidth}
+\newlength{\mytempvar}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Internal variables has the form : \MyPSTC*
+%% User's command has the form     : \PSTC*
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% chapter's name align
+\newcommand{\MyPSTCnamealign}{\raggedright}
+\newcommand{\PSTCnamealign}[1]{%
+        \ifthenelse{\equal{#1}{left}}{%
+                \renewcommand{\MyPSTCnamealign}{\raggedright}
+        }{\ifthenelse{\equal{#1}{center}}{%
+                \renewcommand{\MyPSTCnamealign}{\centering}
+                }{\ifthenelse{\equal{#1}{right}}%
+                        {\renewcommand{\MyPSTCnamealign}{\raggedleft}}%
+                        {\renewcommand{\MyPSTCnamealign}{\raggedright}}
+                }
+        }
+}
+%% Chapter's title align
+\newcommand{\MyPSTCtitlealign}{\raggedleft}
+\newcommand{\PSTCtitlealign}[1]{%
+        \ifthenelse{\equal{#1}{left}}{%
+                \renewcommand{\MyPSTCtitlealign}{\raggedright}
+        }{\ifthenelse{\equal{#1}{center}}{%
+                \renewcommand{\MyPSTCtitlealign}{\centering}
+                }{\ifthenelse{\equal{#1}{right}}%
+                        {\renewcommand{\MyPSTCtitlealign}{\raggedleft}}%
+                        {\renewcommand{\MyPSTCtitlealign}{\raggedright}}
+                }
+        }
+}
+
+%% arc size [0,1]
+\newcommand{\MyPSTCframearc}{0}
+\newcommand{\PSTCframearc}[1]{\renewcommand{\MyPSTCframearc}{#1}}
+
+%% fill color
+\newcommand{\MyPSTCfillcolor}{gray90}
+\newcommand{\PSTCfillcolor}[1]{\renewcommand{\MyPSTCfillcolor}{#1}}
+
+%% fill style
+\newcommand{\MyPSTCfillstyle}{none}
+\newcommand{\PSTCfillstyle}[1]{\renewcommand{\MyPSTCfillstyle}{#1}}
+
+%% line color
+\newcommand{\MyPSTClinecolor}{blue}
+\newcommand{\PSTClinecolor}[1]{\renewcommand{\MyPSTClinecolor}{#1}}
+
+%% line width
+\newlength{\MyPSTClinewidth}
+\setlength{\MyPSTClinewidth}{2pt}
+\newcommand{\PSTClinewidth}[1]{\setlength{\MyPSTClinewidth}{#1}}
+
+%% framesep
+\newlength{\MyPSTCframesep}
+\setlength{\MyPSTCframesep}{10pt}
+\newcommand{\PSTCframesep}[1]{\setlength{\MyPSTCframesep}{#1}}
+
+%% Shadow size
+\newlength{\MyPSTCshadowsize}
+\setlength{\MyPSTCshadowsize}{4pt}
+\newcommand{\PSTCshadowsize}[1]{\setlength{\MyPSTCshadowsize}{#1}}
+
+
+%% Font family for Name, Number and Title of Chapter
+\newcommand{\MyPSTCnamefont}{pbk}       % Bookman font for the chapter's Name
+\newcommand{\MyPSTCnumfont}{ptm}        % Times font for the chapter's Number
+\newcommand{\MyPSTCtitlefont}{pag}      % Avantgard font for the chapter's Title
+\newcommand{\PSTCfonts}[3]{%            % user's command
+        \renewcommand{\MyPSTCnamefont}{#1}
+        \renewcommand{\MyPSTCnumfont}{#2}
+        \renewcommand{\MyPSTCtitlefont}{#3}
+}
+
+%% Font size for Name, Number and Title of Chapter
+\newlength{\MyPSTCnamesize}
+        \setlength{\MyPSTCnamesize}{20pt}       % default size for chapter's name
+\newlength{\MyPSTCnumsize}
+        \setlength{\MyPSTCnumsize}{20pt}        % default size for chapter's number
+\newlength{\MyPSTCtitlesize}
+        \setlength{\MyPSTCtitlesize}{22pt}      % default size for chapter's title
+\newcommand{\PSTCsizes}[3]{%                    % User's command
+        \setlength{\MyPSTCnamesize}{#1}
+        \setlength{\MyPSTCnumsize}{#2}
+        \setlength{\MyPSTCtitlesize}{#3}
+}
+
+\typeout{----------------------------------------------------------------}
+\typeout{ Loaded \FileName \space Chapter Styles by PSTricks <\FileDate> }
+\typeout{----------------------------------------------------------------}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%     Declaration of Options
+%%
+\DeclareOption{framebox}{%
+\typeout{ \FileName \space option : framebox}
+\def\@makechapterhead#1{%
+  \vspace*{60\p@}%
+    {\parindent \z@ \MyPSTCnamealign \normalfont
+        \interlinepenalty\@M
+        \ifnum \c@secnumdepth >\m@ne
+           {\fontfamily{\MyPSTCnamefont}\fontseries{b}
+            \fontsize{\MyPSTCnamesize}{1.2\MyPSTCnamesize}\selectfont \@chapapp}
+           \space 
+           {\fontsize{\MyPSTCnumsize}{1.2\MyPSTCnumsize}
+            \fontfamily{\MyPSTCnumfont}\fontseries{b}\selectfont \thechapter}\\
+           \par\nobreak
+        \fi
+        \vskip 30\p@
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-2\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        \psframebox[%
+                framesep=\MyPSTCframesep,
+                framearc=\MyPSTCframearc,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox[c]{\mywidth}{%
+           \vspace*{10\p@}%
+           \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}%
+           \vspace*{10\p@}}}%
+        \par\nobreak
+        \vskip 40\p@}%
+}
+
+\def\@makeschapterhead#1{%
+   \vspace*{60\p@}%
+  {\parindent \z@ \MyPSTCtitlealign
+   \normalfont
+   \interlinepenalty\@M
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-2\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        \psframebox[%
+                framesep=\MyPSTCframesep,
+                framearc=\MyPSTCframearc,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox{\mywidth}{%
+           \vspace*{10\p@}%
+       \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}%
+           \vspace*{10\p@}}}%
+   \par\nobreak
+   \vskip 40\p@}%
+}
+}
+%%
+\DeclareOption{dblframebox}{%
+\typeout{ \FileName \space option : dblframebox}
+\def\@makechapterhead#1{%
+  \vspace*{60\p@}%
+    {\parindent \z@ \MyPSTCnamealign \normalfont
+        \interlinepenalty\@M
+        \ifnum \c@secnumdepth >\m@ne
+           {\fontfamily{\MyPSTCnamefont}\fontseries{b}
+            \fontsize{\MyPSTCnamesize}{1.2\MyPSTCnamesize}\selectfont \@chapapp}
+           \space 
+           {\fontsize{\MyPSTCnumsize}{1.2\MyPSTCnumsize}
+            \fontfamily{\MyPSTCnumfont}\fontseries{b}\selectfont \thechapter}\\
+           \par\nobreak
+        \fi
+        \vskip 30\p@ 
+        %\rule{\linewidth}{3pt}
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-4\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        \psframebox[%
+                framesep=0.5\MyPSTClinewidth,
+                fillstyle=none,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor]{%
+        \psframebox[%
+                framesep=\MyPSTCframesep,
+                linewidth=0.5\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox[c]{\mywidth}{%
+           \vspace*{10\p@}%
+           \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}%
+           \vspace*{10\p@}}}%
+        }
+        \par\nobreak
+        \vskip 40\p@}%
+}
+
+\def\@makeschapterhead#1{%
+   \vspace*{60\p@}%
+  {\parindent \z@ \raggedright
+   \normalfont
+   \interlinepenalty\@M
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-4\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        \psframebox[%
+                framesep=0.5\MyPSTClinewidth,
+                fillstyle=none,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor]{%
+        \psframebox[%
+                framesep=\MyPSTCframesep,
+                linewidth=.5\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox{\mywidth}{%
+           \vspace*{10\p@}%
+       \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}%
+           \vspace*{10\p@}}}%
+        }
+   \par\nobreak
+   \vskip 40\p@}%
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareOption{shadowbox}{%
+\typeout{ \FileName \space option : shadowbox}
+\def\@makechapterhead#1{%
+  \vspace*{60\p@}%
+    {\parindent \z@ \MyPSTCnamealign \normalfont
+        \interlinepenalty\@M
+        \ifnum \c@secnumdepth >\m@ne
+           {\fontfamily{\MyPSTCnamefont}\fontsize{\MyPSTCnamesize}{1.2\MyPSTCnamesize}
+            \fontseries{b}\selectfont \@chapapp}
+           \space 
+           {\fontsize{\MyPSTCnumsize}{1.2\MyPSTCnumsize}\fontfamily{\MyPSTCnumfont}
+            \fontseries{b}\selectfont \thechapter}\\
+           \par\nobreak
+        \fi
+        \vskip 30\p@
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-2\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        \addtolength{\mywidth}{-\MyPSTCshadowsize}
+        \psshadowbox[%
+                shadowsize=\MyPSTCshadowsize,
+                framesep=\MyPSTCframesep,
+                framearc=\MyPSTCframearc,
+            linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox[c]{\mywidth}{%
+           \vspace*{10\p@}%
+           \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\fontseries{b}\selectfont #1}%
+           \vspace*{10\p@}}}%
+        \par\nobreak
+        \vskip 40\p@}%
+}
+
+\def\@makeschapterhead#1{%
+   \vspace*{60\p@}%
+  {\parindent \z@ \raggedright
+   \normalfont
+   \interlinepenalty\@M
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-2\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        \addtolength{\mywidth}{-\MyPSTCshadowsize}
+        \psshadowbox[%
+                shadowsize=\MyPSTCshadowsize,
+                framesep=\MyPSTCframesep,
+                framearc=\MyPSTCframearc,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox{\mywidth}{%
+           \vspace*{10\p@}%
+       \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\fontseries{b}\selectfont #1}%
+           \vspace*{10\p@}}}%
+   \par\nobreak
+   \vskip 40\p@}%
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareOption{dblshadowbox}{%
+\typeout{ \FileName \space option : dblshadowbox}
+\def\@makechapterhead#1{%
+  \vspace*{60\p@}%
+    {\parindent \z@ \MyPSTCnamealign \normalfont
+        \interlinepenalty\@M
+        \ifnum \c@secnumdepth >\m@ne
+           {\fontfamily{\MyPSTCnamefont}\fontseries{b}
+            \fontsize{\MyPSTCnamesize}{1.2\MyPSTCnamesize}\selectfont \@chapapp}
+           \space 
+           {\fontsize{\MyPSTCnumsize}{1.2\MyPSTCnumsize}\fontfamily{\MyPSTCnumfont}
+            \fontseries{b}\selectfont \thechapter}\\
+           \par\nobreak
+        \fi
+        \vskip 30\p@ 
+        %\rule{\linewidth}{3pt}% debug :-)
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-4\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        %\addtolength{\mywidth}{-\MyPSTCshadowsize}
+        \psshadowbox[%
+                shadowsize=\MyPSTCshadowsize,
+                framesep=0.5\MyPSTClinewidth,
+                fillstyle=none,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor]{%
+        \psframebox[%
+                framesep=\MyPSTCframesep,
+                linewidth=0.5\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox[c]{\mywidth}{%
+           \vspace*{10\p@}%
+           \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}\fontseries{b}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}%
+           \vspace*{10\p@}}}%
+        }
+        \par\nobreak
+        \vskip 40\p@}%
+}
+
+\def\@makeschapterhead#1{%
+   \vspace*{60\p@}%
+  {\parindent \z@ \raggedright
+   \normalfont
+   \interlinepenalty\@M
+        \setlength{\mywidth}{\linewidth}
+        \addtolength{\mywidth}{-4\MyPSTClinewidth}
+        \addtolength{\mywidth}{-2\MyPSTCframesep}
+        %\addtolength{\mywidth}{-\MyPSTCshadowsize}
+        \psshadowbox[%
+                shadowsize=\MyPSTCshadowsize,
+                framesep=0.5\MyPSTClinewidth,
+                fillstyle=none,
+                linewidth=\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor]{%
+        \psframebox[%
+                framesep=\MyPSTCframesep,
+                linewidth=.5\MyPSTClinewidth,
+                linecolor=\MyPSTClinecolor,
+                fillstyle=\MyPSTCfillstyle,
+                fillcolor=\MyPSTCfillcolor]{\parbox{\mywidth}{%
+           \vspace*{10\p@}%
+       \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}
+            \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\fontseries{b}\selectfont #1}%
+           \vspace*{10\p@}}}%
+        }
+   \par\nobreak
+   \vskip 40\p@}%
+}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareOption{default}{%
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+    {\parindent \z@ \MyPSTCnamealign \normalfont
+        \interlinepenalty\@M
+        \ifnum \c@secnumdepth >\m@ne
+           {\fontfamily{\MyPSTCnamefont}\fontseries{b}
+            \fontsize{\MyPSTCnamesize}{1.2\MyPSTCnamesize}\selectfont \@chapapp}
+           \space 
+           {\fontsize{\MyPSTCnumsize}{1.2\MyPSTCnumsize}\fontfamily{\MyPSTCnumfont}
+            \fontseries{b}\selectfont \thechapter}\\
+           \rule{\linewidth}{\MyPSTClinewidth}
+           \par\nobreak
+        \fi
+        \vspace*{10\p@}
+        \MyPSTCtitlealign{\fontfamily{\MyPSTCtitlefont}\fontseries{b}
+         \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}
+        \par\nobreak
+        \vskip 40\p@}}%
+
+\def\@makeschapterhead#1{%
+   \vspace*{50\p@}%
+  {\parindent \z@ \MyPSTCtitlealign
+   \normalfont
+   \interlinepenalty\@M
+   {\fontfamily{\MyPSTCtitlefont}\fontseries{b}
+    \fontsize{\MyPSTCtitlesize}{1.2\MyPSTCtitlesize}\selectfont #1}
+   \rule{\linewidth}{\MyPSTClinewidth}
+   \par\nobreak
+   \vskip 40\p@}}%
+}
+%%
+\ExecuteOptions{default}
+\ProcessOptions* \relax
+\endinput

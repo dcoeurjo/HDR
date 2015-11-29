@@ -1,0 +1,311 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Package These (dans ~/Styles pour non-standards)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\usepackage[pagebackref]{hyperref}
+
+
+\usepackage[a4paper,twoside,textwidth=14cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}      % classique
+%\usepackage{frbib}                         % bib en fran{\c c}ais : fralpha
+\usepackage{picins}                        % fig ds paragraphe
+\usepackage{bm}                            % pour lettre bold en math
+\usepackage{latexsym}                      % Latex symbole (pour \Box)
+\usepackage{stmaryrd}                      % pour llbracket ...
+\usepackage{url}                           % pour URL
+\usepackage[francais]{babel}               
+\usepackage[french]{minitoc}               % mini table des mati{\`e}res
+\usepackage[dvips]{graphics}               % pour les graphics
+\usepackage[dvips]{epsfig}
+\usepackage{fancyhdr}                      % en tete, pied de page
+\usepackage{subfigure}                     % sous figures
+\usepackage{colortbl}                      % couleur ds les tableaux
+\usepackage{floatflt}                      % figure ds le texte
+\usepackage{placeins}                      % placement flottants (\FloatBarrier)
+
+\usepackage[french,vlined,ruled]{algorithm2e}
+
+
+%\usepackage{cmbright}                   % sty pour la font
+
+
+\usepackage{authorindex}                   % index des auteurs
+%\let\cite=\aicite  
+                        % pour le package pr{\'e}c{\'e}dent
+%\usepackage{natbib}
+
+\usepackage{multicol}
+
+\usepackage[grey,utopia]{quotchap}         % pour num{\'e}ros chapitres en gris
+\usepackage[twoside,figuresleft]{rotating} % turn table (pas dvi que ps)
+%\usepackage{french}                        % langue : javanais
+\usepackage[T1]{fontenc}                   % pour coupure d'accent
+\usepackage{index}
+%%Pour KDVI
+\usepackage[active]{srcltx}
+\usepackage{colortbl}
+\usepackage{color}
+\usepackage[bookmarks,pagebackref]{hyperref}
+
+%%%% Commun options
+\hypersetup{
+  linktocpage,%
+  %%------------- Color Links ------------------------------ 
+  colorlinks=true,% 
+  linkcolor=myred,%
+  citecolor=mydarkblue,% 
+  urlcolor=myblue,%
+  menucolor=red,%
+  %%------------- Doc Info --------------------------------- 
+  pdftitle={HDR},%
+  pdfauthor={David Coeurjolly},%
+  %%------------ Doc View ----------------------------------}
+  pdfhighlight=/P,%
+  bookmarksopen=false,%
+  plainpages=false,
+  pdfpagelabels,
+  pdfpagemode=None}
+
+\hyperbaseurl{http://liris.cnrs.fr/david.coeurjolly/}
+
+\definecolor{myblue}{rgb}{0,0,0.7}
+\definecolor{myred}{rgb}{0.7,0,0}
+\definecolor{mygreen}{rgb}{0,0.7,0}
+\definecolor{mydarkblue}{rgb}{0,0,0.5} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{./Figures/}}                    % chemin des figs
+%listfiles                                 % liste des fichiers a la compil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}                          % pour fancychap
+\fancyhf{}                                 % on vide les pieds de pages
+\fancyhead{}                               % on vide les en-tete
+\fancyhead[RO]{\slshape \rightmark}        % droite, page paire : section
+\fancyhead[LE]{\slshape \leftmark}         % gauche, page impaire : chapitre
+\fancyfoot[C]{-~\thepage~-}                % centre bas, num{\'e}ro de page
+
+\renewcommand{\chaptermark}[1]{%           % chapitre en minuscule
+  \markboth{\chaptername~%
+    \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{%           % section en minuscule
+  \markright{\thesection.\ #1}{}}
+
+
+\fancypagestyle{plain}{%                   % red{\'e}finition style `plain'
+  \fancyhf{}\fancyhead{}                   % rien en haut ni en bas
+  \cfoot{-~\thepage~-}                     % centre bas, num{\'e}ro de page
+  \renewcommand{\headrulewidth}{0pt}       % pas de ligne en haut
+  \renewcommand{\footrulewidth}{0pt}       % pas de ligne en bas
+ }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{mapreuve}%                 % environnement preuve
+{\begin{description}%               
+\item [Preuve :] \sl }{ \hfill $\Box$%     % termine par carr{\'e} blanc
+\end{description} }
+
+\newtheorem{theo}{Th{\'e}or{\`e}me}[chapter]           % environnement th{\'e}or{\`e}me
+\newlength{\xvtextwidth}
+\xvtextwidth\textwidth 
+\advance\xvtextwidth - 4cm
+
+%\renewcommand{\emph}[1]{#1\scalebox{0.4}{\includegraphics{dav.eps}}}
+
+\newtheorem{defi}{D{\'e}finition}[chapter]
+\newtheorem{lem}{Lemme}[chapter]
+\newtheorem{coro}{Corollaire}[chapter]
+\newtheorem{prop}{Proposition}[chapter]
+\newtheorem{conj}{Conjecture}[chapter]
+\newtheorem{example}{Exemple}[chapter]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % \nomtcrule
+% \renewcommand{\mtctitle}{Sommaire\hrule}
+
+\newcommand{\mychaptoc}[1]{%               % chapitre+minitoc
+  \chapter{#1}                         
+  \thispagestyle{plain}
+  %\centerline{\Large $\Diamond$}
+  \minitoc
+  %\centerline{\Large $\Diamond$}
+  %\flushright$\Box$
+  \newpage}                                % saut de page
+
+\newcommand{\mychaptocbis}[1]{%               % chapitre+minitoc
+  \chapter*{#1}                         
+  \thispagestyle{plain}
+  %\centerline{\Large $\Diamond$}
+  \minitoc
+  %\centerline{\Large $\Diamond$}
+  %\flushright$\Box$
+  \newpage}                                % saut de page
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{3}      % depth of numbering of sectionning commands
+\setcounter{tocdepth}{1}         % depth of table of contents
+\raggedbottom                    % or \flushbottom, at your choice
+\setcounter{lofdepth}{1}         % pour la liste de figures : subfig aussi
+\setcounter{minitocdepth}{3}     % profondeur minitoc
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\round}[1]{\lceil #1 \rfloor}  % notation arrondi
+\def\eme{$^{\textrm{{\`e}me}}$}                  % i {\`e}me
+\def\num{n^{\circ}}                        % numero
+\def\Num{N^{\circ}}                        % Numero
+\def\sinc{\mathrm{sinc}}                   % sinus cardinal
+\def\ere{$^{\textrm{{\`e}re}}$}                % {\`e}re
+\def\er{$^{\textrm{{e}r}}$}                % {\`e}re
+\def\eg{\emph{e.g.} }                      % e.g.
+\def\ie{\emph{i.e.} }                      % i.e.
+\def\etc{\emph{etc}}                       % etc
+\def\cm{\,cm}                              % cm
+\def\met{\,m}                              % m
+\def\mm{\,mm}                              % mm
+\def\deg{$^\circ$}                         % degres
+\def\ud{\mathrm{d}}                        % pour dx dy ...
+\newcommand{\ball}  {\ensuremath{B}}
+
+\newcommand{\MAset}{\ensuremath{\mathrm{A\!M}} }
+\newcommand{\MAsetg}{\ensuremath{\MAset^g } }
+
+\def \PS {{\aut{Planar-4-3-SAT}}}
+\def \R {{\Bbb R}}
+\def \I {{\Bbb I}}
+\def \F {{\Bbb F}}
+\def \S {{\Bbb S}}
+\def \Z {{\mathbb Z}}
+\def \L {{\mathcal{L}}}
+\def \C {{\mathcal C}}
+\def \P {{\mathcal P}}
+\def \Q {{\mathcal Q}} 
+\def \E{{\mathcal E}}
+\def \D{{\mathcal D}}
+\def \BD {{\bar{\mathcal{D}}}}
+\def \etal {{\it et al.~}}
+\def\arc{\mbox{arc}}
+\newcommand{\B}   {\ensuremath{B}^{\text{<}}} %%  {\ensuremath{B}^{<}}
+\newcommand{\AMDR}{\operatorname{AMD}}
+\newcommand{\AMD}{\operatorname{AMD}}
+
+\newcommand{\fup}[1]{\uparrow#1\uparrow}
+\newcommand{\fdown}[1]{\downarrow#1\downarrow}
+\newcommand{\sI}[1]{\overline{\tt #1}}
+\newcommand{\iI}[1]{\underline{\tt #1}}
+
+
+
+\newcommand{\mat}[1]{\left( \begin{array}{cccc} #1 \end{array} \right)}
+\newcommand{\matdd}[1]{\left( \begin{array}{cc} #1 \end{array} \right)}
+\newcommand{\tabfdiv}[3]{\mbox{#1}  & #2 & =  #3} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{pstchap}
+
+
+
+%\newcommand{\monchapter}[1]{%%
+%
+%  \chapter{#1}%
+%
+% \vfill\minitoc\vfill\vfill
+
+%\clearpage}
+
+%\newcommand{\moncitet}[1]{
+%%   \citet{#1}
+%   \index{\citeauthor{#1}}
+%}
+\renewcommand{\listtablename}{Table des tableaux}
+
+%ICI
+%\makeindex
+
+
+%\newindex{cite}{ctx}{cnd}{Index des auteurs cit{\'e}s}
+%\renewcommand{\citeindextype}{cite}
+
+
+
+
+% C'est pour les index avec NatBib
+%\citeindextrue
+%%%%%%%%%%%ù
+%%%%%%%%%%%%%%%%%%% MULTIBIB
+\usepackage{multibib}
+
+%%font auteus biblio
+
+%\newfont{\auteursfont}{cmfib8}
+\newcommand{\aut}[1]{{\sc #1}}             % auteur en small capsu
+\newcommand{\OldName}[1]{{\sc #1}}             % auteur en small capsu
+\newcommand{\Name}[1]{{\sc #1}}             % auteur en small capsu
+
+\newcites{ouv,journaux,conf,nat}{
+  Ouvrages,%
+  Articles dans des journaux internationaux,%
+  Articles dans des conférences internationales,%
+  Articles dans des conférences nationales}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%SPECIFIQUE C1V
+\definecolor{mongris}{gray}{0.8}           % definition couleur grise
+\newcommand{\dd}{\footnotesize $\Diamond$}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pr}[1]{\textsl{#1}}
+\newenvironment{cours}%
+{\begin{center}\begin{tabular}{|p{1cm}p{5cm}p{3cm}ll|}
+    \hline
+    \rowcolor{mongris} \textsc{Année} & \textsc{Filière} & \textsc{Matière} &
+  \textsc{Resp.} & \textsc{Vol.}\\\hline\hline}%
+  {\hline\end{tabular}\end{center}}
+\newcommand{\co}[5]{#1 & #2 & #3 & #4 & #5\\}
+
+\newenvironment{these}%
+{\begin{center}\begin{tabular}{|p{1cm}lp{5cm}l|}
+    \hline  
+    \rowcolor{mongris} \textsc{Année} & \textsc{Nom} & \textsc{Titre
+      de la thèse} &
+  \textsc{Encadrement.}\\\hline\hline}%
+  {\hline\end{tabular}\end{center}}
+\newcommand{\myth}[4]{#1 & #2 & #3 & #4 \\}
+
+\newcommand{\e}[5]{#1 & #2 & #3 & #4 & #5 \\}
+\newcommand{\eh}[5]{\rowcolor{mongris} \text{#1} & \text{#2} &  \text{#3} &  \text{#4} & \text{#5}\\} 
+
+
+\newenvironment{cours2}%
+{\begin{center}\begin{tabular}{|p{1cm}lp{6cm}ll|}
+    \hline
+    \rowcolor{mongris} \textsc{Année} & \textsc{Filière} & \textsc{Matière} &
+  \textsc{Resp.} & \textsc{Vol.}\\\hline\hline}%
+  {\hline\end{tabular}\end{center}}
+
+\newcommand{\support}[1]{\emph{\dd~Support de cours réalisé}~: #1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{propriete}{\textsc{\textmd{Propriété}}}[chapter]
+\newtheorem{proposition}{\textsc{\textmd{Proposition}}}[chapter]
+\newtheorem{theoreme}{\textsc{\textmd{Theorème}}}[chapter]
+\newtheorem{lemme}{\textsc{\textmd{Lemme}}}[chapter]
+\newtheorem{remarque}{\textsc{\textmd{Remarque}}}[chapter]
+\newtheorem{definition}{\textsc{\textmd{Définition}}}[chapter]
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "these.tex"
+%%% End: 

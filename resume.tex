@@ -1,0 +1,116 @@
+\documentclass{article}
+%\usepackage{french}
+\pagestyle{empty}
+\usepackage[francais]{babel}               
+
+\usepackage[a4paper,twoside,textwidth=14cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}      % classique
+%\usepackage{frbib}                         % bib en fran{\c c}ais : fralpha
+\usepackage{picins}                        % fig ds paragraphe
+\usepackage{bm}                            % pour lettre bold en math
+\usepackage{latexsym}                      % Latex symbole (pour \Box)
+\usepackage{stmaryrd}                      % pour llbracket ...
+\usepackage{url}                           % pour URL
+\usepackage[francais]{babel}               
+\usepackage[french]{minitoc}               % mini table des mati{\`e}res
+\usepackage[dvips]{graphics}               % pour les graphics
+\usepackage[dvips]{epsfig}
+\usepackage{fancyhdr}                      % en tete, pied de page
+\usepackage{subfigure}                     % sous figures
+\usepackage{colortbl}                      % couleur ds les tableaux
+\usepackage{floatflt}                      % figure ds le texte
+\usepackage{placeins}                      % placement flottants (\FloatBarrier)
+
+\usepackage[french,vlined,ruled]{algorithm2e}
+
+
+%\usepackage{cmbright}                   % sty pour la font
+
+
+\usepackage{authorindex}                   % index des auteurs
+%\let\cite=\aicite  
+                        % pour le package pr{\'e}c{\'e}dent
+%\usepackage{natbib}
+
+\usepackage{multicol}
+
+
+\usepackage[twoside,figuresleft]{rotating} % turn table (pas dvi que ps)
+%\usepackage{french}                        % langue : javanais
+\usepackage[T1]{fontenc}                   % pour coupure d'accent
+\usepackage{index}
+%%Pour KDVI
+\usepackage[active]{srcltx}
+\usepackage{colortbl}
+\usepackage{color}
+\usepackage[bookmarks,pagebackref]{hyperref}
+
+
+
+
+\begin{document}
+
+\begin{center}
+  {\bf {\Large Résumé des travaux}}\\
+\textsc{David Coeurjolly}
+
+\end{center}
+
+
+Le contexte général de mes activités de recherche est la
+\emph{géométrie discrète}.  Cette thématique s'intègre, au moins d'un
+point de vue historique, dans l'analyse de formes dans des images
+numériques.  En effet, de nombreux systèmes d'acquisition de données
+images fournissent des données organisées sur une grille régulière,
+appelées {\it données discrètes}.  Que ce soit pour une visualisation
+ou pour l'extraction de mesures sur ces objets discrets (paramètres de
+formes), les axiomes et théorèmes de la géométrie euclidienne ne sont
+pas directement applicables.  Deux solutions s'offrent à nous.  La
+première consiste à plonger les données discrètes dans un espace
+continu où ces théorèmes et mesures sont définis (par exemple en
+utilisant des processus d'interpolation).  La seconde se base sur une
+transposition de ces théorèmes et mesures dans l'espace discret.  Ces
+différentes re-définitions donnent lieu au paradigme mathématique et
+informatique qu'est {\it la géométrie discrète}.
+
+Au fil du temps et des développements, de nombreuses connexions ont
+été mises en évidence avec de nombreuses thématiques des mathématiques
+(géométrie, topologie, arithmétique, théorie des nombres,
+combinatoire, analyse non-standard,\ldots), du traitement du signal,
+et de l'informatique (algorithmique, géométrie algorithmique,
+complexité,\ldots).
+
+Si le spectre de la géométrie discrète est très large, les travaux que
+j'ai menés portent sur l'analyse de solutions algorithmiques à des
+problèmes de géométrie discrets.  Plus précisément, nous nous
+intéréssons à des algorithmes \emph{exacts} dans le sens où nous
+cherchons à contrôler l'exactitude des calculs par l'utilisation
+d'arithmétique exacte~; mais aussi l'exactitude de l'analyse de
+complexité~: nous cherchons des algorithmes efficaces dont le coût
+algorithmique est borné de la manière la plus fine possible.
+ 
+Pour arriver à ces deux objectifs, nous avons utilisé des outils de
+divers domaines~:
+\begin{itemize}
+\item d'une arithmétique dédiée à la manipulation numérique de
+  quantités continues, faisant le lien entre \emph{supercouverture} et
+  \emph{arithmétique d'intervalles}~;
+\item de l'algorithmique et de l'arithmétique entière ou plus
+  précisément des outils de programmation linéaire entière pour
+  l'analyse de certains objets discrets (\emph{préimage}, convexes
+  discrets,\ldots)~;
+\item de la géométrie algorithmique dans les développements liés aux
+  transformations en distance ou à l'extraction de l'axe médian~;
+\item de l'algorithmique de manière transversale à tous les chapitres
+  et plus précisément concernant les preuves de NP-complétude de la
+  segmentation en plans discrets ou de la minimalité de l'axe
+  médian.
+\end{itemize}
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}The CM Bright fonts}{1}
+\contentsline {section}{\numberline {2}The \LaTeX {} macro package \textsf {cmbright}}{2}
+\contentsline {subsection}{\numberline {2.1}Description}{2}
+\contentsline {subsection}{\numberline {2.2}Package options}{3}
+\contentsline {subsection}{\numberline {2.3}Font encoding}{3}
+\contentsline {subsection}{\numberline {2.4}Scaling of the `large' math symbols}{3}
+\contentsline {subsection}{\numberline {2.5}Known bugs and deficiencies}{3}
+\contentsline {section}{\numberline {3}NFSS classification of the fonts}{4}
+\contentsline {section}{\numberline {4}The package code}{4}
+\contentsline {subsection}{\numberline {4.1}Text font families}{4}
+\contentsline {subsection}{\numberline {4.2}Mathematical fonts}{5}
+\contentsline {subsection}{\numberline {4.3}Leading}{6}
+\contentsline {subsection}{\numberline {4.4}Old-style numerals}{7}
+\contentsline {subsection}{\numberline {4.5}Missing symbols}{7}
+\contentsline {subsection}{\numberline {4.6}Defining the AMS symbol fonts}{8}
+\contentsline {subsection}{\numberline {4.7}Patches for obsolete \LaTeX {} releases}{8}
+\contentsline {subsection}{\numberline {4.8}Processing the options}{9}
+\contentsline {subsection}{\numberline {4.9}Initialization}{9}

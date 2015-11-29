@@ -1,0 +1,202 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ./Figures/planaire.fig
+%%Creator: fig2dev Version 3.2 Patchlevel 5-alpha7
+%%CreationDate: Wed Feb 28 10:42:34 2007
+%%BoundingBox: 0 0 207 229
+%Magnification: 1.0000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+
+end
+save
+newpath 0 229 moveto 0 0 lineto 207 0 lineto 207 229 lineto closepath clip newpath
+-104.9 358.1 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+
+$F2psBegin
+10 setmiterlimit
+0 slj 0 slc
+ 0.06299 0.06299 sc
+%
+% Fig objects follow
+%
+% 
+% here starts figure with depth 50
+% Polyline
+0 slj
+0 slc
+15.000 slw
+n 2340 2745 m
+ 2610 3555 l gs col4 s gr 
+% Polyline
+n 2340 2745 m
+ 3600 4140 l gs col4 s gr 
+% Polyline
+n 4635 3600 m
+ 4050 3375 l gs col4 s gr 
+% Polyline
+n 2520 4410 m
+ 3555 4275 l gs col4 s gr 
+% Polyline
+n 2340 4275 m
+ 2610 3780 l gs col2 s gr 
+% Polyline
+n 3060 2340 m
+ 3735 3060 l gs col2 s gr 
+% Polyline
+n 4230 5310 m
+ 3780 4500 l gs col2 s gr 
+% Polyline
+n 2340 2745 m
+ 3735 3195 l gs col2 s gr 
+% Polyline
+2 slj
+n 4140 5490 m 4138 5490 l 4134 5490 l 4126 5490 l 4113 5490 l 4096 5489 l
+ 4072 5489 l 4043 5488 l 4008 5488 l 3968 5487 l 3923 5486 l
+ 3874 5484 l 3822 5483 l 3767 5481 l 3710 5480 l 3653 5478 l
+ 3595 5476 l 3539 5473 l 3483 5471 l 3428 5468 l 3375 5465 l
+ 3325 5462 l 3276 5459 l 3229 5456 l 3184 5452 l 3141 5448 l
+ 3100 5444 l 3061 5440 l 3023 5435 l 2986 5430 l 2950 5425 l
+ 2916 5419 l 2882 5413 l 2848 5407 l 2815 5400 l 2783 5393 l
+ 2746 5384 l 2709 5375 l 2673 5365 l 2636 5354 l 2599 5343 l
+ 2562 5332 l 2525 5319 l 2488 5306 l 2450 5292 l 2413 5277 l
+ 2376 5262 l 2339 5246 l 2302 5229 l 2266 5212 l 2230 5194 l
+ 2195 5176 l 2161 5157 l 2128 5137 l 2095 5118 l 2064 5098 l
+ 2034 5077 l 2005 5057 l 1978 5036 l 1952 5015 l 1927 4994 l
+ 1904 4973 l 1882 4952 l 1862 4931 l 1842 4910 l 1825 4888 l
+ 1808 4867 l 1793 4845 l 1776 4820 l 1761 4794 l 1748 4768 l
+ 1736 4741 l 1725 4713 l 1716 4684 l 1707 4655 l 1700 4626 l
+ 1695 4595 l 1691 4565 l 1688 4534 l 1687 4502 l 1687 4471 l
+ 1688 4440 l 1691 4409 l 1695 4378 l 1700 4348 l 1707 4318 l
+ 1714 4289 l 1723 4261 l 1732 4234 l 1743 4208 l 1754 4183 l
+ 1766 4159 l 1779 4136 l 1793 4114 l 1807 4093 l 1823 4073 l
+ 1838 4053 l 1855 4034 l 1873 4016 l 1892 3999 l 1913 3981 l
+ 1935 3964 l 1959 3948 l 1985 3931 l 2013 3914 l 2044 3897 l
+ 2076 3880 l 2111 3863 l 2148 3845 l 2186 3827 l 2226 3809 l
+ 2267 3792 l 2307 3775 l 2346 3758 l 2383 3743 l 2416 3730 l
+ 2446 3718 l 2470 3709 l 2490 3701 l 2504 3696 l 2513 3693 l
+ 2518 3691 l
+ 2520 3690 l gs col4 s gr 
+/Times-Roman ff 270.00 scf sf
+1980 2745 m
+gs 1 -1 sc (x) col0 sh gr
+/Times-Roman ff 270.00 scf sf
+2970 2205 m
+gs 1 -1 sc (x) col0 sh gr
+/Times-Roman ff 270.00 scf sf
+2160 4365 m
+gs 1 -1 sc (x) col0 sh gr
+/Times-Roman ff 270.00 scf sf
+4230 5580 m
+gs 1 -1 sc (x) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+2160 2835 m
+gs 1 -1 sc (1) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+3150 2340 m
+gs 1 -1 sc (2) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+2340 4500 m
+gs 1 -1 sc (3) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+4410 5670 m
+gs 1 -1 sc (4) col0 sh gr
+/Times-Roman ff 270.00 scf sf
+4680 3690 m
+gs 1 -1 sc (x) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+4815 3780 m
+gs 1 -1 sc (5) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+2565 3735 m
+gs 1 -1 sc (C) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+3735 3195 m
+gs 1 -1 sc (C) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+2700 3825 m
+gs 1 -1 sc (1) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+3915 3330 m
+gs 1 -1 sc (2) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+3600 4320 m
+gs 1 -1 sc (C) col0 sh gr
+/Times-Roman ff 180.00 scf sf
+3735 4455 m
+gs 1 -1 sc (3) col0 sh gr
+% here ends figure;
+$F2psEnd
+rs
+showpage
+%%Trailer
+%EOF

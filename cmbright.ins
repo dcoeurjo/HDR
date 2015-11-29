@@ -1,0 +1,26 @@
+% file cmbright.ins 1998-01-19
+%\NeedsTeXFormat{LaTeX2e}[1996/12/01]
+\input docstrip
+\usedir{tex/latex/cmbright}
+\keepsilent
+
+\Msg{Generating cmbright.sty ...}
+
+\generate{\file{cmbright.sty}{\from{cmbright.dtx}{cm}}}
+
+\Msg{Generating font definition files ...}
+
+\generate{\file{ot1cmbr.fd} {\from{cmbr.fdd}{cm}}
+          \file{t1cmbr.fd}  {\from{cmbr.fdd}{ec}}
+          \file{ts1cmbr.fd} {\from{cmbr.fdd}{ts1cmbr}}
+          \file{omlcmbrm.fd}{\from{cmbr.fdd}{omlcmbrm}}
+          \file{omscmbrs.fd}{\from{cmbr.fdd}{omscmbrs}}
+          \file{omlcmbr.fd} {\from{cmbr.fdd}{omlcmbr}}
+          \file{omscmbr.fd} {\from{cmbr.fdd}{omscmbr}}
+          \file{ot1cmtl.fd} {\from{cmbr.fdd}{ot1cmtl}}
+          \file{t1cmtl.fd}  {\from{cmbr.fdd}{t1cmtl}}
+          \file{ts1cmtl.fd} {\from{cmbr.fdd}{ts1cmtl}}
+}
+
+\endbatchfile
+

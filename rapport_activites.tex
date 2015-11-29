@@ -1,0 +1,744 @@
+%; whizzy-master hdr.tex
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\chapter{Rapport d'activités}
+
+\vspace{-1cm}
+\scriptsize
+\minitoc
+\normalsize
+
+
+% \addcontentsline{toc}{starchapter}{Introduction}
+% \thispagestyle{plain}
+% \markboth{Introduction}{Introduction}
+\label{sec:rapportact}
+
+
+\section{Notice Individuelle}
+
+\newcommand{\cv}[3]{ #1 & \emph{#2} \dotfill & #3 \\}
+\begin{center}
+  \fbox{
+    \begin{tabular}{rp{6cm}p{8cm}}
+      \cv{\dd}{Nom}{David {\sc Coeurjolly}}
+      \cv{}{Date et lieu de naissance}{3  septembre 1977 à Lille  (59)}
+%      \cv{}{Nationalité}{Français}
+%      \cv{}{Situation de famille}{Célibataire}
+%      \cv{}{Service National}{Sursitaire }  
+      \cv{}{Situation actuelle}{Chargé de Recherche CNRS}
+      ~&~\\
+%      \cv{\dd}{Adresse personnelle}{9bis rue de Trarieux, 69003 {\sc Lyon}}
+%      \cv{}{Téléphone}{04 37 69 04 09}
+%      ~&~\\
+      \cv{\dd}{Adresse professionnelle}{Laboratoire LIRIS UMR 5205, %\\ ~&~& 
+        Université Claude Bernard Lyon 1 \\ ~&~& 
+        43 Bd du 11 novembre 1918 \\ ~&~& 
+        Bat. Nautibus, \\ ~&~& 
+        69622 {\sc Villeurbanne}}
+      \cv{}{Téléphone}{04 78 44 82 40}
+      \cv{}{Télécopie}{04 78 43 15 36}
+      ~&~\\
+      \cv{\dd}{Mél}{\texttt{david.coeurjolly@liris.cnrs.fr}}
+      \cv{}{Page web}{\texttt{http://liris.cnrs.fr/$\backsim$dcoeurjo}}
+    \end{tabular}}
+\end{center}
+
+
+% \section{Formation  --- résumé}
+
+% année, formation/filière, lieu, mention, 
+\newcommand{\fo}[4]{\textbf{#1} & #2 & #3 \\}
+\newcommand{\foh}[4]{\rowcolor{mongris} \textbf{{\sc #1}} & %
+  {\sc #2} & {\sc #3}\\}
+
+% \begin{table}[!h]
+%   \begin{center}
+%     \begin{tabular}{|rp{5cm}p{6cm}|}
+%       \hline
+%       \foh{Année}{Diplôme}{Lieu}{Mention}\hline\hline
+%       \fo{Dec. 2003 -  ...}{Chargé de Recherche CNRS}{Laboratoire
+%         LIRIS, UCBL}
+%       {en cours}
+%       \fo{Sept. 2003 - Dec. 2003}{ATER}{Laboratoire LIRIS, INSA de Lyon}
+%       {en cours}
+%       \fo{Mars. 2003 - Juin 2003}{Post Doctorat}{Laboratoire LIS, Grenoble}
+%       {en cours}
+%       \fo{Sept. 2000 - Dec. 2002}{Doctorat d'informatique}{Université Lumière Lyon 2}
+%       {en cours}
+% %      \fo{99-2000}{DEA et Magistère d'informatique}{École Normale Supérieure de
+% %        Lyon}{TB}
+%       %\fo{}{d'informatique}{}{}
+% %      \fo{98-99}{Maîtrise et Magistère d'informatique
+% %        }{École Normale
+% %        Supérieure de Lyon}{TB} 
+% %      \fo{97-98}{Licence et Magistère d'informatique
+% %        }{École Normale Supérieure de
+% %        Lyon}{TB}
+% %      \fo{95-97}{DEUG MIAS}{Université Claude Bernard Lyon 1}
+% %      {1\er~{\tiny puis} 2\eme}
+%        \hline
+%     \end{tabular}
+%   \end{center}
+%   %\centerline{Résumé du parcours universitaire}
+% \end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Emplois et formation}
+% année, formation, spécialité, lieu, stage, mention
+\newcommand{\fod}[2]{\multicolumn{2}{p{3.5cm}}{\emph{#1}\dotfill} &
+  \multicolumn{2}{p{9cm}}{#2}\\}
+\newcommand{\fodt}[4]{\emph{#1} & {\footnotesize \textsl{#2}} & #3 & \small #4\\}
+%\newenvironment{ta}{\begin{tabular}{p{3.5cm}p{9cm}}}{\end{tabular}\\}
+\newenvironment{ta}{\begin{tabular}{crll}}{\end{tabular}\\}
+%\vfill
+
+\begin{description}
+\item[\dd  ~~Depuis Décembre 2003] \textsc{Chargé de Recherche CNRS},
+  Laboratoire LIRIS, UMR 5205.
+
+
+\item[\dd~~Septembre 2003 - Décembre 2003] \textsc{Attaché Temporaire
+    d'enseignement et de Recherche}  à
+  l'Institut National des Sciences Appliquées de Lyon (INSA),
+  département Informatique, laboratoire de rattachement LIRIS UMR 5205.
+
+
+
+\item[\dd~~Mars 2003 - Juin 2003] \textsc{Post Doctorat}, Laboratoire
+  LIS, Université Joseph Fourier, Grenoble\\
+\begin{ta}
+    \fod{Sujet}{Problème du plus grand convexe inclus dans un polygone
+    simple}
+  \fod{Direction}{\aut{Jean-Marc Chassery}}
+ \end{ta}
+
+
+\item[\dd~~Sept. 2000 - Dec. 2002] \textsc{Doctorat d'université}, Spécialité Informatique\\
+  \input{tableau-these.tex}
+\end{description}
+
+\section{Activités d'enseignement}
+
+
+
+
+
+\subsection{Résumé}
+
+
+
+\begin{center}
+  \begin{tabular}{|p{1cm}p{5cm}p{4cm}p{0.5cm}p{0.5cm}|}
+    \hline
+    \eh{~}{Filière}{Matière}{Type}{Vol.}
+\hline\hline
+    \e{06--07}{Master Recherche Informatique 2ième année,
+      UCBL Lyon~1}{Cours de spécialité recherche}{TD}{$6$h}
+\hline
+    \e{05--06}{Master Recherche Informatique 2ième année,
+      UCBL {Lyon~1}}{Cours de spécialité recherche}{CM}{$10$h}
+ \e{~}{3ième année école d'ingénieurs IEG, Grenoble}{Cours de
+      spécialité recherche}{CM}{$8$h}
+\hline
+    \e{04--05}{Master Recherche Informatique 2ième année,
+      UCBL {Lyon~1}}{Cours de spécialité recherche}{CM}{$10$h}
+    \e{~}{3ième année école d'ingénieurs IEG, Grenoble}{Cours de
+      spécialité recherche}{CM}{$8$h}
+\hline
+    \e{03--03}{ATER (demi-poste) département informatique, INSA, Lyon}{Programmation C++}{TP}{$80$h}
+
+\hline
+    \e{00--03}{Moniteur à l'Institut de la Communication,
+      Lyon2}{-}{TD}{$192$h}
+
+\hline
+
+\end{tabular}
+\end{center}
+
+
+\subsection{Détails des enseignements}
+
+
+\subsubsection{Responsabilités et vacations en temps que Chargé de Recherche}
+ {\bf Master Recherche  Université Claude Bernard Lyon  1} : cours
+  de spécialité     recherche   (Master 2ième     année)   ``Géométrie
+  algorithmique   et  géométrie  discrète''   en collaboration    avec
+  \aut{Raphaelle  Chaine} (MCF -  UCBL). L'objectif de ce cours est
+  d'introduire  les fondements géométriques et topologiques permettant
+  de formaliser  des   notions  de  formes  discrètes,   continues par
+  morceaux (maillage,  triangulation)   ou  induites par   l'imagerie
+  numérique (objets sur des grilles). Ce cours de spécialité se trouve
+  dans le parcours ``Informatique Graphique et Image'' du Master
+  Recherche Informatique de Lyon.
+
+
+  {\bf Master 1ère année  Informatique Université Claude  Bernard Lyon
+    1}  : organisation   du module  de   TER  (Travaux d'Etude et   de
+  Recherche).   L'objectif du TER   est de confronter les étudiants au
+  monde de la  recherche après  une première  expérience du monde   de
+  l'entreprise en fin de licence, ceci afin de vous permettre un choix
+  éclairé entre M2 recherche et M2 professionnel à  l'issue du M1.  En
+  2006-2007,   cette   organisation était    en   collaboration   avec
+  \aut{Stéphanie Jean-Daubias}  (MCF, UCBL).  Pour  l'année 2007-2008,
+  j'ai la responsabilité seul de ce module.
+
+
+  {\bf Master   recherche  et 3ième   année école à l'École  Nationale
+    Supérieure d'Ingénieurs Electriciens  de  Grenoble}~: cours commun
+  entre la troisième  année de la  filière ATIS (analyse et traitement
+  des   images et   des   signaux) de l'IEG  et    le Master Recherche
+  ``Électronique, Electrotechnique,  Automatique  et   Traitement   du
+  signal'', filière  ``Signal, Image,  Parole, Télécoms''  (SIPT).  En
+  collaboration avec  \aut{Cédric  Gérot}   (MCF -  Université  Pierre
+  Mendès-France,  Grenoble) et \aut{Jocelyn Chanussot} (MCF, ENSIEG, Grenoble), l'objectif est
+  d'introduire  le vocabulaire et les   notions de base pour l'analyse
+  d'images  (notions de grille,  de  topologie, de géométrie discrète)
+  dans une problématique de segmentation de formes.
+
+\subsubsection{Enseignement en tant qu'Attaché Temporaire
+  d'Enseignement et de Recherche}
+
+Au  cours  de ma période  d'ATER à  l'INSA de Lyon, j'ai  participé au
+cours~:   \emph{Algorithmique,    programmation   objet  -   C++} avec
+\aut{Mathieu Maranzana}  (MCF   - INSA  de Lyon).   L'objectif  de cet
+enseignement était pour les étudiants  d'acquérir les  compétences  en
+développement de logiciels. Pour cela, nous insistions sur la maîtrise
+des outils   méthodologiques    indispensables à  la  conception,   la
+réalisation, la validation et la  maintenance de logiciels de qualité,
+illustrée avec le langage  C++.  Cet enseignement intervenait  au début
+de la 3\ieme année de l'INSA (département  Informatique) et a consisté
+en des séances de TP.
+
+\subsubsection{Enseignement en tant que Moniteur}
+
+A partir de  l'année  universitaire 2000-2001, mon enseignement  s'est
+déroulé dans le cadre   d'un monitorat  d'Initiation à  l'Enseignement
+Supérieur.  Ce  poste était  rattaché à  l'Institut de  la Communication
+(ICOM) de l'université  Lumière Lyon 2.
+
+
+L'Institut de la  Communication regroupe différentes formations, de la
+licence au master, ainsi  que  divers Diplômes d'Université  (DU).  Au
+sein   de cet   institut, j'ai    effectué  une   bonne  part  de  mes
+enseignements dans        les      formations  ayant     trait à    la
+\emph{Communication} et la   \emph{Création   Infographique}.  D'autre
+part,   il    m'a également été   permis    d'intervenir au  Magistère
+d'Informatique  et Modélisation à  l'École Normale  Supérieure de Lyon
+grâce à  un échange  de   service (cours  ASI,    Analyse et  Synthèse
+d'Images), et d'animer un  stage de formation continue à  l'Université
+Lyon 2 (Internet, HTML, Javascript).
+
+\section{Activités de recherche}
+
+\subsection{Environnement et orientation générale}
+
+Le    contexte   général de   mes   activités   de   recherche  est la
+\emph{géométrie discrète}.  Cette thématique  s'intègre, au moins d'un
+point de  vue  historique, dans l'analyse de   formes  dans des images
+numériques.  En  effet, de nombreux  systèmes d'acquisition de données
+images fournissent  des données organisées  sur  une grille régulière,
+appelées {\it données discrètes}.  Que ce  soit pour une visualisation
+ou pour l'extraction de mesures sur ces objets discrets (paramètres de
+formes), les axiomes et théorèmes  de la géométrie euclidienne ne sont
+pas directement  applicables.   Deux solutions s'offrent à  nous.   La
+première consiste à  plonger   les données discrètes    dans un espace
+continu  où ces  théorèmes et mesures  sont  définis  (par  exemple en
+utilisant des processus d'interpolation).  La  seconde se base sur une
+transposition de ces théorèmes et mesures dans  l'espace discret.  Ces
+différentes re-définitions donnent  lieu au paradigme  mathématique et
+informatique qu'est {\it la géométrie discrète}.
+
+Au fil du  temps et des développements,  de nombreuses connexions ont
+été mises en évidence avec de nombreuses thématiques des mathématiques
+(géométrie,    topologie,      arithmétique, théorie     des  nombres,
+combinatoire, analyse non-standard,\ldots),  du traitement  du signal,
+et  de    l'informatique  (algorithmique,  géométrie    algorithmique,
+complexité,\ldots).
+
+Si le spectre de la géométrie discrète est très large, les travaux que
+j'ai  menés portent sur  l'analyse  de solutions  algorithmiques à des
+problèmes   de  géométrie   discrets.  Plus   précisément,   nous nous
+intéréssons à des  algorithmes \emph{exacts}  dans   le sens où   nous
+cherchons à   contrôler  l'exactitude  des   calculs par l'utilisation
+d'arithmétique   exacte~; mais  aussi  l'exactitude  de  l'analyse  de
+complexité~: nous cherchons des algorithmes   efficaces dont le   coût
+algorithmique est borné de la manière la plus fine possible.
+ 
+Pour arriver à ces deux objectifs, nous avons utilisé des outils de
+divers domaines~:
+\begin{itemize}
+\item d'une  arithmétique    dédiée à la   manipulation   numérique de
+  quantités continues, faisant le lien entre \emph{supercouverture} et
+  \emph{arithmétique d'intervalles} (chapitres \ref{chap:IA} et \ref{chap:reconstruction})~;
+\item   de  l'algorithmique  et  de   l'arithmétique entière  ou  plus
+  précisément  des  outils   de programmation   linéaire  entière pour
+  l'analyse de   certains  objets discrets (\emph{préimage},  convexes
+  discrets,\ldots), voir chapitre \ref{chap:ILP}~;
+\item  de la géométrie  algorithmique dans les développements liés aux
+  transformations   en  distance ou à   l'extraction   de l'axe médian
+  (chapitres \ref{chap:AM} et \ref{chap:minim-et-simpl})~;
+\item de l'algorithmique de manière transversale à tous les chapitres
+  et plus précisément  concernant les preuves de NP-complétude de la
+  segmentation en plans discrets (section \ref{sec:reconstr-et-poly} et chapitre \ref{chap:reconstruction}) ou de la minimalité de l'axe médian
+  (chapitre \ref{chap:minim-et-simpl}). 
+\end{itemize}
+
+\subsection{Collaborations internationales}
+\label{sec:coll-intern}
+
+\begin{itemize}
+\item \aut{R. Klette, PR},  Centre for Image Technology  and Robotics,
+  University  of Auckland,   Nouvelle-Zelande~:  collaboration dans le
+  cadre  de  l'analyse   d'estimateurs  de longueur   discrets   (voir
+  \citejournaux{dcoeurjo_length_PAMI} et \citeconf{dcoeurjo_ICPR})  et
+  sur l'analyse des plans discrets \citejournaux{dcoeurjo_planarity}~;
+
+
+\item \aut{V. Brimkov,  PR}, SUNY Buffalo State  College, Etats-Unis~:
+  collaboration dans le cadre      de l'analyse de   plans    discrets
+  \citejournaux{dcoeurjo_planarity}\citeconf{dcoeurjo_iwcia2006}~;
+
+ \item  \aut{S.  Svensson}, Centre  for  Image   Analysis, Uppsala
+  Universitet, Suède~: Analyse de courbes discrètes 3D dans une
+  application d'analyse de fibres de papier \citeconf{dcoeurjo_scia}.
+\end{itemize}
+
+\subsection{Collaborations nationales extérieures au LIRIS}
+\label{sec:coll-nati-exter}
+
+
+\begin{itemize}
+\item \aut{A. Montanvert, PR}, UPMF-IUT2  et laboratoire GIPSA-lab, UMR
+  5216~: collaboration  dans le cadre  des transformations en distance,
+  de l'extraction d'axe  médian \citejournaux{dcoeurjo_pami_RDMA}, et dans le
+  projet de coordination de l'ouvrage Hermès \citeouv{dcoeurjo_hermes}~;
+
+\item \aut{J.-M. Chassery, DR CNRS}, laboratoire GIPSA-lab, UMR 5216~:
+  collaboration  liée à  l'analyse de \emph{plus grand  convexe inclus
+    dans une    forme   2D} et    aux   notions  de   dualité/polarité
+  \citejournaux{dcoeurjo_preimage_DAM}\citeconf{dcoeurjo_chassery_ismm,dcoeurjo_dgci2006_chassery}~;
+
+\item \aut{M.   Couprie}, PR, Laboratoire A2SI,  ESIEE~: collaboration
+  dans le cadre de la  définition d'une fonction bissectrice basée sur
+  le diagramme de Voronoï discret d'une forme  \citejournaux{dcoeurjo_IVC_couprie}~;
+
+\item \aut{E.   Andres}, PR, Laboratoire SIC, Poitiers~: collaboration
+  dans  le    cadre  des   travaux de    \aut{Martine  Dexet}   sur la
+  polyédrisation réversible d'objets discrets \citeconf{dcoeurjo_mdexet_ISVC}~;
+
+
+\item \aut{J.-B. Brzoska,  Ing.   HDR}, Centre d'Étude de   la  neige,
+  Météo-France, Grenoble~: Projet  {\it  Neige}  dont l'objectif était
+  l'analyse géométrique de micro-échantillons de neige~;
+
+\item \aut{J.-P. Reveillès, Pr}, laboratoire LLAIC, Clermont-Ferrand~:
+  collaboration    pour  l'analyse   des      cercles  discrets
+  \citejournaux{dcoeurjo_digitalarc_DAM}\citeconf{dcoeurjo_digitalarc}
+
+\item  \aut{I.   Debled-Rennesson,  MCF},  laboratoire  LORIA, Nancy~:
+  collaboration pour  l'analyse    d'estimateurs    de   longueur   3D
+  \citeconf{dcoeurjo_length3D}.
+\end{itemize}
+
+\subsection{Animation de la recherche}
+
+
+
+
+\subsubsection{IAPR Technical Committee ``Discrete Geometry''}
+\label{sec:tc18}
+
+Depuis  octobre     2006, je    suis    responsable   du
+\emph{Technical                                             Committee}
+18\footnote{\url{http://www.cb.uu.se/~tc18/}} de l'\emph{International
+  Association                        on                        Pattern
+  Recognition}\footnote{\url{http://www.iapr.org}}  (IAPR).  Ce comité
+international a  pour  objectif de  faciliter les  interactions et les
+collaborations  entre chercheurs travaillant  en géométrie discrète ou
+dans    des  domaines  connexes   (le  TC    regroupe actuellement  69
+chercheurs).  Pour  cela,  un  site  web  regroupant  des   ressources
+(documents, codes, jeux de données, \ldots) a été créé. De plus, le TC
+participe à  l'organisation de   la  conférence  majeure  en géométrie
+discrète : \emph{Discrete  Geometry for Computer Imagery} (DGCI). Pour
+ce travail, je  suis aidé de  deux vice-responsables~: \aut{Stina  Svensson}
+(Dr. Centre   for  Image Analysis,  Uppsala,   Sweden) en  charge  des
+relations avec   DGCI et  de \aut{Reneta  Barneva}  (Pr.,  Kasling Lecturer,
+Department  of  Computer  Science State University    of  New York  at
+Fredonia,    USA),   en      charge      de    la       diffusion   et
+de \emph{l'internationalisation} des activités en géométrie discrète.
+
+
+Sur  la  période 2003-2006,  je participais déjà  au TC18  en tant que
+co-responsable  avec  \aut{Annick  Montanvert}  (Pr, Université Pierre
+Mendès-France, Grenoble).
+
+
+\subsubsection{14th IAPR  International Conference on Discrete Geometry for Computer Imagery}
+
+Lors du  DGCI   de 2006 à  Szeged  en  Hongrie, à  la  suite  de notre
+proposition nous avons été choisi  par le \emph{Steering Committee} de
+la conférence pour organiser la 14\ieme édition  en avril 2008 au laboratoire LIRIS à
+Lyon\footnote{\url{http://liris.cnrs.fr/dgci2008}}.      Le     comité
+d'organisation  se compose d'\aut{Isbelle Sivignon}  et de moi-même en
+tant que co-responsables principaux,  ainsi que de  \aut{Laure Tougne,
+  Florent Dupont, Jean-Marie Becker} et de \aut{Serge Miguet}.
+
+
+
+
+\subsubsection{Organisation de manifestations nationales}
+
+\begin{itemize}
+\item      {\bf   JIG     2006}     ``Journées     Informatique     et
+  Géométrie''\footnote{\url{http://liris.cnrs.fr/jig2006}}~:        60
+  participants, organisées au LIRIS en collaboration avec \aut{Valérie
+    Berthé} (DR-CNRS, LIRMM) et \aut{Laurent Vuillon}  (Pr., Univ.  de
+  Savoie). Cette manifestation portait sur les  thèmes de la géométrie
+  algorithmique, de la géométrie  discrète,   de la synthèse et   de
+  l'analyse d'images.
+\item  {\bf Groupe  de Travail  Géométrie  Discrète}~: organisation de
+  plusieurs  réunions à Lyon du   groupe de travail  géométrie discrète
+  regroupant une trentaine de membres.
+\end{itemize}
+
+
+\subsubsection{Participation à des comités de programme et de lecture}
+
+{\bf Participation à des comités de programme :}
+\begin{itemize}
+\item Discrete Geometry for Computer Imagery (DGCI) 2005
+\item International Workshop on Combinatorial Image Analysis (IWCIA) 2004
+\item International Workshop on Combinatorial Image Analysis (IWCIA) 2006
+\end{itemize}
+
+{\bf Participation à des comités de lecture :}
+\begin{itemize}
+\item relecteur pour les revues~:
+  \begin{itemize}
+  \item IEEE Trans. on Pattern Analysis and Machine Intelligence
+  \item IEEE Trans. on Image Processing
+  \item Discrete Applied Mathematics
+  \item Pattern Recognition
+  \item Pattern Recognition Letters
+  \item Computer and Graphics   
+  \item Image Vision \& Computing
+  \item Pattern Analysis \& Applications
+\end{itemize}
+\item relecteur régulier des conférences DGCI, IWCIA et  International
+  Conference on Pattern Recognition (ICPR)~;
+
+\end{itemize}
+
+
+\subsubsection{Participation à des jurys de thèse}
+
+\begin{itemize}
+\item \aut{Julien  Ricard}~:  ``Indexation et   recherche d'objets 3D à
+  partir de requêtes 2D et 3D'',  LIRIS, Lyon, suite à la co-direction
+  de la thèse (voir section \ref{sec:theses-dirigees-et}), décembre
+  2005.
+ 
+\item \aut{Martine Dexet}~: ``Architecture d'un modeleur géométrique à
+  base topologique d'objets discrets et méthodes de reconstruction en
+  dimensions 2 et 3'', SIC Poitiers, examinateur, directeur :
+  \aut{Eric Andrès}, décembre 2006.
+
+\item\aut{François de   Vielleville}~: ``Analyse de  parties linéaires
+  des  objets   discrets  pour   l'extraction   de    caractéristiques
+  géométriques'',   LaBRI,   Bordeaux,  examinateur,    directeurs   :
+  \aut{Achille  Braquelaire} et \aut{Jacques-Olivier Lachaud}, juillet
+  2007.
+\end{itemize}
+
+% \subsection{Communications}
+
+% Au sein de mon unité,  j'ai participé à l'organisation des  séminaires
+% de l'axe 2 sur la période 2003-2004. Hormis des séminaires internes de
+% présentation de   résultats      scientifiques,  j'ai      participé à
+% l'organisation  de  plusieurs   séminaires de   présentation  d'outils
+% informatiques  spécifiques   (\LaTeX,   \ldots) pour    les membres du
+% laboratoire.
+
+
+\section{Encadrement}
+
+
+
+\subsection{Encadrement d'étudiants en thèse}
+\label{sec:theses-dirigees-et}
+
+\begin{these}
+\myth{05--08}{Antoine Vacavant}{Généralisation de la géométrie
+  discrète aux grilles isothétiques irrégulières}{L. Tougne \&
+  D. Coeurjolly}
+  \myth{02--05}{Julien  Ricard}{Indexation d'objets  3D  à partir de  requêtes 2D et 3D}{A. Baskurt \&
+    D. Coeurjolly}
+\end{these}
+
+\begin{itemize}
+ \item {\bf\aut{Antoine Vacavant}} : cette thèse est financée par
+  une allocation de recherche dans le cadre de l'ACI ``Jeunes
+  Chercheurs''.  Le sujet porte sur la généralisation des outils
+  classiques que l'on trouve en analyse et traitement d'images
+  (filtrage, convolution, analyse de volumes et de contours \emph{via} des
+  outils de géométrie discrète, \ldots) sur des structures
+  isothétiques irrégulières.  \aut{Antoine Vacavant} a débuté son
+  doctorat en octobre 2005 et est co-encadré par \aut{Laure Tougne}
+  (Pr, Université Lumière Lyon2, laboratoire LIRIS) avec une date
+   de soutenance prévue en 2008 (voir section \ref{sec:activ-contr}).
+
+
+\item {\bf    \aut{Julien Ricard}} :  co-encadrement  avec \aut{Atilla
+    Baskurt} (Pr, INSA de Lyon, laboratoire LIRIS), date de soutenance
+  :   8 décembre 2005.  Dans    le cadre du   projet exploratoire RNRT
+  ``SEMANTIC     3D''      \footnote{\url{http://www.semantic-3d.net}}
+  comprenant  des partenaires  universitaires (LIRIS-Lyon, ENIC-Lille,
+  INT-Paris, Eurecom-Sophia  Antipolis) et industriels (Renault, TGS),
+  les     objectifs de  ces  travaux étaient   de   fournir des outils
+  mathématiques et algorithmiques  pour l'indexation de  modèles 3D et
+  la recherche dans une base de données à partir de requêtes 2D et 3D.
+  Cette thèse  a     donné lieu à 2  publications      dans des revues
+  internationales et 6 conférences internationales.
+
+\end{itemize}
+
+
+\subsection{Encadrements de stagiaires}
+
+\noindent{\bf Master Recherche 2ième année}
+
+
+\begin{itemize}
+\item {\sc Mars  2006 --  Juillet 2006}  : co-encadrement du  stage de
+  recherche de {\sc Laurent Jospin}  avec \aut{Florent Dupont}  (50
+  \%).  Le stage portait  sur l'extraction de  primitives géométriques
+  de haut niveau (troncs de cônes, tétraèdres de boules,\ldots) à
+  partir de l'axe médian dans un objectif de compression et de
+  transmission progressive d'objets discrets.
+
+
+\item  {\sc  Mars  2005 --  Juillet  2005}  : encadrement  du stage de
+  recherche   de  \aut{Loutfi  Zerrarga}.    Le  stage  portait    sur
+  l'élaboration  d'un  algorithme   de reconstruction   réversible  de
+  courbes   isothétiques irrégulières.  Cette problématique  s'inscrit
+  directement  dans le  projet ``Jeunes  Chercheurs''  soutenu par  le
+  Ministère  de la   Recherche.   L'objectif était  de construire  une
+  approximation   polygonale  d'une  courbe  discrète  irrégulière  en
+  maintenant  une  contrainte qui nous   permettait, à  tout moment, de
+  retrouver la courbe discrète originale à partir de la reconstruction
+  polygonale.
+\item {\sc  Mars  2004-- Juillet  2004} : co-encadrement  du stage  de
+  recherche  de   \aut{Cédric  Chevarier}  avec   \aut{Florent Dupont}
+  (50\%).  Le stage portait sur l'utilisation  de l'axe médian pour la
+  transmission progressive d'objets discrets.
+\end{itemize}
+
+\vspace{0.4cm}
+
+\noindent{\bf Master 1ère année}
+
+\begin{itemize}
+\item {\sc 2003--2004} : stage de \aut{Jean-Christophe
+    Bernard} portant sur l'analyse d'algorithmes de calcul exact
+  d'enveloppe convexe de points répartis sur la surface d'une sphère
+  et application à l'estimation de courbure gaussienne.
+\end{itemize}
+
+\vspace{0.4cm}
+
+\noindent{\bf Encadrements de stagiaires niveau Licence}
+
+\begin{itemize}
+\item {\sc 2004--2005} : encadrement d'étudiants en TER
+  (Travaux d'Etude et de Recherche) dans le cadre de l'ACI Jeunes
+  Chercheurs~:
+
+  \begin{itemize}
+  
+  \item \aut{Romain Ehret} et \aut{Thibault Valon} : étude des
+    librairies d'arithmétique d'intervalles et d'arithmétique affine.
+  
+  \item \aut{Christophe Begon} et \aut{Thierry Duboeuf} : création
+    d'une libraire de construction et manipulation de structures
+    QuadTree.
+
+
+  \end{itemize}
+\end{itemize}
+
+\section{Activités contractuelles}
+\label{sec:activ-contr}
+
+
+Dans cette section, je reprends les différents projets et contrats
+auxquels j'ai participé.
+
+\begin{itemize}
+
+
+\item{\bf ANR   Blanc  GeoDib} ''Géométrie discrète  pour   les objets
+  bruités'' (Sept.   2006 -  Sept.  2010) (qualité~:  \textbf{membre},
+  responsable~: \aut{Isabelle  Debled-Rennesson}, LORIA)~: l'objectif de   ce
+  projet est de développer une  géométrie des objets discrets  bruités
+  en utilisant de nouvelles techniques issues de la géométrie discrète
+  et en se détachant des méthodes classiques comme la logique floue ou
+  encore les techniques de  filtrage utilisées en traitement d'images.
+  Partenaires~: LABRI, LIRIS, LLAIC, LORIA.
+
+
+\item  {\bf ACI  Jeunes Chercheurs GeomDiGIT}   ''Généralisation de la
+  Géométrie  Discrète  aux Grilles Irrégulières  IsoThétiques'' (Sept.
+  2004  - Sept.  2007) (qualité~: \textbf{responsable scientifique})~:
+  dans certaines applications, les   données acquises ou à traiter  ne
+  sont  pas exactement structurées  sur  des grilles  régulières.  Par
+  exemple, les  grilles  sous-jacentes aux appareils  d'acquisition en
+  imagerie   médicale  3D sont    généralement   anisotropiques.  Plus
+  précisément,  il y a  un  facteur  d'échelle  entre  les axes de  la
+  grille, on parle alors  d'une grille  avec élongation.  Il est  donc
+  important  d'étendre à ce  type  d'espace  discret tous les  outils
+  d'analyse  géométrique  disponibles dans   le modèle  discret usuel.
+  Plutôt   que de proposer des  solutions  ad-hoc dépendant du type de
+  grille du  capteur,  nous nous  proposons dans  le  cadre  de cette ACI
+  d'avoir une approche globale pour  la redéfinition de ces outils sur
+  ces structures. Partenaires~:  LIRIS, TSI UMR 5516  (Université Jean
+  Monnet,  Saint-Etienne). C'est  dans le cadre   de ce  projet que je
+  co-encadre la thèse d'\aut{Antoine Vacavant} avec \aut{Laure Tougne}
+  (voir section \ref{sec:theses-dirigees-et}).
+
+\item{\bf  Projet  RNRT  Semantic   3D}   ``Service d'Echange   et  de
+  MANipulation (Tatouage,  Indexation et Compression)'' (Nov.   2002 -
+  Nov.     2005) (qualité~: \textbf{membre}, responsable~: \aut{Atilla
+    Baskurt})~:  le projet SEMANTIC-3D  avait pour objet l'exploration
+  de techniques  et d'outils préalables à  la  réalisation de nouveaux
+  services  pour  l'exploitation de contenu  3D à  travers le Web.  De
+  nouvelles techniques de compression, d'indexation  et de tatouage de
+  données 3D  ont été   développées et  mises en   \oe   uvre dans une
+  application   industrielle  prototype.  Partenaires~:    LIRIS, ENIC
+  Lille, EURECOM, INT, Renault, TGS. C'est  dans le cadre de ce projet
+  que  j'ai  participé à la co-direction   de la thèse  de \aut{Julien
+    Ricard} (voir section \ref{sec:theses-dirigees-et}).
+\end{itemize}
+
+\section{Activités administratives et collectives}
+
+
+\subsection{Au sein de l'Université Claude Bernard Lyon 1}
+
+Je suis membre élu  du  Conseil  Scientifique de l'Université   depuis
+l'automne   2006.   A ce titre   et en  dehors  de  ma participation aux
+conseils,   je suis membre  du groupe   de travail  ``Diffusion  de la
+culture scientifique, technique et industrielle''. Je suis aussi
+membre du conseil du Service Commun de la Documentation (SCD).
+
+\subsection{Au sein du laboratoire}
+
+Je participe aux commissions suivantes du laboratoire~:
+\begin{itemize}
+\item \emph{commission Communication}~: plus précisément, je suis
+  membre de l'équipe webmaster du laboratoire et participe donc à la
+  mise en place de l'infrastructure logicielle liée au site web du
+  laboratoire (gestion des membres, gestion des publications,...)~;
+\item  \emph{commission Relations  Internationales}~:  dont l'objectif
+  était de constituer un état  des lieux des relations internationales
+  du  laboratoire afin de proposer des  mesures et incitations pour le
+  développement d'une   politique    internationale.       Un  rapport
+  préliminaire a été transmis   et conclut donc  la première étape  de
+  l'activité de cette commission.
+\end{itemize}
+
+\subsection{Au sein d'autres établissements}
+
+Je suis membre suppléant de la commission de spécialistes 26/27/61 de
+l'Université Lumière Lyon2.
+
+\section{Publications}
+
+
+
+Synthèse des travaux :
+\begin{itemize}
+\item Un ouvrage édité et un manuscrit de thèse déposé
+\item 10 publications dans des revues internationales avec comité de
+  lecture
+\item 23 articles dans des actes de conférences internationales avec
+  comité de lecture
+\item 6 articles dans des actes de conférences nationales avec
+  comité de lecture
+\end{itemize}
+
+
+\subsection{Ouvrages}
+
+\nociteouv{dcoeurjo_these,dcoeurjo_hermes}
+\bibliographystyleouv{alpha}
+\bibliographyouv{mybiblio}
+
+
+\subsection{Chapitre dans ouvrage}
+
+
+Dans le cadre du traité IC2 \emph{Géométrie discrète et images
+  numérique}, j'ai rédigé les chapitres suivants~:
+\begin{itemize}
+\item ``Eléments de base'', \aut{D. Coeurjolly, A. Montanvert} et \aut{J.-M. Chassery}~;
+\item ``Distances discrètes'', \aut{E. Thiel} et \aut{D. Coeurjolly}~;
+\item ``Représentation par axe médian'', \aut{D. Attali, D. Coeurjolly} et \aut{E. Remy}~;
+\item ``Descripteurs de formes et moments géométriques'',\aut{
+    D. Coeurjolly} et \aut{A. Montanvert}.
+\end{itemize}
+
+\subsection{Revues internationales avec comité de lecture}
+
+\small
+\nocitejournaux{dcoeurjo_pami_RDMA,dcoeurjo_IVC_couprie,dcoeurjo_computergraphics,dcoeurjo_planarity,dcoeurjo_geodes_PRL,dcoeurjo_digitalarc_DAM,dcoeurjo_length_PAMI,dcoeurjo_preimage_DAM,dcoeurjo_flin_ImPro}
+
+%Julien
+\nocitejournaux{dcoeurjo_ricard_prl}
+
+\bibliographystylejournaux{alpha}
+\bibliographyjournaux{mybiblio}
+
+
+
+\subsection{Conférences internationales}
+
+
+
+\nociteconf{dcoeurjo_dgci2006_chassery,dcoeurjo_mdexet_ISVC,dcoeurjo_MCsimplDGCI06,dcoeurjo_NPhard,dcoeurjo_iwcia2006,dcoeurjo_supercover_dgci,dcoeurjo_chassery_ismm,dcoeurjo_spie_mc,dcoeurjo_spie_hetero,dcoeurjo_dgci2003,dcoeurjo_scia,dcoeurjo_preimage,dcoeurjo_IWVF4,dcoeurjo_length3D,dcoeurjo_digitalarc,dcoeurjo_DGCI2002,dcoeurjo_ICPR,dcoeurjo_TFCV_surface,dcoeurjo_TFCV_graphe,dcoeurjo_ricard_icip,dcoeurjo_ricard_icpr,dcoeurjo_avacavan_DGCI,dcoeurjo_avacavan_ISCV}
+
+\bibliographystyleconf{alpha}
+\bibliographyconf{mybiblio}
+
+
+
+
+\subsection{Conférences nationales}
+
+\nocitenat{dcoeurjo_decim,dcoeurjo_SFC,dcoeurjo_Denis}
+
+%Julien
+\nocitenat{dcoeurjo_ricard_CORESA,dcoeurjo_ricard_CORESA2}
+
+
+%Antoine
+\nocitenat{avacavan_coresa}
+
+\bibliographystylenat{alpha}
+\bibliographynat{mybiblio}
+
+\normalsize
+
+%\bibliography{biblio}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 

@@ -1,0 +1,311 @@
+%\CheckSum{70}
+%
+% \iffalse
+%
+% Copyright (c) 1994--1999 Walter Schmidt, Erlangen
+%
+% This program may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+%
+% This program consists of the files cmbright.dtx, cmbr.fdd and
+% cmbright.ins.
+% 
+% \fi
+%
+% \iffalse
+%
+%<cm>\ProvidesFile{ot1cmbr.fd}
+%<ec>\ProvidesFile{t1cmbr.fd}
+%<ts1cmbr>\ProvidesFile{ts1cmbr.fd}
+%<ot1cmtl>\ProvidesFile{ot1cmtl.fd}
+%<t1cmtl>\ProvidesFile{t1cmtl.fd}
+%<ts1cmtl>\ProvidesFile{ts1cmtl.fd}
+%<omlcmbrm>\ProvidesFile{omlcmbrm.fd}
+%<omscmbrs>\ProvidesFile{omscmbrs.fd}
+%<omlcmbr>\ProvidesFile{omlcmbr.fd}
+%<omscmbr>\ProvidesFile{omscmbr.fd}
+%<*driver>
+            \ProvidesFile{cmbr.drv}
+%</driver>
+        [1999/05/12 v7.3 (WaS)]
+%
+%<*driver>
+\documentclass[11pt]{ltxdoc}
+\setcounter{StandardModuleDepth}{1}
+\CodelineNumbered
+\GetFileInfo{cmbr.drv}
+\begin{document}
+  \DocInput{cmbr.fdd}
+\end{document}
+%</driver>
+%
+% \fi
+%
+% \DeleteShortVerb{\|}
+%
+% \title{The file \texttt{cmbr.fdd}}
+% \date{(\fileversion{} -- \filedate)}
+% \author{Walter Schmidt\thanks{{\ttfamily walter.schmidt@arcormail.de}}}
+% \maketitle
+%
+% \noindent
+% \texttt{cmbr.fdd} is the documented source file of the Computer Modern Bright
+% font definitions for use with \LaTeX.
+%
+% \section{The \textsc{docstrip} modules}
+% {\small
+% \begin{tabular}{ll}
+%   driver & documentation driver file\\
+%   cm     & font definition file \texttt{ot1cmbr.fd}\\
+%   ec     & font definition file \texttt{t1cmbr.fd}\\
+%   ts1cmbr & font definition file \texttt{ts1cmbr.fd}\\
+%   omlcmbrm  & font definition file {\tt omlcmbrm.fd}\\
+%   omscmbrs  &  font definition file {\tt omscmbrs.fd}\\
+%   omlcmbr & font definition file \texttt{omlcmbr.fd}\\
+%   omscmbr & font definition file \texttt{omscmbr.fd}\\
+%   ot1cmtl & font definition file \texttt{ot1cmtl.fd}\\
+%   t1cmtl & font definition file \texttt{t1cmtl.fd}\\
+%   ts1cmtl & font definition file \texttt{ts1cmtl.fd}\\
+% \end{tabular}
+% \par}
+%
+% \StopEventually{}
+%
+%  \section{CM Bright, OT1 encoding}  
+%
+%    \begin{macrocode}
+%<*cm>
+\DeclareFontFamily{OT1}{cmbr}{\hyphenchar\font45}
+\DeclareFontShape{OT1}{cmbr}{m}{n}{%
+<5><6><7><8>cmbr8%
+<9>cmbr9%
+<10><10.95><12><14.4>cmbr10%
+<17.28><20.74><24.88><29.86><35.83>cmbr17%
+}{}
+\DeclareFontShape{OT1}{cmbr}{m}{sl}{%
+<5><6><7><8>cmbrsl8%
+<9>cmbrsl9%
+<10><10.95><12><14.4>cmbrsl10%
+<17.28><20.74><24.88><29.86><35.83>cmbrsl17%
+}{}
+\DeclareFontShape{OT1}{cmbr}{m}{it}{%
+<->ssub*cmbr/m/sl%
+}{}
+\DeclareFontShape{OT1}{cmbr}{b}{n}{%
+<->ssub*cmbr/bx/n%
+}{}
+\DeclareFontShape{OT1}{cmbr}{bx}{n}{%
+<-9>sub*cmbr/m/n%
+<9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>cmbrbx10%
+}{}
+%</cm>
+%    \end{macrocode}
+%
+%  \section{CM Bright, T1 encoding}  
+%
+%    \begin{macrocode}
+%<*ec>
+\DeclareFontFamily{T1}{cmbr}{}
+\DeclareFontShape{T1}{cmbr}{m}{n}{%
+<5><6><7><8>ebmr8%
+<9>ebmr9%
+<10><10.95><12><14.4>ebmr10%
+<17.28><20.74><24.88><29.86><35.83>ebmr17%
+}{}
+\DeclareFontShape{T1}{cmbr}{m}{sl}{%
+<5><6><7><8>ebmo8%
+<9>ebmo9%
+<10><10.95><12><14.4>ebmo10%
+<17.28><20.74><24.88><29.86><35.83>ebmo17%
+}{}
+\DeclareFontShape{T1}{cmbr}{m}{it}{%
+<->ssub*cmbr/m/sl%
+}{}
+\DeclareFontShape{T1}{cmbr}{sb}{n}{%
+<5><6><7><8>ebsr8%
+<9>ebsr9%
+<10><10.95><12><14.4>ebsr10%
+<17.28><20.74><24.88><29.86><35.83>ebsr17%
+}{}
+\DeclareFontShape{T1}{cmbr}{sb}{sl}{%
+<5><6><7><8>ebso8%
+<9>ebso9%
+<10><10.95><12><14.4>ebso10%
+<17.28><20.74><24.88><29.86><35.83>ebso17%
+}{}
+\DeclareFontShape{T1}{cmbr}{sb}{it}{%
+<->ssub*cmbr/sb/sl%
+}{}
+\DeclareFontShape{T1}{cmbr}{b}{n}{%
+<->ssub*cmbr/bx/n%
+}{}
+\DeclareFontShape{T1}{cmbr}{bx}{n}{%
+<-9>sub*cmbr/sb/n%
+<9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>ebbx10%
+}{}
+%</ec>
+%    \end{macrocode}
+%
+%  \section{CM Typewriter Light, OT1 encoding}
+% 
+%    \begin{macrocode}
+%<*ot1cmtl>
+\DeclareFontFamily{OT1}{cmtl}{\hyphenchar\font\m@ne}
+\DeclareFontShape{OT1}{cmtl}{m}{n}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>cmtl10%
+}{}
+\DeclareFontShape{OT1}{cmtl}{m}{sl}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>cmsltl10%
+}{}
+\DeclareFontShape{OT1}{cmtl}{m}{it}{<->ssub*cmtl/m/sl}{}
+%</ot1cmtl>
+%    \end{macrocode}
+%
+%  \section{CM Typewriter Light, T1 encoding}
+% 
+%    \begin{macrocode}
+%<*t1cmtl>
+\DeclareFontFamily{T1}{cmtl}{\hyphenchar\font\m@ne}
+\DeclareFontShape{T1}{cmtl}{m}{n}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>ebtl10%
+}{}
+\DeclareFontShape{T1}{cmtl}{m}{sl}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>ebto10%
+}{}
+\DeclareFontShape{T1}{cmtl}{m}{it}{<->ssub*cmtl/m/sl}{}
+%</t1cmtl>
+%    \end{macrocode}
+%
+%  \section{CM Bright Math Inclined, OML encoding}  
+%
+%    \begin{macrocode}
+%<*omlcmbrm>
+\DeclareFontFamily{OML}{cmbrm}{\skewchar\font 127}
+\DeclareFontShape{OML}{cmbrm}{m}{it}{%
+<5><6><7><8>cmbrmi8%
+<9>cmbrmi9%
+<10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>cmbrmi10%
+}{}
+\DeclareFontShape{OML}{cmbrm}{b}{it}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>cmbrmb10%
+}{}
+%</omlcmbrm>
+%    \end{macrocode}
+%
+%  \section{CM Bright Symbols, OMS encoding}  
+%
+%    \begin{macrocode}
+%<*omscmbrs>
+\DeclareFontFamily{OMS}{cmbrs}{\skewchar\font 48}
+\DeclareFontShape{OMS}{cmbrs}{m}{n}{%
+<5><6><7><8>cmbrsy8%
+<9>cmbrsy9%
+<10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>cmbrsy10%
+}{}
+%</omscmbrs>
+%    \end{macrocode}
+%
+%  \section{CM Bright, OML encoding}
+%  We need this for some special tex symbols which may be taken from
+%  the `math italic' font.
+%    \begin{macrocode}
+%<*omlcmbr>
+\DeclareFontFamily{OML}{cmbr}{\skewchar\font 127}
+\DeclareFontShape{OML}{cmbr}{m}{it}{<->ssub*cmbrm/m/it}{}
+\DeclareFontShape{OML}{cmbr}{sb}{it}{<->ssub*cmbrm/b/it}{}
+\DeclareFontShape{OML}{cmbr}{bx}{it}{<->ssub*cmbrm/b/it}{}
+%</omlcmbr>
+%    \end{macrocode}
+%
+%  \section{CM Bright, OMS encoding}
+%  We need this for some special text symbols which may be taken from
+%  the mathematical symbol font.
+%    \begin{macrocode}
+%<*omscmbr>
+\DeclareFontFamily{OMS}{cmbr}{\skewchar\font 48}
+\DeclareFontShape{OMS}{cmbr}{m}{n}{<->ssub*cmbrs/m/n}{}
+%</omscmbr>
+%    \end{macrocode}
+%
+%  \section{CM Bright, TS1 encoding}  
+%
+%    \begin{macrocode}
+%<*ts1cmbr>
+\DeclareFontFamily{TS1}{cmbr}{\hyphenchar\font\m@ne}
+\DeclareFontShape{TS1}{cmbr}{m}{n}{%
+<5><6><7><8>tbmr8%
+<9>tbmr9%
+<10><10.95><12><14.4>tbmr10%
+<17.28><20.74><24.88><29.86><35.83>tbmr17%
+}{}
+\DeclareFontShape{TS1}{cmbr}{m}{sl}{%
+<5><6><7><8>tbmo8%
+<9>tbmo9%
+<10><10.95><12><14.4>tbmo10%
+<17.28><20.74><24.88><29.86><35.83>tbmo17%
+}{}
+\DeclareFontShape{TS1}{cmbr}{m}{it}{%
+<->ssub*cmbr/m/sl}{}
+\DeclareFontShape{TS1}{cmbr}{sb}{n}{%
+<5><6><7><8>tbsr8%
+<9>tbsr9%
+<10><10.95><12><14.4>tbsr10%
+<17.28><20.74><24.88><29.86><35.83>tbsr17%
+}{}
+\DeclareFontShape{TS1}{cmbr}{sb}{sl}{%
+<5><6><7><8>tbso8%
+<9>tbso9%
+<10><10.95><12><14.4>tbso10%
+<17.28><20.74><24.88><29.86><35.83>tbso17%
+}{}
+\DeclareFontShape{TS1}{cmbr}{sb}{it}{<->ssub*cmbr/sb/sl}{}
+\DeclareFontShape{TS1}{cmbr}{b}{n}{<->ssub*cmbr/bx/n}{}
+\DeclareFontShape{TS1}{cmbr}{bx}{n}{%
+<-9>sub*cmbr/sb/n%
+<9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>tbbx10%
+}{}
+%</ts1cmbr>
+%    \end{macrocode}
+%
+%  \section{CM Typewriter Light, TS1 encoding}
+% 
+%    \begin{macrocode}
+%<*ts1cmtl>
+\DeclareFontFamily{TS1}{cmtl}{\hyphenchar\font\m@ne}
+\DeclareFontShape{TS1}{cmtl}{m}{n}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>tbtl10%
+}{}
+\DeclareFontShape{TS1}{cmtl}{m}{sl}{%
+<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88><29.86><35.83>tbto10%
+}{}
+\DeclareFontShape{TS1}{cmtl}{m}{it}{<->ssub*cmtl/m/sl}{}
+%</ts1cmtl>
+%    \end{macrocode}
+%
+%    The next line goes into all files and in addition prevents {\sc docstrip}
+%    from adding the  character table to all modules.
+%    \begin{macrocode}
+\endinput
+%    \end{macrocode}
+% \Finale
+%
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}

@@ -1,0 +1,1271 @@
+%; whizzy-master hdr.tex
+\mychaptoc{Algorithmes de reconnaissance  de  parties linéaires et  de
+  cercles}
+
+%Application de la programmation linéaire entière à la
+%  caractérisation d'objets discrets}
+\label{chap:ILP}
+
+
+\section{Introduction}
+
+
+Pour  définir  de   manière  intrinsèque un  paradigme  de   géométrie
+discrète, il nous faut des  objets élémentaires. Le chapitre précédent
+nous a  donné quelques clés pour définir  des formes discrètes et donc
+des points,  des  droites, des  cercles, \ldots  Dans ce chapitre nous
+revenons sur  ces   objets élémentaires et  sur  le problème   de leur
+reconnaissance qui consiste à passer d'une représentation en extension
+(ensemble  de points discrets)  à une  description en compréhension
+(droite  discrètes,   cercle  discret,\ldots).   Nous  aborderons  ces
+problèmes d'un point de vue   algorithmique en exploitant de  nombreux
+résultats venant  d'arithmétique, de   géométrie algorithmique ou  de
+programmation linéaire.
+
+Nous commencerons     par  définir  les    objets élémentaires,   nous
+présenterons une série  d'outils de différents domaines pour aboutir à
+une présentation synthétique des différentes solutions algorithmiques.
+
+
+\section{Définitions des objets élémentaires}
+
+
+Dans ces paragraphes,   nous ne présenterons  que les caractérisations
+d'ordre géométrique des  objets élémentaires.  En  réalité, ces objets
+fondamentaux  sont     beaucoup  plus     riches  que     ces  simples
+caractéristiques. C'est le cas par exemple  de la droite discrète dont
+les structures périodiques  dans  le cas rationnel  trouvent des échos
+très forts   en   combinatoire, en  théorie   des mots  ou  encore  en
+arithmétique.  Une littérature importante existe faisant le pont entre
+ces objets et  des résultats  d'autres  domaines.  Nous pouvons  citer
+quelques références essayant  de  faire un  point aussi exhaustif  que
+possible    sur    ces   liens   pour      les   droites     discrètes
+\cite{citeulike_611268,klette_book}    ou  pour   les plans   discrets
+\cite{dcoeurjo_planarity}.
+
+\subsection{Droites discrètes}
+
+Au  cours  du temps,  de    nombreuses caractérisations  des   droites
+discrètes ont été données depuis les premiers algorithmes de tracé sur
+écran matriciel \cite{klette_book}.  Une  façon simple de  définir une
+droite    discrète est de  considérer   la discrétisation d'une droite
+réelle étant donné un  processus de discrétisation.  Si cette approche
+\emph{externe}   est  possible,  nous   préférons ici  une  définition
+arithmétique proposée par \aut{Reveillès} \cite{reveilles}~:
+
+\begin{definition}[Droite discrète arithmétique]
+  Un ensemble de pixels $\mathcal{E}$  appartient à la droite discrète
+  arithmétique de pente   $\frac{a}{b}$, de  borne inférieure $\mu$   et
+  d'épaisseur $\omega$  (avec $a$, $b$, $\mu\in\Z$, $\omega\in\mathbb{N}^*$,
+  $b\neq0$   et $pgcd(|a|,|b|)=1$), si  et  seulement  si  tous les pixels
+  $(x,y)$ de $\mathcal{E}$ vérifient~:
+  \begin{displaymath}
+    \label{eq:droite_disc}
+    \mu \leq ax-by<\mu+\omega
+  \end{displaymath}
+Cette droite se note $\mathcal{D}(a,b,\mu,\omega)$.
+\end{definition}
+
+Le paramètre  $\omega$ nous permet de régler  l'épaisseur de la droite
+discrète. Ainsi, si  $\omega={|a|+|b|}$, la courbe construite sera une
+$(1)-$courbe (\emph{droite standard}). Si $\omega=\max{(|a|,|b|)}$, la
+courbe  sera  $(0)-$connexe   (\emph{droite  naïve}).   Pour  les  cas
+intermédiaires, la    courbe sera   soit épaisse,   soit   déconnectée
+\cite{reveilles,debled} (voir figure \ref{fig:epaisseur}).
+
+\begin{figure}[h]
+  \begin{center}
+    \subfigure[ $\mathcal{D}(3,7,0,5)$]{\includegraphics[width=2.5cm]{3_7_0_5}}
+    \subfigure[ $\mathcal{D}(3,7,0,7)$]{\includegraphics[width=2.5cm]{3_7_0_7}}
+        \subfigure[ $\mathcal{D}(3,7,0,10)$]{\includegraphics[width=2.5cm]{3_7_0_10}}
+    \subfigure[ $\mathcal{D}(3,7,0,16)$]{\includegraphics[width=2.5cm]{3_7_0_16}} 
+  \end{center}
+  \caption[Connexité des droites discrètes en fonction de $\omega$]
+  {Connexité   des droites discrètes  en  fonction de $\omega$~: $(a)$
+    segment déconnecté, $(b)$ segment naïf,  $(c)$ segment standard et
+    $(d)$ segment épais.}
+  \label{fig:epaisseur}
+\end{figure}
+
+
+Si historiquement cette droite était définie de manière intrinsèque au
+modèle discret,   de   nombreuses équivalences   existent   avec   les
+discrétisés des  droites    réelles.  Ainsi, les   droites  issues des
+discrétisations GIQ,  BBQ ou OBQ (voir  section \ref{sec:discr-class})
+sont des  droites     naïves dont   les  paramètres  sont     donnés
+explicitement \cite{reveilles}.    Par  la suite,  on  appelle segment
+discret un ensemble connexe de pixels d'une droite discrète.
+
+Associé à   cette  droite   arithmétique,  nous pouvons  caractériser
+l'ensemble des droites réelles  liées à un segment discret. Pour cela,
+revenons à un processus basé sur  la discrétisation  OBQ de la  droite
+$y=\alpha x+\beta$, l'ensemble des points discrets considérés est~:
+\begin{equation}
+\label{eq:droite_preim}  S=\{(x,y)\in\Z^2,\quad 0\leq \alpha x +\beta -y<1\}
+\end{equation}
+
+Ainsi l'ensemble des droites réelles de la forme $y=\alpha x+\beta$
+dont la discrétisation OBQ contient un segment discret $S$ donné est~:
+\begin{displaymath}
+\label{eq:dual}
+  \bar{S}=\{(\alpha,\beta\})\in[0,1]\times[0,1[~|~
+  \forall (x,y)\in S,~0\leq \alpha x+\beta -y <1 \}
+\end{displaymath}
+ 
+
+Cela  revient à considérer l'espace    des  solutions du  problème  de
+programmation   linéaire    engendré   par   les   contraintes   de
+l'équation~(\ref{eq:droite_preim}) (voir section \ref{sec:progr-line}).
+
+Dans   l'espace   des paramètres  $(\alpha,\beta)$,   $\bar{S}$ est un
+polygone convexe et  est  appelé \emph{préimage} de $S$.   Tout  point
+$(\alpha,\beta)$ dans  $\bar{S}$    définit   une   droite  dont    la
+discrétisation     OBQ    contient    l'ensemble $S$    (voir   figure
+\ref{fig:preimage}).  Ce domaine sera  utilisé dans les algorithmes de
+reconnaissance car de  nombreuses propriétés arithmétiques des droites
+discrètes vont   se  retrouver comme  propriété    géométrique sur  la
+préimage.   Par exemple,  si $S$  est $(0)-$connexe,  $\bar{S}$ est un
+polygone  ayant au  plus  4 sommets  \cite{Smeulders84,ilroy,bruck93}.
+Notons    que les coordonnées  des  sommets  de $\bar{S}$ peuvent être
+calculées explicitement à  partir des  paramètres arithmétiques $a$, $b$
+et $\mu$ du segment discret\cite{dcoeurjo_these}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=10cm]{dual_exemplebis}
+  \caption{Préimage d'un ensemble de points discrets $S$.}
+  \label{fig:preimage}
+\end{figure}
+
+\subsection{Plans et hyperplans discrets}
+
+Même si   la   littérature  est dense  spécifiquement  sur   les plans
+discrets, nous allons  définir cet objet  dans  le même temps  que les
+hyperplans discrets.  Trois  grandes définitions existent pour définir
+cet objet géométrique dans $\Z^n$. Si ces trois définitions comportent
+des similitudes et si elles sont parfois équivalentes, les processus de
+discrétisation liés à ces  définitions  peuvent varier.   Nous notons
+$\Gamma$ un  hyperplan   euclidien  donné  par  $\gamma_0+\sum_{i=1}^n
+\gamma_ix_i=0$           avec             $\{\gamma_i\}\in\mathbb{R},~
+|\gamma_i|\leq|\gamma_n|$ pour $1\leq  i < n$ et $|\gamma_n|>0$ (l'axe
+$x_n$ est appelé  axe principal de l'hyperplan,  voir plus loin). Dans
+les définitions suivantes, nous gardons les termes anglais pour éviter
+toute ambiguïté.
+
+\begin{definition}[Digital hyperplane \cite{STO91}]
+\label{def:digitalhp}
+$S \subset \mathbb{Z}^n$  est un  \emph{digital  hyperplane} si et
+seulement si il existe un hyperplan euclidien $\Gamma$ tel que $S$
+soit l'\emph{image digitale} de $\Gamma$.
+\end{definition}
+
+La notion  \emph{d'image   digitale}  correspond à  un  processus   de
+discrétisation spécifique qui construit   les points discrets  dont la
+distance verticale ($L_\infty$) sur  la $n-$ième coordonnée  entre le point discret
+et le plan est inférieure à $\frac{1}{2}$.
+
+
+\begin{definition}[Digital flatness \cite{veelaert_hyper}]
+\label{def:flat}
+$S\subset\mathbb{Z}^n$ est   {\em flat} si et seulement s'il existe
+$n+1$ nombres réels  $\gamma_0,\ldots,\gamma_n$ tels que~:
+\begin{enumerate}
+  \item $\max\{|\gamma_0|,\ldots,|\gamma_n|\}=1$\,;
+  \item tout point $P=(P_1,\ldots,P_n)\in S$ vérifie la condition
+    \begin{equation}
+      \label{eq:defflat}
+      -\frac{1}{2}\ < \gamma_0 +\sum_{i=1}^n \gamma_iP_i \leq \frac{1}{2}\,.
+    \end{equation}
+\end{enumerate}
+\end{definition}
+
+Dans \cite{veelaert_hyper}  \aut{Veelaert}  montra qu'un \emph{digital
+  hyperplan}  de  la définition  \ref{def:digitalhp} est  \emph{flat}.
+Enfin nous avons  une définition à mettre en  parallèle avec la notion
+de droite discrète arithmétique~:
+
+
+\begin{definition}[Discrete analytic hyperplane \cite{bb36468}]
+\label{def:analHP}
+$S$ est un morceau de   \emph{discrete    analytic     hyperplane}    $P$   ayant pour
+coefficients 
+$(a_1,a_2,\ldots,a_n,b)\in           \mathbb{Z}^{n+1}$,
+$pgcd(a_1,\ldots,a_n)=1$, et pour épaisseur $\omega\in\mathbb{N}^*$
+si~:
+  \begin{equation}
+    \label{eq:defHP}
+   S\subset P(a_1,a_2,\ldots,a_n,b)=\{(x_1,x_2,\ldots,x_n)\in\mathbb{Z}^n|0\leq b+\sum_{i=1}^n a_ix_i < \omega   \}
+  \end{equation}
+\end{definition}
+
+Comme   pour   les  droites,  cette    définition   intègre une notion
+d'épaisseur.       Tout    comme       en      dimension     2,     si
+$\omega=\max_{i=1..n}\{|a_i|\}$, elle définit un hyperplan discret
+naïf  \cite{bb36468}.   Par la   suite,   c'est  cet objet  que   nous
+considérerons dans les algorithmes de reconnaissance.
+
+Si les coefficients  du plan  euclidien  $\Gamma$ dans  la  définition
+\ref{def:digitalhp}     sont  rationnels,   alors  un    \emph{digital
+  hyperplane} est aussi un \emph{digital analytic hyperplane}.
+
+Nous concluons ces définitions par la notion d'axe principal et de
+base d'un hyperplan discret.
+
+\begin{lemme}[Axe principal et base d'un hyperplan discret]
+  Soit $S$ un \emph{digital  hyperplane} ou un hyperplan discret naïf.
+  Il existe alors un axe principal $x_j$ tel que la projection $S'$ de
+  $S$ selon  l'axe  $x_j$ sur   le  plan $x_j=0$ soit   une bijection.
+  L'ensemble  de points discrets de dimension  $(n-1)$ $S'$ est appelé
+  la base de l'hyperplan.
+\end{lemme}
+
+Ce lemme est issu des  différentes définitions et est généralisé dans
+\cite{jamet_functionality}.       Par  exemple   pour    la définition
+\ref{def:digitalhp}  l'axe principal   est $x_n$, dans   la définition
+\ref{def:flat}, l'axe est  $x_j$  si $|\gamma_j|=1$.  Enfin, pour  les
+hyperplans discrets naïfs, l'axe principal est $x_j$ si $\omega=|a_j|$
+(voir figure \ref{fig:plandef}).
+
+De   la même manière  que  pour  les droites  discrètes, nous  pouvons
+définir la préimage comme étant  l'ensemble des  hyperplans euclidiens
+dont  le discrétisé contient un ensemble  $S$ de points discrets. Nous
+reviendrons dans la section \ref{sec:algor-de-reconn} sur cet objet.
+
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=6cm]{naif}}
+  \subfigure[]{\includegraphics[width=3.5cm]{projection}}
+  \caption{Morceau de plan discret naïf de paramètres $P(6,13,17,17)$
+  $(a)$ et illustration de la base 2D associé à un morceau de plan.}
+  \label{fig:plandef}
+\end{figure}
+
+
+\subsection{Cercles, sphères et hypersphères discrètes}
+
+Toujours  en   fonction d'un   modèle  de  discrétisation,   plusieurs
+définitions existent pour les cercles discrets ou  pour les sphères et
+hypersphères.    Une définition  générale a  cependant été  donnée par
+\aut{Andrès} et \aut{Jacob}~:
+
+\begin{definition}[Hypersphère discrète analytique \cite{Andres_hypersphere}]
+  \label{def:cercles-spheres}Une  hypersphère discrète  analytique  de dimension  $n$, de  centre
+  $C\in\R^n$, de rayon $r\in\R$ et d'épaisseur  $\omega\in\R$ est l'ensemble des
+  points discrets~:
+  \begin{displaymath}
+    H_n(C,r,\omega) = \left \{P\in\Z^n, \left (r-\frac{\omega}{2}\right)^2\leq
+    \sum_{i=1}^n (C_i-P_i)^2 <\left (r+\frac{\omega}{2}\right)^2\right\}
+  \end{displaymath}
+\end{definition}
+
+Dans \cite{Andres_hypersphere},  les  auteurs discutent   du paramètre
+d'épaisseur en fonction   de  la connexité souhaitée  pour  l'ensemble
+discret  obtenu.  D'autres  résultats  de  connectivité  ainsi  qu'une
+formulation    analytique      du     cercle   de      \aut{Bresenham}
+\cite{Bresenham_circular},  très classique  en informatique graphique,
+sont                         disponibles                          dans
+\cite{FIORIO:2006:LIRMM-00128281:1,conf/dgci/FiorioT06}.  Dans le  cas
+du  cercle de  \aut{Bresenham},  si une telle caractérisation  existe,
+elle met en place une épaisseur non constante et ne rentre donc pas
+entièrement dans le cadre de la définition \ref{def:cercles-spheres}.
+
+De cette définition analytique,  nous retenons dans les algorithmes de
+reconnaissance  de  la  section \ref{sec:algor-de-reconn} le  principe
+suivant (pour la dimension 2)~: un ensemble $S$ de points discrets est
+un   disque discret   s'il existe  un  cercle  séparant    $S$ de  son
+complémentaire $\bar{S}$. Nous nous  ramènerons ainsi à un problème de
+séparabilité.
+
+
+
+\section{La boîte à outils}
+
+Dans  ces paragraphes, nous présentons  différents  outils de domaines
+variés permettant d'offrir des solutions algorithmiques efficaces à la
+reconnaissance des objets élémentaires.
+
+\subsection{Programmation linéaire}
+\label{sec:progr-line}
+
+Un problème de  programmation par contrainte consiste à  maximiser une
+fonction objectif linéaire étant   donné  un ensemble  de  contraintes
+linéaires. Le système de contraintes peut se définir de manière
+générale par~:
+
+\begin{displaymath}
+  \left \lbrace
+    \begin{array}{c}
+      a_{11} x_1 + a_{12} x_2 +\ldots +a_{1n} x_n \leq b_1\\
+      a_{21} x_1 + a_{22} x_2 +\ldots +a_{2n} x_n \leq b_2\\
+      \ldots\\
+      a_{m1} x_1 + a_{m2} x_2 +\ldots +a_{mn} x_n \leq b_m\\
+
+    \end{array}\right.
+\end{displaymath}
+ou plus simplement par une représentation matricielle~:
+\begin{displaymath}
+Ax\leq b
+\end{displaymath}
+avec        $A=(a_{ij})\in\mathbb{R}^{m\times        n}$            et
+$b=(b_i)\in\mathbb{R}^m$. La  fonction objectif  est donnée de manière
+générale sous la forme $cx$ avec $c=(c_j)\in\mathbb{R}^n$.
+
+
+On cherche donc à résoudre~:
+\begin{align*}
+  &\max cx\\
+  & Ax\leq b\\
+  & x\in\R^n
+\end{align*}
+
+De nombreux algorithmes existent pour résoudre ce système (noté LP)
+\cite{schrijver86}. D'un point de vue théorique, nous avons le
+résultat suivant~:
+
+\begin{theoreme}[\cite{Megiddo84}]
+  Étant donné un problème LP donné avec  $m$ contraintes linéaires dans $\mathbb{R}^n$
+  où  $n$ est fixe, il existe alors un algorithme permettant de
+  résoudre le problème en  $O(m)$.
+\end{theoreme}
+
+Si ce résultat est très fort d'un point de vue théorique, l'algorithme
+suggéré par   \aut{Megiddo} n'est implémentable  que  pour  de faibles
+dimensions (2, voire 3).  Notons aussi  que la constante dans la borne
+linéaire est  très grande (doublement  exponentielle en la dimension).
+En pratique, on préfère utiliser des techniques parfois exponentielles
+en temps (comme le \texttt{Simplex}) mais  très rapides en pratique, ou
+encore    des    approches      \emph{randomisées}   (voir    par     exemple
+\cite{goldwasser95survey}).
+
+
+\subsection{Programmation linéaire entière}
+
+Un problème de programmation linéaire entière est un problème linéaire
+dans lequel les contraintes  sont données par des coefficients entiers
+et  dont on  cherche  des  solutions entières \cite{schrijver86}.   Le
+problème s'écrit donc~:
+\begin{align*}
+  &\max{cx}\\
+ & Ax\leq b\label{syst}\\
+& x\in \mathbb{Z}^n
+\end{align*}
+sachant             $A=(a_{ij})\in\mathbb{Z}^{m\times             n}$,
+$b=(b_i)\in\mathbb{Z}^m$ et $c=(c_j)\in\mathbb{Z}^n$.
+
+Décider si une solution  $x\in\Z^n$ existe est un problème  NP-complet
+\cite{GareyJohnson}.   Cependant,     de   nombreux  travaux  visent à
+caractériser   cet     ensemble  de    point  discret     s'il  existe
+\cite{schrijver86,BarHowLov92,zolo,Barany02}.
+
+Le système de contraintes $A$ et $b$ définit un polytope $\mathcal{P}$
+de $\R^n$  qui correspond au domaine dans  lequel il faut chercher les
+points discrets  solutions.  Considérons  $P$  l'enveloppe convexe  de
+$\mathcal{P}\cap\mathbb{Z}^n$.   C'est  ce  polytope discret que  nous
+allons caractériser. On note $N(A,b)$ l'ensemble des sommets de $P$ et
+nous nous intéressons à $|N(A,b)|$.
+
+\begin{theoreme}[\cite{zolo}]
+\label{theo:zolo}
+Soient                $A=(a_{ij})\in\mathbb{Z}^{m\times           n}$,
+$b=(b_i)\in\mathbb{Z}^m$,            $c=(c_j)\in\mathbb{Z}^n$       et
+$\alpha=\max\{|a_{ij}|, i=1,\ldots,m,j=1,\ldots,n\}$. Nous avons,
+  \begin{equation}
+|N(A,b)| \leq  c_n m^{\lfloor n/2\rfloor}\log^{n-1}(1+\alpha)\,
+  \end{equation}
+  où $c_n$ est une quantité dépendant uniquement de la dimension $n$.
+\end{theoreme}
+
+Ce résultat nous servira à  borner l'enveloppe convexe d'un morceau de
+plan   discret    et      de   sa  préimage       dans    la   section
+\ref{sec:reco-plans-et-hyperplans}.
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[]{\includegraphics[width=3.5cm]{acketa}}
+  \subfigure[]{\includegraphics[width=5cm]{exempleILP}}
+  \subfigure[]{\includegraphics[width=5cm]{exempleILPcvx}}
+  \caption{$(a)$ Exemple   de  polygone convexe   discret inclus.  Les
+    figures $(b)$ et $(c)$  illustrent  la combinatoire entre  l'objet
+    discret (ici 3D) et les sommets de son enveloppe convexe $(c)$.}
+  \label{fig:acketa}
+\end{figure}
+
+\subsection{Polytopes discrets}
+
+Dans la  section précédente, nous avons  déjà présenté des résultats
+sur les polytopes discrets lorsque ceux-ci sont définis comme l'espace
+des  solutions  d'un    problème  de programmation  linéaire    entière.
+Ci-dessous,   nous caractérisons le nombre  de   sommets d'un polytope
+discret si  celui-ci  est donné  par  la discrétisation  (au  sens  de
+\Name{Gauss}) d'un polytope continu ayant certaines propriétés.
+
+Soit  $P$ un polytope discret de   dimension $n$ non-vide. Nous notons
+$f_k(P)$ le nombre de facettes de dimension $k$  de $P$ ($0\leq k <n$,
+par exemple $f_0$ est le nombre de sommets de $P$). Nous avons alors
+le résultat suivant~:
+\begin{theoreme}[\cite{BaranyLarman}]
+  \label{theo:vol}
+  \begin{equation}
+    f_k\leq c_n (\text{Vol}~ P)^{\frac{n-1}{n+1}}\,
+  \end{equation}
+  où $c_n$ ne   dépend que de  la  dimension $n$ et  (Vol  $P$) est le
+  volume de $P$.
+\end{theoreme}
+
+
+En  dimension    2,  ce    résultat    est équivalent à   un  résultat
+d'\aut{Acketa} et \aut{{\v{Z}}uni{\'c}} qui permet de borner le nombre
+d'arêtes $e(N)$ d'un polygone convexe discret contenu dans une fenêtre
+$N\times N$ \cite{balog,acketa}~:
+\begin{equation}
+\label{eq:acketa}
+  e(N)= \frac{12}{(4\pi^2)^{1/3}}N^{2/3}+O(N^{1/3}log(N))\,.
+%% *** HERE WE NEED ANOTHER BOUND (OF BARANY-LARMAN, I'LL PUT IT)
+\end{equation}
+
+Le théorème \ref{theo:vol}   peut même être généralisé en  considérant
+non   plus  un   polytope  discret $P$,   mais  la   discrétisation de
+\Name{Gauss} d'une forme continue ayant certaines propriétés~:
+
+\begin{theoreme}[\cite{BaranyLarman}]
+\label{BaranyLarman}
+Soit $K \in C(D)$ où $C(D)$ est la famille des formes convexes ayant un
+bord $C^2$ et ayant un rayon de courbure en tout  point et dans toutes
+les directions entre $1/D$ et  $D$, pour $D  \geq 1$.   Notons $\bar K  =
+conv(K \cap \mathbb{Z}^n)$. Si le diamètre $\delta$ de $K$ est suffisamment
+grand, alors pour tout  $n  \geq 2$, il existe deux constantes
+$c_1(n)$ et  $c_2(n)$ telles que pour tout  $k \in \{ 0,1, \dots, n-1 \}$,
+%---------------
+\begin{equation}
+\label{barany}
+c_n \delta^{n \frac{n-1}{n+1}} \leq f_k(\bar K) \leq c'_n \delta^{n \frac{n-1}{n+1}}.
+\end{equation} 
+%-------------
+\end{theoreme}
+%----------
+
+Ces résultats  sont fondamentaux   pour  de  nombreux aspects  de   la
+reconnaissance de formes discrètes élémentaires. C'est le cas pour les
+plans discrets ou les cercles discrets. Ils sont de plus à la base de
+différentes   preuves    de  convergence  asymptotique   d'estimateurs
+géométriques comme la longueur ou les normales de contours discrets 2D
+\cite{deVieilleville_these}.
+
+
+\subsection{Enveloppe convexe}
+
+A  de   nombreux    endroits     des algorithmes   de      la  section
+\ref{sec:algor-de-reconn},  ces derniers nécessitent des constructions
+d'enveloppes  convexes \cite{P16,boissonnat,dcg-handbook}.   Dans   le
+tableau    \ref{tab:cvx},  nous    reprenons  quelques    résultats de
+complexité.  Dans ce  tableau, $m$   correspond  au nombre  de  points
+considérés, $n$  la  dimension  et $h$  la taille   du résultat.   Les
+algorithmes  incorporant  cette  quantité  $h$  dans   leur mesure  de
+complexité sont dits \emph{output sensitive}, c'est-à-dire que le coût
+est  lié à la taille du  résultat.   Les algorithmes incrémentaux nous
+permettent  d'insérer les  points  un à  un  et  de maintenir à chaque
+instant  une  enveloppe convexe  des points traités.   On peut vouloir
+quantifier    le  coût  algorithmique de  l'ajout     d'un point.  Par
+algorithme dynamique, nous  entendons  un algorithme dans lequel  nous
+pouvons ajouter et supprimer des points.
+
+Nous  avons aussi  ajouté  au tableau deux  résultats  dans le cas  où
+l'ensemble de points en entrée est à support discret.  Dans ce cas, le
+calcul d'enveloppe  convexe d'une courbe discrète  est linéaire en son
+nombre de points \cite{voss}. Notons que si la courbe discrète est vue
+comme  une  chaîne,    les résultats  de   \cite{IPL::Melkman1987}  ou
+\cite{buzer_cvxhull}   peuvent  aussi être utilisés.  L'algorithme  de
+\aut{Har-Peled} \cite{har-peled98} est  cependant à mettre en  avant~:
+cet algorithme est \emph{output sensitive} et son coût est indépendant
+(dans  une  certaine  mesure)  de   la cardinalité de  $X$,  dépendant
+seulement  de son  diamètre $\delta(X)$.    Notons  cependant que  les
+hypothèses sur  la  classe d'objets  $X$  permettant d'atteindre cette
+borne sont fortes. 
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|c|r|}
+    \hline
+    Objets & Complexité au pire cas& Références\\
+\hline
+\hline
+    Points 2D & $O(m \log m)$ & \aut{Graham} \cite{Graham:72}\\
+    Points 2D & $O(m h)$ & \aut{Jarvis} \cite{jarvis73}\\
+    Points 2D & $O(m \log h)$ & \aut{Chan} \cite{citeulike_937376}\\
+    Points 3D & $O(m\log h)$ & \aut{Chan} \cite{citeulike_937376}\\
+    Points dD & $O(m\log m + m^{\lfloor n/2\rfloor})$ & \aut{Chazelle}
+    \cite{journals/dcg/Chazelle93}\\
+    \hline
+    \hline
+    Chaîne simple 2D & $O(m)$ incrémental $O(1)$ & \aut{Melkman} \cite{IPL::Melkman1987}\\
+    Chaîne simple 2D & $O(m)$ dynamique $O(1)$ &\aut{Buzer} \cite{buzer_cvxhull} \\
+    \hline
+    \hline
+    Courbe discrète & $O(m)$  & \aut{Voss} \cite{voss}\\
+    Objet discret convexe $X$& $O(h\log{\delta(X)})$& \aut{Har-Peled} \cite{har-peled98}\\
+
+\hline
+  \end{tabular}
+  \caption{Enveloppes convexes et principales références.}
+  \label{tab:cvx}
+\end{table}
+
+
+\subsection{Séparabilité par cercles}
+
+Pour terminer avec les outils dont nous aurons besoin, nous présentons
+quelques  résultats  concernant  le  problème  de  séparation  de deux
+ensembles par des cercles en géométrie algorithmique.
+
+Le problème peut-être exposé  de la façon suivante~: étant donnés deux
+ensembles $S$ et $T$, comment  décider s'il existe un cercle contenant
+tous les points de $S$ et ne contenant aucun  point de $T$ ? Autrement
+dit, est-ce que $S$ et $T$ sont séparables par un cercle ?
+
+Si nous  notons $m=|S|+|T|$, \aut{O'Rourke} \etal \cite{ORourke:1986a}
+ont proposé  une  réécriture du problème  en   termes de programmation
+linéaire en dimension 3 de $m$ contraintes. En utilisant les résultats
+de  \aut{Megiddo} (voir  section  \ref{sec:progr-line}), nous obtenons
+les résultats présentés  dans le tableau  \ref{tab:sep}. Notons que si
+d'un point de  vue théorique, la  résolution d'un problème linéaire en
+dimension 3 est linéaire au nombre de contraintes, l'implémentation de
+cet algorithme est très complexe.
+
+Si nous nous restreignons à  des outils en  dimension 2, nous  pouvons
+considérer  un test de séparabilité basé  sur une notion de cellule de
+\aut{Voronoï} généralisée  construite en  considérant tous les couples
+$(s,t)$ avec $s\in S$ et $t\in T$ \cite{dcoeurjo_digitalarc_DAM}. Nous
+obtenons ainsi  des coûts  supérieurs   mais l'implémentation  de  ces
+algorithmes est réalisable (voir tableau \ref{tab:sep}).
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|p{6.5cm}|p{3cm}|r|}
+    \hline
+    Caractéristique & Compléxité au pire cas& Références\\
+\hline
+\hline
+    Test de séparabilité (LP dimension 3)& $O(m)$ &  \cite{ORourke:1986a}\\
+    Extraction du cercle séparant de rayon minimal & $O(m)$ &
+    \cite{ORourke:1986a}\\
+    Extraction de tous les cercles séparants & $O(m\log m)$&
+    \cite{ORourke:1986a}\\
+    \hline
+    \hline
+    Test séparabilité (LP dimension 2) & $O(|S|\cdot|T|)$ & \cite{P16,dcoeurjo_digitalarc_DAM}\\
+    Extraction de tous les cercles séparants &
+    $O(|S|\cdot|T|\log(|S|\cdot|T|))$ incrémental&
+    \cite{P16,dcoeurjo_digitalarc_DAM}\\
+    \hline
+  \end{tabular}
+  \caption{Principales références pour la séparabilité de deux
+    ensembles par un cercle.}
+  \label{tab:sep}
+\end{table}
+
+\section{Algorithmes de reconnaissance}
+\label{sec:algor-de-reconn}
+
+Nous   allons maintenant  combiner   tous les  outils  précédents pour
+synthétiser  les   différentes   approches pour   la    conception des
+algorithmes  de   reconnaissance  et     pour présenter    leur   coût
+algorithmique.
+
+Quel  que  soit   l'objet élémentaire  reconnu et étant  donné   qu'il
+existera toujours  un   nombre  infini  de représentants    euclidiens
+associés à un ensemble fini  de points discrets, deux grandes  classes
+d'algorithmes  peuvent être définies~:    la  première contient    les
+algorithmes de détection qui ont soit une  réponse binaire au problème
+de décision associé, soit retournent un unique représentant euclidien.
+La seconde   classe reprend les  algorithmes basés  sur une  notion de
+préimage nous   retourneront    toutes les    solutions  sous    forme
+généralement d'un polytope dans un certain espace des paramètres.
+
+
+
+
+\subsection{Droites discrètes}
+
+
+Concernant les  algorithmes de reconnaissance   de droite discrète, le
+problème      a été  très étudié et  des   solutions
+efficaces  existent.    Le tableau    \ref{tab:reco_droite} synthétise
+quelques-unes de ces solutions. Rappelons que les paramètres issus des
+algorithmes de   reconnaissance    dits   ``arithmétiques''  décrivent
+complètement la préimage associée aux droites discrètes.
+
+D'un   point de vue pratique,  les  algorithmes de reconnaissance sont
+assez simples et ne nécessitent pas d'outils très complexes.
+
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|p{2.5cm}|l|c|r|}
+    \hline
+    Contrainte & Caractéristique &  Complexité au pire cas& Références\\
+    \hline
+    \hline
+    Courbe connexe& Calcul de bande minimale & $O(m)$ incrémental $O(1)$&    \cite{KOV_1990}\\
+\cline{2-4}&    Reco. arithmétique & $O(m)$ incrémental $O(1)$
+    &    \cite{DEB95,debled}\\
+\cline{2-4} &Reco. arithmétique & $O(m)$ dynamique $O(1)$ &    \cite{deVieilleville_these}\\
+    \cline{2-4} &Préimage & $O(m)$ incrémental $O(1)$ & \cite{dor91,bruck93}\\
+    \hline\hline
+
+    Non connexe mais avec ordre & Préimage & $O(m)$ incrémental & \cite{rourke}\\
+    \hline
+    \hline
+    Non connexe & Test linéarité LP dimension 2 & $O(m)$ incrémental &
+    \cite{megiddo_LP,bb16862}\\
+    \cline{2-4}
+    & Preimage LP dimension 2 & $O(m \log m)$ incrémental& \cite{P16}\\
+\hline 
+  \end{tabular}
+  \caption{Algorithmes de reconnaissance de droite discrète.}
+  \label{tab:reco_droite}
+\end{table}
+
+
+
+\subsection{Plans et hyperplans discrets}
+\label{sec:reco-plans-et-hyperplans}
+
+
+Concernant les plans et  hyperplans discrets, les problèmes sont  plus
+complexes. Intuitivement, nous  avons peu d'algorithmes exploitant les
+propriétés arithmétiques et  de périodicités des plans discrets  comme
+c'était le  cas en dimension 2. Cependant,   nous avons des techniques
+fondées sur des outils classiques de  géométrie algorithmique mais dont
+les complexités sont modulées par  le caractère discret des objets  en
+exploitant la combinatoire spécifique des polytopes discrets.
+
+Pour la construction  des  algorithmes de reconnaissance,  nous allons
+utiliser  différents   résultats.     Tout  d'abord,   nous   appelons
+\emph{support} d'un  ensemble   de  points dans   $\R^n$ un  hyperplan
+euclidien tel que tous  les points de  l'ensemble sont du même côté de
+l'hyperplan.   On  note   aussi     $L_\infty$  la  distance   infinie
+($L_\infty(p,q)=\max_i{|p_i-q_i|}$). Ainsi~:
+
+\begin{theoreme}[\cite{Kim84f}]
+\label{theo:kim}
+Soit  $S \subset \mathbb{Z}^3$. $S$ est  un morceau de  plan discret si et
+seulement s'il  existe  un plan    support  $H$ de    $S$ tel que   la
+$L_\infty$-distance entre tout point  de $S$ et $H$  soit inférieure à
+1.
+\end{theoreme}
+
+Énoncé pour la dimension 3, ce théorème est généralisable en dimension
+supérieure car lié à la définition même  des hyperplans discrets. D'un
+point de  vue algorithmique, il  est clair que  la  recherche d'un tel
+plan support   peut être  effectuée   en s'intéressant à   l'enveloppe
+convexe $CH(S)$ de   $S$.  Notons  que dans \cite{Kim84f,kim91}    les
+auteurs   proposent un  algorithme   de  recherche  de  $H$  en  temps
+quadratique (voir tableau \ref{tab:survey})  mais ce dernier n'est pas
+correct  dans  certains  cas  \cite{debled}.   Toujours   dans ce
+contexte, nous avons le résultat suivant~:
+
+\begin{theoreme}[\cite{STO91}]
+\label{theo:stoj}
+Soit  $S \subset  \mathbb{Z}^n$.  $S$    est un moreceau   d'hyperplan
+discret si et   seulement s'il  existe   un hyperplan euclidien   $H$
+séparant  $S$ et $S'$,  $S'$ étant obtenu par translation  de $S$ de 1
+selon l'axe principal de $H$.
+\end{theoreme}
+
+Là encore, le test de séparation de $S$ et de $S'$ peut être résolu en
+regardant si   $CH(S)\cap  CH(S')$   est   vide  ou  non.  Notons  que
+\cite{STO91} présente un test de séparabilité basé sur la construction
+d'un problème de programmation linéaire en dimension 3.  Pour terminer
+avec  ces  caractérisations géométriques, nous considérons l'épaisseur
+géométrique de $S$ comme étant l'intersection entre l'axe principal de
+$S$ et l'enveloppe     convexe  de l'ensemble  corde    associé à  $S$
+\cite{GerDebZim05}.  L'ensemble corde  est donné par  $\{P-P', \forall
+P,P'\in S\}$. Ainsi nous avons~:
+\begin{theoreme}[\cite{GerDebZim05}]
+  Soit $S \subset  \mathbb{Z}^3$.  $S$ est un  morceau de plan discret
+  si et seulement si son épaisseur géométrique est inférieure à 1.
+\end{theoreme}
+
+Pour les  trois approches précédentes,  la combinatoire de l'enveloppe
+convexe  d'un  ensemble de points discrets   est un élément crucial dans
+l'analyse de  complexité ou tout du   moins dans l'efficacité pratique
+des  algorithmes.  La   figure  \ref{fig:CG} illustre ces  différentes
+approches géométriques.
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{CG}
+  \caption{Illustration     des     approches géométriques   pour   la
+    reconnaissance d'hyperplans   discrets~: l'ensemble   $S$ initial,
+    calcul d'un plan support,  test de séparabilité $S$/$S'$ et calcul
+    de l'épaisseur géométrique de l'ensemble corde de $S$.}
+  \label{fig:CG}
+\end{figure}
+
+
+A côté de ces approches, nous avons aussi toutes les techniques issues
+de     la programmation linéaire.   En    effet,   avec la  définition
+\ref{def:flat} (resp.  la  définition  \ref{def:analHP}), nous pouvons
+associé à chaque point discret $P$ de $S$  deux contraintes avec $n+1$
+inconnues    $\{\gamma_0,\ldots,\gamma_n\}$ dans $\R^{n+1}$     (resp.
+$\{a_1,\ldots,a_n,b\}$  dans $\mathbb{Z}^{n+1}$).   Nous avons   ainsi
+deux problèmes LP  et LP entière pour   décider si $S$  est un morceau
+d'hyperplan  discret  ou  non.  Si  nous   considérons une orientation
+spécifique pour   l'hyperplan recherché, c'est-à-dire si   nous fixons
+l'axe principal,   nous  pouvons nous   ramener à un   problème LP  en
+dimension    $n$         en         considérant    les     inconnues~:
+$\{\gamma_0/\gamma_n,\ldots,\gamma_{n-1}/\gamma_n,1\}$              ou
+$\{a_1/a_n,\ldots,a_{n-1}/a_n,1,b/a_n\}$ car alors $\gamma_n\neq 0$ et
+$a_n\neq 0$. Le problème de  LP entière devient maintenant un problème
+LP  sur $\mathbb{Q}$.   Nous   pouvons  donc associer à   chaque point
+discret  $P\in S$  dans un espace   des paramètres $\{\Gamma_0,\ldots,
+\Gamma_{n-1}\}\in\R^{n-1}$, les contraintes~:
+\begin{equation}
+  \Gamma_0-\frac{1}{2}+P_n+\sum_{i=1}^{n-1}        \Gamma_iP_i    \leq
+0 \quad\text{et}\quad \Gamma_0+\frac{1}{2}+P_n+\sum_{i=1}^{n-1}        \Gamma_iP_i    >
+0\label{eq:constraints}\,.
+\end{equation}
+
+Nous pouvons      alors  reprendre  les résultats    de     la section
+\ref{sec:progr-line} pour résoudre ce problème et ainsi décider si $S$
+est un  morceau  d'hyperplan  discret.   Par exemple,  le  résultat de
+\aut{Megiddo} nous dit que si la dimension est fixe, la reconnaissance
+d'hyperplan discret  est calculable en  temps linéaire  par rapport au
+nombre de points discrets.
+
+Dans des dimensions faibles, nous pouvons nous intéresser au calcul de
+la préimage complète. Pour les dimensions supérieures, la combinatoire
+de   la  préimage (polytope  de  $\R^n$)  ne  permet pas   d'avoir des
+algorithmes    de  mise à jour  de    celle-ci   qui soient  efficaces
+\cite{boissonnat}.
+
+Pour  les plans  discrets,  la préimage   est un  objet  très utilisée
+\cite{vittonethese,vittone,veelaert_hyper,dcoeurjo_these,sivignon_these,dexet_these}.
+L'un des principal intérêts étant que la préimage décrit l'infinité des
+plans euclidiens  associés à un morceau   de plan  discret.  Or  cette
+description est primordiale lorsque l'on s'intéresse au problème de la
+reconstruction réversible (voir chapitre   \ref{chap:reconstruction}).
+Dans  la suite, on  note $\P(S)$ la  préimage associée à l'ensemble de
+points discrets $S$.
+
+L'algorithme est    très simple, nous  faisons  l'hypothèse  que l'axe
+principal du plan est l'axe $x_3$  (axe $Oz$).  Ensuite, sans perte de
+généralité, nous initialisons la préimage dans l'espace des paramètres
+$(\Gamma_0,\Gamma_1,\Gamma_2)$        (notation      de      l'équation
+(\ref{eq:constraints}))  par le  cube  $[0,1]^3$.  Pour  chaque  point
+discret $P\in S$, nous allons mettre à jour  la préimage avec les deux
+contraintes associées (Equ. (\ref{eq:constraints})). Plus précisément,
+nous avons deux  calculs d'intersection entre  un polyèdre convexe, et
+une contrainte linéaire.     Pour  cette mise à jour,   nous   pouvons
+utiliser un  algorithme linéaire en  la taille de  la préimage dans le
+pire  cas.  Si au cours  de  l'algorithme  $\P(S)$ devient vide,  cela
+signifie qu'il  n'existe  aucun plan euclidien  dont la discrétisation
+contienne $S$. Nous  concluons alors que $S$  n'est  pas un  morceau de
+plan discret.
+
+Cet algorithme incrémental a donc un coût  en $O(m\cdot E)$ où $m=|S|$
+et  $E$ est  le  nombre d'arêtes de  la  préimage.   Un point  crucial
+consiste donc à donner une borne sur  la quantité $E$. Nous aborderons
+ce point  dans  la section  suivante.   S'il est   difficile de parler
+d'algorithme \emph{output sensitive} pour un algorithme incrémental, à
+chaque étape, nous avons un processus qui est linéaire en la taille de
+la sortie de l'étape précédente.
+
+
+
+Le tableau   \ref{tab:survey} reprend les  différentes approches. Pour
+plus  de précisions sur   des  algorithmes  non  détaillés  ci-dessus,
+se référer à \cite{dcoeurjo_iwcia2006}.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|p{5cm}|c|p{1cm}|p{2.5cm}|p{1.5cm}|}
+    \hline
+    Description & Ref. & Dim. &  Complexité& Incrémental \\
+    \hline
+    Caclul plan support avec distance < 1 & \cite{Kim84f,kim91}& 3 & $O(m^2)$ & - \\
+    Séparabilité  basée sur l'enveloppe convexe & \cite{STO91} & n 
+    &$O(m\cdot\log{m}+m^{\lfloor n/2\rfloor} + 2^n\cdot m^{2^{n-2}n}\cdot\log{m})$ & -  \\
+    Épaisseur de $S$ & \cite{GerDebZim05} & 3 & $O(m^7)$ & oui\\
+    \hline
+    \hline
+    Algorithme \aut{Fourier-Motzkin} & \cite{fourier} & 3 & n.a. &-  \\
+    LP & \cite{Megiddo84} & n fixe &    $O(m)$& - \\
+    Séparabilité basée sur LP & \cite{STO91} &  n fixe &    $O(m)$& - \\
+
+    LP entière & \cite{conf/dgci/BrimkovD05} & n fixe & $O(m\cdot\log{D})$ & - \\
+    Préimage arithmétique& \cite{vittone} & 3 &$O(mE^2\cdot\log{D})$ & oui   \\
+    Préimage arithmétique& \cite{dcoeurjo_these}  & 3 &$O(m\cdot\log^2{m})$ & oui    \\
+    Préimage &  & 3   & $O(m\cdot E)$ & oui  \\
+    \hline
+    \hline
+    Propriété \emph{Evenness} (base rectangulaire) & \cite{veelaert} & 3 & $O(m^2)$&oui \\
+
+    \hline
+    \hline
+    Reconnaissance arithmétique  (base rectangulaire) & \cite{mesmoudi} &3 & & -  \\
+    \hline
+  \end{tabular}
+  \caption{Solutions algorithmiques pour la reconnaissance de plans et
+    d'hyperplans discrets~: $m$ est le nombre de points discrets, $n$
+    la dimension, $E$ est la taille de la préimage, et $D$ une borne
+    sur la taille du domaine contenant l'ensemble $S$.}
+  \label{tab:survey}
+\end{table}
+
+
+Même   si   l'algorithme   de    \aut{Gérard}   \etal
+\cite{GerDebZim05}   possède une  borne au  pire   cas très importante
+($O(m^7)$),  ce dernier est linéaire  en  pratique.  Ce point renforce
+l'idée que la structure  particulière  des morceaux de plans  discrets
+joue un rôle  crucial dans l'efficacité  des algorithmes.  C'est cette
+spécificité discrète que nous analysons dans la section suivante.
+
+\subsection{Préimage et enveloppe convexe d'un hyperplan discret}
+
+Nous  cherchons ici à évaluer la  combinatoire  associée à l'enveloppe
+convexe de morceaux d'hyperplans discrets et ce pour deux raisons
+fondamentales~:
+\begin{itemize}
+\item l'enveloppe convexe intervient à de nombreuses reprises dans les
+  algorithmes de reconnaissance basés sur la géométrie~;
+\item   dans   \cite{dcoeurjo_these,dcoeurjo_preimage_DAM}, nous avons
+  montré qu'en dimension 3, $|\P(S)| \leq |CH(S)|$.
+\end{itemize}
+
+Commençons  par évaluer   ces quantités en   utilisant des générateurs
+aléatoires de plans et hyperplans discrets. Pour évaluer $CH(S)$, nous
+utilisons      les        outils           de       la        libraire
+\texttt{qhull}\footnote{\url{http://www.qhull.org/}}.  Pour générer un
+hyperplan discret, nous commençons par  générer  sa base (ensemble  de
+points discrets  dans  $\Z^{n-1}$),  nous  générons aléatoirement   un
+vecteur normal que nous utilisons pour \emph{relever} la base et ainsi
+construire   l'hyperplan dans   $\Z^n$.     Dans ce  qui   suit,  nous
+considérons   des  morceaux connexes contenus   dans  un domaine borné
+$N^n$.  Deux générateurs  pour  la base  seront utilisés (voir  figure
+\ref{fig:random})~:
+\begin{itemize}
+\item  base  hyper-rectangulaire~: on construit  un hyper-rectangle de
+  dimension $n-1$ dont les  longueurs des différents côtés  sont tirés
+  aléatoirement~;
+\item base  ``co-sphérique''~:   on utilise un   générateur  de points
+  co-sphérique dans  $\R^{n-1}$    fourni avec  \texttt{qhull},   nous
+  utilisons   ensuite  \texttt{qhull}   pour en  calculer  l'enveloppe
+  convexe  et ainsi construire   une   base discrète comme étant    la
+  discrétisation de ce convexe.
+\end{itemize}
+
+Le dernier générateur aura pour  objectif de tester des hypothèses pour
+la classe des morceaux d'hyperplans discrets à base convexe.
+
+
+\begin{figure}[h]
+
+ \begin{center}
+   \subfigure[]{ \includegraphics[width=4cm]{vox30}}
+   \subfigure[]{ \includegraphics[width=4cm]{cvx30}}
+   \subfigure[]{ \includegraphics[width=4cm]{preim30}}
+
+    \subfigure[]{\includegraphics[width=4cm]{examplerounded}}
+    \subfigure[]{\includegraphics[width=4cm]{examplerounded_cvx}}
+   \subfigure[]{\includegraphics[width=4cm]{examplerounded_preim}}
+  \end{center}
+  \caption{Illustration de  deux morceaux de  plans discrets selon les
+    générateurs  proposés~:    $(a)$  un  morceau   ayant   une   base
+    rectangulaire  $(b)$ son enveloppe convexe  et $(c)$ sa préimage~;
+    $(d)$  un   morceau  de plan à base    ``co-sphérique'', $(e)$ son
+    enveloppe convexe et $(f)$ sa préimage.}
+  \label{fig:random}
+\end{figure}
+
+Nous  avons  utilisé   ces différents   générateurs  pour évaluer  le
+comportement de   $|CH(S)|$ et $|\P(S)|$  pour cet   objet particulier
+qu'est le  plan  discret.   La  figure \ref{fig:resCVX}  présente  les
+résultats pour le  cas de l'enveloppe convexe  et  pour des dimensions
+allant jusqu'à $6$. On observe  que le comportement des
+courbes semble plus   logarithmique que  polynomial.  On  s'aperçoit
+aussi que bien évidemment, le cas  des bases hyper-rectangulaires  est
+plus \emph{simple} que le cas co-sphérique.
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[angle=270,width=6.8cm]{graphe_hyperrect_CVX}}
+  \subfigure[]{\includegraphics[angle=270,width=6.8cm]{graphe_convexobject_CVX}}
+  \caption{Analyse expérimentale du nombre  de sommets de $CH(S)$ pour
+    les générateurs à  base hyper-rectangulaire $(a)$ et co-sphérique
+    $(b)$ pour $n=\{3,4,5,6\}$.}
+  \label{fig:resCVX}
+\end{figure}
+
+Dans la figure \ref{fig:resPreim},  nous avons évalué la taille de  la
+préimage sur  ces objets générés.   Pour ce  test,  le temps de calcul
+devient  vite  très important en  fonction de  la dimension.  C'est la
+raison pour laquelle il y  a moins d'échantillons que pour l'enveloppe
+convexe.    Nous   pouvons cependant   remarquer  des    comportements
+logarithmiques et globalement une taille très faible de cette préimage
+dans le cas des morceaux à base hyper-rectangulaire.
+
+
+\begin{figure}[h]
+  \centering
+ \subfigure[]{\includegraphics[angle=270,width=6.8cm]{graphe_hyperrect_preimage}}
+ \subfigure[]{\includegraphics[angle=270,width=6.8cm]{graphe_convexobject_preimage}}
+  \caption{Analyse expérimentale du nombre  de sommets de $\P(S)$ pour
+    les générateurs à  base hyper-rectangulaire $(a)$ et co-sphérique
+    $(b)$ pour $n=\{3,4,5,6\}$.}
+  \label{fig:resPreim}
+\end{figure}
+
+Pour mettre cela en avant  et en se  restreignant à la dimension 3, la
+figure \ref{fig:res3D}  compare    les deux  structures  ($CH(S)$   et
+$\P(S)$) pour la dimension 3. Si  on peut observer que la combinatoire
+est   globalement faible ($<300$  sommets  pour  près de  80000 points
+discrets),  la taille de la  préimage  est encore  plus réduite ($<60$
+sommets pour près de 80000 points discrets).
+
+
+\begin{figure}[h]
+  \centering
+ \subfigure[]{\includegraphics[angle=270,width=6.8cm]{graphe_hyperrect_comp3D}}
+  \subfigure[]{\includegraphics[angle=270,width=6.8cm]{graphe_convexobject_comp3D}}
+  \caption{Analyse   comparée  de  $|CH(S)|$   et  $|\P(S)|$  pour  la
+    dimension 3 pour les plans discrets à  base hyper-rectangulaire $(a)$ et co-sphérique
+    $(b)$.}
+  \label{fig:res3D}
+\end{figure}
+
+
+
+Pour expliquer formellement ces  résultats, nous utilisons les  outils
+précédents.    Pour  cela,   considérons   l'écriture analytique   des
+hyperplans et notons $\alpha=\max\{|a_1|,\ldots,|a_n|\}$.  Dans toutes
+les techniques  de  reconnaissance,  cette quantité est   généralement
+proportionnelle au diamètre de $S$ que nous pouvons borner par $O(N)$.
+
+
+
+\begin{theoreme}[\cite{dcoeurjo_iwcia2006}]
+\label{theo:appl-dps-recogn}
+\begin{enumerate}
+\item  Si $S$  est un morceau   d'hyperplan discret dont   la base est
+  hyper-rectangulaire, alors
+    \begin{equation}
+      \label{eq:hyprect}
+      |CH(S)| \leq c_n\log^{n-1}(1+\alpha)\,;
+    \end{equation}
+ 
+\item Sinon,
+\begin{equation}
+  \label{eq:global}
+  |CH(S)| \leq c_n N^{\frac{(n-1)^2}{n+1}}\,;
+\end{equation}
+
+\item Si $S$ est un morceau de plan discret ($n=3$) dont la base est un
+  convexe discret, ou la discrétisation d'un convexe continu dans les
+  hypothèses du théorème \ref{BaranyLarman}, alors~:
+    \begin{equation}
+      \label{eq:CONVEX}
+      |CH(S)|\leq c N^{\frac{2}{3}}\log^2(1+ \max\{N,\alpha\})\,.
+    \end{equation}
+\end{enumerate}
+ $c,~c_n$ sont des quantités dépendant uniquement de la dimension $n$.
+\end{theoreme}
+
+\begin{mapreuve}
+  Les  détails      de       la    preuve   sont    donnés       dans
+  \cite{dcoeurjo_iwcia2006}.  Cependant,   nous   précisons  ici   les
+  différentes utilisations des    outils précédents pour  obtenir  ces
+  résultats~:
+  \begin{description}
+  \item{- Point 1} : si un morceau d'hyperplan a une base rectangulaire,
+    nous pouvons  coder $S$  comme le   résultat d'un problème  de  LP
+    entière avec  $2n+2$ contraintes ($2n$ pour coder  la base  et $2$
+    pour  la  ``pente'' de l'hyperplan). Le  résultat  découle donc du
+    théorème \ref{theo:zolo} avec $m=2n+2$.
+  \item{- Point 2} : nous sommes ici dans  le cas général, $(Vol~CH(S))$
+    est  borné   par   $O(N^{n-1})$ et nous    utilisons  le  théorème
+    \ref{theo:vol} pour conclure.
+  \item{- Point 3} : en dimension  3, le théorème \ref{BaranyLarman}  et
+    plus précisément l'équation \ref{eq:acketa} nous permet de définir
+    $S$  comme un problème de   LP entière avec $N^{2/3}$  contraintes
+    pour la base, et deux pour la \emph{pente}. Le résultat découle de
+    \ref{theo:zolo}.    
+  \end{description}
+\end{mapreuve}
+
+
+En conclusion, de cette  partie,  nous pouvons faire  deux  remarques,
+l'une théorique sur la nature des hyperplans,  et l'autre pratique. Si
+le théorème  \ref{theo:appl-dps-recogn} nous donne quelques bornes sur
+$CH(S)$ et donc sur  $\mathcal{P}(S)$ pour $n=3$, les expériences nous
+montrent que nous sommes  encore  loin d'obtenir  des bornes  fines.  Il
+reste  des  spécificités discrètes encore   mal appréhendées  dans les
+analyses.
+
+En pratique et en dimension  3, l'objet géométrique $\P(S)$ se  révèle
+comme étant  très   intéressant car   même si  des   algorithmes naïfs
+d'intersection plan/polyèdre sont utilisés pour la reconnaissance basée
+sur la préimage, la taille de cet objet est très faible et donc permet
+la conception d'algorithmes très  rapides.  Quelque part, cette faible
+taille de préimage suggère   aussi  que des  techniques  plus évoluées
+d'intersection  plan/polyèdre  convexe,  par exemple en  utilisant  un
+représentation                hiérarchique           du       polyèdre
+\cite{TCS::DobkinK1983,dcg-handbook}, risquent, certes d'améliorer la
+complexité  asymptotique,  mais sans   doute de diminuer  l'efficacité
+pratique de la   reconnaissance  avec des structures trop    lourdes à
+manipuler.
+
+Pour les algorithmes utilisant  exclusivement l'enveloppe convexe, ces
+résultats  suggèrent  de s'orienter  vers  les techniques \emph{output
+  sensitive}.
+
+
+\subsection{Cercles discrets}
+
+La reconnaissance  de cercle   discret   a toujours été  un   problème
+classique de géométrie discrète. Une des raisons principales est que le
+problème du cercle est une continuation  logique une fois les premiers
+résultats       obtenus  sur     les     droites    discrètes    (voir
+\cite{dcoeurjo_digitalarc_DAM} pour une bibliographie complète).
+
+Globalement, peu  d'algorithmes ont su tirer  parti  de la spécificité
+des  objets  discrets ou   de   propriétés arithmétiques  des  cercles
+(l'ordre 2  rendant les choses  beaucoup plus complexes \cite{hardy}).
+Ainsi, certaines techniques construisent  un problème  de séparabilité
+classique en   tant que problème de   LP  classique rendant  le calcul
+linéaire avec \cite{megiddo}.
+
+Dans cette   section, nous  présentons quelques  résultats  permettant
+d'intégrer  un  peu de spécificité discrète   dans les complexités des
+algorithmes de séparabilité qui seront \emph{in fine} utilisés pour la
+reconnaissance.
+
+Rappelons  le problème~:  considérons  un ensemble  discret $S$.  Pour
+décider  si  $S$  est un   disque   discret,  nous  allons tester   la
+séparabilité de $S$ et de son complémentaire $\bar{S}=T$ par un cercle.
+
+De manière triviale, nous pouvons  réduire $S$ à son enveloppe convexe
+$CH(S)$ et cela ne change rien concernant la séparabilité (voir figure
+\ref{fig:filtrage_cercles}). Ensuite, nous pouvons énoncer un filtrage
+des points  de $T$ en  utilisant  le principe illustré  dans la figure
+\ref{fig:filtrage_cercles_T}~:  supposons   le   triangle  formé   par
+$s,s'\in CH(S)$ et $t\in T$, s'il existe $t'\in T$ à l'intérieur de ce
+dernier, nous pouvons supprimer  le point $t$  de $T$ sans que cela ne
+change la séparabilité. Pour effectuer cette  recherche de triangle ne
+contenant   aucun    point de $T$,   nous   procèderons   en analysant
+indépendamment      toutes        les       arêtes    de       $CH(S)$
+\cite{dcoeurjo_digitalarc_DAM}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{reco_cercle_sup}
+  \caption{Illustration du  processus   global  de filtrage pour    la
+    reconnaissance de disques discrets.}
+  \label{fig:filtrage_cercles}
+\end{figure}
+
+
+
+
+\begin{figure}[h]
+  \centering
+\subfigure[]{\includegraphics[width=4cm]{reduction_T}}
+\subfigure[]{\includegraphics[width=8cm]{reco_cercle_T}}
+  \caption{Illustration du filtrage de $T$~: test d'inclusion dans un
+    triangle $(a)$ et décomposition du test, arête par arête $(b)$.}
+  \label{fig:filtrage_cercles_T}
+\end{figure}
+
+La spécificité discrète intervient au niveau du filtrage de
+$T$, avec en préalable la définition suivante (voir figure \ref{fig:bezout})~:
+
+
+
+\begin{definition}[Points de \aut{Bezout}]
+  Soit  un segment discret  $[mn]$   défini par un  vecteur  directeur
+  $\overrightarrow{u}$ sous  forme  réduite  ($pgcd(u_x,u_y)=1$),   un
+  point ${P}$ est un point de \aut{Bezout} de $[mn]$ si~:
+  \begin{displaymath}
+    \overrightarrow{mP}= \overrightarrow{v}+k\overrightarrow{u} \quad \textstyle{avec}\quad
+    k\in \mathbb{Z} \quad \textstyle{et}\quad {det(\overrightarrow{u},\overrightarrow{v})=\pm{}1}
+  \end{displaymath}
+  \noindent De plus, ${P}$ est le point le plus proche de la
+  médiatrice de $[mn]$.
+\end{definition}
+
+
+\begin{figure}[h]
+  \centering
+\subfigure[]{\includegraphics[width=6cm]{bez}}
+\caption{Illustration  de la   définition  des points de  \aut{Bezout}
+  associés à un segment discret.}
+  \label{fig:bezout}
+\end{figure}
+
+Par   cette définition,  un   segment  $[mn]$   possède  un point   de
+\aut{Bezout} de part  et d'autre  du  segment.  Si nous orientons   le
+segment $[mn]$,  on considère par définition  qu'un  seul de  ces deux
+points,  celui appartenant au demi-espace  défini  par $[mn]$ pour une
+certaine  convention d'orientation.  D'un  point de vue algorithmique,
+le vecteur $\vec{v}$ peut être  donné par l'algorithme d'\aut{Euclide}
+étendu \cite{hardy}. Le   coût de cet  algorithme est  proportionnel à
+$\log(\min (|u_x|,|u_y|))$.  L'existence  d'un tel vecteur étant donné
+par l'identité de \aut{Bezout}  classique.  Basé sur cette définition,
+nous avons le résultat~:
+
+
+\begin{lemme}[\cite{dcoeurjo_digitalarc_DAM}]
+  Considérons    un   segment discret      orienté      $e=[mn]$  avec
+  $m,~n\in\mathbb{Z}$ (par exemple $m$ à gauche de $n$ en abscisse) et
+  notons $T_e$  l'ensemble des points discrets  de $T$  appartenant au
+  demi-espace associé à  $e$  (par   exemple le demi-espace   \emph{au
+    dessus} de $[mn]$).  Les seuls triangles $(m,n,t)$ avec $t\in T_e$
+  ne contenant aucun autre point de $T_e$  sont ceux engendrés par les
+  points de \aut{Bezout}.
+\end{lemme}
+
+
+Pour conclure sur ce filtrage, nous avons le lemme suivant décrivant
+complètement la figure \ref{fig:filtrage_cercles}~:
+
+\begin{lemme}[\cite{dcoeurjo_digitalarc_DAM}]
+  Soit $S$ un objet discret, $S$ est un disque discret si et seulement
+  si $S$ est séparable de $T$ par un cercle sachant~:
+  \begin{itemize}
+  \item $S=CH(S)$
+  \item $T$ est l'ensemble des points de \aut{Bezout} (un par arête de
+    $CH(S)$).
+  \end{itemize}
+\end{lemme}
+
+
+De  plus, en    utilisant   le théorème   \ref{BaranyLarman}   ou plus
+simplement l'équation (\ref{eq:acketa}) et en considérant que $S$ est
+dans une fenêtre $N\times N$, nous obtenons~:
+\begin{align*}
+  |S| &= O(N^{2/3})\\
+  |T| &= O(N^{2/3})
+\end{align*}
+Notons  que des bornes  similaires existent  en  remplaçant $N$ par le
+diamètre de $S$.
+
+Maintenant que l'arithmétique nous a  permis de réduire les  ensembles
+$S$ et  $T$,  nous   pouvons  reprendre  les coûts     des algorithmes
+classiques de séparabilité pour en énoncer des variantes discrètes. Le
+tableau \ref{tab:algo_cercle} détaille  l'algorithme optimal se basant
+sur  le calcul d'enveloppe convexe discret   de \aut{Voss}.  Rappelons
+que  $h$  désigne  la  taille  du  convexe résultant de  l'algorithme.
+Ainsi, grâce aux résultats sur les polytopes discrets, $h=O(N^{2/3})$.
+Il est  intéressant  de  noter que  les  algorithmes basés  sur  de la
+programmation linéaire en dimension 3 sont linéaires.
+
+Pour le  problème de reconnaissance   de cercles, la  préimage peut se
+définir  comme étant le lieu   des centres des  cercles séparants (les
+rayons peuvent être déduits par  la suite).  Avec la formulation comme
+un problème  linéaire de dimension 3  de \cite{ORourke:1986a}, ce lieu
+peut être défini     comme  le domaine de   satisfaction   du problème
+linéaire. En  dimension 2,  ce  lieu est donné par  l'intersection de
+demi-espaces (définis par les  médiatrices de $[st]$ pour  tout couple
+$s\in S$   et  $t\in T$),   cette  préimage  est  une  région  convexe
+potentiellement non bornée \cite{dcoeurjo_digitalarc_DAM}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline
+    Enveloppe convexe \cite{voss}& $O(N)$\\
+    Pour chaque arête, calcul du point de \aut{Bezout} & $O(h\log{\delta(X)})$\\
+    ~~ Décision LP dimension 3& $O(h)$\\
+    ~~ou Préimage LP dimension 3& $ O(h\log h)$\\
+    ~~ou Préimage LP dimension 2& $O(h^2\log h)$\\
+    \hline
+    \hline
+    Bilan avec décision LP dimension 3 &  $O(N+N^{2/3}\log(N))$\\
+    Bilan avec préimage LP dimension 3 &  $O(N+N^{2/3}\log(N))$\\
+    Bilan avec préimage LP dimension 2 &  $O(N^{4/3}\log(N))$ \\
+    \hline
+  \end{tabular}
+  \caption{Algorithme générique pour la reconnaissance de disques
+    discrets et analyses de complexités pour les différentes options.}
+  \label{tab:algo_cercle}
+\end{table}
+
+
+Au delà  de ces résultats théoriques,  en pratique  nous avons surtout
+des problèmes de reconnaissance de cercle  sur des portions de contour
+de $S$.  Dans ce cas, l'algorithme global d'enveloppe convexe pourrait
+ne pas être utilisable si $S$ possède des points d'inflexion. Un autre
+objectif serait d'avoir une notion de couverture tangentielle pour les
+arcs de  cercles.  En d'autres  termes, le problème  consiste, en tout
+point du  contour  discret, à  reconnaître  l'arc  de  cercle  discret
+maximal  (non extensible à  gauche  et à droite).  Cette structure est
+très      utilisée     pour       les      segments           discrets
+\cite{laurefab,deVieilleville_these}.
+
+Pour  cela, il  nous faut  utiliser un  algorithme d'enveloppe convexe
+dynamique  \cite{IPL::Melkman1987,buzer_cvxhull},  ensuite pour chaque
+arête  nouvellement  créée,   il   faudra  utiliser   un    algorithme
+d'\aut{Euclide} pour calculer le point de \aut{Bezout} et ainsi mettre
+à jour $S$ et $T$.   Pour terminer, il nous  faut un solveur de LP qui
+soit lui  aussi dynamique, c'est-à-dire  avec ajout  et suppression de
+contraintes.
+
+Pour    l'instant,     nous      nous     sommes    intéressés    dans
+\cite{dcoeurjo_digitalarc_DAM} à  un algorithme incrémental (seulement
+ajout de contrainte) basé sur la mise à jour de la préimage en $LP_2$.
+Si la  complexité est supérieure que   les techniques $LP_3$, certains
+points sont incrémentaux et plus simples à implémenter.
+
+
+\section{Conclusion}
+
+Dans  ce chapitre,  nous  avons  abordé les  différents problèmes   de
+reconnaissance de formes  discrètes élémentaires que sont les droites,
+les cercles et les plans/hyperplans discrets.
+
+Parmi les   solutions algorithmiques  présentées,  nous avons  pu nous
+rendre compte de l'importance  des résultats d'autres domaines comme la
+géométrie algorithmique,  l'arithmétique, la  programmation  linéaire,
+\ldots.  Cette constatation justifie pleinement notre cadre de travail
+qui consiste à nous placer à l'interface  de plusieurs disciplines afin
+de  proposer des algorithmes  efficaces.   Pour synthétiser un peu ces
+travaux, nous pouvons constater que la  droite discrète est maintenant
+un objet pour lequel les connaissances arithmétiques sont suffisamment
+abouties.  Le challenge n'est plus réellement lié à la droite discrète
+analytique mais plutôt à des extensions comme par exemple les droites
+épaisses, bruitées ou fondées sur une autre formulation.
+
+Pour  les plans  et  hyperplans discrets,   nous   avons présenté  des
+analyses permettant  de mieux comprendre    et de mieux intégrer   les
+spécificités   discrètes dans   les    algorithmes de   reconnaissance
+utilisant \emph{in fine} des  outils de géométrie algorithmique.  A la
+vue des    différentes expérimentations, nous pouvons    remarquer que
+d'autres résultats sont à espérer.
+
+Le cercle discret est sans doute un exemple très représentatif du gain
+que  l'on a à considérer les propriétés  arithmétiques induites par la
+structure  discrète dans les  outils  de séparabilité pour reconnaître
+des disques ou cercles discrets.
+
+Que ce soit   pour les cercles discrets ou   pour les  plans,  si nous
+maîtrisons un   peu  mieux  les   coûts  théoriques   des algorithmes,
+l'implémentation  et  la mise  en \oe uvre  de   ces  techniques est  un
+problème  non négligeable.    Plus précisément,    le  résultat   de
+\aut{Megiddo},  que  nous   utilisons   souvent  comme   un   argument
+\emph{massue} pour conclure sur la complexité, n'est pas implémentable
+à partir de la dimension 3.   Pour conclure, des efforts sont encore à
+mener pour  rapprocher la complexité asymptotique de l'efficacité en temps
+des algorithmes, que ce soit d'un point de vue théorique ou pratique.
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 

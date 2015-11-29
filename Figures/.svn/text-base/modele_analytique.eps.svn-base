@@ -1,0 +1,1071 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ./Figures/modele_analytique.fig
+%%Creator: fig2dev Version 3.2 Patchlevel 5-alpha7
+%%CreationDate: Tue Jun 26 13:11:21 2007
+%%For: dcoeurjo@liristvj (David Coeurjolly,,,,)
+%%BoundingBox: 0 0 1119 219
+%Magnification: 1.0000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+/col32 {0.761 0.761 0.761 srgb} bind def
+/col33 {0.498 0.498 0.498 srgb} bind def
+/col34 {0.839 0.839 0.839 srgb} bind def
+/col35 {0.337 0.337 0.337 srgb} bind def
+
+end
+save
+newpath 0 219 moveto 0 0 lineto 1119 0 lineto 1119 219 lineto closepath clip newpath
+-89.3 577.0 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+ /DrawEllipse {
+	/endangle exch def
+	/startangle exch def
+	/yrad exch def
+	/xrad exch def
+	/y exch def
+	/x exch def
+	/savematrix mtrx currentmatrix def
+	x y tr xrad yrad sc 0 0 1 startangle endangle arc
+	closepath
+	savematrix setmatrix
+	} def
+
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+
+$F2psBegin
+10 setmiterlimit
+0 slj 0 slc
+ 0.06000 0.06000 sc
+%
+% Fig objects follow
+%
+% 
+% here starts figure with depth 55
+% Polyline
+0 slj
+0 slc
+7.500 slw
+n 3300 7800 m 3900 7800 l 3900 8400 l 3300 8400 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 5100 8400 m 5700 8400 l 5700 9000 l 5100 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 4500 9000 m 5100 9000 l 5100 9600 l 4500 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 5100 9000 m 5700 9000 l 5700 9600 l 5100 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 4500 8400 m 5100 8400 l 5100 9000 l 4500 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 4500 7800 m 5100 7800 l 5100 8400 l 4500 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 5100 7800 m 5700 7800 l 5700 8400 l 5100 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 4500 7200 m 5100 7200 l 5100 7800 l 4500 7800 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 5100 7200 m 5700 7200 l 5700 7800 l 5100 7800 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 4500 6600 m 5100 6600 l 5100 7200 l 4500 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 4500 6000 m 5100 6000 l 5100 6600 l 4500 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 3900 6000 m 4500 6000 l 4500 6600 l 3900 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 3900 6600 m 4500 6600 l 4500 7200 l 3900 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 5100 6000 m 5700 6000 l 5700 6600 l 5100 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 5100 6600 m 5700 6600 l 5700 7200 l 5100 7200 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 2100 7200 m 2700 7200 l 2700 7800 l 2100 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 2100 7800 m 2700 7800 l 2700 8400 l 2100 8400 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 2700 7800 m 3300 7800 l 3300 8400 l 2700 8400 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 2700 7200 m 3300 7200 l 3300 7800 l 2700 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 3300 9000 m 3900 9000 l 3900 9600 l 3300 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 2700 9000 m 3300 9000 l 3300 9600 l 2700 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 2700 8400 m 3300 8400 l 3300 9000 l 2700 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 3300 8400 m 3900 8400 l 3900 9000 l 3300 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 3300 7200 m 3900 7200 l 3900 7800 l 3300 7800 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 3900 7200 m 4500 7200 l 4500 7800 l 3900 7800 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 3900 7800 m 4500 7800 l 4500 8400 l 3900 8400 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 3900 9000 m 4500 9000 l 4500 9600 l 3900 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 3900 8400 m 4500 8400 l 4500 9000 l 3900 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 2100 9000 m 2700 9000 l 2700 9600 l 2100 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 2100 8400 m 2700 8400 l 2700 9000 l 2100 9000 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 1500 8400 m 2100 8400 l 2100 9000 l 1500 9000 l
+ cp gs col33 1.00 shd ef gr gs col32 s gr 
+% Polyline
+n 1500 9000 m 2100 9000 l 2100 9600 l 1500 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 2100 6000 m 2700 6000 l 2700 6600 l 2100 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 2100 6600 m 2700 6600 l 2700 7200 l 2100 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 1500 6000 m 2100 6000 l 2100 6600 l 1500 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 1500 6600 m 2100 6600 l 2100 7200 l 1500 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 2700 6000 m 3300 6000 l 3300 6600 l 2700 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 2700 6600 m 3300 6600 l 3300 7200 l 2700 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 3300 6600 m 3900 6600 l 3900 7200 l 3300 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 3300 6000 m 3900 6000 l 3900 6600 l 3300 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 1500 7800 m 2100 7800 l 2100 8400 l 1500 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 1500 7200 m 2100 7200 l 2100 7800 l 1500 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 8700 9000 m 9300 9000 l 9300 9600 l 8700 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 8100 8400 m 8700 8400 l 8700 9000 l 8100 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 8700 8400 m 9300 8400 l 9300 9000 l 8700 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 8700 7800 m 9300 7800 l 9300 8400 l 8700 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 8100 7200 m 8700 7200 l 8700 7800 l 8100 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 7500 7200 m 8100 7200 l 8100 7800 l 7500 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 6300 6000 m 6900 6000 l 6900 6600 l 6300 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 6300 6600 m 6900 6600 l 6900 7200 l 6300 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 6900 6000 m 7500 6000 l 7500 6600 l 6900 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 6900 6600 m 7500 6600 l 7500 7200 l 6900 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 6300 7200 m 6900 7200 l 6900 7800 l 6300 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 6900 7200 m 7500 7200 l 7500 7800 l 6900 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 6900 7800 m 7500 7800 l 7500 8400 l 6900 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 6300 7800 m 6900 7800 l 6900 8400 l 6300 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 6300 9000 m 6900 9000 l 6900 9600 l 6300 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 6900 9000 m 7500 9000 l 7500 9600 l 6900 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 8100 9000 m 8700 9000 l 8700 9600 l 8100 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 7500 9000 m 8100 9000 l 8100 9600 l 7500 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 7500 8400 m 8100 8400 l 8100 9000 l 7500 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 9300 8400 m 9900 8400 l 9900 9000 l 9300 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 9900 8400 m 10500 8400 l 10500 9000 l 9900 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 9300 9000 m 9900 9000 l 9900 9600 l 9300 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 9900 9000 m 10500 9000 l 10500 9600 l 9900 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 9900 7200 m 10500 7200 l 10500 7800 l 9900 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 9300 7800 m 9900 7800 l 9900 8400 l 9300 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 9900 7800 m 10500 7800 l 10500 8400 l 9900 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 9900 6000 m 10500 6000 l 10500 6600 l 9900 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 9300 6600 m 9900 6600 l 9900 7200 l 9300 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 9300 6000 m 9900 6000 l 9900 6600 l 9300 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 8100 6600 m 8700 6600 l 8700 7200 l 8100 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 8100 6000 m 8700 6000 l 8700 6600 l 8100 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 8700 6000 m 9300 6000 l 9300 6600 l 8700 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 8700 6600 m 9300 6600 l 9300 7200 l 8700 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 7500 6600 m 8100 6600 l 8100 7200 l 7500 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 7500 6000 m 8100 6000 l 8100 6600 l 7500 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 14700 8400 m 15300 8400 l 15300 9000 l 14700 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 14100 9000 m 14700 9000 l 14700 9600 l 14100 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 14700 9000 m 15300 9000 l 15300 9600 l 14700 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 14100 8400 m 14700 8400 l 14700 9000 l 14100 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 14100 7800 m 14700 7800 l 14700 8400 l 14100 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 14700 7800 m 15300 7800 l 15300 8400 l 14700 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 14100 6600 m 14700 6600 l 14700 7200 l 14100 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 14100 6000 m 14700 6000 l 14700 6600 l 14100 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 13500 6000 m 14100 6000 l 14100 6600 l 13500 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 13500 6600 m 14100 6600 l 14100 7200 l 13500 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 14700 6000 m 15300 6000 l 15300 6600 l 14700 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 11700 7200 m 12300 7200 l 12300 7800 l 11700 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 12300 7200 m 12900 7200 l 12900 7800 l 12300 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 12900 9000 m 13500 9000 l 13500 9600 l 12900 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 12300 9000 m 12900 9000 l 12900 9600 l 12300 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 13500 9000 m 14100 9000 l 14100 9600 l 13500 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 13500 8400 m 14100 8400 l 14100 9000 l 13500 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 11700 9000 m 12300 9000 l 12300 9600 l 11700 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 11100 9000 m 11700 9000 l 11700 9600 l 11100 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 11700 6000 m 12300 6000 l 12300 6600 l 11700 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 11700 6600 m 12300 6600 l 12300 7200 l 11700 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 11100 6000 m 11700 6000 l 11700 6600 l 11100 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 11100 6600 m 11700 6600 l 11700 7200 l 11100 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 12300 6000 m 12900 6000 l 12900 6600 l 12300 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 12300 6600 m 12900 6600 l 12900 7200 l 12300 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 12900 6600 m 13500 6600 l 13500 7200 l 12900 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 12900 6000 m 13500 6000 l 13500 6600 l 12900 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 11100 7200 m 11700 7200 l 11700 7800 l 11100 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 11700 7800 m 12300 7800 l 12300 8400 l 11700 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 12300 8400 m 12900 8400 l 12900 9000 l 12300 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 11100 7800 m 11700 7800 l 11700 8400 l 11100 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 13500 7800 m 14100 7800 l 14100 8400 l 13500 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 12900 8400 m 13500 8400 l 13500 9000 l 12900 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 12900 7200 m 13500 7200 l 13500 7800 l 12900 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 19500 8400 m 20100 8400 l 20100 9000 l 19500 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 18900 9000 m 19500 9000 l 19500 9600 l 18900 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 19500 9000 m 20100 9000 l 20100 9600 l 19500 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 18900 8400 m 19500 8400 l 19500 9000 l 18900 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 19500 7800 m 20100 7800 l 20100 8400 l 19500 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 18900 6600 m 19500 6600 l 19500 7200 l 18900 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 18900 6000 m 19500 6000 l 19500 6600 l 18900 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 18300 6000 m 18900 6000 l 18900 6600 l 18300 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 18300 6600 m 18900 6600 l 18900 7200 l 18300 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 19500 6000 m 20100 6000 l 20100 6600 l 19500 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 16500 7200 m 17100 7200 l 17100 7800 l 16500 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 17100 7200 m 17700 7200 l 17700 7800 l 17100 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 17700 9000 m 18300 9000 l 18300 9600 l 17700 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 17100 9000 m 17700 9000 l 17700 9600 l 17100 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 17100 8400 m 17700 8400 l 17700 9000 l 17100 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 18300 9000 m 18900 9000 l 18900 9600 l 18300 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 18300 8400 m 18900 8400 l 18900 9000 l 18300 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 16500 9000 m 17100 9000 l 17100 9600 l 16500 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 15900 9000 m 16500 9000 l 16500 9600 l 15900 9600 l
+ cp gs col32 s gr 
+% Polyline
+n 16500 6000 m 17100 6000 l 17100 6600 l 16500 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 16500 6600 m 17100 6600 l 17100 7200 l 16500 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 15900 6000 m 16500 6000 l 16500 6600 l 15900 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 15900 6600 m 16500 6600 l 16500 7200 l 15900 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 17100 6000 m 17700 6000 l 17700 6600 l 17100 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 17100 6600 m 17700 6600 l 17700 7200 l 17100 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 17700 6600 m 18300 6600 l 18300 7200 l 17700 7200 l
+ cp gs col32 s gr 
+% Polyline
+n 17700 6000 m 18300 6000 l 18300 6600 l 17700 6600 l
+ cp gs col32 s gr 
+% Polyline
+n 15900 7800 m 16500 7800 l 16500 8400 l 15900 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 15900 7200 m 16500 7200 l 16500 7800 l 15900 7800 l
+ cp gs col32 s gr 
+% Polyline
+n 16500 7800 m 17100 7800 l 17100 8400 l 16500 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 18900 7800 m 19500 7800 l 19500 8400 l 18900 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 17700 8400 m 18300 8400 l 18300 9000 l 17700 9000 l
+ cp gs col32 s gr 
+% Polyline
+n 18300 7800 m 18900 7800 l 18900 8400 l 18300 8400 l
+ cp gs col32 s gr 
+% Polyline
+n 17700 7200 m 18300 7200 l 18300 7800 l 17700 7800 l
+ cp gs col32 s gr 
+% Polyline
+15.000 slw
+n 6300 8400 m 6900 8400 l 6900 9000 l 6300 9000 l
+ cp gs col0 s gr 
+% Polyline
+n 6900 8400 m 7500 8400 l 7500 9000 l 6900 9000 l
+ cp gs col0 s gr 
+% Polyline
+n 8100 7800 m 8700 7800 l 8700 8400 l 8100 8400 l
+ cp gs col0 s gr 
+% Polyline
+n 7500 7800 m 8100 7800 l 8100 8400 l 7500 8400 l
+ cp gs col0 s gr 
+% Polyline
+n 8700 7200 m 9300 7200 l 9300 7800 l 8700 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 9300 7200 m 9900 7200 l 9900 7800 l 9300 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 9900 6600 m 10500 6600 l 10500 7200 l 9900 7200 l
+ cp gs col0 s gr 
+% Polyline
+n 11100 8400 m 11700 8400 l 11700 9000 l 11100 9000 l
+ cp gs col0 s gr 
+% Polyline
+n 11700 8400 m 12300 8400 l 12300 9000 l 11700 9000 l
+ cp gs col0 s gr 
+% Polyline
+n 12900 7800 m 13500 7800 l 13500 8400 l 12900 8400 l
+ cp gs col0 s gr 
+% Polyline
+n 12300 7800 m 12900 7800 l 12900 8400 l 12300 8400 l
+ cp gs col0 s gr 
+% Polyline
+n 13500 7200 m 14100 7200 l 14100 7800 l 13500 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 14100 7200 m 14700 7200 l 14700 7800 l 14100 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 14700 6600 m 15300 6600 l 15300 7200 l 14700 7200 l
+ cp gs col0 s gr 
+% Polyline
+7.500 slw
+n 14700 7200 m 15300 7200 l 15300 7800 l 14700 7800 l
+ cp gs col32 s gr 
+% Polyline
+15.000 slw
+n 15900 8400 m 16500 8400 l 16500 9000 l 15900 9000 l
+ cp gs col0 s gr 
+% Polyline
+n 16500 8400 m 17100 8400 l 17100 9000 l 16500 9000 l
+ cp gs col0 s gr 
+% Polyline
+n 17700 7800 m 18300 7800 l 18300 8400 l 17700 8400 l
+ cp gs col0 s gr 
+% Polyline
+n 17100 7800 m 17700 7800 l 17700 8400 l 17100 8400 l
+ cp gs col0 s gr 
+% Polyline
+n 18300 7200 m 18900 7200 l 18900 7800 l 18300 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 18900 7200 m 19500 7200 l 19500 7800 l 18900 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 19500 7200 m 20100 7200 l 20100 7800 l 19500 7800 l
+ cp gs col0 s gr 
+% Polyline
+n 19500 6600 m 20100 6600 l 20100 7200 l 19500 7200 l
+ cp gs col0 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 50
+% Polyline
+0 slj
+0 slc
+7.500 slw
+n 7500 9300 m 7800 9600 l 8100 9300 l 7800 9000 l 7500 9300 l
+ cp gs col35 s gr 
+% Polyline
+n 6900 9300 m 7200 9600 l 7500 9300 l 7200 9000 l 6900 9300 l
+ cp gs col35 s gr 
+% Ellipse
+n 11400 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 11400 6900 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 14400 8700 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 14400 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 15000 8700 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 15000 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Polyline
+n 16200 6600 m 15900 6450 l 15900 6225 l 15975 6000 l 16425 6000 l 16500 6450 l
+ 16200 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 16800 6600 m 16500 6450 l 16500 6225 l 16575 6000 l 17025 6000 l 17100 6450 l
+ 16800 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 17400 6600 m 17100 6450 l 17100 6225 l 17175 6000 l 17625 6000 l 17700 6450 l
+ 17400 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 18000 6600 m 17700 6450 l 17700 6225 l 17775 6000 l 18225 6000 l 18300 6450 l
+ 18000 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 18600 6600 m 18300 6450 l 18300 6225 l 18375 6000 l 18825 6000 l 18900 6450 l
+ 18600 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 19200 6600 m 18900 6450 l 18900 6225 l 18975 6000 l 19425 6000 l 19500 6450 l
+ 19200 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 16200 9600 m 15900 9450 l 15900 9225 l 15975 9000 l 16425 9000 l 16500 9450 l
+ 16200 9600 l
+ cp gs col35 s gr 
+% Polyline
+n 16800 9600 m 16500 9450 l 16500 9225 l 16575 9000 l 17025 9000 l 17100 9450 l
+ 16800 9600 l
+ cp gs col35 s gr 
+% Polyline
+n 17400 9600 m 17100 9450 l 17100 9225 l 17175 9000 l 17625 9000 l 17700 9450 l
+ 17400 9600 l
+ cp gs col35 s gr 
+% Polyline
+n 18000 9600 m 17700 9450 l 17700 9225 l 17775 9000 l 18225 9000 l 18300 9450 l
+ 18000 9600 l
+ cp gs col35 s gr 
+% Polyline
+n 18600 9600 m 18300 9450 l 18300 9225 l 18375 9000 l 18825 9000 l 18900 9450 l
+ 18600 9600 l
+ cp gs col35 s gr 
+% Polyline
+n 19200 9600 m 18900 9450 l 18900 9225 l 18975 9000 l 19425 9000 l 19500 9450 l
+ 19200 9600 l
+ cp gs col35 s gr 
+% Ellipse
+n 12000 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12600 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12600 6900 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12000 6900 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13200 8700 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13200 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13800 8700 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13800 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13800 8100 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13200 7500 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12600 7500 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12000 7500 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12000 8100 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 11400 7500 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 11400 8100 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 11400 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12000 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 14400 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 14400 6900 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13800 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13800 6900 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 14400 8100 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 15000 7500 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 15000 8100 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 15000 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13200 6300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 13200 6900 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 11400 8700 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Ellipse
+n 12000 8700 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Ellipse
+n 12600 9300 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12600 8700 309 309 0 360 DrawEllipse gs col35 s gr
+
+% Ellipse
+n 12600 8100 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Ellipse
+n 13200 8100 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Ellipse
+n 13800 7500 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Ellipse
+n 14400 7500 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Ellipse
+n 15000 6900 309 309 0 360 DrawEllipse gs col33 1.00 shd ef gr gs col35 s gr
+
+% Polyline
+n 6900 8100 m 7200 8400 l 7500 8100 l 7200 7800 l 6900 8100 l
+ cp gs col35 s gr 
+% Polyline
+n 6300 8100 m 6600 8400 l 6900 8100 l 6600 7800 l 6300 8100 l
+ cp gs col35 s gr 
+% Polyline
+n 6300 8700 m 6600 9000 l 6900 8700 l 6600 8400 l 6300 8700 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 6900 8700 m 7200 9000 l 7500 8700 l 7200 8400 l 6900 8700 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 6300 9300 m 6600 9600 l 6900 9300 l 6600 9000 l 6300 9300 l
+ cp gs col35 s gr 
+% Polyline
+n 7500 8700 m 7800 9000 l 8100 8700 l 7800 8400 l 7500 8700 l
+ cp gs col35 s gr 
+% Polyline
+n 8100 9300 m 8400 9600 l 8700 9300 l 8400 9000 l 8100 9300 l
+ cp gs col35 s gr 
+% Polyline
+n 8100 8700 m 8400 9000 l 8700 8700 l 8400 8400 l 8100 8700 l
+ cp gs col35 s gr 
+% Polyline
+n 8700 8700 m 9000 9000 l 9300 8700 l 9000 8400 l 8700 8700 l
+ cp gs col35 s gr 
+% Polyline
+n 8700 9300 m 9000 9600 l 9300 9300 l 9000 9000 l 8700 9300 l
+ cp gs col35 s gr 
+% Polyline
+n 9300 8700 m 9600 9000 l 9900 8700 l 9600 8400 l 9300 8700 l
+ cp gs col35 s gr 
+% Polyline
+n 9300 9300 m 9600 9600 l 9900 9300 l 9600 9000 l 9300 9300 l
+ cp gs col35 s gr 
+% Polyline
+n 9900 9300 m 10200 9600 l 10500 9300 l 10200 9000 l 9900 9300 l
+ cp gs col35 s gr 
+% Polyline
+n 9900 8700 m 10200 9000 l 10500 8700 l 10200 8400 l 9900 8700 l
+ cp gs col35 s gr 
+% Polyline
+n 8700 8100 m 9000 8400 l 9300 8100 l 9000 7800 l 8700 8100 l
+ cp gs col35 s gr 
+% Polyline
+n 9300 8100 m 9600 8400 l 9900 8100 l 9600 7800 l 9300 8100 l
+ cp gs col35 s gr 
+% Polyline
+n 9900 8100 m 10200 8400 l 10500 8100 l 10200 7800 l 9900 8100 l
+ cp gs col35 s gr 
+% Polyline
+n 9900 7500 m 10200 7800 l 10500 7500 l 10200 7200 l 9900 7500 l
+ cp gs col35 s gr 
+% Polyline
+n 9900 6900 m 10200 7200 l 10500 6900 l 10200 6600 l 9900 6900 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 9300 6900 m 9600 7200 l 9900 6900 l 9600 6600 l 9300 6900 l
+ cp gs col35 s gr 
+% Polyline
+n 8700 6900 m 9000 7200 l 9300 6900 l 9000 6600 l 8700 6900 l
+ cp gs col35 s gr 
+% Polyline
+n 8700 7500 m 9000 7800 l 9300 7500 l 9000 7200 l 8700 7500 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 8100 8100 m 8400 8400 l 8700 8100 l 8400 7800 l 8100 8100 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 7500 7500 m 7800 7800 l 8100 7500 l 7800 7200 l 7500 7500 l
+ cp gs col35 s gr 
+% Polyline
+n 8100 7500 m 8400 7800 l 8700 7500 l 8400 7200 l 8100 7500 l
+ cp gs col35 s gr 
+% Polyline
+n 7500 8100 m 7800 8400 l 8100 8100 l 7800 7800 l 7500 8100 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 6300 7500 m 6600 7800 l 6900 7500 l 6600 7200 l 6300 7500 l
+ cp gs col35 s gr 
+% Polyline
+n 6900 7500 m 7200 7800 l 7500 7500 l 7200 7200 l 6900 7500 l
+ cp gs col35 s gr 
+% Polyline
+n 6300 6900 m 6600 7200 l 6900 6900 l 6600 6600 l 6300 6900 l
+ cp gs col35 s gr 
+% Polyline
+n 6900 6900 m 7200 7200 l 7500 6900 l 7200 6600 l 6900 6900 l
+ cp gs col35 s gr 
+% Polyline
+n 6300 6300 m 6600 6600 l 6900 6300 l 6600 6000 l 6300 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 6900 6300 m 7200 6600 l 7500 6300 l 7200 6000 l 6900 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 7500 6300 m 7800 6600 l 8100 6300 l 7800 6000 l 7500 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 8100 6300 m 8400 6600 l 8700 6300 l 8400 6000 l 8100 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 8100 6900 m 8400 7200 l 8700 6900 l 8400 6600 l 8100 6900 l
+ cp gs col35 s gr 
+% Polyline
+n 7500 6900 m 7800 7200 l 8100 6900 l 7800 6600 l 7500 6900 l
+ cp gs col35 s gr 
+% Polyline
+n 8700 6300 m 9000 6600 l 9300 6300 l 9000 6000 l 8700 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 9300 6300 m 9600 6600 l 9900 6300 l 9600 6000 l 9300 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 9900 6300 m 10200 6600 l 10500 6300 l 10200 6000 l 9900 6300 l
+ cp gs col35 s gr 
+% Polyline
+n 9300 7500 m 9600 7800 l 9900 7500 l 9600 7200 l 9300 7500 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 19800 6600 m 19500 6450 l 19500 6225 l 19575 6000 l 20025 6000 l 20100 6450 l
+ 19800 6600 l
+ cp gs col35 s gr 
+% Polyline
+n 19800 8400 m 19500 8250 l 19500 8025 l 19575 7800 l 20025 7800 l 20100 8250 l
+ 19800 8400 l
+ cp gs col35 s gr 
+% Polyline
+n 19800 9000 m 19500 8850 l 19500 8625 l 19575 8400 l 20025 8400 l 20100 8850 l
+ 19800 9000 l
+ cp gs col35 s gr 
+% Polyline
+n 19800 9600 m 19500 9450 l 19500 9225 l 19575 9000 l 20025 9000 l 20100 9450 l
+ 19800 9600 l
+ cp gs col35 s gr 
+% Polyline
+n 16200 7800 m 15900 7650 l 15900 7425 l 15975 7200 l 16425 7200 l 16500 7650 l
+ 16200 7800 l
+ cp gs col35 s gr 
+% Polyline
+n 16800 7800 m 16500 7650 l 16500 7425 l 16575 7200 l 17025 7200 l 17100 7650 l
+ 16800 7800 l
+ cp gs col35 s gr 
+% Polyline
+n 17400 7800 m 17100 7650 l 17100 7425 l 17175 7200 l 17625 7200 l 17700 7650 l
+ 17400 7800 l
+ cp gs col35 s gr 
+% Polyline
+n 18000 7800 m 17700 7650 l 17700 7425 l 17775 7200 l 18225 7200 l 18300 7650 l
+ 18000 7800 l
+ cp gs col35 s gr 
+% Polyline
+n 16200 8400 m 15900 8250 l 15900 8025 l 15975 7800 l 16425 7800 l 16500 8250 l
+ 16200 8400 l
+ cp gs col35 s gr 
+% Polyline
+n 16800 8400 m 16500 8250 l 16500 8025 l 16575 7800 l 17025 7800 l 17100 8250 l
+ 16800 8400 l
+ cp gs col35 s gr 
+% Polyline
+n 18600 8400 m 18300 8250 l 18300 8025 l 18375 7800 l 18825 7800 l 18900 8250 l
+ 18600 8400 l
+ cp gs col35 s gr 
+% Polyline
+n 19200 8400 m 18900 8250 l 18900 8025 l 18975 7800 l 19425 7800 l 19500 8250 l
+ 19200 8400 l
+ cp gs col35 s gr 
+% Polyline
+n 17400 9000 m 17100 8850 l 17100 8625 l 17175 8400 l 17625 8400 l 17700 8850 l
+ 17400 9000 l
+ cp gs col35 s gr 
+% Polyline
+n 18000 9000 m 17700 8850 l 17700 8625 l 17775 8400 l 18225 8400 l 18300 8850 l
+ 18000 9000 l
+ cp gs col35 s gr 
+% Polyline
+n 18600 9000 m 18300 8850 l 18300 8625 l 18375 8400 l 18825 8400 l 18900 8850 l
+ 18600 9000 l
+ cp gs col35 s gr 
+% Polyline
+n 19200 9000 m 18900 8850 l 18900 8625 l 18975 8400 l 19425 8400 l 19500 8850 l
+ 19200 9000 l
+ cp gs col35 s gr 
+% Polyline
+n 16200 7200 m 15900 7050 l 15900 6825 l 15975 6600 l 16425 6600 l 16500 7050 l
+ 16200 7200 l
+ cp gs col35 s gr 
+% Polyline
+n 16800 7200 m 16500 7050 l 16500 6825 l 16575 6600 l 17025 6600 l 17100 7050 l
+ 16800 7200 l
+ cp gs col35 s gr 
+% Polyline
+n 17400 7200 m 17100 7050 l 17100 6825 l 17175 6600 l 17625 6600 l 17700 7050 l
+ 17400 7200 l
+ cp gs col35 s gr 
+% Polyline
+n 18000 7200 m 17700 7050 l 17700 6825 l 17775 6600 l 18225 6600 l 18300 7050 l
+ 18000 7200 l
+ cp gs col35 s gr 
+% Polyline
+n 18600 7200 m 18300 7050 l 18300 6825 l 18375 6600 l 18825 6600 l 18900 7050 l
+ 18600 7200 l
+ cp gs col35 s gr 
+% Polyline
+n 19200 7200 m 18900 7050 l 18900 6825 l 18975 6600 l 19425 6600 l 19500 7050 l
+ 19200 7200 l
+ cp gs col35 s gr 
+% Polyline
+n 16200 9000 m 15900 8850 l 15900 8625 l 15975 8400 l 16425 8400 l 16500 8850 l
+ 16200 9000 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 16800 9000 m 16500 8850 l 16500 8625 l 16575 8400 l 17025 8400 l 17100 8850 l
+ 16800 9000 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 17400 8400 m 17100 8250 l 17100 8025 l 17175 7800 l 17625 7800 l 17700 8250 l
+ 17400 8400 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 18000 8400 m 17700 8250 l 17700 8025 l 17775 7800 l 18225 7800 l 18300 8250 l
+ 18000 8400 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 18600 7800 m 18300 7650 l 18300 7425 l 18375 7200 l 18825 7200 l 18900 7650 l
+ 18600 7800 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 19200 7800 m 18900 7650 l 18900 7425 l 18975 7200 l 19425 7200 l 19500 7650 l
+ 19200 7800 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 19800 7800 m 19500 7650 l 19500 7425 l 19575 7200 l 20025 7200 l 20100 7650 l
+ 19800 7800 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% Polyline
+n 19800 7200 m 19500 7050 l 19500 6825 l 19575 6600 l 20025 6600 l 20100 7050 l
+ 19800 7200 l
+ cp gs col33 1.00 shd ef gr gs col35 s gr 
+% here ends figure;
+% 
+% here starts figure with depth 1
+% Polyline
+0 slj
+0 slc
+7.500 slw
+n 1950 8700 m
+ 5550 7050 l gs col0 s gr 
+% Polyline
+n 6750 8700 m
+ 10275 7050 l gs col33 1.00 shd ef gr gs col0 s gr 
+% Polyline
+n 11550 8700 m
+ 15150 7050 l gs col0 s gr 
+% Polyline
+n 16350 8700 m
+ 19950 7050 l gs col0 s gr 
+% here ends figure;
+$F2psEnd
+rs
+showpage
+%%Trailer
+%EOF

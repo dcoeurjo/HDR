@@ -1,0 +1,235 @@
+%!PS-Adobe-3.0 EPSF-2.0
+%%Title: Maple plot
+%%Creator: Maple 
+%%Pages:  1
+%%BoundingBox: 0 0 287 216 
+%%DocumentNeededResources: font Helvetica
+%%EndComments
+20 dict begin
+gsave
+/drawborder false def
+/m {moveto} def
+/l {lineto} def
+/C {setrgbcolor} def
+/Y /setcmykcolor where { %%ifelse Use built-in operator
+       /setcmykcolor get
+   }{ %%ifelse Emulate setcmykcolor with setrgbcolor
+       { %%def
+           1 sub 3 { %%repeat
+               3 index add neg dup 0 lt { pop 0 } if 3 1 roll
+           } repeat setrgbcolor
+       } bind
+   } ifelse def
+/G {setgray} def
+/S {stroke} def
+/NP {newpath} def
+%%%%This draws a filled polygon and avoids bugs/features
+%%%%   of some postscript interpreters
+%%%%GHOSTSCRIPT: has a bug in reversepath - removing
+%%%%the call to reversepath is a sufficient work around
+/P {gsave fill grestore reversepath stroke} def
+%%%%This function is needed for drawing text.  It takes two arguments: a
+%%%%string and a rotation. It outputs width and height.
+/stringbbox {
+    gsave NP 0 0 m    % Set origin for easy calculations.
+    dup rotate exch   % Set orientation, and put string on top.
+    false charpath flattenpath
+    0 exch sub rotate % Undo rotation.
+    pathbbox 4 2 roll pop pop  % Get dimens. of our string.
+    1.1 mul cvi exch 1.1 mul cvi exch % Pad some.
+    grestore} def
+/thin 3 def
+/medium 7 def
+/thick 16 def
+/boundarythick 20 def % thichess of bounding box
+%%IncludeResource: font Helvetica
+0.000000 0.000000 translate
+/defaultTitleFont {/Helvetica findfont 474 scalefont setfont} def
+/defaultFont {/Helvetica findfont 243 scalefont setfont} def
+0.0432 0.0432 scale
+1 setlinejoin
+1 setlinecap
+0.0 setgray
+/inch {72 mul} def
+/fheight 0.35 inch neg def
+    0 G
+medium setlinewidth
+[] 0 setdash [] 0 setdash   0.3 G
+NP
+4545 2500 m
+5029 2984 l
+4545 2984 l
+4545 2500 l
+P
+NP
+4545 2500 m
+5029 2500 l
+5029 2984 l
+4545 2500 l
+P
+NP
+1151 1045 m
+1636 1530 l
+1151 1530 l
+1151 1045 l
+P
+NP
+1151 1045 m
+1636 1045 l
+1636 1530 l
+1151 1045 l
+P
+NP
+666 1045 m
+1151 1530 l
+666 1530 l
+666 1045 l
+P
+NP
+666 1045 m
+1151 1045 l
+1151 1530 l
+666 1045 l
+P
+NP
+2121 1530 m
+2605 2015 l
+2121 2015 l
+2121 1530 l
+P
+NP
+2121 1530 m
+2605 1530 l
+2605 2015 l
+2121 1530 l
+P
+NP
+3090 2015 m
+3575 2500 l
+3090 2500 l
+3090 2015 l
+P
+NP
+3090 2015 m
+3575 2015 l
+3575 2500 l
+3090 2015 l
+P
+NP
+3575 2015 m
+4060 2500 l
+3575 2500 l
+3575 2015 l
+P
+NP
+3575 2015 m
+4060 2015 l
+4060 2500 l
+3575 2015 l
+P
+NP
+4060 2500 m
+4545 2984 l
+4060 2984 l
+4060 2500 l
+P
+NP
+4060 2500 m
+4545 2500 l
+4545 2984 l
+4060 2500 l
+P
+NP
+5514 2984 m
+5999 3469 l
+5514 3469 l
+5514 2984 l
+P
+NP
+5514 2984 m
+5999 2984 l
+5999 3469 l
+5514 2984 l
+P
+defaultFont
+    0 G
+[] 0 setdash NP 5029 2500 m 4545 2500 l
+S
+NP 5029 2984 m 5029 2500 l
+S
+NP 4545 2984 m 5029 2984 l
+S
+NP 4545 2500 m 4545 2984 l
+S
+NP 1636 1045 m 1151 1045 l
+S
+NP 1636 1530 m 1636 1045 l
+S
+NP 1151 1530 m 1636 1530 l
+S
+NP 1151 1045 m 1151 1530 l
+S
+NP 1151 1045 m 666 1045 l
+S
+NP 1151 1530 m 1151 1045 l
+S
+NP 666 1530 m 1151 1530 l
+S
+NP 666 1045 m 666 1530 l
+S
+NP 2605 1530 m 2121 1530 l
+S
+NP 2605 2015 m 2605 1530 l
+S
+NP 2121 2015 m 2605 2015 l
+S
+NP 2121 1530 m 2121 2015 l
+S
+NP 3575 2015 m 3090 2015 l
+S
+NP 3575 2500 m 3575 2015 l
+S
+NP 3090 2500 m 3575 2500 l
+S
+NP 3090 2015 m 3090 2500 l
+S
+NP 4060 2015 m 3575 2015 l
+S
+NP 4060 2500 m 4060 2015 l
+S
+NP 3575 2500 m 4060 2500 l
+S
+NP 3575 2015 m 3575 2500 l
+S
+NP 4545 2500 m 4060 2500 l
+S
+NP 4545 2984 m 4545 2500 l
+S
+NP 4060 2984 m 4545 2984 l
+S
+NP 4060 2500 m 4060 2984 l
+S
+NP 5999 2984 m 5514 2984 l
+S
+NP 5999 3469 m 5999 2984 l
+S
+NP 5514 3469 m 5999 3469 l
+S
+NP 5514 2984 m 5514 3469 l
+S
+boundarythick setlinewidth
+% The following draws a box around the plot,
+% if the variable drawborder is true
+drawborder { 
+/bd boundarythick 2 idiv def
+[] 0 setdash 
+NP bd bd m bd 5000 bd sub l 
+6666 bd sub 5000 bd sub l 
+6666 bd sub bd l 
+bd bd l S
+} if % end of if to draw the border
+
+showpage
+grestore
+end
+%%EOF

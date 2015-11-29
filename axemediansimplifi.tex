@@ -1,0 +1,906 @@
+\mychaptoc{Minimalité et simplification de l'axe médian} 
+\label{chap:minim-et-simpl}
+
+\section{Introduction}
+
+La  représentation d'une forme  discrète  \emph{via} l'union de boules
+issues de l'axe médian très  utilisée dans de nombreuses applications.
+Cependant, dans un  contexte discret où la  reconstruction de la forme
+initiale est  exacte  dans le sens  où tous  les points discrets  sont
+couverts par au moins une boule de  l'axe médian, celui-ci n'est, bien
+souvent, pas de cardinalité minimum en  nombre de boules.  Considérons
+l'exemple donné  dans la figure  \ref{fig:minimalite} dont les valeurs
+correspondent à la  transformée en distance  euclidienne~; les  points
+des valeurs entourées dans  la figure de gauche correspondent à  l'axe
+médian   discret.  Or, dans la    figure  de droite, le  sous-ensemble
+indiqué permet toujours de   reconstruire    la forme.  Les     boules
+supprimées   correspondent à des boules  maximales  couvertes  par une
+union de  boules.  L'axe médian discret  minimum peut donc être défini
+comme étant  un sous-ensemble  de l'axe   médian discret possédant  un
+nombre minimum de boules tout en permettant une reconstruction exacte.
+Notons  qu'il n'y  a pas unicité  de  l'axe  médian minimum  il suffit
+d'ajouter une colonne à la  figure \ref{fig:minimalite} pour illustrer
+cela.   
+
+
+
+
+
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{|p{1em}|p{1em}|p{1em}|p{1em}|p{1em}|p{1em}|p{1em}|}
+      \hline
+      1 & 1 & 1 &1  &1 & 1& 1\\
+      \hline
+      1 &  \textcircled{4} &\textcircled{4} & \textcircled{4} & \textcircled{4}&\textcircled{4}  & 1\\      \hline
+      1 & 1 & 1 &1  & 1& 1 &1\\
+      \hline
+    \end{tabular}~~~~~~~~
+    \begin{tabular}{|p{1em}|p{1em}|p{1em}|p{1em}|p{1em}|p{1em}|p{1em}|}
+      \hline
+      1 & 1 & 1 &1  &1 & 1& 1\\
+      \hline
+      1 & \textcircled{4} & 4 & \textcircled{4} & 4&\textcircled{4}  & 1\\
+      \hline
+      1 & 1 & 1 &1  & 1& 1 &1\\
+      \hline
+    \end{tabular}
+  \end{center}
+\caption{\label{fig:minimalite}Axe médian discret pour la
+    distance euclidienne (à gauche) et sous-ensemble de l'axe médian
+    permettant une reconstruction exacte (à droite).}
+\end{figure}
+
+Dans  la   littérature, des  travaux ont été  menés  pour proposer des
+algorithmes    de         simplification   de      l'axe        médian
+\cite{borgerfors_min_SSAB,ingemar,borgefors_min,Nilsson:1997:FMS}.
+Dans ces  sections, nous abordons    ce  problème d'un point  de   vue
+théorique, \emph{via} une preuve de NP-complétude pour l'extraction de
+l'axe médian minimum (section \ref{sec:laxe-median-minimal}). Ensuite,
+nous regarderons les  solutions  heuristiques pour approcher  cet  axe
+minimum.    Finalement,  la section    \ref{sec:appl-:-compr} présente
+quelques applications pour lesquelles nous avons utilisé ces outils.
+
+
+
+\section{L'axe médian minimum est NP-complet}
+\label{sec:laxe-median-minimal}
+
+D'un  point de  vue général,  il s'agit de couvrir de  manière
+optimale une   forme  par   des instances   d'une famille   de  formes
+particulières  (ici des boules).  En   géométrie classique, quand il
+s'agit de couvrir de manière minimale en cardinalité un polygone avec par exemple des
+formes convexes,   les  problèmes   sont très   souvent   NP-difficiles
+\cite{dcg-handbook}.  Parmi  tous  ces problèmes, nous pouvons  nous
+rapprocher des travaux  de  \aut{Aupperle et al.}   \cite{aupperle88a}
+concernant   la    couverture    minimale d'un   polygone   orthogonal
+(\emph{i.e.} isothétique) par  des carrés. Pour faire  le bilan de ces
+résultats, nous avons~:
+\begin{itemize}
+\item si  le polygone orthogonal est sans  trou,  le problème peut être modélisé
+  comme un calcul de cliques maximales dans un graphe \emph{chordal}.
+  Ainsi, le   problème est polynomial  \cite{aupperle88a}  et est même
+  linéaire au nombre de segments du polygone \cite{BarBen96}~;
+\item dans le cas général, le problème est NP-complet.
+\end{itemize}
+
+Dans le  cas discret, nous pourrions envisager  de  rapprocher cela du
+problème   de   l'axe médian minimum      pour la métrique $d_\infty$.
+Néanmoins,  les résultats  d'\aut{Aupperle}  ne peuvent être  utilisés
+directement  car nous avons à  considérer des carrés de taille impaires
+(centrés sur  les  points  discrets).   Cet  aspect peut  sembler
+anecdotique mais il  est en fait crucial car  si on reprenait la modélisation sous
+forme d'un problème de graphe dans le cas des  objets sans trous, nous
+pourrions trouver des contre-exemples tels que le  soit ne serait pas
+\emph{chordal}.
+
+Dans ce qui suit, nous  allons considérer le  problème de l'axe médian
+minimum, que nous pouvons formaliser par~: 
+
+\begin{definition}[Problème de décision $k-$MA]
+  Etant donné  un objet  discret $X\in\Z^n$  et  un entier $k$, est-il
+  possible de couvrir $X$ par un ensemble de $k$ boules discrètes pour
+  la métrique $d$ considérée ?
+\end{definition}
+
+Ce problème appartient à la   classe   NP~: en temps  linéaire,   nous
+pouvons vérifier si  l'ensemble de $k$ boules couvre  ou  non toute la
+forme.   Nous proposons une    réduction   polynomiale de toutes   les
+instances       de     \aut{Planar-4-3-SAT}        (voir       section
+\ref{sec:elem-de-compl}) afin de prouver que  le problème de  décision
+ci-dessus est NP-complet.  Pour cela,  nous allons nous  restreindre à
+la dimension 2 et à la distance euclidienne $d_2$.
+
+\subsection{Schéma de la preuve}
+
+Comme  indiqué dans  la section   \ref{sec:elem-de-compl}, nous allons
+montrer une réduction polynomiale d'un problème NP-complet connu vers
+une famille d'instance de $k-$MA.
+
+L'objectif  est ici de construire,  pour toute instance $\phi$ de \PS,
+une figure géométrique telle  que l'extraction de l'axe médian minimum
+serait équivalente à   résoudre  l'instance de \PS  (instanciation des
+variables  pour   valider l'expression booléenne).   Nous  allons donc
+présenter  un schéma géométrique pour    les variables de $\phi$,   un
+schéma pour les  clauses de $\phi$ ainsi  qu'un mécanisme de  ``lien''
+pour  le plongement   géométrique   des arêtes.   Cette   construction
+géométrique devra   avoir une  taille  polynomiale   en la  taille  de
+l'instance $\phi$.  La figure \ref{fig:reduc} illustre ces différentes
+transformations.
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{reduction_plongement}
+  \caption{Schéma général de la  réduction~: graphe  planaire instance
+    de \PS, plongment orthogonal \cite{Tamassia/87} du graphe planaire
+    et construction de l'objet discret associé à l'instance.}
+  \label{fig:reduc}
+\end{figure}
+
+Cette  preuve  est issue d'un  travail  avec \aut{Jérôme  Hulin} (LIF,
+Marseille)      et  \aut{Isabelle       Sivignon}   (LIRIS,      Lyon)
+\cite{dcoeurjo_RR_AMNP}.
+
+\subsection{Définition des variables}
+\label{sec:defin-des-litt}
+
+Considérons la figure \ref{fig:variables} (schéma du haut), l'ensemble
+de points discrets sous la droite horizontale définit un objet discret
+que nous appellerons \emph{variable} dans  ce qui suit. Sur cet objet,
+nous pouvons observer 8 tubes verticaux  que nous numérotons ces tubes
+de gauche à droite.
+
+Pour cet objet discret, certains disques maximaux sont obligatoirement
+dans l'axe médian minimum, ce sont ceux tracés en noir.  Pour le reste
+de la forme, deux couvertures minimales particulières existent (schéma
+du haut et  schéma du bas)~: la première  va dépasser au niveau  de la
+droite  en pointillés  sur  les tubes impairs   et ne pas dépasser les
+tubes pairs, la seconde couverture  est exactement symétrique.  Quelle
+que soit la couverture choisie, nous avons toujours une cardinalité de
+72  disques.  Ces  deux   décompositions possibles nous  permettent de
+coder  les deux états    (Vrai/Faux) d'une variable  booléenne.    Par
+convention,  le schéma du haut  correspond à l'instanciation à Vrai de
+la variable.
+
+
+Dans l'expression $\phi$, instance de  \PS, les variables apparaissent
+dans l'expression de manière  positive (P) ou négative  (N), au plus 4
+fois.  Par convention, les tubes impairs sont utilisés pour les usages
+directs de la  variable, et les tubes pairs  pour  les usages  de la
+négation de   la variable.   Sur la  figure  \ref{fig:variables}, nous
+avons  8 tubes  nous  permettant  de couvrir   tous les  usages  de la
+variable (par exemple  P-N-P-N, P-P-N-N,\ldots) sans avoir à  modifier
+(c'est-à-dire réordonner) la géométrie du plongement des arêtes.
+
+Pour préparer la preuve, remarquons que les tubes sont centrés sur des
+ordonnées constantes modulo 6  (segments verts). Remarquons aussi que le
+schéma et les couvertures sont identiques  si la figure est tournée de
+90\deg.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{gadget-variable-d_E-new2}
+  \caption{Schéma  géométrique  et couvertures minimales  d'un littéral.
+    Le schéma du   haut   correspond à  l'assignation à Vrai   de   la
+    variable.}
+  \label{fig:variables}
+\end{figure}
+
+\subsection{Définition des liens}
+
+Le décalage que nous observons sur les tubes peut être assimilé à des
+signaux   transmis   des variables vers les   clauses.   Lors du plongement
+géométrique du graphe  planaire  induit par  $\phi$, il  nous faut une
+construction géométrique pour les arêtes permettant de transmettre ces
+signaux sans les modifier.
+
+La figure   \ref{fig:liens} présente différents schémas  permettant de
+construire  ces liens.  Nous avons  besoin  tout d'abord de construire
+des parties parallèles aux axes.  Pour cela, nous utilisons simplement
+un  tube de largeur  $3$ et  de  longueur $3L$  (pour $L\in\Z$).  Pour
+cette construction,  les  couvertures  minimales sont de   $L$ boules,
+indépendamment  du fait qu'il  y ait un  décalage ou non.  De plus, il
+existe  une  couverture  minimale  telle   que  les  décalages  soient
+préservés d'une extrémité à  l'autre.   Ensuite, il nous  faut pouvoir
+tourner  de  90\deg ou encore  se  décaler  en préservant l'alignement
+modulo 6. Tous ces éléments peuvent être combinés  pour former un lien
+complexe que nous pouvons  assimiler à un chemin $(1)-$connexe sur une
+grille $6N\times6N$. Nous reviendrons sur ce point plus tard.
+
+ La figure \ref{fig:liens} illustre ces différents objets. Ce
+qu'il faut en retirer pour la preuve~:
+\begin{itemize}
+\item  il n'y  a   que deux façons de   couvrir   un lien permettant   de
+  transmettre un signal d'une extrémité à l'autre~;
+\item la cardinalité de la couverture minimale ne dépend pas de la nature du
+  signal (uniquement de la longueur de ces formes)~;
+\item tous les schémas sont invariants par rotation (90\deg)~;
+\item les extrémités des  liens sont centrées  sur des abscisses et des
+  ordonnées constantes modulo 6.
+\end{itemize}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{gadget_lien}
+  \caption{Éléments de construction pour définir des liens.}
+  \label{fig:liens}
+\end{figure}
+
+
+
+\subsection{Définition des clauses}
+
+Le dernier objet nous permet de définir  les clauses dans notre schéma
+géométrique. L'objectif de  cet objet est de  prendre en  entrée trois
+liens (les  trois littéraux  intervenant dans  la clause) et  de coder
+intuitivement un ``OU'' entre les signaux envoyés par les variables.
+
+La figure \ref{fig:clauses} nous permet de faire cela (points discrets
+à droite de la droite verticale)~: trois liens  sont connectés sur les
+parties gauches (toujours centrés modulo 6). Si les trois signaux sont
+à faux (c'est-à-dire aucun décalage au  niveau du trait vertical), la
+couverture minimale en cardinalité nécessitera  10 boules pour couvrir
+la forme (9 carrés 3x3 et une boule de rayon $\sqrt{5}$).
+Si maintenant un des lien transmet un  signal à vrai (décalage), il ne
+nous faut plus que 9 boules  pour couvrir la forme.   Tous les cas ne
+sont pas  détaillés  dans  la  figure  \ref{fig:clauses} mais   ils ne
+portent aucune difficulté. En résumé~:
+\begin{itemize}
+\item si un  des trois liens   transmet un signal vrai,  la couverture
+  minium de la clause contient 12 boules~;
+\item si tous les signaux sont faux, 13 boules seront nécessaires~;
+\item les liens en entrée sont bien centrés sur un modulo 6 constant~;
+\item la  clause et  ses  décompositions sont invariantes  en rotation
+  (90\deg).
+\end{itemize}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=11cm]{gadget-clause-ou-d_8-eucl}
+  \caption{Schéma géométrique pour coder les clauses.}
+  \label{fig:clauses}
+\end{figure}
+
+\subsection{Finalisation de la preuve}
+
+Nous ne détaillerons pas la preuve donnée dans \cite{dcoeurjo_RR_AMNP}
+mais nous donnons l'idée générale.  Pour  tout instance $\phi$ de \PS,
+nous commençons par  construire son plongement  géométrique orthogonal
+sur une   grille discrète de  taille  $6lN\times6lN$ ($l,N\in\Z$).  Ce
+plongement  d'un graphe planaire, ayant des sommets de degré inférieur
+à 4, place les  sommets du  graphe sur des
+points discrets  et  construit des  arêtes orthogonales (isothétiques)
+\cite{Tamassia/87}  (voir figure \ref{fig:reduc}). Pour chaque élément
+de ce plongement (sommets et arêtes), nous  allons construire un objet
+discret composé des objets \emph{variables, clauses et liens}.
+
+
+
+Sur  ce plongement, nous  allons   pouvoir associer à chaque arête  un
+chemin $(1)-$connexe,   ces chemins   ayant la   propriété de  ne  pas
+s'intersecter.    Ainsi, si $l\geq   1$,    les  liens de  la   figure
+\ref{fig:liens} ne s'intersecteront pas non plus.
+
+Concernant les clauses  et les variables, étant  donné que ceux-ci ont
+une taille constante, il suffit de prendre un $l$ adapté pour faire en
+sorte qu'il n'y a pas d'intersection entre d'une part ces objets et entre ceux-ci
+et les liens d'autre part.  Cela  revient à réduire la  résolution de la grille sur
+laquelle  nous avons calculé   le plongement  géométrique  de $\phi$.
+Étant donné que   tous les éléments sont construits  pour être alignés
+sur des ordonnées ou des abscisses constantes  modulo 6, nous n'aurons
+aucun problème de \emph{branchement} lors de la construction finale de
+l'objet. Notons que pour que les liens s'ajustent parfaitement aux
+variables par exemple (tubes tous du même coté de la variable), il
+faut localement tordre un peu le plongement orthogonal.
+
+A ce niveau, et en exploitant  cette non-intersection entre les objets
+ainsi  que leur invariance  par rapport   aux  rotations de 90\deg  si
+besoin, nous avons  un objet discret  $(1)-$connexe pour tout instance
+$\phi$ de \PS.  Cette réduction est polynomiale  en temps et en espace
+car la taille de cet objet est polynomiale en la taille de $\phi$.
+
+Pour conclure, il nous faut faire le  lien entre une instanciation des
+variables de   $\phi$ permettant de  mettre à  vrai la  formule, et la
+couverture minium de l'objet associé à $\phi$ \cite{dcoeurjo_RR_AMNP}.
+Informellement,  les variables  et  les liens  ont  une  couverture ne
+dépendant pas la valeur de la variable, notons $h$ le nombre de boules
+nécessaires pour   couvrir ces parties de   manière minimale.   Si une
+couverture est donnée et en fonction de la convention précisée dans la
+section \ref{sec:defin-des-litt},   nous   allons pouvoir  affecter la
+variable à  Vrai ou Faux.   Réciproquement   et par construction   des
+formes, à  partir de toute  instanciation des  variables permettant de
+valider un formule $\phi$,  nous pouvons construire une couverture  de
+l'objet discret associé à $\phi$ qui soit minimale.
+
+
+Si  nous avons   $c$ clauses,  nous avons   pour chacune  d'elles deux
+couvertures   possibles entraînant un    nombre total de disques entre
+$h+c\cdot9$  et $h+c\cdot10$.  La  décomposition atteint  le minimum à
+condition qu'un des littéraux au moins par clause soit à Vrai. 
+
+En  conclusion, si nous avions un  algorithme permettant de construire
+l'axe médian   minimum pour  la  distance euclidienne,  nous pourrions
+l'appliquer sur l'objet géométrique  issu d'une instance quelconque de
+\PS~ et ainsi   trouver une   instanciation  des  variables de   cette
+instance  pour valider la   formule.  Ainsi, le problème  d'axe médian
+minimum est au  moins aussi difficile que celui  de \PS.  Nous pouvons
+donc  conclure la preuve en disant  que le problème  $k-$MA minimum en
+distance euclidienne est NP-complet.
+
+
+Nous reviendrons dans la conclusion de  ce chapitre sur une discussion
+de cette preuve.
+
+
+\section{Simplification réversible de l'axe médian}
+
+Bien que  le   problème soit NP-complet,   nous pouvons bien évidemment
+définir des algorithmes permettant de simplifier  l'axe médian tout en
+maintenant la réversibilité de  ce dernier. Ce  que nous dit la preuve
+précédente, c'est qu'un tel  algorithme, supposé polynomial en  temps,
+ne  produira pas l'axe médian minimum  dans le cas général. Dans cette
+section, nous faisons une analyse des techniques existantes.
+
+Dans \cite{ingemar}  les auteurs ont  proposé une heuristique très
+rapide qui peut-être décrite très  simplement~: nous construisons tout
+d'abord une  carte  de couverture   dans  laquelle pour  chaque  point
+discret, nous comptons  le nombre de boules  de l'axe médian contenant
+ce  point.  Intuitivement, s'il  existe un  point $P$  couvert par une
+seule boule  $B$,  $B$ est nécessairement  dans  l'axe médian  minimum
+(sinon la  réversibilité  ne  serait  pas maintenue).     L'algorithme
+procède ensuite de la façon suivante~:  pour chaque boule $B$ de l'axe
+médian prise dans l'ordre croissant des  rayons, nous vérifions si $B$
+n'est pas \emph{nécessaire}  (c'est-à-dire si tous ses points discrets
+ont une  couverture supérieure  ou égale à   2).   Si $B$   n'est  pas
+nécessaire,   nous  supprimons ce  disque    de  l'axe médian et  nous
+décrémentons la carte  de couverture en ses points  discrets de 1.  Ce
+processus est itéré  sur l'ensemble des  boules.  Si l'axe médian  est
+donné par $\{B_i\}_{i=1..m}$,  la complexité de  cette approche est en
+$O(m\log  m     + \sum_{i=1}^m  |B_i|)$.   D'un    point    de vue  de
+l'approximation,  aucune borne  n'existe  quant à   la qualité de   la
+simplification par rapport à l'axe médian minimum.
+ 
+
+Une autre approche peut être envisagée en voyant le problème comme une
+instance particulière  du problème de  couverture minimale d'ensembles
+\aut{MinSetCover}  \cite{cormen}~: soit  $X$ un ensemble  de points et
+$\mathcal{F}$ une  famille  de sous-ensembles de   $X$ telle  que tout
+élément de   $X$ est   contenu  dans  au moins   un  sous-ensemble  de
+$\mathcal{F}$.     La question   est    ici   de trouver    l'ensemble
+$\mathcal{F}^*$ de  cardinalité minimale tel  que tous les points
+restent couverts. Ce problème est bien sûr NP-complet. Notons que d'un
+point  de vue méthodologique, pour  prouver  la NP-complétude de l'axe
+médian,  il   paraîtrait   naturel de  réduire   les  instances   de
+\aut{MinSetCover} plus proche de notre problème que \PS.
+Or cela n'est pas  le cas, il est parfois   préférable de réduire  des
+problèmes comme 3-SAT  que  de tenter de  réduire  des problèmes ``trop
+proches''.
+
+Donc si le problème \aut{MinSetCover} est tout aussi NP-complet que le
+nôtre, il existe une heuristique permettant d'approcher l'optimum d'un
+certain  facteur.  Ce processus est une  approche gloutonne donné dans
+l'algorithme  \ref{algoGlouton}.  Si  nous  notons  $H(d)=\sum_{i=1}^d
+\frac{1}{i}$ et $H_\mathcal{F} = H(\max{|S|, S\in\mathcal{F}})$, alors
+nous pouvons prouver que l'algorithme  glouton du \aut{MinSetCover}  a
+pour borne $H_\mathcal{F}$. En d'autres termes~:
+\begin{displaymath}
+  |\hat{\mathcal{F}}| \leq H_\mathcal{F}\cdot |\mathcal{F}^*|
+\end{displaymath}
+
+
+
+\begin{algorithm}[H]
+  \Donnees{$X$ et $\mathcal{F}$}
+  \Res{l'ensemble $\hat{\mathcal{F}}$ approximant la solution}
+  U = X\;
+  $\hat{\mathcal{F}}=\emptyset$\;
+  \Tq{$U\neq\emptyset$}{
+    choisir $S\in\mathcal{F}$ qui maximise $|S\cap U|$\;
+    $U = U - S$\;
+    $\hat{\mathcal{F}}=\hat{\mathcal{F}} \cup \{ S\}$\;
+  }
+  \Retour{$\hat{\mathcal{F}}$}
+  
+  \caption{\label{algoGlouton}Algorithme glouton pour le \aut{MinSetCover}.}
+\end{algorithm}      
+
+Bien  que  cette borne ne  soit pas  constante  et dépende de l'entrée
+($H_\mathcal{F}  \leq(\ln{|X|}+1)$),  ce   résultat nous   permet   de
+construire  un axe médian simplifié   ayant une qualité quantifiée par
+rapport à l'optimal.  De  plus  et  pour  le   problème spécifique  du
+\aut{MinSetCover}, un preuve existe  précisant  que le problème  n'est
+pas    approximable    en $(1-\epsilon)\ln|\mathcal{F}|$   (pour  tout
+$\epsilon>0$)  ce qui renforce   la puissance de l'algorithme  glouton
+dans l'absolu \cite{minset_log}.
+
+D'un  point de vue  algorithmique, une  implémentation de l'algorithme
+\ref{algoGlouton}   existe en $O(\sum_{i=1}^m  |B_i|)$   en mettant en
+place une structure de tri par dénombrement \cite{cormen}. Néanmoins,
+les structures de données sont  un peu plus complexes ce qui explique
+les temps de calcul donné en figure \ref{fig:tab_simpli}.
+
+La   figure    \ref{fig:tab_simpli}  présente  quelques  résultats  de
+simplification avec les deux  algorithmes précédents.  Si l'algorithme
+glouton nous  semble théoriquement   plus ``performant'' car  
+propageant  plus  d'information   lors   de  la sélection   d'une   boule
+(suppression complète  des  points de  la   boule et donc   remise  en
+question des  tailles  des autres boules  dans   le calcul  de $|S\cap
+U|$,\ldots), les résultats montrent que l'algorithme de \aut{Ragnemalm
+  et Borgefors} \cite{ingemar}  donne des  résultats  sensiblement
+meilleurs.
+
+L'intérêt de  l'algorithme glouton est   cependant de  montrer  qu'une
+borne théorique d'approximation    existe. Il serait  intéressant   de
+poursuivre  l'analyse de cette heuristique  pour  encore gagner sur la
+simplification tout en maintenant cette borne.
+
+\begin{figure}[h]
+  \centering
+    \begin{center}
+       \begin{tabular}{|c|c|c|c|}
+          \hline
+          Objet& $\mathcal{F}=\AMD(X)$& $\hat{\mathcal{F}}$
+          \textsc{Ragnemalm et al.} & $\hat{\mathcal{F}}$ glouton\\
+           \hline
+           \includegraphics[width=2.5cm]{cube10} & \includegraphics[width=2.5cm]{cube10init} &
+           \includegraphics[width=2.5cm]{cube10ingela} &
+           \includegraphics[width=2.5cm]{cube10greedy} \\
+         & 104 & 56 (-46\%) [$<$0.01s]& 66 (-36\%) [$<$ 0.01s]\\
+         \hline
+         \includegraphics[width=2.5cm]{32dodgecomplet} & \includegraphics[width=2.5cm]{32dodge} &
+         \includegraphics[width=2.5cm]{32dodgeingela} &
+         \includegraphics[width=2.5cm]{32dodgegreedy} \\
+         & 1292 & 795 (-38\%) [0.1s] & 820 (-36\%) [0.19s]  \\
+        \hline
+        \includegraphics[width=2.5cm]{Al200B} & \includegraphics[width=2.5cm]{Al200B_RDMA} &
+        \includegraphics[width=2.5cm]{Alingela} & \includegraphics[width=2.5cm]{Algreedy} \\
+        &  17238 &   6177 (-64\%) [48.53s]&  6553 (-62\%) [57.79s] \\
+          \hline
+        \end{tabular}
+      \end{center}
+      \caption{\label{fig:tab_simpli}Expérimentations   de  différents
+        algorithmes de simplification d'axe médian~:\emph{(de gauche à
+          droite)} les objets   discrets,  l'axe médian discret,    la
+        simplification de \cite{ingemar} et l'algorithme glouton.
+        Le nombre de boules et  le taux de simplification sont donnés
+        sous les objets.  Le  temps de  calcul  est  indiqué  entre
+        crochets.}
+\end{figure}
+
+\section{Filtrage de   l'axe  médian  et  liens avec   la géométrie
+  algorithmique}
+
+
+Si maintenant nous levons la contrainte de réversibilité, nous entrons
+dans la catégorie du filtrage de l'axe  médian. L'idée est toujours de
+supprimer les boules de  l'axe  médian mais  cette fois,  nous pouvons
+être amenés  à perdre de l'information lors  de la reconstruction. Sans
+plus d'hypothèses sur le  contexte, nous quantifierons cette perte par
+la distance de \aut{Hamming} entre les deux objets.
+
+De manière générale, nous  pouvons  formaliser cela comme un  problème
+d'optimisation~: étant  donnés  un objet  $X$  et un  seuil $\lambda$,
+trouver un  ensemble   de boules  $\mathcal{B}$ avec   $|\mathcal{B}|$
+minimum tel que  la distance entre $X$ et  la transformée  en distance
+inverse  de $\mathcal{B}$ est  inférieure à $\lambda$.  Cet énoncé est
+très  générique  car   nous  n'avons  pas   précisé  par  exemple  que
+$\mathcal{B}$ devait être un sous-ensemble de l'axe médian de $X$.
+
+
+ Pour répondre à  ce  problème avec   des algorithmes utilisables   en
+ pratique,  nous  allons faire  l'hypothèse   que  $\mathcal{B}\subset
+ \AMDR(X)$ et que  la sélection d'une  boule de $\AMD(X)$  se fera sur
+ des  critères géométriques  uniquement. Par ailleurs, nous évaluerons
+ notre résultat avec une distance de \aut{Hamming} quantifiant la part
+ de l'objet qui a été ``perdue''.
+
+En géométrie algorithmique dans le cas continu, une approche classique
+consiste à attacher  deux mesures à la  boule  de centre  $s$ de l'axe
+médian (voir figure \ref{fig:etanch}) \cite{attali,attal}~:
+\begin{itemize}
+\item l'étanchéité $\rho(s)$ correspondant au rayon de la boule~;
+\item l'angle  bissecteur $\alpha(s)$ correspondant à l'angle des deux
+  points de contact entre la boule et le bord de la forme.
+\end{itemize}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[draft=false,width=5cm]{etanch}
+  \caption{Paramètres associés à un point $s$ de l'axe médian~:
+    l'étanchéité $\rho(s)$ et l'angle bissecteur  $ \alpha(s)=\widehat{p_0sp_1}$.}
+  \label{fig:etanch}
+\end{figure}
+
+Dans  le cas discret, plusieurs points  de contact existent et ils
+nous  sont donnés par la fonction  $\Pi_{\overline{X}}$ dans les travaux
+de        la           section     \ref{sec:diagr-de-voronoi}.    Dans
+\cite{dcoeurjo_IVC_couprie}  nous  avons surtout utilisé ce processus
+pour guider  un amincissement homotopique  et  non pour  effectuer une
+simplification.   Néanmoins, les problématiques sont similaires~: dans
+les deux cas  il faut  trouver  un ordre sur les  boules caractérisant
+leur importance vis-à-vis de la forme.
+
+En  considérant  les liens  avec la  géométrie algorithmique présentés
+dans la   section  \ref{sec:liens-geoalgo},  nous avons  proposé  dans
+\cite{dcoeurjo_pami_RDMA}    un   filtrage   simple   et    facilement
+généralisable aux dimensions supérieures. Cette technique reprend deux
+mesures associées à chaque boule~: l'étanchéité $\rho(s)$ et l'aire de
+la cellule associée à $s$  dans le diagramme de  puissance restreint à
+la  forme.  L'idée sous-jacente est que  la  géométrie et l'aire de la
+cellule sont fonction de la position et de la hauteur de la paraboloïde
+elliptique relativement à ses voisines.
+
+Dans     le  cas discret,  de  la   même   façon  que pour  l'étiquetage de
+\aut{Voronoï}, l'algorithme  d'extraction de l'axe médian discret nous
+construit  le   diagramme de puissance  en   extension  (nous avons un
+étiquetage de  tous les points  discrets  mais pas la  connaissance du
+graphe complet). Ainsi,  nous  pouvons très simplement associer à  une
+cellule (\emph{i.e.} à chaque boule) son aire estimée par le
+nombre de   points discrets ayant  l'étiquette  correspondante (mesure
+notée $\kappa(s)$.
+
+Ainsi, comme dans \cite{attal}, nous  avons un filtrage à deux seuils,
+l'un sur l'étanchéité ($\rho_0$),   l'autre sur l'aire de   la cellule
+associée à la boule  ($\kappa_0$).  La figure \ref{fig:filter2D} donne
+une  illustration  en 2D   du  filtrage avec  quelques reconstructions
+intermédiaires.      Le   tableau  \ref{tab:fil2D}    et    la  figure
+\ref{fig:fil3D} donnent des résultats quantitatifs et des filtrages en
+dimension 3.
+
+La  poursuite de ces travaux en  utilisant des  résultats de géométrie
+algorithmique comme par exemple les fonctions d'inclusion/exclusion de
+boules \cite{attali_incluExclu}, est une perspective intéressante.
+
+
+\begin{figure}[!h]
+  \centering
+  \subfigure[]{  \includegraphics[draft=false,width=10cm]{filter2Dgraphe}}
+
+  \subfigure[]{ \includegraphics[draft=false,width=14cm]{filter2D_normal}}
+  \caption[Processus de filtrage en dimension 2]{Processus de filtrage en  dimension 2:  $(a)$ le graphe  de
+    filtrage où chaque disque de l'axe médian  correspond à un point en
+    fonction de l'étanchéité  (axe horizontal) et de l'aire normalisée
+    de la cellule du diagramme de puissance associée.$(b)$, de gauche à
+    droite,  la  forme  discrète originale   et   son axe médian   (38
+    disques), l'étiquetage par  le diagramme de puissance (une couleur
+    par cellule) et trois reconstructions en ne conservant que les
+    disques inclus dans les trois zones rectangulaires de la figure
+    $(a)$ avec respectivement 9, 2 et un disque.}
+  \label{fig:filter2D}
+\end{figure}
+
+
+\begin{table}[h]
+  \renewcommand{\arraystretch}{1.3}
+  \label{tab:fil2D}
+  \centering
+  \begin{tabular}{c|c|c}
+    \hline
+    $\rho_0$&$\kappa_0$&nombre de disques\\
+    \hline
+    $0$ & $0$ & 38 \\ 
+    $0$ & $0.004$ & 9\\ 
+    $ 0.4$&$0.1$&2\\
+    0.6&0.4&1\\
+    \hline
+  \end{tabular}
+%  \hspace{0.5cm}
+% \begin{tabular}{|c|c|c|}
+%     \hline
+%     $\rho_0$&$\kappa_0$&number of balls\\
+%     \hline
+%     $0$ & $0$ & 342 \\ 
+%     $0.9$ & $0$ & 88\\ 
+%     0.9&0.02&21\\
+%     \hline
+%   \end{tabular}
+
+
+  \begin{tabular}{l|c|c|c|p{1.5cm}}
+    \hline
+    Objet &  $\rho_0$&$\kappa_0$&nombre de boules& nombre de  voxels\\
+    \hline
+    Cube de côté 20& 0 & 0 & 624&8000\\
+  %  \cline{2-5}
+    & 0.5 & 0.0005  & 24&6200\\
+   % \cline{2-5}
+    & 0.5 & 0.025  & 8&5112\\
+    \hline
+    Vertèbre & 0 &0&6593&103302 \\
+    %\cline{2-5}
+    & 0.1&0&5096& 100055\\
+    %\cline{2-5}   
+    & 0.2&0.0005& 304& 78535\\
+    %\cline{2-5}
+    & 0.5&0.001& 75&41873\\
+    \hline
+    ``Al'' 200x200x200&0 &0 & 17098&549162 \\
+    %\cline{2-5} 
+    &0.1 & 0 & 8057& 514068\\
+    %\cline{2-5} 
+    & 0.1 & 0.001 & 197&458541\\
+    %\cline{2-5}
+    & 0.5 & 0.001 & 132&328823\\
+    \hline
+  \end{tabular}
+  \caption{Résultats quantitatifs  des  filtrages  sur les objets  des
+    figures \ref{fig:filter2D} et \ref{fig:fil3D}.   Notez que si les
+    seuils sont de $(0,0)$, le   résultat est exactement l'axe  médian
+    discret.}
+  
+\end{table}
+
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[draft=false,width=14cm]{newfilter3D_raster}
+  \caption{Illustration du filtrage en dimension 3~: graphes de
+    filtrage et reconstruction du plus grossier au plus fin des objets
+    discrets.}
+  \label{fig:fil3D}
+\end{figure}
+
+
+
+\section{Application~:      compression   sans  perte   et transmission  progressive}
+\label{sec:appl-:-compr}
+
+Nous illustrons ici une application à ces représentations d'objets par
+union de boules dans un contexte de transmission progressive de formes
+discrètes sur des réseaux  bas débits.   Ces  travaux ont été menés  en
+collaboration avec  \aut{Florent Dupont} lors  du stage de Master 2 de
+\aut{Laurent Jospin}.
+
+\subsection{Problématique}
+
+Comme  nous avons pu le  voir dans la section \ref{sec:liens-geoalgo},
+le filtrage ou la simplification de l'axe médian consiste généralement
+à quantifier l'importance d'une boule par rapport au reste de la forme
+et    ainsi à ordonner   les  points de    l'axe   médian.  Dans cette
+application, nous nous  intéressons à la  transmission sans perte   de
+volume discret sur un réseau bas débit.  Nous ajoutons une contrainte
+supplémentaire qui est que la transmission se doit d'être progressive.
+En d'autres  termes,    nous  avons,  au  niveau    du récepteur,  une
+visualisation de la forme en  cours de transmission.  Ce contexte nous
+impose que la  métrique utilisée pour caractériser  l'importance d'une
+boule est  visuelle. Faute de mieux,
+nous utilisons encore la notion de distance de \aut{Hamming}.
+
+L'idée  est  d'ordonner  les boules   de  l'axe médian  et  de les
+transmettre  une à   une.       Dans  \cite{lossless},    l'algorithme
+d'ordonnancement  est similaire à  l'algorithme \ref{algoGlouton}~: le
+volume  intrinsèque  d'une boule à un  instant  donné est l'apport, en
+nombre de points discrets de cette boule à la reconstruction totale. A
+chaque étape, nous sélectionnons et transmettons la boule qui maximise
+son  volume  intrinsèque. Ensuite, cette  boule   est supprimée et les
+volumes intrinsèques sont  mis à jour. Lors  de la  transmission d'une
+boule,  nous avons  un processus  de  codage permettant de  réduire la
+taille des informations transmises.
+
+\subsection{Primitives à base de boules}
+
+La technique  précédente donne  de  bons  résultats mais nous  nous sommes
+intéressés à une  approche   de  plus  haut  niveau en    essayant  de
+reconnaître et de transmettre des  interpolations linéaires de boules.
+Plus précisément,  nous allons   caractériser  la forme   par  des
+troncs   de    cônes     \ref{fig:primitives}-$(a)$,    de    triangles
+\ref{fig:primitives}-$(b)$   ou     de  tétraèdres        de    boules
+\ref{fig:primitives}-$(c)$. Le tronc de  cône par exemple,  
+est    défini par deux boules  extrémités    et par une  interpolation
+linéaire des positions  des centres et  des rayons.  Cette forme est à
+mettre  en  relation  avec  la  notion de  \emph{gyxel} de \aut{Thiel}
+\cite{thiel}. Dans ce qui suit,  nous ne nous intéresserons qu'aux troncs
+de cône   et aux triangles  3D. Les   autres formes  (triangles  2D et
+tétraèdres) seront générées dans un second temps.
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=3cm]{primc}}
+  \subfigure[]{\includegraphics[width=3cm]{primt}}
+  \subfigure[]{\includegraphics[width=2cm]{tetra3D-2}}
+  \subfigure[]{\includegraphics[width=5cm]{validation_tronc}}
+  \caption{Illustration des primitives basées sur des interpolations de
+    boules en dimension 2 et 3 et validation d'un tronc de cône par un
+    test d'inclusion dans la forme.}
+  \label{fig:primitives}
+\end{figure}
+
+Dans  notre  contexte de transmission  sans  perte, il nous  faut une
+définition de  ces   objets  menant à   des algorithmes   exacts   de
+reconnaissance.  Par reconnaissance, nous   entendons que nous  devons
+être capable de décider si une forme géométrique (\emph{e.g.} un tronc
+de cône) est incluse ou  non dans la  forme discrète. Si c'est le  cas,
+nous  transmettons cette primitive et  itérons le processus (modulo un
+ordonnancement). 
+
+Bien évidemment, les  boules supports  de  ces formes  seront issues de
+l'axe médian discret simplifié.   Après plusieurs tentatives, il s'est
+avéré qu'une reconnaissance exacte,  par exemple de  la discrétisation
+d'un  tronc de  cône euclidien  (basé  sur des boules  de l'axe médian
+discret), n'était pas possible~: nous pouvions définir des algorithmes
+complexes nécessaires mais non  suffisants  Nous avons donc  opté pour
+une    redéfinition    discrète de ces     formes  en  considérant des
+pseudo-troncs de cônes, des pseudo-triangles et des pseudo-tétraèdres.
+
+Le pseudo-tronc  de  cône  en dimension  3,  est défini comme étant formé  du     segment  de droite discrète     3D
+$(0)-$connexe  \cite{debled}.   A  chaque  point   discret,  nous
+associons un  rayon de boule de   manière à ce que l'ensemble des
+points discrets obtenus  au final soient inclus   dans le tronc de  cône
+euclidien  exact.   Grâce à   cette inclusion,  si  un  tronc  de cône
+euclidien (à base dans l'axe médian discret) est  inclus dans la forme
+discrète, alors   son  pseudo-tronc de  cône    l'est aussi.   Pour la
+reconnaissance d'un tel objet, il nous suffit  de parcourir le segment
+discret  3D  (défini de  manière  canonique)  dans la  transformée  en
+distance  et de vérifier que toutes   les valeurs de distance trouvées
+sont  supérieures  aux  valeurs  construites par  notre  interpolation
+
+Pour la définition d'un pseudo-triangle  3D, nous procédons de la même
+manière~: nous   construisons un triangle  discret  (voir  par exemple
+\cite{BBN1} ou \cite{andres_hdr}) et  nous affectons à chaque voxel un
+rayon tel que l'union convexe  euclidienne contienne la forme discrète
+(voir figure \ref{fig:primitives_disc}).
+
+Concernant le récepteur,  ce   dernier va  recevoir par   exemple  les
+extrémités  d'un  pseudo-tronc  de cône, il   utilise  le processus de
+construction des pseudo-troncs de cône pour  tracer le segment discret
+3D avec ses  valeurs et enfin  l'algorithme de reconstruction (section
+\ref{sec:REDT}).
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=3cm]{coneDMA}}
+  \subfigure[]{\includegraphics[origin=lt,angle=270,width=3cm]{pseudocone}}
+  \subfigure[]{\includegraphics[width=3cm]{triangleDMA}}
+  \subfigure[]{\includegraphics[width=3cm]{triangle}}
+  \caption{Pseudo-tronc de cône et pseudo-triangle 3D.}
+  \label{fig:primitives_disc}
+\end{figure}
+
+
+Pour définir des formes plus complexes comme  des unions convexes de trois
+boules  dans  le plan   ou de quatre   boules  en 3D, nous  exploitons  les
+pseudo-troncs  de cône    et  les pseudo-triangles   3D  (voir  figure
+\ref{fig:primitives2})~: pour reconnaître  un pseudo-triangle 2D, nous
+allons reconnaître les trois  pseudo-troncs  de cône définis  par  les
+trois extrémités, et  par le  centre  du  cercle inscrit au   triangle
+tangent aux boules.  Dans le cas continu, une telle reconnaissance est
+exacte; dans  le  cas discret, l'objet  discret  ainsi défini  aura la
+propriété d'être inclus dans  la forme continue considérée.  Pour la
+reconnaissance de tétraèdres, nous allons utiliser le même mécanisme~:
+pour  reconnaître (et  ainsi  définir)  un pseudo-tétraèdre  3D,  nous
+allons reconnaître les 6 pseudo-triangles 3D formés par les ``arêtes''
+du tétraèdre et la sphère incluse  au tétraèdre tangent. Bien sûr, ces
+constructions  n'ont de     sens  que pour des   cas   non dégénérés~:
+l'enveloppe convexe des  trois  disques a 3 parties linéaires  dans le
+cas d'un triangle 2D  et  l'enveloppe convexe des  4  boules a bien  4
+faces pour le tétraèdre.
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[width=3cm]{union2D}}
+  \subfigure[]{\includegraphics[width=3cm]{unionDMA}}
+  \subfigure[]{\includegraphics[width=3cm]{triangle2D}}
+  \subfigure[]{\includegraphics[width=3cm]{troncs}}
+  \subfigure[]{\includegraphics[width=3cm]{tetra}}
+  \subfigure[]{\includegraphics[width=3cm]{tetra3D}}
+  \caption{Construction     d'un  pseudo-triangle       2D   et   d'un
+    pseudo-tétraèdre 3D en utilisant les pseudo-troncs de cônes et les
+    pseudo-triangles 3D.}
+  \label{fig:primitives2}
+\end{figure}
+
+Nous   avons maintenant  tout  un  ensemble de  formes,  basées sur des
+combinaisons convexes  de   boules incluses, à notre  disposition  pour
+proposer des codages efficaces de  formes discrètes. D'un point de vue
+théorique, si les boules à l'origine  de ces formes sont maximales, il
+nous faut poursuivre l'analyse pour obtenir des propriétés de maximalité
+pour les troncs de cône.  Typiquement, dans  le continu, si les boules
+sont maximales, les troncs de cônes inclus sont trivialement maximaux.
+Dans le cas discret, l'implication est moins triviale.
+
+Revenons à  notre objectif de  description  de formes.  Nous avons des
+primitives et il nous faut maintenant  une heuristique de segmentation
+minimale de l'objet discret en de telles primitives. Les solutions à ce
+problème sont extrêmement  heuristiques  car les choix  sont nombreux
+(Quelle forme  ? Quelle stratégie  ? \ldots). Le reste de l'algorithme
+de transmission reste quant à lui  similaire~: nous allons transmettre
+les primitives de volume intrinsèque maximal.
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[]{\includegraphics[angle=270,width=11cm]{primitive}}
+  \subfigure[]{\includegraphics[angle=270,width=11cm]{primitive2}}
+  \caption{Courbes débit/distorsion   sur les objets \texttt{catenoid}
+    de  taille  8  $(a)$  et  \texttt{32Dodge}  $(b)$  avec  plusieurs
+    stratégies.}
+  \label{fig:codage-prim}
+\end{figure}
+
+Le problème est  maintenant  combinatoire~: en  dimension 3,   nous ne
+pouvons pas explorer toutes  les combinaisons des boules  entre elles.
+Pour    cela,     plusieurs  stratégies    ont été   proposées    dans
+\cite{jospin_transmission} mais nous ne les détaillerons pas.  A  l'issu d'un
+codage naïf des primitives,  la figure  \ref{fig:codage-prim} illustre
+simplement  l'intérêt de leur  construction de telles primitives pour la
+transmission avec le  tracé  de courbes débit/distorsion~:  l'abscisse
+correspond à la   quantité d'information transmise  et l'ordonnée à la
+distance normalisée entre l'objet reconstruit et l'objet initial.  Sur
+ces graphes, nous voyons l'intérêt d'utiliser les   primitives
+supérieures (troncs,   triangles  3D,  tétraèdres)   par  rapport à la
+transmissions   des boules.  Néanmoins, sur  le  second objet, on peut
+observer que le gain pour les unions  convexes de 4 boules par exemple
+n'est pas  significatif par  rapport aux troncs   de cône.   La figure
+\ref{fig:reconstruction_dodge} illustre la  reconstruction progressive
+de l'objet \texttt{32dodge} avec les primitives de haut niveau.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=4cm]{32dodge1}
+\includegraphics[width=4cm]{32dodge2}
+\includegraphics[width=4cm]{32dodge5}
+\includegraphics[width=4cm]{32dodge10}
+\includegraphics[width=5cm]{32dodgecomplete}
+\caption{\label{fig:reconstruction_dodge}Reconstitution de l'objet \texttt{dodge} apr\'es 1kb, 2kb, 5kb, 10kb, et complète.}
+\end{figure}
+
+L'objectif était initialement  de  poursuivre   cette extraction  de
+primitives à des unions convexes  de $n$ boules  mais malheureusement,
+les gains montrés sur les graphes \ref{fig:codage-prim} ne sont pas pour l'instant
+suffisant par  rapport   au  coût   algorithmique  de   la   recherche
+combinatoire. 
+
+
+\section{Conclusion et perspectives}
+
+
+Dans  ce chapitre, nous avons présenté   des algorithmes permettant de
+décrire de manière volumique,  des objets discrets. Pour simplifier le
+propos,  après quelques variations   autour  du thème des  algorithmes
+séparables et  de leurs généralisations,  nous nous sommes attachés à la
+description de formes par union de boules.
+
+Quel que   soit    l'objectif, simplification, filtrage,   transmission
+progressive, et que ce  soit d'un point  de vue théorique ou pratique,
+l'aspect   crucial était de  caractériser   l'importance d'une  boule
+relativement aux  autres  et à la  forme.  Pour   mieux comprendre les
+différentes interactions   entre boules,  les   liens  que nous  avons
+présentés avec   les  diagrammes  de puissances   nous  semblent  très
+importants.  Une  analyse   un peu  plus  fine  de cette  structure en
+interaction avec le  modèle discret est une  perspective importante.
+En   particulier, il   serait  intéressant  d'analyser  les  variantes
+discrètes    des  formules   d'inclusion/exclusion  de \aut{Attali  et
+  Edelsbrunner}       \cite{attali_incluExclu}  pour  mieux  contrôler
+l'apport d'une boule sur le volume total de l'objet.
+
+Une autre utilisation   de ces objets  de  la géométrie  algorithmique
+concerne la description hiérarchique  par union de boules  d'une forme
+(\emph{sphere-tree}). Des travaux récents dans  ce domaine ont montrés
+l'intérêt  d'une   telle  structure dans  de   nombreuses applications
+\cite{sphere-tree}. Une perspective de tous ces  outils serait donc de
+proposer une approche discrète de cette structure.
+
+D'un point de vue plus  théorique, nous avons  prouvé que, dans le cas
+général,  l'extraction  de  l'axe  médian minimum était   un  problème
+NP-complet pour   la distance  euclidienne.  Si des  généralisations à
+d'autres distances  ($d_\infty   $,  distances  de   chanfrein,\ldots)
+peuvent être envisagées, elles demandent très souvent une construction
+\emph{ad-hoc} des objets élémentaires (variables, clauses,\ldots, voir
+\cite{dcoeurjo_RR_AMNP}).   Par  ailleurs,  la   réduction polynomiale
+construit des    formes possédant des trous  (cycles   dans \PS), nous
+pouvons   donc nous poser la   question  suivante~: le problème est-il
+toujours NP-complet si l'objet n'a pas de trous ? Dans le cas continu,
+certains problèmes semblent plus simples pour ce  type d'objets.  Dans
+le cas discret, si  certains signaux ne sont  pas très optimistes (non
+\emph{chordialité} du graphe), le problème reste à étudier.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 

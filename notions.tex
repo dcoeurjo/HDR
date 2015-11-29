@@ -1,0 +1,959 @@
+
+%; whizzy-master hdr.tex
+\mychaptoc{Notions de base}
+\label{chap:notions}
+
+
+
+\section{Image, image numérique  et support d'image}
+
+Une   image représente une scène  ou  un objet, soit après acquisition
+{\it via} un capteur, soit par extraction d'une vue après modélisation
+par  des primitives.  Nous  considérons dans  cet ouvrage les diverses
+variétés  d'images   qui peuvent en  résulter.   Nous tenons également
+compte des représentations en  plusieurs dimensions, et en particulier
+des images  en trois  dimensions, de plus  en  plus courantes  dans de
+nombreuses  applications. Cependant, pour    la  plupart des   notions
+présentées, nous les explicitons tout d'abord en deux dimensions.
+
+Que la scène  observée soit réelle  ou simulée, nous nous intéressons,
+en dimension deux, à  sa projection sur le  plan associé à un  capteur
+(plan de focalisation  par exemple, dans le cas  d'une caméra ou  d'un
+appareil  photographique).  Dans    ce  plan, l'image est de    nature
+analogique  et correspond à  une  distribution  d'intensités lumineuses,
+notée $f: \R^2 \longrightarrow I$.  Pour faciliter la manipulation, le
+stockage et l'analyse de l'image par ordinateur, on utilise couramment
+une  représentation de $f$   sur une partition dénombrable de  $\R^2$,
+notée     $\mathcal{P}$.      On    parle    alors       d'\emph{image
+  numérique}\index{image!numérique} ou encore d'\emph{image discrète}.
+Plus  précisément, si un point  $P$ est associé à chacune des cellules
+$V_P$ de  la partition $\mathcal{P}$  d'aire  $S_P$, certains capteurs
+construisent une  représentation  discrète de $f$,  notée $F$, définie
+par~:
+\begin{displaymath}
+  F(P) = \frac{1}{S_P}\int\int_{V_P} f(x,y)dxdy
+\end{displaymath}
+
+En d'autres termes,  l'intensité de la cellule  $V_P$ est  associée au
+point $P$ et contient la somme de toutes les contributions de $f$ à la
+région du plan définie par la cellule.   Comme nous le verrons dans la
+suite, ce  processus est  appelé  \emph{processus  de discrétisation}.
+Généralement,  l'espace  d'intensité    $I$   associé à $f$  (couleur,
+énergie, etc.) est aussi  transformé pour pouvoir être représenté  sur
+un ordinateur, en  un  espace $I'$.   On parle  alors  de fonction  de
+transfert  et une modélisation plus réaliste  du processus de création
+d'une image numérique peut être donnée par~:
+ \begin{displaymath}
+  F(P) = g\left (\frac{1}{S_P}\int\int_{V_P} f(x,y)dxdy\right )
+\end{displaymath}
+avec~:
+\begin{align*}
+  &f: \R^2 \longrightarrow I\\
+  &F: \mathcal{P} \longrightarrow I'\\
+  &g: I \longrightarrow I'
+\end{align*}
+
+La décomposition  du  plan  de   projection en  cellules  dénombrables
+définit  le   \emph{support  de l'image  numérique}.    Les mosaïques,
+assemblages de tesselles teintées  une à une, peuvent être considérées
+comme  les    prémices  des représentations  discrètes   (voir  figure
+\ref{fig:mosaique}) .  Cependant, la  disposition   et la  taille  des
+tesselles épouse les  motifs  plutôt que  de respecter  les propriétés
+géométriques d'un support figé.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=7cm]{mosaique}
+  \caption{Détail d'une mosaïque
+    à Herculaneum, représentant Amphitrite.}
+\label{fig:mosaique}
+\end{figure}
+
+Usuellement, les   images   numériques sont fournies   sur  un support
+régulier, avec  un  espace $I'$ correspondant à   trois canaux (Rouge,
+Vert, Bleu, noté RVB) où  chaque canal contient  une intensité sur  un
+intervalle $[0,255]$ (voir figure \ref{fig:lenna}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=12cm]{lenna_complet}
+\caption{Représentation  d'une image  sur un support discret
+    régulier.}
+\label{fig:lenna}
+\end{figure}
+
+
+
+
+\section{Espace discret et connexité}
+
+\subsection{Pavages et maillages}
+
+
+Par la suite, nous appelons {\it espace  discret} un pavage du plan en
+dimension deux, ou plus généralement de l'espace en dimension trois ou
+plus.  Nous appelons aussi {\it point discret} le centre de gravité de
+chaque  cellule dans le  pavage considéré.    Dans  ce qui suit,  nous
+représentons graphiquement l'espace discret, soit  par le pavage, soit
+par le maillage issu de ce  pavage. Le maillage correspond à un graphe
+dont  les  sommets sont les  points  discrets et   dont les ar{\^e}tes
+représentent les  adjacences  entre cellules, éléments  du pavage.  La
+figure   \ref{fig:pavage_maillage}   présente  les  trois   pavages et
+maillages possibles en dimension deux. 
+
+
+\begin{figure}[htbp]
+  \begin{center}
+    % \includegraphics[width=12cm]{pavage_maillage}
+    \includegraphics[width=12cm]{pavage_maillage2} 
+  \end{center}
+  \caption{\label{fig:pavage_maillage}Pavages (et maillages) réguliers
+    en dimension deux par  cellules carrées, triangulaires et  hexagonales.}
+\end{figure}
+  
+Certaines partitions de l'espace peuvent être étudiées, donnant lieu à
+des pavages qui ne sont  pas forcément réguliers \cite{Grunbaum}.  Par
+ailleurs d'autres représentations de  l'espace sont parfois utilisées.
+Par  exemple  en  dimension  trois,  les  représentations  BCC  et FCC
+{\it(body-centered    cubic,  face-centered      cubic)},  issues   de
+l'organisation des cristaux, possèdent des propriétés particulières de
+symétrie et de densité, qui  peuvent être exploitées pour le codage et
+le traitement d'images.
+
+
+De par la physique des capteurs, le pavage par des  carrés est le plus
+usuel,   même si,   comme  nous    le  verrons   par la  suite,    ses
+caractéristiques  topologiques ne sont pas  toujours les plus simples.
+En dimension supérieure à deux,  les seuls espaces discrets  réguliers
+sont ceux  engendrés  par des  cubes  multi dimensionnels.  Les points
+discrets     associés {\`a}  ces  espaces sont    donc  des points  de
+$\mathbb{Z}^d$ pour la dimension $d$.
+
+En terme de codage,  l'espace discret engendré  par le pavage avec des
+carrés  offre   une représentation   matricielle  directe~:  une image
+correspondra à une  partie de $\mathbb{Z}^2$.  Dans le cas des pavages
+par des  triangles ou par   des hexagones, un  codage particulier  est
+nécessaire, mais nous     pouvons   toujours considérer  la     grille
+$\mathbb{Z}^2$  (voir  figure~\ref{fig:codage}).    L'intérêt    d'une
+représentation matricielle est  qu'elle permet un adressage direct des
+éléments (un  couple de coordonnées pour  chaque point  discret) ainsi
+qu'une extraction rapide des points discrets voisins.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{voisins} 
+\caption{\label{fig:codage}Représentation et codage  des  pavages  réguliers 2D   sous
+    forme matricielle.}
+\end{figure}
+
+
+Dans le chapitre \ref{chap:IA}, nous nous  intéressons à une classe de
+pavages   et de  maillages   un  peu  différente~: les   \emph{grilles
+  isothétiques irrégulières}.   Cette classe consiste à  considérer un
+pavage avec des  carrés   et à relâcher les  contraintes  sur  la taille  des
+cellules,  ainsi que sur  la  position de leur  centre.  Supposons une
+cellule définie comme un rectangle donné par un centre $p\in\R^2$, une
+largeur $l_x$ et une hauteur $l_y$  ($l_x,l_y\in\R$).  En fonction des
+contraintes  que nous imposons  sur $p$, $l_x$  et $l_y$, nous pouvons
+définir des \emph{pavages isothétiques} comme  un ensemble de cellules
+tel que l'intersection de tout couple de  cellules est soit vide, soit
+de  dimension inférieure ou égale à  1. Notons que ces pavages peuvent
+ne  pas  paver  le plan  mais   dans  nos applications,   ils paveront
+généralement un domaine rectangulaire (voir chapitre \ref{chap:IA}).
+
+Par  exemple   (voir  figure    \ref{fig:isoth}),  si  $p\in\Z^2$   et
+$l_x=l_y=1$,   nous   définissons  le   pavage   régulier  par   carré
+($\mathbb{D}$).  En considérant  maintenant des rectangles de  taille
+uniforme $l_x=\lambda$  et $l_y=\mu$  ($\lambda,\mu\in\R$)  avec pour
+centres  $p=(\lambda   i,\mu    j)$   ($(i,j)\in\Z^2$), nous   pouvons
+caractériser les grilles  avec élongation, très utilisées  en imagerie
+médicale  car de nombreux   appareils d'acquisition n'ont pas  la même
+résolution suivant toutes les dimensions.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=14cm]{schemabis}
+  \caption{Structuration possible    de  quelques grilles isothétiques
+    irrégulières.}
+  \label{fig:isoth}
+\end{figure}
+
+
+De manière similaire, si nous considérons non plus des contraintes sur
+la forme des cellules isothétiques indépendemment les unes des autres,
+mais  des  contraintes globales  comme  des règles de subdivision d'un
+rectangle initial (par  des droites horizontales ou  verticales), nous
+pouvons caractériser des  pavages issus de grilles hiérarchiques comme
+le \emph{quadtree} ($\mathbb{Q}$) \cite{samet90}. Si nous considérons
+des regroupements/fusions de cellules issues d'un pavage régulier, nous
+pouvons définir les  grilles adaptatives ($\mathbb{A}$) (voir par
+exemple \cite{havran} pour une étude de ces différentes grilles dans
+le cas de l'accélération d'une lancer de rayons en synthèse d'images).
+
+L'intérêt  d'avoir  une écriture   unifiée, sous  le  nom  de  grilles
+isothétiques irrégulières, de ces pavages est  de pourvoir dériver des
+définitions d'objets ou des algorithmes génériques transversaux à tous
+ces  modèles.  Le chapitre \ref{chap:IA}  présente quelques-uns de ces
+outils.
+
+
+\subsection{Voisinages}
+\label{sec:voisinages}
+
+Sur un  espace  discret,   nous  introduisons  des notions  de    {\it
+  voisinage} permettant de construire  des graphes d'adjacence ou, dit
+plus simplement, de détecter  si deux pixels sont  voisins ou non.  Si
+nous  considérons l'espace discret   2D  généré par des carrés,   nous
+définissons le {\it $4-$voisinage} comme étant la relation d'adjacence
+par ar{\^e}tes dans la partition de l'espace et le {\it $8-$voisinage}
+comme étant la  relation d'adjacence par  ar{\^e}tes et sommets.  Plus
+formellement, deux points $A$ et $B$ de $\mathbb{Z}^2$, de coordonnées
+respectives ($x_A$,  $x_B$) et ($y_A$,   $y_B$) sont {\it $4-$voisins}
+(ou {\it $4-$adjacents}) si :
+\begin{displaymath}
+  |x_A - x_B| + |y_A - y_B| =1\,.
+\end{displaymath}
+
+De la m{\^e}me manière, deux points $A$ et $B$  de $\mathbb{Z}^2$ sont {\it
+  $8-$voisins}  (ou {\it $8-$adjacents}) si :
+\begin{displaymath}
+  max(|x_A-x_B|,|y_A-y_B|)=1\,.
+\end{displaymath}
+
+
+En dimension trois, nous pouvons introduire  les notions de {\it $6-$,
+  $18-$} ou {\it   $26-$voisinage} en considérant les   adjacences par
+faces, ar{\^e}tes et sommets (voir figure \ref{fig:adjacences3D}). Ces
+adjacences      sont   données  formellement       dans    le  tableau
+\ref{tab:caract_adjacence}.
+
+
+\begin{table}[!h]
+  \begin{center}
+    \begin{tabular}{|l|r|}
+      \hline
+      adjacence & caractérisation \\
+      \hline
+      $6$ &  $|x_A - x_B| + |y_A - y_B| + |z_A - z_B|=1$\\
+      $18$ & $A$ et $B$ sont 26-voisins et $|x_A - x_B| + |y_A - y_B| + 
+      |z_A - z_B| \leq 2$\\
+      $26$ & $max(|x_A-x_B|,|y_A-y_B|,|z_A - z_B|)=1$\\
+      \hline
+    \end{tabular}
+ \caption{Caractérisation des adjacences en dimension trois.}
+    \label{tab:caract_adjacence}
+  \end{center}
+\end{table}
+
+Dans ce qui suit, on parle d'$\alpha$-adjacence, pour $\alpha\in\{4,8,6,18,26\}$.
+
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width=8cm]{connexite}  
+\end{center}
+\caption{\label{fig:adjacences3D}En 3D, différents voisinages du cube central avec le pavage régulier.}
+\end{figure}
+
+Une écriture   unifiée  de   ces  différentes  relations   d'adjacence
+s'exprime sous la forme   de {\it $(r)-$voisinage},  généralisable aux
+dimensions  supérieures :  deux   points de $\mathbb{Z}^d$   sont {\it
+  $(r)-$voisins} si  chaque coordonnée diffère au plus  de  1 et qu'au
+moins  $r$ coordonnées sont égales.   Alors, les connexités  4 et 8 en
+dimension 2 sont notées respectivement  $(1)-$ et $(0)-$voisinage.  De
+même, les  connexités  6, 18  et 26   en  3D s'écrivent respectivement
+$(2)$, $(1)$ et $(0)$ (voir table  \ref{tab:vois} pour une comparaison
+des différentes notations).  Une manière plus  simple de considérer le
+$(r)-$voisinage est de regarder la dimension de l'intersection de deux
+pixels~: deux pixels  (carrés    unités   fermés) $A$  et   $B$   sont
+$(1)-$voisins  si l'intersection de  $A$ et $B$ contient un élément de
+dimension 1 (un segment en 2D).  De même, $A$ et  $B$ sont pixels sont
+$(0)-$voisins si  leur intersection contient des éléments de dimension
+supérieure à $0$ (un point ou un segment en 2D).
+
+\begin{table}[htbp]
+  \begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+    $(r)-$voisinage &    $\alpha-$voisinage\\
+      
+     % $n-1$ &  $2D$ & $3D$ & $nD$\\
+    \hline
+    $0$   & $3^d -1$ \\
+    \ldots  & \ldots\\
+    $d-r$ & $\sum_{i=d-r}^{d-1} \frac{d!}{i!(d-i)!}2^{d-i}$ \\
+    \ldots&  \ldots\\
+    $d-2$ &   $2d^2$ \\
+    $d-1$ &     $2d$ \\
+    \hline
+    \end{tabular}
+    \caption{Lien entre les notations de voisinage pour un pavage  par hypercubes.}
+    \label{tab:vois}
+  \end{center}
+\end{table}
+
+
+Cette illustration géométrique de la $(r)-$adjacence est généralisable
+aux dimensions  supérieures de la grille discrète,  mais aussi  au cas
+des grilles  isothétiques irrégulières (voir figure \ref{fig:adj_iso}).  
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=8cm]{adjacence_isoth}
+  \caption{A gauche, $A$ et $B$ sont $(1)-$ et $(0)-$adjacents, à
+    droite, $A$ et $B$ sont $(0)-$adjacents mais pas $(1)-$adjacents.}
+  \label{fig:adj_iso}
+\end{figure}
+
+
+% \begin{table}[htbp]
+%   \begin{center}
+%     \begin{tabular}{|c|c|c|c|}
+%       \hline
+%       $O(r)$-voisinage &       \multicolumn{3}{|c|}{$\alpha-$voisinage}\\ \cline{2-4}
+      
+%        &  $2D$ & $3D$ & $nD$\\
+%        \hline
+%        1 & 4 & 6 & $2n$\\
+%        2 & 8 & 18 & $2n^2$\\
+%        3 & . & 26 & \ldots\\
+%        \ldots& . &. & \ldots\\
+%        $r$ & . & . & $\sum_{i=n-r}^{n-1} \frac{n!}{i!(n-i)!}2^{n-i} $\\
+%       \ldots& . &. & \ldots\\
+%       $n$ & . & . & $3^n -1$\\
+%       \hline
+%     \end{tabular}
+%     \caption{Liens entre notations de voisinage pour un pavage  par hypercubes.}
+%     \label{tab:vois}
+%   \end{center}
+% \end{table}
+
+
+
+\section{Objets, courbes, surfaces}
+
+\label{chap:partie3}           
+
+\subsection{Définitions classiques}
+\label{sec:defin-class}
+
+Dans l'espace discret, nous décrivons les objets élémentaires utilisés
+par la suite.  Nous  notons  $r\in\{0,1,2\}$ la  relation  d'adjacence
+considérée   sur la grille  discrète $\Z^d$   pour $d\in\{2,3\}$.  Ces
+relations d'adjacence nous permettent tout  d'abord de définir un {\it
+  $(r)$-chemin} sur l'espace discret~:
+
+
+\index{$(r)-$chemin}
+\begin{definition}[$(r)-$chemin]{Soit    un ensemble  $X$ de points
+    discrets et  une relation de $(r)-$adjacence. Un $(r)-$chemin
+    (dans $X$) joignant deux points $A$ et $B$ de $X$ est une séquence
+    $\pi = (A_0, \ldots, A_n)$ de pixels de $X$ telle que $A_0 =
+    A, A_n =   B$ et  $A_i$  est
+    $(r)$-voisin de $A_{i-1}$ pour tout $i = 1, \ldots n$.}
+%
+%  $X$ est  un
+%    $(r)-$chemin,  noté  $\pi$, si   tous   les éléments de $X$
+%    possèdent au moins un $(r)$-voisin dans $X$.}
+\end{definition}
+
+
+
+Nous pouvons  définir de la m{\^e}me manière  un objet  dans un espace
+discret muni d'une relation d'adjacence.
+
+\index{$(r)-$objet}
+\begin{definition}[$(r)-$objet]{  Soit un  ensemble $X$  de  points
+    discrets   et  une relation  de   $(r)-$adjacence.  $X$ est  un
+    $(r)-$objet si pour tout couple $A$ et $B$ de $X$, il existe un
+    $(r)-$chemin dans $X$.}
+\end{definition}
+
+En  d'autres termes, un $(r)-$objet est   une composante connexe de
+points discrets au sens de la $(r)-$adjacence.\index{composante connexe}
+La  notion  de $(r)-$chemin  décrite  ci-dessus est  très générale.
+Nous restreignons cette  notion pour pouvoir introduire des propriétés
+topologiques plus complexes.
+
+\index{$(r)$-courbe fermée}
+\begin{definition}[$(r)-$courbe      fermée]{Soit       $\pi$    un
+    $(r)-$chemin. $\pi$ est une  $(r)-$courbe fermée si tous les
+    éléments de $\pi$ ont exactement deux points $(r)-$voisins dans
+    $\pi$.}
+\end{definition}
+Finalement,  si nous  déconnectons  une  $(r)-$courbe  fermée, nous
+définissons tout simplement une $(r)-$courbe.
+
+\index{$(r)-$courbe}
+\begin{definition}[$(r)-$courbe]{ Soit $\pi$ un $(r)-$chemin. $\pi$
+    est une $(r)-$courbe si, pour tous les éléments $\{A_i\}$ de $\pi$, $A_i$
+    a exactement deux points $(r)-$voisins, sauf $A_0$ et $A_n$ qui
+    n'en  ont  qu'un ($A_0$  et  $A_n$  sont alors  les  extrémités de
+    la courbe).}
+\end{definition}
+
+% Si le $(r)-$arc est fermé on parle alors de $(r)-$courbe fermée.
+
+
+% \begin{definition}
+% Soit $d \in \{2,3\}$ et soit $(r) \in \{4,8, 6,18,16\}$ une
+% relation d'adjacence sur $\Z^d$.\\
+% {\bf 1)} Une $(r)-$courbe fermée simple $X$ dans $\Z^d$ est une
+% partie de $\Z^d$ telle que tout point de $X$ soit $(r)-$adjacent
+% à exactement deux autres points de $X$ \\
+% {\bf 2)} Une $(r)-$courbe fermée simple paramétrée est un
+% $(r)-$chemin fermé $\pi = (A_0,\ldots,A_n)$ telle que
+% $A_i$ soit $(r)-$adjacent à $A_j$ si et seulement si $j\% n \in \{(i-1)\% n, (i+1)\% n\}$.
+% \end{definition}
+
+
+
+L'introduction des courbes  lève des problèmes topologiques. En effet,
+une propriété {\it souhaitable}  sur une $(r)-$courbe fermée dans
+$\Z^2$  serait que l'on puisse définir un intérieur et un extérieur à cette courbe.  
+Ces définitions
+sont liées {\`a} la notion de  propriété de \OldName{Jordan} en géométrie
+différentielle classique.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=12cm]{remplissage} 
+  \caption{Illustration d'un   remplissage d'objet à  partir du  pixel
+    noir  en  $(1)-$connextié  (\emph{gauche}) et  en  $(0)-$connexité
+    (\emph{droite}). Les flèches illustrent  un exemple de propagation
+    selon la connexité considérée.}
+\label{fig:remplissage}
+\end{figure}
+
+
+Pour illustrer  cette   notion, prenons l'exemple  d'un processus  de
+remplissage très simple~: étant  donné un  pixel \emph{source}  (pixel
+noir dans  la   figure \ref{fig:remplissage}),  le  remplissage  d'une
+région se fait en  coloriant tous les  voisins selon une connexité $r$
+de $(0)$    ou   $(1)$.  Sur   la   courbe   donnée  dans  la   figure
+\ref{fig:remplissage}, nous voyons   que, parmi  les deux   connexités
+possibles  du  remplissage,  seul   le  remplissage en $(1)-$connexité
+remplit  effectivement   la  courbe    discrète sans déborder.   En  utilisant    la
+$(0)-$connexité, tout l'espace   discret est rempli, ce qui  peut être
+critique   dans    certaines   applications.      La    propriété   de
+\OldName{Jordan}    permet    de    formaliser     cette   notion   de
+\emph{perméabilité} d'un contour.   L'énoncé de cette  propriété ainsi
+que les techniques permettant la caractérisation des objets  discrets
+la  vérifiant  est un problème   très classique en géométrie discrète.
+D'une  manière générale, deux grandes  approches sont considérées dans
+ces formalisations~:   la  première consiste à    définir les  contours
+d'objets discrets comme des séquences de  points discrets.  La seconde
+se  base sur  une décomposition  cellulaire de  la grille (voir figure
+\ref{fig:cellules})    et définit le    contour  d'un objet comme  les
+éléments de dimension inférieure (à la dimension de l'espace) séparant
+les   pixels ou  les voxels  de   l'objet,  de ceux  du complémentaire
+\cite[chap. 3]{dcoeurjo_hermes}.
+
+
+\begin{figure}[htbp]
+\begin{center}
+%  \includegraphics[width=3cm]{cellulaire}
+  \includegraphics[width=\textwidth]{elements}
+\end{center}
+\caption{\label{fig:cellules}Décomposition d'un pixel et d'un voxel en cellules
+    de dimensions inférieures.}
+\end{figure}
+
+% La  figure \ref{fig:remplissage} suggère   de définir le contour comme
+% une  $(r)-$courbes  dans l'espace  discret.  Cependant,  la  figure
+% \ref{fig:topoerreur}   illustre le paradoxe   de connexité dans le cas
+% d'un pavage  par carrés du  plan.  Sur la  partie gauche de la figure,
+% les  pixels noirs  forment une $8-$courbe  fermée  mais  il  existe un
+% $8-$chemin  entre  l'extérieur et le  pixel   blanc intérieur {\`a} la
+% courbe.  La propriété de séparabilité n'est donc pas vérifiée.  Sur la
+% partie droite de la figure \ref{fig:topoerreur}, nous observons le cas
+% o{\`u}  une $4-$connexité est utilisée  pour  les pixels blancs et les
+% pixels noirs, dans ce  cas il n'existe  pas de $4-$chemin joignant les
+% pixels blancs au pixel central, et les pixels noirs  ne forment pas un
+% $4-$chemin.  Il y a  donc un choix  crucial à faire entre la connexité
+% de l'objet et la connexité du fond.
+
+
+
+% \begin{figure}[htbp] 
+% \begin{center}
+%   \includegraphics[width=8cm]{topoerreur}
+% \end{center}
+% \caption{Paradoxe de connexité pour un maillage par carrés, les arêtes
+%   de   ces     graphes représentant    les   différentes    connexités
+%   choisies.\label{fig:topoerreur}}
+% \end{figure}
+
+\subsection{Définitions pour les grilles isothétiques irrégulières}
+\label{sec:definitions-irr}
+
+Dans  le cas des   grilles isothétiques irrégulières, les  définitions
+précédentes   sont   tout à  fait  valident  pour   la    $(0)-$ et  la
+$(1)-$adjacences définies sur ces cellules.  Nous avons donc de manière
+triviale, des $(r)-$objets ou encore des $(r)-$courbes fermées dans ces
+espaces (voir figure \ref{fig:courbe_isoth}).
+
+
+\begin{figure}[htbp]
+\begin{center}
+%  \includegraphics[width=3cm]{cellulaire}
+  \includegraphics[width=10cm]{courbe_isoth}
+\end{center}
+\caption{\label{fig:courbe_isoth}Exemples d'objets topologiques sur
+  une grille isothétique irrégulière~: \emph{(de gauche à droite)} un
+  $(1)-$objet (mais non $(0)-$objet), une ($0)-$courbe et une $(0)-$courbe fermée.}
+\end{figure} 
+
+Pour  retrouver   une  définition de contour   sur   ces espaces, nous
+considérons un pavage  de cellules étiquetées avec un label  ``objet''
+ou  ``fond''.   Ensuite, nous pouvons   nous  baser sur  la notion  de
+surface    de   \aut{Jordan}   sur    un    graphe    bicolore orienté
+\cite{Herman98b}~: les sommets  du graphe sont les cellules  coloriées
+``objet'' ou ``fond'', et les  arêtes sont données explicitement par le
+graphe d'adjacence des cellules pour une certaines connexités.
+
+
+
+\section{Eléments géométriques}
+
+
+Sur les pavages réguliers, nous avons  pour l'instant caractérisé les
+objets discrets selon  leurs propriétés  topologiques, ou selon le processus de 
+discrétisation  d'un objet réel dont ils sont issus.
+
+Nous pouvons  cependant  définir un  paradigme géométrique  de manière
+intrinsèque à la  grille   discrète.    Ce   paradigme regroupe    des
+définitions d'objets   géométriques élémentaires     (points, droites,
+plans, segments, cercles,  etc.),  des propriétés entre ces   objets,
+ainsi que des algorithmes permettant de les manipuler efficacement.
+
+\subsection{Objets discrets~: droites, plans, cercles, etc.}
+\label{sec:objets-discrets}
+
+Dans le paradigme de la géométrie  discrète,  il est nécessaire de  définir  des
+objets  géométriques    de    base.   Généralement,    deux   approches
+complémentaires sont possibles  ; nous les illustrons avec la  définition
+d'une droite discrète~:
+\begin{itemize}
+\item définition par discrétisation~: on définit la droite discrète
+  comme étant le  résultat  d'une   discrétisation, selon  un  certain
+  processus, d'une droite réelle~;
+\item définition  intrinsèque~:  on définit  la droite  discrète comme
+  étant l'objet géométrique  qui     valide la version  discrète    de
+  certaines propriétés géométriques que possède la droite réelle.
+\end{itemize}
+
+Souvent  ces deux processus se  rejoignent et décrivent le même objet.
+Reprenons la définition  par  discrétisation, s'il est évident que  la
+figure \ref{fig:vialard_droites}.c   ne  peut pas être  un  morceau de
+droite discrète,  le  fait que la   courbe \ref{fig:vialard_droites}.b
+n'en  soit pas un non plus  illustre le fait  que ces objets possèdent
+une  structure intrinsèque.  Plus  précisément, la droite  discrète de
+pente  rationnelle,   tout comme  le  plan discret   dans une certaine
+mesure, possède des structures de régularité et de périodicité faisant
+le  lien  entre ces     objets   et des résultats   fondamentaux    en
+arithmétique,    théorie des nombres,  théorie    des mots, etc.   Une
+bibliographie     très    dense        existe    sur     ces éléments,
+\cite{citeulike_611268,dcoeurjo_planarity}     présentent    un nombre
+conséquent de références.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=12cm]{droite_vialard}
+\end{center}
+\caption{Seule la courbe $(a)$ est un segment discret selon
+      les définitions usuelles des droites discrètes.\label{fig:vialard_droites}}
+\end{figure}
+
+En utilisant la  droite discrète dans  notre  modèle géométrique, nous
+pouvons d'ores et déjà nous rendre compte que les axiomes géométriques
+d'\OldName{Euclide}  seront à  revoir.   En effet,  l'intersection, en
+termes de  points   et donc de  pixels   communs,  entre deux  droites
+discrètes non parallèles peut être composée d'un point, d'aucun point,
+d'un ensemble connexe de points ou encore d'un ensemble non connexe de
+points.  De même, deux  droites discrètes parallèles  peuvent partager
+une infinité de  points sans être confondues.   Il faut  donc repenser
+les      propriétés       d'intersection     et       de  parallélisme
+\cite{Vee99,Vee02,citeulike_613266}.
+
+Ce problème, posé par les axiomes d'\aut{Euclide}, illustre parfaitement
+la problématique de la géométrie discrète~: le lien avec l'objet ou le
+concept   continu  sous-jacent est à  considérer   avec   beaucoup  de
+précautions.  Parfois  nous aurons des  constructions ou des résultats
+intrinsèques au modèle discret    sans  aucun lien avec  le   continu,
+parfois nous   définirons     nos objets discrets      comme étant des
+approximations les plus précises possibles d'objets continus.
+
+Dans  le chapitre  \ref{chap:IA}  nous revenons   sur  les modèles  de
+discrétisation, et sur les liens discrets/continus.
+
+Étant donnée  une définition d'un  objet  fondamental comme  la droite
+discrète, une  question   récurrente est d'obtenir   un  algorithme de
+reconnaissance~: considérons un ensemble de  pixels (pour l'exemple de
+la droite discrète), un algorithme de reconnaissance doit décider s'il
+existe une droite discrète contenant l'ensemble des pixels considéré.
+De plus, comme la  définition de la droite  discrète est paramétrée par
+des quantités   (pente,   ordonnée à  l'origine), nous    attendons de
+l'algorithme qu'il nous   retourne  aussi un paramétrage valide   pour
+l'ensemble  (dans   le cas    où  ce   dernier  est bien  un
+sous-ensemble de  droite  discrète). Bien  sûr, ces   techniques  vont
+exploiter   les  propriétés internes  des   objets à reconnaître  afin
+d'obtenir                des            algorithmes            rapides
+\cite{citeulike_611268,dcoeurjo_planarity}. Le chapitre \ref{chap:ILP}
+présente une analyse théorique  et algorithmique pour certains de  ces
+objets.
+
+Par définition des  objets  fondamentaux comme la droite  discrète, un
+paramétrage valide  conduit généralement à  la définition d'une droite
+réelle associée avec  la  propriété que la discrétisation  de celle-ci
+corresponde exactement aux pixels de  la droite discrète. Notons qu'il
+existe une  infinité de  droites réelles se   discrétisant dans une même
+droite discrète.
+
+
+
+\subsection{Reconstruction  et polyédrisation réversible d'objets discrets}
+\label{sec:reconstr-et-poly}
+
+Une problématique classique en géométrie discrète consiste à convertir
+une représentation en extension   (un ensemble de pixels d'un  contour
+discret) en une représentation en compréhension (courbe polygonale par
+exemple). Bien évidemment,  ce changement   de représentation se  doit
+d'être réversible dans le sens  où, si l'on discrétise l'objet  continu
+(courbe polygonale), nous devons obtenir l'objet discret initial.
+
+Dans  ce contexte, nous voyons bien  que  les objets fondamentaux vont
+être des éléments de base  pour résoudre ce problème. Nous utiliserons
+en effet les  algorithmes  de reconnaissance  de  droite discrète pour
+décomposer un contour en segments. De même, nous pourrons utiliser les
+algorithmes de reconnaissance  de plans discrets pour la facettisation
+de surface d'objets discrets 3D (voir figure \ref{fig:reco}).
+
+Si les problèmes   paraissent simple, leurs   résolutions ne sont  pas
+triviales~:  même si la  définition des objets fondamentaux permet
+d'assurer  la réversibilité le  long du  segment dans  le  cas 2D  par
+exemple, le positionnement des sommets  nécessite une analyse fine. En
+dimension 3,     le placement des  sommets   et   des  arêtes est
+tout aussi difficile.
+
+
+\begin{figure}[ht]
+  \centering
+  \subfigure[]{\includegraphics[width=3cm]{courbe_reco}}
+  \subfigure[]{\includegraphics[width=4cm]{al}}
+  \subfigure[]{\includegraphics[width=4cm]{al2}}
+  \caption{Exemple de reconstruction réversible en dimension 2 et 3.}
+  \label{fig:reco}
+\end{figure}
+
+Généralement, trois approches sont envisagées  (illustrées dans le cas
+3D)~:
+\begin{itemize}
+\item approche \emph{Top-Down}~:   dans un premier  temps, nous  allons
+  décomposer la surface en morceaux de plan maximaux selon un ensemble
+  d'heuristiques  (voir  figure \ref{fig:reco}-$(b)$).   Ces  morceaux
+  peuvent  donc définir une  infinité de  facettes réelles  et dans un
+  second temps, nous cherchons à calculer  les facettes permettant  un
+  \emph{recollement}            de         la                  surface
+  \cite{journals/algorithmica/SivignonDC03,dcoeurjo_TFCV_graphe,sivignon_these,conf/dgci/SivignonDC05}~;
+\item approche \emph{contrainte}~: la construction de la surface et la
+  reconnaissance de plan discret se font  ici en parallèle. Pour cela,
+  la reconnaissance est \emph{contrainte} par la surface polygonale en
+  cours de construction   afin   d'obtenir la réversibilité   sur  les
+  sommets  et les arêtes, ainsi que  d'avoir la correction topologique
+  \cite{dexet_these,dcoeurjo_mdexet_ISVC}.  Un inconvénient est que la
+  propagation des \emph{contraintes} a tendance à \emph{accumuler} les
+  erreurs et  donc à  produire des polyèdres   très irrégulières,
+  avec des petites facettes~;
+\item approche \emph{Bottom-Up}~: l'idée est toujours de commencer par une
+  décomposition   en  morceaux  de  plan,    mais nous  partons  d'une
+  facettisation primaire élémentaire,   comme  celle   donnée par   un
+  algorithme                    de               \emph{Marching-Cubes}
+  \cite{marching,Lachaud00a,citeulike_910101}, que    nous simplifions
+  (fusion de facettes) en  intégrant l'information de  la segmentation
+  en plans  discrets \cite{dcoeurjo_MCsimplDGCI06}.  Un élément clé de
+  ce type de méthodes et de maintenir, pour chaque opération locale de
+  simplification de la surface, les propriétés  de réversibilité et de
+  correction topologique   (figure  \ref{fig:reco}-$(c)$). La  section
+  \ref{sec:reconstr-revers-en}  reviendra   plus  en détail sur  cette
+  technique.
+\end{itemize}
+
+Notons que la qualité de la  segmentation en morceaux de plan discret,
+en terme  de nombre de morceaux,  influence grandement la  suite de la
+reconstruction.  Cette   influence est   directe pour    les approches
+\emph{Top-Down} et \emph{Bottom-Up}, mais elle  se retrouve aussi dans
+les   approches  \emph{contraintes}.   Sur  ce   problème,  nous avons
+cependant   démontré  un  résultat  théorique  sur   le  fait que   la
+segmentation en un nombre minimal de morceaux est NP-difficile dans le
+cas  général    \cite{dcoeurjo_NPhard}              (voir      section
+\ref{sec:elem-de-compl} pour les notions liées à la NP-complétude).
+
+Dans  les  illustrations de la     figure \ref{fig:reco}, les   objets
+discrets sont \emph{simples}~: nous avons  une courbe  (au sens de  la
+section \ref{sec:defin-class})  en dimension 2   et une surface simple
+(une seule composante connexe, sans trous, etc.)  en dimension 3. Dans
+le cas de structures discrètes  plus complexes avec des jonctions  par
+exemple,  les problèmes sont   plus   compliqués. 
+
+Dans  le chapitre \ref{chap:IA},  nous revenons  sur  ces problèmes de
+reconstruction   en dimension   2 sur  des   formes  complexes,  et en
+dimension 3.
+
+Cette dernière thématique est à   rapprocher du domaine  du traitement
+d'images, et plus particulièrement  du traitement de documents, qu'est
+la        \emph{vectorisation}          (voir        par       exemple
+\cite{journals/pami/HilaireT06}  pour plus de références).  Notons que
+dans ce cadre applicatif, la réversibilité est une contrainte rarement
+prise en compte. L'effort se porte sur des définitions statistiquement
+robustes aux bruits plutôt qu'à des représentations exactes.
+
+\subsection{Distances discrètes, transformée en distance et axe médian}
+\label{sec:dist-discr-transf}
+
+Un autre  domaine détaillé  dans  le chapitre  \ref{chap:AM} porte sur
+l'analyse   volumique   d'objet   discrets  par  l'utilisation  de  la
+transformation en distance. Cette transformation  consiste à étiqueter
+tous les points  d'un  objet discret  avec  leur distance  minimale au
+complémentaire~; elle est   d'une grande utilité  pour représenter les
+objets discrets    par   des  unions de    boules,   définissant ainsi
+\emph{l'axe médian} d'une forme discrète (voir figure \ref{fig:am}).
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=7cm]{am-cercles}
+\caption{Illustration de  la représentation d'une  forme par
+    union   de  disques.  Les     centres des   disques   (pointillés)
+    représentent    schématiquement        l'axe   médian     de    la
+    forme.\label{fig:am}}
+\end{figure}
+
+
+
+Pour cela, nous devons spécifier la distance que l'on considère. Etant
+donnés  deux  points discrets $P$   et   $Q$, deux grandes  catégories
+d'approches existent.    La première consiste à  manipuler la distance
+euclidienne      directement      en     considérant   le      vecteur
+$\overrightarrow{PQ}$ ou encore le carré de la distance, $d^2_e(P,Q)$.
+La seconde  consiste à  approximer la   distance  euclidienne par  des
+masques  locaux, donnant    lieu  aux  \emph{distances  de  chanfrein}
+\cite{borgefors,Thiel_hdr}.   Ainsi,  en  considérant  une  famille de
+déplacements élémentaires  pondérés, nous  pouvons construire un  plus
+court chemin entre $P$ et $Q$ et estimer  la distance entre ces points
+(voir figure \ref{fig:illustration-simple-distances}).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=12cm]{distances}
+ \caption{Illustration de distances discrètes entre deux points
+    discrets. Les chemins correspondent à des plus courts chemins pour
+    la distance considérée (les déplacements élémentaires et leurs poids
+    sont indiqués par les flèches).\label{fig:illustration-simple-distances}}
+\end{figure}
+
+
+Généralement, les approches  fondées sur une approximation en distance
+de chanfrein étaient préférées,  de par la simplicité  des algorithmes
+sous-jacents   (transformation    en  distance,  extraction   de l'axe
+médian,\ldots).     Néanmoins,   nous  montrons   dans   le   chapitre
+\ref{chap:AM} que des  algorithmes  très  efficaces existent pour   la
+métrique euclidienne.
+
+
+\section{Éléments de complexité}
+\label{sec:elem-de-compl}
+
+Dans   cette section,  nous   présentons  rapidement  les  notions  de
+complexité  que nous utiliserons par la  suite. Plus précisément, nous
+reprenons  le schéma classique  de   preuve de NP-complétude que  nous
+utilisons dans  le chapitre  \ref{chap:AM}.  Dans  ce  qui  suit, nous
+considérons      un modèle   générique  de   \emph{machine
+  déterministe à  accès aléatoire}, à processeur unique \cite{cormen}.
+Une description  rapide  de ce modèle affecte  un  coût  unitaire pour
+toutes   les  opérations arithmétiques, ainsi    que pour la comparaison de
+nombres.   Pour quantifier     la complexité  d'un    algorithme, nous
+utilisons  généralement une analyse  au   pire cas, paramétrée par  la
+taille des données  $n$ en entrée  de l'algorithme.  Nous considérons
+aussi les notations asymptotiques  de complexité $O(g(n))$ définie  de
+la manière suivante~:  si $f(n)=O(g(n))$, il  existe une constante $c$
+et un  nombre $n_0$  tel que pour  tout  $n>n_0$, $f(n)< cg(n)$.  Nous
+disons aussi que  $g(n)$ est une  \emph{borne supérieure asymptotique}
+pour $f(n)$.   De manière  similaire, nous  définissons $\Omega(g(n))$
+comme une \emph{borne inférieure asymptotique} pour $f(n)$.  Si $g(n)$
+est  une borne asymptotique   inférieure  et supérieure, nous   notons
+$\Theta(g(n))$   la   \emph{borne approchée asymptotique}  pour $f(n)$
+\cite{cormen}.
+
+Ainsi,  les notations  précédentes   nous permettent de  quantifier la
+complexité d'un algorithme.  Par extension, nous pouvons quantifier la
+complexité d'un problème.    Si   un  problème a une complexité     de
+$O(g(n))$,   il  existe  nécessairement  un  algorithme   résolvant le
+problème  ayant  une complexité   $O(g(n))$.   La  quantification  des
+problèmes,  indépendamment des algorithmes  les implémentant,  devient
+formellement intéressante  lorsque nous obtenons  des preuves de borne
+inférieure ou asymptotique approchée $\Theta(g(n))$ pour un problème~:
+dans ce cas, nous garantissons  qu'il n'existe aucun autre  algorithme
+ayant une   complexité  asymptotique moindre  répondant  au   problème
+initial.
+
+Pour mieux caractériser  les algorithmes, nous  cherchons à classifier
+ces derniers en classes de complexité.  Plus précisément, nous allons
+nous intéresser à la classe P   des algorithmes dont la résolution  se
+fait  en temps polynomial  (complexité en  $O(g(n))$  où $g(n)$ est un
+polynôme dont le degré ne dépend pas  de $n$), mais aussi à une classe
+d'algorithmes pour laquelle un
+doute subsiste sur sa nature (NP-complétude).   Dans ce qui suit, nous
+considérons  des problèmes   de  décision, c'est-à-dire  des problèmes
+prenant une  entrée de  taille $n$  et retournant  uniquement  VRAI ou
+FAUX.  Par abus de langage, un  problème est vérifiable (ou résoluble)
+s'il existe un  algorithme vérifiable  (ou résoluble) implémentant  ce
+problème.
+
+Plus formellement~:
+
+\begin{definition}[P]
+  Un problème de décision est dans  la classe P s'il est résoluble
+  sur une machine déterministe en temps polynomial.
+\end{definition}
+
+Le temps d'exécution de l'algorithme  dépend du \emph{codage} avec
+lequel l'entrée est donnée à l'algorithme.  Nous ne détaillons pas ces
+points mais si nous changeons le codage d'une  instance du problème de
+manière polynomiale  (la \emph{transformation} est calculable en temps
+polynomial), cela ne change pas la classe de complexité du problème \cite{cormen}.
+
+\begin{definition}[NP]
+  Un problème   de  décision est dans   la  classe NP\footnote{NP est
+    l'acronyme  de \emph{Non-deterministic    Polynomial}~:  il  y   a
+    équivalence   pour  la  définition   de  la  classe entre   ``être
+    \textbf{vérifiable} en    temps    polynomial sur    une   machine
+    déterministe''  et ``être \textbf{résolvable}  en temps polynomial
+    sur une machine non-déterministe''.} si la validation d'un solution
+  au problème est  calculable  sur une  machine  déterministe en temps
+  polynomial. On dit alors que   le problème est \emph{vérifiable}  en
+  temps polynomial.
+\end{definition}
+
+De  manière ensembliste, nous  pouvons  déduire de ces définitions que
+$P\subset NP$.  Le  problème   classique  porte sur l'existence     de
+problèmes dans NP, qui ne seraient  pas dans P. En d'autres termes,
+est-ce que $P=NP$ ?  Si nous  ne savons pas répondre à cette question,
+nous pouvons \emph{lier} tous ces problèmes entre eux par la notion de
+NP-complétude.     Pour  cela, il    faut   tout d'abord présenter  la
+\emph{réduction  polynomiale}~: tout  comme le   recodage des  entrées
+présenté plus haut, un problème $\mathcal{P}$ peut être \emph{réduit}
+en temps polynomial dans  un autre problème $\mathcal{P}'$ s'il existe
+une  transformation polynomiale  de  \textbf{toutes} les instances  de
+$\mathcal{P}$   vers \textbf{un   sous-ensemble}   des instances    de
+$\mathcal{P}'$.
+
+\begin{definition}[NP-complet]
+  Un problème $\mathcal{P}$ est  NP-complet si~:
+  \begin{itemize}
+  \item $\mathcal{P}\in NP$
+  \item tous les problèmes de NP se réduisent polynomialement en $\mathcal{P}$.
+  \end{itemize}
+\end{definition}
+
+En  d'autres  termes,  $\mathcal{P}$  est au  moins  aussi difficile à
+résoudre  que tous les autres problèmes  de NP.  Par conséquence, s'il
+existe un problème NP-complet pouvant être résolu en temps polynomial,
+alors tous les  problèmes NP-complets pourraient être résolus en  temps
+polynomial, et donc P=NP.  L'existence d'un tel problème, ou la preuve
+de sa non-existence est un problème ouvert.
+
+Pour prouver qu'un problème  $\mathcal{P}$ est NP-complet, le principe
+est plus simple que de considérer tous les problèmes NP, il faut~:
+\begin{itemize}
+\item considérer un problème $\mathcal{P}'$ prouvé comme étant
+  NP-complet~;
+\item trouver une réduction polynomiale de toutes les instances de
+  $\mathcal{P}'$ vers un sous-ensemble d'instances de $\mathcal{P}$~;
+\item   montrer que  l'existence    d'un  algorithme   pour   résoudre
+  $\mathcal{P}$ sur ces instances reviendrait à résoudre $\mathcal{P}'$.
+\end{itemize}
+Ainsi, $\mathcal{P}$ est au moins aussi difficile que $\mathcal{P}'$.
+
+Le premier problème  NP-complet est dû à \aut{Cook} \cite{Cook:1971}~:
+considérons une formule  booléenne satisfiable composée des opérateurs
+booléens  ET   ($\wedge$), OU  ($\vee$), et  NON    ($\neg$) et de $k$
+variables (booléennes).  Le  problème  de décision est   le  suivant~:
+quelle  que soit la    formule  booléenne satisfiable,  existe-il  une
+instanciation des variables permettant de valider la formule (problème
+\aut{SAT}) ?
+
+
+
+Dans le schéma de preuve de NP-complétude présentée ci-dessus, il est
+parfois plus commode de considérer les problèmes suivants~:
+\begin{itemize}
+\item \aut{3-SAT}~: les instances sont les formules  $\phi$ qui sont des
+  expressions logiques de  $m$ clauses sur  $n$ variables binaires  en
+  forme normale conjonctive d'ordre 3, par exemple~:
+  \begin{displaymath}
+    \phi=        (x_{1} \vee x_{2} \vee \neg x_{3}) \wedge (\neg x_{1} \vee x_{4} \vee
+    x_{5}) \wedge (\neg x_{6} \neg\vee x_{3} \vee \neg x_{5}) \wedge \dots\,,
+  \end{displaymath}
+Le problème de décision est donc le suivant~: existe-il une
+instanciation des variables permettant de satisfaire $\phi$ ? 
+\item \aut{Planar-3-SAT}~:    les instances de   ce  problème  sont les
+  formules $\phi$ qui  sont des instances de \aut{3-SAT} particulières.
+  Considérons le graphe dont  les sommets sont   les variables et  les
+  clauses.  Les arêtes d'une variable vers une  clause signifie que la
+  variable apparaît  dans la clause \cite{TCS::JansenM1995:69}.   Cette instance est une instance
+  de \aut{Planar-3-SAT} si le  graphe associé est planaire (voir figure
+  \ref{fig:planar3sat}). Le problème de décision ne change pas.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=6cm]{planaire}
+  \caption{Représentation planaire de l'instance de
+    \aut{Planar-3-SAT}~:  $\phi=(x_1\vee \neg x_3\vee x_4)\wedge (\neg x_1\vee\neg x_2\vee
+     x_5)\wedge(x_1\vee x_3\vee \neg x_4)$. Les clauses $c_1, c_2$ et
+     $c_3$ sont numérotées dans l'ordre de la formule et les deux
+     types de liens correspondent à l'utilisation de la variable de
+     manière négative ou positive.}
+  \label{fig:planar3sat}
+\end{figure}
+\item \aut{Planar-4-3-SAT}~: les instances    de ce problème  sont  les
+  formules  $\phi$,  instances   de  \aut{Planar-3-SAT}, telles   qu'une
+  variable n'apparaît qu'au  plus 4 fois  dans la formule (sous  forme
+  négative ou non).  Le problème de décision est identique.
+\end{itemize}
+
+
+
+
+\sloppy Généralement, ces problèmes  NP-complets   sont très utilisés pour   la
+preuve  de NP-complétude de   problèmes géométriques.  \aut{3-SAT} nous
+permet de construire des objets géométriques pour les \emph{variables}
+et les \emph{clauses} (schéma utilisé pour prouver la NP-complétude de
+la décomposition minimale en morceaux de  plans discrets d'une surface
+discrète, voir \cite{dcoeurjo_NPhard}).  \aut{Planar-3-SAT} est  très
+utilisé dans le  cas d'algorithmes géométriques bi-dimensionnels (voir
+section \ref{sec:laxe-median-minimal}). Enfin, \aut{Planar-3-SAT} offre
+l'avantage de construire des  schémas géométriques pour  les variables
+plus simples car celle-ci ne sera \emph{utilisée} que 4 fois au plus
+(sur la représentation en graphe, les sommets ``variables'' seront de
+degré au plus 4 et les sommets ''clauses'' de degré 3). notons que le
+plongement géométrique d'un graphe planaire peut se faire en temps
+linéaire et ce résultat est toujours valide lorsque le plongement se
+fait sur une grille \cite{de_Fraysseix-Pach-Pollack/90}
+
+Finalement,  si nous avons   un problème d'optimisation,  par exemple,
+``décomposer la  forme en un   nombre  minimal de morceaux  ayant  une
+certaine propriété'', la  transformation  en un problème  de  décision
+peut être  donnée par la formule~:  ``existe-il une décomposition de la
+forme avec $k$ morceaux ayant une certaine propriété  ?'' avec $k$ une
+variable libre dans l'énoncé.  Usuellement, si le problème de décision
+associé à un   problème  d'optimisation est  NP-complet,  le  problème
+d'optimisation sera dit \emph{NP-difficile}.
+
+
+
+
+%\bibliography{biblio}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "hdr"
+%%% End: 
