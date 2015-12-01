@@ -23,7 +23,7 @@ The PDF version of the manuscript and defense slides can de downloaded [here](ht
     	author = {Coeurjolly, D.},
         type = {Habilitation à diriger des Recherches},
     	title = {Algorithmique pour l{'}analyse et la mod{\'{e}}lisation en g{\'{e}}om{\'{e}}trie discr{\`{e}}te},
-	    year = {2007},
+	    year = {2007}
     }
 
 ## Abstract
